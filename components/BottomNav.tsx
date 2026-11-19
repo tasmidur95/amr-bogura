@@ -14,11 +14,10 @@ export default function BottomNav({ currentView, onNavigate }: BottomNavProps) {
       <div className="grid grid-cols-5 gap-1 text-center">
         <Link
           href="/"
-          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${
-            currentView === 'home'
+          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${currentView === 'home'
               ? 'text-emerald-800 font-bold'
               : 'text-slate-600 hover:text-emerald-800'
-          }`}
+            }`}
         >
           <i className="fa-solid fa-house text-base mb-0.5"></i>
           <span>হোম</span>
@@ -26,11 +25,10 @@ export default function BottomNav({ currentView, onNavigate }: BottomNavProps) {
 
         <Link
           href="/upazilas"
-          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${
-            currentView === 'upazilas'
+          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${currentView === 'upazilas'
               ? 'text-emerald-800 font-bold'
               : 'text-slate-600 hover:text-emerald-800'
-          }`}
+            }`}
         >
           <i className="fa-solid fa-map-location-dot text-base mb-0.5"></i>
           <span>উপজেলা</span>
@@ -46,11 +44,10 @@ export default function BottomNav({ currentView, onNavigate }: BottomNavProps) {
 
         <Link
           href="/explore"
-          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${
-            currentView === 'explore'
+          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${currentView === 'explore'
               ? 'text-emerald-800 font-bold'
               : 'text-slate-600 hover:text-emerald-800'
-          }`}
+            }`}
         >
           <i className="fa-solid fa-landmark text-base mb-0.5"></i>
           <span>দর্শনীয়</span>

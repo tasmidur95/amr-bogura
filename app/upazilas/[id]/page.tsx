@@ -7,13 +7,25 @@ import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import UpazilaDetailView from '@/components/UpazilaDetailView';
 import { upazilasData } from '@/lib/data/district-data';
+import { boguraUpazilasData } from '@/lib/data/unions-villages-data';
 
 export default function UpazilaDetailPage() {
   const router = useRouter();
   const params = useParams();
   const idStr = Array.isArray(params?.id) ? params.id[0] : params?.id || '0';
-  const index = parseInt(idStr, 10);
-  const validIndex = isNaN(index) || index < 0 || index >= upazilasData.length ? 0 : index;
+  const num = parseInt(idStr, 10);
+  let validIndex = 0;
+
+  if (!isNaN(num) && num >= 0 && num < upazilasData.length) {
+    validIndex = num;
+  } else {
+    const slugIdx = boguraUpazilasData.findIndex(
+      u => u.id.toLowerCase() === idStr.toLowerCase()
+    );
+    if (slugIdx !== -1) {
+      validIndex = slugIdx;
+    }
+  }
 
   const handleNavigate = (view: string, anchor?: string) => {
     if (view === 'home') {

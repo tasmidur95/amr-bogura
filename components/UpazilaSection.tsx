@@ -56,7 +56,8 @@ export default function UpazilaSection({
             onClick={() => onNavigate('upazilas')}
             className="px-4 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-xs transition cursor-pointer shrink-0"
           >
-            <span>{t('viewAllUpazilasBtn')}</span>
+            <i className="fa-solid fa-earth-americas text-amber-300"></i>
+            <span>মানচিত্র ও গ্রাম তালিকা ({upazilas.length})</span>
             <i className="fa-solid fa-arrow-right"></i>
           </button>
         </div>

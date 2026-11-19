@@ -414,3 +414,4 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
     ]
   }
 ];
+

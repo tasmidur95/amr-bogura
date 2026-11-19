@@ -4,11 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
-import { detailedExploreSpots, DetailedExploreSpot } from '@/lib/data/explore-data';
-import { ExploreSpot } from '@/lib/data/district-data';
+import { detailedExploreSpots } from '@/lib/data/explore-data';
 
 interface ExploreSectionProps {
-  exploreSpots?: ExploreSpot[] | DetailedExploreSpot[];
+  exploreSpots?: any[];
 }
 
 export default function ExploreSection({ exploreSpots }: ExploreSectionProps = {}) {

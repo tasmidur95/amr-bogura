@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Upazila, Hospital, ExploreSpot, EmergencyContact } from '@/lib/data/district-data';
 import { detailedExploreSpots } from '@/lib/data/explore-data';
+import { searchVillages } from '@/lib/data/unions-villages-data';
 import { useToast } from '@/lib/context/ToastContext';
 
 interface SearchModalProps {
@@ -135,6 +136,20 @@ export default function SearchModal({
           },
         });
       }
+    });
+
+    // Villages & Unions Search
+    const villageHits = searchVillages(q).slice(0, 5);
+    villageHits.forEach(v => {
+      results.push({
+        type: 'গ্রাম / ইউনিয়ন',
+        title: `গ্রাম: ${v.village}`,
+        sub: `${v.unionName} ইউনিয়ন, ${v.upazilaName} উপজেলা (ডাকঘর: ${v.postCode})`,
+        action: () => {
+          onClose();
+          router.push(`/upazilas/${v.upazilaId}`);
+        },
+      });
     });
   }
 
