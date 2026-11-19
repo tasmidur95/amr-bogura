@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import BrandLogo from '@/components/BrandLogo';
 import { useLanguage } from '@/lib/context/LanguageContext';
 
 interface FooterProps {
@@ -16,14 +17,8 @@ export default function Footer({ onNavigate, onSwitchCommunityTab }: FooterProps
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-emerald-900">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-9 h-9 rounded-xl bg-emerald-800 text-amber-300 flex items-center justify-center font-bold">
-                <i className="fa-solid fa-landmark-dome"></i>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white">আমার বগুড়া · Amar Bogura</h3>
-                <p className="text-xs text-emerald-400">বগুড়া জেলা নাগরিক ও কমিউনিটি ডিজিটাল পোর্টাল</p>
-              </div>
+            <div className="mb-4">
+              <BrandLogo variant="horizontal" size="lg" theme="dark" />
             </div>
             <p className="text-sm text-emerald-300/90 max-w-md leading-relaxed">
               করতোয়া বিধৌত প্রাচীন পুণ্ড্রবর্ধনের ইতিহাস, ১২টি উপজেলার তথ্য, জরুরি স্বাস্থ্যসেবা, রক্তদাতা নেটওয়ার্ক ও স্থানীয় কমিউনিটিকে এক সুতোয় গাঁথার একটি নাগরিক উদ্যোগ।

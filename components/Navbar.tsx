@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import BrandLogo from '@/components/BrandLogo';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
 
@@ -46,31 +47,12 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch }: Navbar
       {/* Sticky Main Header & Navigation */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-          {/* Brand Identity */}
+          {/* Brand Identity with Cover-Photo inspired Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 group shrink-0 text-left cursor-pointer"
+            className="flex items-center group shrink-0 text-left cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-800 to-emerald-600 text-white flex items-center justify-center shadow-md shadow-emerald-900/15 group-hover:scale-105 transition-transform">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 20h18M5 20V10l7-6 7 6v10" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M9 20v-6h6v6" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M2 17c3-1.5 6 1.5 10 0s7 1.5 10 0" stroke="#fbbf24" strokeWidth="1.8" strokeLinecap="round" />
-              </svg>
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-xl font-bold tracking-tight text-emerald-900 leading-none">
-                  {t('brandTitle')}
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200">
-                  BD
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-500 font-medium mt-0.5">
-                {t('brandSubtitle')}
-              </p>
-            </div>
+            <BrandLogo variant="horizontal" size="md" />
           </Link>
 
           {/* Desktop Navigation Links */}

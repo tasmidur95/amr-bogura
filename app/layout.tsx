@@ -4,15 +4,35 @@ import { LanguageProvider } from '@/lib/context/LanguageContext';
 import { ToastProvider } from '@/lib/context/ToastContext';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://amar-bogura.vercel.app'),
   title: 'আমার বগুড়া | Amar Bogura — বগুড়া জেলা পোর্টাল ও কমিউনিটি প্ল্যাটফর্ম',
   description: 'করতোয়ার তীরে প্রাচীন পুণ্ড্রবর্ধনের ঐতিহ্যবাহী জনপদ। ১২টি উপজেলা, স্বাস্থ্যসেবা, জরুরি যোগাযোগ, রক্তদাতা নেটওয়ার্ক ও নাগরিক সেবার আধুনিক ডিজিটাল প্ল্যাটফর্ম।',
   keywords: ['Bogura', 'Amar Bogura', 'বগুড়া', 'আমার বগুড়া', 'District Portal', 'Pundravardhana', 'Mahasthangarh', 'Bogura Doi'],
   authors: [{ name: 'Amar Bogura Civic Initiative' }],
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: 'আমার বগুড়া | Amar Bogura',
-    description: 'বগুড়া জেলা পোর্টাল ও কমিউনিটি প্ল্যাটফর্ম',
+    description: 'বগুড়া জেলা পোর্টাল ও কমিউনিটি প্ল্যাটফর্ম — পুণ্ড্রনগর, মহাস্থানগড়, ১২টি উপজেলা ও ঐতিহ্যবাহী বগুড়ার দই',
     type: 'website',
     locale: 'bn_BD',
+    images: [
+      {
+        url: '/images/amar-bogura-cover.jpg',
+        width: 1200,
+        height: 675,
+        alt: 'আমার বগুড়া — অফিসিয়াল কভার ফটো ও লোগো',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'আমার বগুড়া | Amar Bogura',
+    description: 'বগুড়া জেলা পোর্টাল ও কমিউনিটি প্ল্যাটফর্ম',
+    images: ['/images/amar-bogura-cover.jpg'],
   },
 };
 
