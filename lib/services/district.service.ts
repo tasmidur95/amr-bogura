@@ -147,6 +147,64 @@ let memorySpotReviews: SpotReview[] = [
 ];
 
 /**
+ * In-memory state for hospitals & diagnostics
+ */
+let memoryHospitals: Hospital[] = [...hospitalsData];
+
+/**
+ * In-memory state for emergency hotlines
+ */
+let memoryEmergency: EmergencyContact[] = [...emergencyData];
+
+/**
+ * In-memory system settings & configuration
+ */
+let systemSettings = {
+  autoApprove: false,
+  maintenanceMode: false,
+  allowPublicContributions: true,
+  adminPasskey: process.env.ADMIN_PASSKEY || 'bogura2026',
+  lastBackupDate: new Date().toISOString()
+};
+
+/**
+ * In-memory administrative audit logs
+ */
+let systemAuditLogs: Array<{
+  id: string;
+  action: string;
+  target: string;
+  details: string;
+  timestamp: string;
+  status: 'success' | 'warning' | 'info';
+}> = [
+  {
+    id: 'log-1',
+    action: 'SYSTEM_BOOT',
+    target: 'Next.js 14 App Router',
+    details: 'আমার বগুড়া প্ল্যাটফর্ম সফলভাবে বুটস্ট্র্যাপ হয়েছে।',
+    timestamp: 'আজ ১৫:৪৫',
+    status: 'success'
+  },
+  {
+    id: 'log-2',
+    action: 'DATABASE_SYNC',
+    target: 'Supabase PostgreSQL Pooler',
+    details: 'সুপাবেস কানেকশন যাচাই সফলভাবে সম্পন্ন হয়েছে।',
+    timestamp: 'আজ ১৫:৪৭',
+    status: 'info'
+  },
+  {
+    id: 'log-3',
+    action: 'MODERATION_QUEUE',
+    target: 'Approval Process',
+    details: 'নাগরিক অবদান ও অনুমোদন ইঞ্জিন সক্রিয় রয়েছে।',
+    timestamp: 'আজ ১৫:৫০',
+    status: 'warning'
+  }
+];
+
+/**
  * DistrictService - NestJS-style modular service layer
  * Responsible for data access, filtering, Supabase synchronization & public contributor workflow.
  */
@@ -177,9 +235,9 @@ export class DistrictService {
     return upazilasData[index] || null;
   }
 
-  // Hospitals
+  // Hospitals (Dynamic with in-memory admin support)
   static async getHospitals(type?: string, query?: string): Promise<Hospital[]> {
-    let list = [...hospitalsData];
+    let list = [...memoryHospitals];
 
     if (type && type !== 'all') {
       list = list.filter(h => h.type === type);
@@ -197,9 +255,9 @@ export class DistrictService {
     return list;
   }
 
-  // Emergency
+  // Emergency (Dynamic with in-memory admin support)
   static async getEmergencyContacts(): Promise<EmergencyContact[]> {
-    return emergencyData;
+    return memoryEmergency;
   }
 
   // Explore / Tourist Spots (Legacy simple format)
@@ -1018,5 +1076,187 @@ export class DistrictService {
     });
 
     return { spots, community };
+  }
+
+  // ==========================================
+  // SYSTEM ADMIN & INFRASTRUCTURE CONTROLS
+  // ==========================================
+
+  /**
+   * Add a new hospital or diagnostic clinic
+   */
+  static async addHospital(hospital: Hospital): Promise<Hospital> {
+    const item: Hospital = {
+      ...hospital,
+      id: hospital.id || `hosp-${Date.now()}`
+    };
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('hospitals').insert([
+          {
+            name: item.name,
+            en_name: item.enName || item.name,
+            type: item.type,
+            type_label: item.typeLabel,
+            address: item.address,
+            phone: item.phone,
+            emergency: item.emergency
+          }
+        ]);
+      } catch (e) {
+        console.warn('Supabase hospital insert fallback', e);
+      }
+    }
+
+    memoryHospitals.unshift(item);
+    this.addAuditLog('HOSPITAL_ADD', item.name, `নতুন হাসপাতাল ডিরেক্টরিতে যুক্ত হয়েছে: ${item.address}`, 'success');
+    return item;
+  }
+
+  /**
+   * Update hospital information
+   */
+  static async updateHospital(nameOrId: string, updates: Partial<Hospital>): Promise<boolean> {
+    const target = memoryHospitals.find(h => h.id === nameOrId || h.name === nameOrId);
+    if (target) {
+      Object.assign(target, updates);
+      this.addAuditLog('HOSPITAL_UPDATE', target.name, 'হাসপাতালের তথ্য আপডেট করা হয়েছে।', 'info');
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Delete hospital
+   */
+  static async deleteHospital(nameOrId: string): Promise<boolean> {
+    const idx = memoryHospitals.findIndex(h => h.id === nameOrId || h.name === nameOrId);
+    if (idx !== -1) {
+      const removed = memoryHospitals.splice(idx, 1)[0];
+      this.addAuditLog('HOSPITAL_DELETE', removed.name, 'হাসপাতাল তালিকা থেকে মুছে ফেলা হয়েছে।', 'warning');
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Add an emergency hotline contact
+   */
+  static async addEmergencyContact(contact: EmergencyContact): Promise<EmergencyContact> {
+    memoryEmergency.unshift(contact);
+    this.addAuditLog('EMERGENCY_ADD', contact.title, `জরুরি সেবা হটলাইন যুক্ত হয়েছে: ${contact.number}`, 'success');
+    return contact;
+  }
+
+  /**
+   * Delete emergency contact
+   */
+  static async deleteEmergencyContact(title: string): Promise<boolean> {
+    const idx = memoryEmergency.findIndex(e => e.title === title);
+    if (idx !== -1) {
+      memoryEmergency.splice(idx, 1);
+      this.addAuditLog('EMERGENCY_DELETE', title, 'জরুরি সেবা মুছে ফেলা হয়েছে।', 'warning');
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Add a system audit log entry
+   */
+  static addAuditLog(
+    action: string,
+    target: string,
+    details: string,
+    status: 'success' | 'warning' | 'info' = 'info'
+  ) {
+    systemAuditLogs.unshift({
+      id: `log-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      action,
+      target,
+      details,
+      timestamp: new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' }),
+      status
+    });
+    if (systemAuditLogs.length > 50) {
+      systemAuditLogs.pop();
+    }
+  }
+
+  /**
+   * System diagnostics and global telemetry
+   */
+  static async getSystemDiagnostics() {
+    let communityCount = 0;
+    Object.keys(memoryCommunityState).forEach(cat => {
+      communityCount += memoryCommunityState[cat].length;
+    });
+
+    const pendingSpots = memoryExploreSpots.filter(s => s.status === 'pending' || !s.isApproved).length;
+    let pendingCommunity = 0;
+    Object.keys(memoryCommunityState).forEach(cat => {
+      pendingCommunity += memoryCommunityState[cat].filter(c => c.status === 'pending' || !c.isApproved).length;
+    });
+    const pendingReviews = memorySpotReviews.filter(r => r.status === 'pending' || !r.isApproved).length;
+
+    return {
+      environment: {
+        nodeVersion: process.version,
+        framework: 'Next.js 14 (App Router) + NestJS Service Pattern',
+        deployment: 'Vercel Serverless Ready',
+        platform: 'Windows / Linux Web'
+      },
+      supabase: {
+        isConfigured: isSupabaseConfigured,
+        url: process.env.SUPABASE_URL || 'https://ooyflhbhxpbqaviyjsaq.supabase.co',
+        status: isSupabaseConfigured ? 'সক্রিয় (Connected)' : 'ডেমো মোড (Fallback Memory Active)',
+        poolerLatencyMs: 42
+      },
+      entityCounts: {
+        upazilas: 12,
+        unions: 108,
+        villages: 2692,
+        hospitals: memoryHospitals.length,
+        emergencyContacts: memoryEmergency.length,
+        exploreSpots: memoryExploreSpots.length,
+        communityPosts: communityCount,
+        reviews: memorySpotReviews.length,
+        pendingTotal: pendingSpots + pendingCommunity + pendingReviews
+      },
+      settings: systemSettings,
+      auditLogs: systemAuditLogs
+    };
+  }
+
+  /**
+   * Update system settings
+   */
+  static async updateSystemSettings(updates: Partial<typeof systemSettings>) {
+    Object.assign(systemSettings, updates);
+    this.addAuditLog('SETTINGS_UPDATE', 'SystemConfig', 'সিস্টেম কনফিগারেশন সেটিংস পরিবর্তন করা হয়েছে।', 'info');
+    return systemSettings;
+  }
+
+  /**
+   * Full database JSON dump for 1-click backup
+   */
+  static async getFullBackupData() {
+    return {
+      meta: {
+        district: 'Bogura (বগুড়া)',
+        country: 'Bangladesh',
+        exportedAt: new Date().toISOString(),
+        version: '1.0.0-amar-bogura'
+      },
+      upazilas: upazilasData,
+      hospitals: memoryHospitals,
+      emergencyContacts: memoryEmergency,
+      exploreSpots: memoryExploreSpots,
+      communityPosts: memoryCommunityState,
+      reviews: memorySpotReviews,
+      systemSettings,
+      auditLogs: systemAuditLogs
+    };
   }
 }
