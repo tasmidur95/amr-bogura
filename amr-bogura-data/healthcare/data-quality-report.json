@@ -1,28 +1,29 @@
 {
-  "total_facilities": 14,
+  "total_facilities": 63,
   "upazilas_covered": 12,
   "facilities_by_upazila": {
-    "Adamdighi": 1,
-    "Bogura Sadar": 3,
-    "Dhunat": 1,
-    "Dhupchanchia": 1,
-    "Gabtali": 1,
-    "Kahalu": 1,
-    "Nandigram": 1,
-    "Sariakandi": 1,
-    "Shajahanpur": 1,
-    "Sherpur": 1,
-    "Shibganj": 1,
-    "Sonatala": 1
+    "Adamdighi": 5,
+    "Bogura Sadar": 8,
+    "Dhunat": 5,
+    "Dhupchanchia": 5,
+    "Gabtali": 5,
+    "Kahalu": 5,
+    "Nandigram": 5,
+    "Sariakandi": 5,
+    "Shajahanpur": 5,
+    "Sherpur": 5,
+    "Shibganj": 5,
+    "Sonatala": 5
   },
   "facilities_by_category": {
     "Upazila Health Complex": 11,
     "Upazila Health Office": 1,
     "District Health Administration": 1,
-    "Vaccine & Cold Chain Logistics": 1
+    "Vaccine & Cold Chain Logistics": 1,
+    "Union Health Sub-Centre": 49
   },
   "verification": {
-    "verified": 14,
+    "verified": 63,
     "partially_verified": 0,
     "unverified": 0
   },

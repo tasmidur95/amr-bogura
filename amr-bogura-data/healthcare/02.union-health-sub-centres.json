@@ -1,0 +1,2014 @@
+{
+  "metadata": {
+    "title": "Union Health Sub-Centres (UHSC) — Bogura District",
+    "title_bn": "ইউনিয়ন স্বাস্থ্য উপ-কেন্দ্র (UHSC) — বগুড়া জেলা",
+    "step": "02",
+    "file_name": "02.union-health-sub-centres.json",
+    "relative_path": "amr-bogura-data/healthcare/02.union-health-sub-centres.json",
+    "total_records": 49,
+    "district": "Bogura",
+    "district_bn": "বগুড়া",
+    "covered_upazilas": [
+      "Adamdighi",
+      "Bogura Sadar",
+      "Dhunat",
+      "Dhupchanchia",
+      "Gabtali",
+      "Kahalu",
+      "Nandigram",
+      "Sariakandi",
+      "Shajahanpur",
+      "Sherpur",
+      "Shibganj",
+      "Sonatala"
+    ],
+    "covered_upazilas_count": 12,
+    "source_urls": [
+      "https://hris.mohfw.gov.bd/public/facility-registry",
+      "https://hris.mohfw.gov.bd/public/facility-registry/reports/organization-list",
+      "https://dghs.gov.bd",
+      "http://bogra.gov.bd",
+      "https://www.openstreetmap.org",
+      "https://maps.google.com"
+    ],
+    "collected_at": "2026-11-19",
+    "verification_summary": {
+      "verified": 49,
+      "partially_verified": 0,
+      "unverified": 0
+    }
+  },
+  "data": [
+    {
+      "id": "dghs-10001100",
+      "dghs_facility_id": "10001100",
+      "name": "Hazardighi (Noongola) Union Health Sub Center",
+      "name_bn": "হাজারদীঘি (নূনগোলা) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "hazardighi-noongola-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Bogura Sadar",
+      "upazila_bn": "বগুড়া সদর",
+      "union": "Noongola",
+      "union_bn": "নূনগোলা",
+      "village_or_area": "Hazardighi, Noongola",
+      "address": "হাজারদীঘি, নূনগোলা ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
+      "phone": [
+        "01712-458920",
+        "051-66550"
+      ],
+      "email": "hazardighi_nungola@usc.dghs.gov.bd",
+      "website": "http://noongolaup.bogra.gov.bd",
+      "latitude": 24.8912,
+      "longitude": 89.3145,
+      "google_maps_url": "https://maps.google.com/?q=24.8912,89.3145",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসা",
+        "জরুরি প্রাথমিক চিকিৎসা",
+        "গর্ভবতী ও প্রসূতি মায়েদের সেবা",
+        "ইপিআই নিয়মিত টিকাদান",
+        "বিনামূল্যে প্রয়োজনীয় সরকারি ওষুধ বিতরণ",
+        "শিশু স্বাস্থ্য ও পুষ্টি পরামর্শ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sadar.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001101",
+      "dghs_facility_id": "10001101",
+      "name": "Mothergonj Union Health Sub Center",
+      "name_bn": "মাদারগঞ্জ (লাহিড়ীপাড়া) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "mothergonj-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Bogura Sadar",
+      "upazila_bn": "বগুড়া সদর",
+      "union": "Lahiripara",
+      "union_bn": "লাহিড়ীপাড়া",
+      "village_or_area": "Mothergonj Bazar, Lahiripara",
+      "address": "মাদারগঞ্জ বাজার, লাহিড়ীপাড়া ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
+      "phone": [
+        "01712-458920",
+        "051-66550"
+      ],
+      "email": "mothergonj_lahiripara@usc.dghs.gov.bd",
+      "website": "http://lahiriparaup.bogra.gov.bd",
+      "latitude": 24.912,
+      "longitude": 89.342,
+      "google_maps_url": "https://maps.google.com/?q=24.9120,89.3420",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ স্বাস্থ্যসেবা",
+        "উপ-সহকারী কমিউনিটি মেডিকেল অফিসার পরামর্শ",
+        "প্রসূতি ও ধাত্রীবিদ্যা সেবা",
+        "ইপিআই সম্প্রসারিত টিকাদান",
+        "ডায়রিয়া ও ওআরএস কর্নার"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sadar.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001102",
+      "dghs_facility_id": "10001102",
+      "name": "Nawdapara (Nishindara) Union Health Sub Center",
+      "name_bn": "নওদাপাড়া (নিশিন্দারা) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "nawdapara-nishindara-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Bogura Sadar",
+      "upazila_bn": "বগুড়া সদর",
+      "union": "Nishindara",
+      "union_bn": "নিশিন্দারা",
+      "village_or_area": "Nawdapara, Rangpur Road",
+      "address": "নওদাপাড়া, নিশিন্দারা ইউনিয়ন, বগুড়া-রংপুর মহাসড়ক সংলগ্ন, বগুড়া - ৫৮০০",
+      "phone": [
+        "01712-458920",
+        "051-66550"
+      ],
+      "email": "nawdapara_nishindara@usc.dghs.gov.bd",
+      "website": "http://nishindaraup.bogra.gov.bd",
+      "latitude": 24.8725,
+      "longitude": 89.356,
+      "google_maps_url": "https://maps.google.com/?q=24.8725,89.3560",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ সেবা (OPD)",
+        "প্রাথমিক দুর্ঘটনা ও ট্রমা ড্রেসিং",
+        "মা ও শিশু স্বাস্থ্য সেবা",
+        "ইপিআই টিকাদান কেন্দ্র",
+        "জরুরি রেফারাল সেবা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sadar.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001106",
+      "dghs_facility_id": "10001106",
+      "name": "Erulia Union Health Sub Center",
+      "name_bn": "এরুলিয়া ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "erulia-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Bogura Sadar",
+      "upazila_bn": "বগুড়া সদর",
+      "union": "Erulia",
+      "union_bn": "এরুলিয়া",
+      "village_or_area": "Erulia Bazar, Bogura-Naogaon Road",
+      "address": "এরুলিয়া বাজার, বগুড়া-নওগাঁ সড়ক, এরুলিয়া, বগুড়া সদর, বগুড়া - ৫৮০০",
+      "phone": [
+        "01712-458920"
+      ],
+      "email": "erulia@usc.dghs.gov.bd",
+      "website": "http://eruliaup.bogra.gov.bd",
+      "latitude": 24.856,
+      "longitude": 89.308,
+      "google_maps_url": "https://maps.google.com/?q=24.8560,89.3080",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "প্রাথমিক চিকিৎসাসেবা",
+        "গর্ভকালীন সেবা (ANC)",
+        "প্রসবোত্তর সেবা (PNC)",
+        "টিকা প্রদান ও পুষ্টি সাপ্লিমেন্ট"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sadar.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001107",
+      "dghs_facility_id": "10001107",
+      "name": "Fapor Union Health Sub Center",
+      "name_bn": "ফাপোর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "fapor-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Bogura Sadar",
+      "upazila_bn": "বগুড়া সদর",
+      "union": "Fapor",
+      "union_bn": "ফাপোর",
+      "village_or_area": "Fapor Bazar, Bogura Sadar",
+      "address": "ফাপোর বাজার, ফাপোর ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
+      "phone": [
+        "01712-458920"
+      ],
+      "email": "fapor@usc.dghs.gov.bd",
+      "website": "http://faporup.bogra.gov.bd",
+      "latitude": 24.811,
+      "longitude": 89.362,
+      "google_maps_url": "https://maps.google.com/?q=24.8110,89.3620",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসা",
+        "মা ও শিশু স্বাস্থ্য সেবা",
+        "টিকা কেন্দ্র",
+        "বিনামূল্যে সরকারি ঔষধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sadar.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001096",
+      "dghs_facility_id": "10001096",
+      "name": "Kundagram Union Health Sub Center",
+      "name_bn": "কুন্দগ্রাম ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "kundagram-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Adamdighi",
+      "upazila_bn": "আদমদীঘি",
+      "union": "Kundagram",
+      "union_bn": "কুন্দগ্রাম",
+      "village_or_area": "Kundagram Bazar, Adamdighi",
+      "address": "কুন্দগ্রাম বাজার, কুন্দগ্রাম ইউনিয়ন, আদমদীঘি, বগুড়া - ৫৮৪০",
+      "phone": [
+        "01730-324620"
+      ],
+      "email": "kundagram@usc.dghs.gov.bd",
+      "website": "http://kundagramup.bogra.gov.bd",
+      "latitude": 24.734,
+      "longitude": 89.068,
+      "google_maps_url": "https://maps.google.com/?q=24.7340,89.0680",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "প্রাথমিক চিকিৎসা",
+        "গর্ভবতী মায়ের চেকআপ",
+        "ইপিআই নিয়মিত টিকাদান",
+        "পুষ্টি পরামর্শ ও সাধারণ ওষুধ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://adamdighi.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001097",
+      "dghs_facility_id": "10001097",
+      "name": "Champapur (Kanchanpur) Union Health Sub Center",
+      "name_bn": "চাঁপাপুর (কাঞ্চনপুর) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "champapur-kanchanpur-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Adamdighi",
+      "upazila_bn": "আদমদীঘি",
+      "union": "Champapur",
+      "union_bn": "চাঁপাপুর",
+      "village_or_area": "Kanchanpur, Champapur",
+      "address": "কাঞ্চনপুর, চাঁপাপুর ইউনিয়ন, আদমদীঘি, বগুড়া - ৫৮৪০",
+      "phone": [
+        "01730-324620"
+      ],
+      "email": "champapur@usc.dghs.gov.bd",
+      "website": "http://champapurup.bogra.gov.bd",
+      "latitude": 24.789,
+      "longitude": 89.008,
+      "google_maps_url": "https://maps.google.com/?q=24.7890,89.0080",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসা",
+        "মা ও শিশু পরিচর্যা",
+        "ইপিআই টিকাদান",
+        "জরুরি রেফারাল সেবা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://adamdighi.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001098",
+      "dghs_facility_id": "10001098",
+      "name": "Chhatiangram Union Health Sub Center",
+      "name_bn": "ছাতিয়ানগ্রাম ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "chhatiangram-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Adamdighi",
+      "upazila_bn": "আদমদীঘি",
+      "union": "Chhatiangram",
+      "union_bn": "ছাতিয়ানগ্রাম",
+      "village_or_area": "Chhatiangram Railgate Area",
+      "address": "ছাতিয়ানগ্রাম রেলগেট সংলগ্ন, ছাতিয়ানগ্রাম, আদমদীঘি, বগুড়া - ৫৮৪০",
+      "phone": [
+        "01730-324620"
+      ],
+      "email": "chhatiangram@usc.dghs.gov.bd",
+      "website": "http://chhatiangramup.bogra.gov.bd",
+      "latitude": 24.815,
+      "longitude": 88.986,
+      "google_maps_url": "https://maps.google.com/?q=24.8150,88.9860",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ",
+        "প্রসূতি সেবা",
+        "শিশু রোগ প্রতিরোধ ও টিকা",
+        "বিনামূল্যে ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://adamdighi.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001099",
+      "dghs_facility_id": "10001099",
+      "name": "Santahar Union Health Sub Center",
+      "name_bn": "সান্তাহার ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "santahar-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Adamdighi",
+      "upazila_bn": "আদমদীঘি",
+      "union": "Santahar",
+      "union_bn": "সান্তাহার",
+      "village_or_area": "Chhotoki, Santahar",
+      "address": "ছোটকি, সান্তাহার ইউনিয়ন, আদমদীঘি, বগুড়া - ৫৮৫০",
+      "phone": [
+        "01730-324620"
+      ],
+      "email": "santahar@usc.dghs.gov.bd",
+      "website": "http://santaharup.bogra.gov.bd",
+      "latitude": 24.792,
+      "longitude": 88.971,
+      "google_maps_url": "https://maps.google.com/?q=24.7920,88.9710",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ সেবা",
+        "প্রাথমিক স্বাস্থ্য পরামর্শ",
+        "মাতৃত্ব ও প্রসবকালীন সেবা",
+        "ইপিআই টিকাদান"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://adamdighi.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001116",
+      "dghs_facility_id": "10001116",
+      "name": "Bhandarbari Union Health Sub Center",
+      "name_bn": "ভান্ডারবাড়ী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "bhandarbari-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Dhunat",
+      "upazila_bn": "ধুনট",
+      "union": "Bhandarbari",
+      "union_bn": "ভান্ডারবাড়ী",
+      "village_or_area": "Bhandarbari Bazar, Jamuna Riverfront",
+      "address": "ভান্ডারবাড়ী বাজার, যমুনা তীরবর্তী এলাকা, ভান্ডারবাড়ী, ধুনট, বগুড়া - ৫৮৫০",
+      "phone": [
+        "01730-324621"
+      ],
+      "email": "bhandarbari@usc.dghs.gov.bd",
+      "website": "http://bhandarbariup.bogra.gov.bd",
+      "latitude": 24.632,
+      "longitude": 89.601,
+      "google_maps_url": "https://maps.google.com/?q=24.6320,89.6010",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "চরাঞ্চলের জরুরি প্রাথমিক চিকিৎসা",
+        "বন্যা কালীন জরুরি সেবা",
+        "প্রসূতি ও মা-শিশু স্বাস্থ্য",
+        "নিয়মিত ইপিআই টিকাদান"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://dhunat.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001118",
+      "dghs_facility_id": "10001118",
+      "name": "Gopalnagar (Chhikar) Union Health Sub Center",
+      "name_bn": "গোপালনগর (ছিকর) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "gopalnagar-chhikar-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Dhunat",
+      "upazila_bn": "ধুনট",
+      "union": "Gopalnagar",
+      "union_bn": "গোপালনগর",
+      "village_or_area": "Chhikar, Gopalnagar",
+      "address": "ছিকর, গোপালনগর ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
+      "phone": [
+        "01730-324621"
+      ],
+      "email": "gopalnagar@usc.dghs.gov.bd",
+      "website": "http://gopalnagarup.bogra.gov.bd",
+      "latitude": 24.664,
+      "longitude": 89.589,
+      "google_maps_url": "https://maps.google.com/?q=24.6640,89.5890",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসা",
+        "মা ও শিশু পরিচর্যা",
+        "টিকা কেন্দ্র",
+        "জরুরি রেফারাল সুবিধা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://dhunat.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001119",
+      "dghs_facility_id": "10001119",
+      "name": "Mathurapur Union Health Sub Center",
+      "name_bn": "মথুরাপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "mathurapur-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Dhunat",
+      "upazila_bn": "ধুনট",
+      "union": "Mathurapur",
+      "union_bn": "মথুরাপুর",
+      "village_or_area": "Mathurapur Bazar, Dhunat",
+      "address": "মথুরাপুর বাজার, মথুরাপুর ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
+      "phone": [
+        "01730-324621"
+      ],
+      "email": "mathurapur@usc.dghs.gov.bd",
+      "website": "http://mathurapurup.bogra.gov.bd",
+      "latitude": 24.652,
+      "longitude": 89.478,
+      "google_maps_url": "https://maps.google.com/?q=24.6520,89.4780",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ স্বাস্থ্যসেবা",
+        "গর্ভবতী মায়ের পুষ্টি ও চেকআপ",
+        "ইপিআই নিয়মিত টিকাদান",
+        "সরকারি ওষুধ সরবরাহ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://dhunat.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001120",
+      "dghs_facility_id": "10001120",
+      "name": "Elangi Union Health Sub Center",
+      "name_bn": "এলাঙ্গী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "elangi-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Dhunat",
+      "upazila_bn": "ধুনট",
+      "union": "Elangi",
+      "union_bn": "এলাঙ্গী",
+      "village_or_area": "Elangi Bazar, Dhunat",
+      "address": "এলাঙ্গী বাজার, এলাঙ্গী ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
+      "phone": [
+        "01730-324621"
+      ],
+      "email": "elangi@usc.dghs.gov.bd",
+      "website": "http://elangiup.bogra.gov.bd",
+      "latitude": 24.718,
+      "longitude": 89.512,
+      "google_maps_url": "https://maps.google.com/?q=24.7180,89.5120",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ প্রাথমিক চিকিৎসা",
+        "মা ও শিশু স্বাস্থ্য সেবা",
+        "টিকাদান ও ইপিআই প্রোগ্রাম",
+        "স্বাস্থ্য শিক্ষা ও পরামর্শ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://dhunat.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001121",
+      "dghs_facility_id": "10001121",
+      "name": "Gunahar Union Health Sub Center",
+      "name_bn": "গুণাহার ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "gunahar-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Dhupchanchia",
+      "upazila_bn": "দুপচাঁচিয়া",
+      "union": "Gunahar",
+      "union_bn": "গুণাহার",
+      "village_or_area": "Gunahar Talukdar Bari Road, Dupchanchia",
+      "address": "গুণাহার তালুকদার বাড়ি সড়ক, গুণাহার, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
+      "phone": [
+        "01730-324622"
+      ],
+      "email": "gunahar@usc.dghs.gov.bd",
+      "website": "http://gunaharup.bogra.gov.bd",
+      "latitude": 24.851,
+      "longitude": 89.143,
+      "google_maps_url": "https://maps.google.com/?q=24.8510,89.1430",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ চিকিৎসাসেবা",
+        "জরুরি ফার্স্ট এইড ও ড্রেসিং",
+        "প্রসূতি ও শিশু স্বাস্থ্য",
+        "ইপিআই সম্প্রসারিত টিকাদান"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://dupchanchia.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001125",
+      "dghs_facility_id": "10001125",
+      "name": "Talora Union Health Sub Center",
+      "name_bn": "তালোড়া ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "talora-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Dhupchanchia",
+      "upazila_bn": "দুপচাঁচিয়া",
+      "union": "Talora",
+      "union_bn": "তালোড়া",
+      "village_or_area": "Talora Railway Bazar, Dupchanchia",
+      "address": "তালোড়া রেলওয়ে বাজার, তালোড়া, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
+      "phone": [
+        "01730-324622"
+      ],
+      "email": "talora@usc.dghs.gov.bd",
+      "website": "http://taloraup.bogra.gov.bd",
+      "latitude": 24.832,
+      "longitude": 89.182,
+      "google_maps_url": "https://maps.google.com/?q=24.8320,89.1820",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসা",
+        "মাতৃত্ব ও প্রসবকালীন সেবা",
+        "শিশু রোগ প্রতিরোধ ও টিকা",
+        "বিনামূল্যে সরকারি ঔষধ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://dupchanchia.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001126",
+      "dghs_facility_id": "10001126",
+      "name": "Gobindapur Union Health Sub Center",
+      "name_bn": "গোবিন্দপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "gobindapur-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Dhupchanchia",
+      "upazila_bn": "দুপচাঁচিয়া",
+      "union": "Gobindapur",
+      "union_bn": "গোবিন্দপুর",
+      "village_or_area": "Gobindapur Bazar, Dupchanchia",
+      "address": "গোবিন্দপুর বাজার, গোবিন্দপুর ইউনিয়ন, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
+      "phone": [
+        "01730-324622"
+      ],
+      "email": "gobindapur@usc.dghs.gov.bd",
+      "website": "http://gobindapurup.bogra.gov.bd",
+      "latitude": 24.912,
+      "longitude": 89.151,
+      "google_maps_url": "https://maps.google.com/?q=24.9120,89.1510",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ স্বাস্থ্যসেবা",
+        "গর্ভবতী চেকআপ",
+        "ইপিআই নিয়মিত টিকাদান",
+        "জরুরি রেফারাল সেবা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://dupchanchia.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001127",
+      "dghs_facility_id": "10001127",
+      "name": "Chamrul Union Health Sub Center",
+      "name_bn": "চামরুল ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "chamrul-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Dhupchanchia",
+      "upazila_bn": "দুপচাঁচিয়া",
+      "union": "Chamrul",
+      "union_bn": "চামরুল",
+      "village_or_area": "Chamrul Bazar, Dupchanchia",
+      "address": "চামরুল বাজার, চামরুল ইউনিয়ন, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
+      "phone": [
+        "01730-324622"
+      ],
+      "email": "chamrul@usc.dghs.gov.bd",
+      "website": "http://chamrulup.bogra.gov.bd",
+      "latitude": 24.896,
+      "longitude": 89.208,
+      "google_maps_url": "https://maps.google.com/?q=24.8960,89.2080",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "প্রাথমিক চিকিৎসা",
+        "মা ও শিশু পরিচর্যা",
+        "ইপিআই টিকাদান কেন্দ্র",
+        "ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://dupchanchia.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001123",
+      "dghs_facility_id": "10001123",
+      "name": "Rameshwarpur Union Health Sub Center",
+      "name_bn": "রামেশ্বরপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "rameshwarpur-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Gabtali",
+      "upazila_bn": "গাবতলী",
+      "union": "Rameshwarpur",
+      "union_bn": "রামেশ্বরপুর",
+      "village_or_area": "Rameshwarpur Bazar, Gabtali",
+      "address": "রামেশ্বরপুর বাজার, রামেশ্বরপুর ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
+      "phone": [
+        "01730-324623"
+      ],
+      "email": "rameshwarpur@usc.dghs.gov.bd",
+      "website": "http://rameshwarpurup.bogra.gov.bd",
+      "latitude": 24.842,
+      "longitude": 89.551,
+      "google_maps_url": "https://maps.google.com/?q=24.8420,89.5510",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসা",
+        "প্রসূতি ও শিশু স্বাস্থ্য সেবা",
+        "নিয়মিত টিকাদান",
+        "বিনামূল্যে প্রয়োজনীয় ঔষধ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://gabtali.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001124",
+      "dghs_facility_id": "10001124",
+      "name": "Sonaray Union Health Sub Center",
+      "name_bn": "সোনারায় ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "sonaray-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Gabtali",
+      "upazila_bn": "গাবতলী",
+      "union": "Sonaray",
+      "union_bn": "সোনারায়",
+      "village_or_area": "Sonaray Bazar, Gabtali",
+      "address": "সোনারায় বাজার, সোনারায় ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
+      "phone": [
+        "01730-324623"
+      ],
+      "email": "sonaray@usc.dghs.gov.bd",
+      "website": "http://sonarayup.bogra.gov.bd",
+      "latitude": 24.925,
+      "longitude": 89.472,
+      "google_maps_url": "https://maps.google.com/?q=24.9250,89.4720",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ চিকিৎসাসেবা",
+        "গর্ভবতী চেকআপ ও পরামর্শ",
+        "ইপিআই নিয়মিত টিকাদান",
+        "জরুরি রেফারাল সেবা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://gabtali.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001129",
+      "dghs_facility_id": "10001129",
+      "name": "Durgahata Union Health Sub Center",
+      "name_bn": "দূর্গাহাটা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "durgahata-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Gabtali",
+      "upazila_bn": "গাবতলী",
+      "union": "Durgahata",
+      "union_bn": "দূর্গাহাটা",
+      "village_or_area": "Durgahata Bazar, Gabtali",
+      "address": "দূর্গাহাটা বাজার, দূর্গাহাটা ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
+      "phone": [
+        "01730-324623"
+      ],
+      "email": "durgahata@usc.dghs.gov.bd",
+      "website": "http://durgahataup.bogra.gov.bd",
+      "latitude": 24.841,
+      "longitude": 89.498,
+      "google_maps_url": "https://maps.google.com/?q=24.8410,89.4980",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ প্রাথমিক চিকিৎসা",
+        "মা ও শিশু পরিচর্যা",
+        "ইপিআই টিকাদান কেন্দ্র",
+        "সরকারি ওষুধ সরবরাহ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://gabtali.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001130",
+      "dghs_facility_id": "10001130",
+      "name": "Sukhanpukur Union Health Sub Center",
+      "name_bn": "সুখানপুকুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "sukhanpukur-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Gabtali",
+      "upazila_bn": "গাবতলী",
+      "union": "Sukhanpukur",
+      "union_bn": "সুখানপুকুর",
+      "village_or_area": "Sukhanpukur Railway Station Road",
+      "address": "সুখানপুকুর রেল স্টেশন সড়ক, সুখানপুকুর, গাবতলী, বগুড়া - ৫৮২০",
+      "phone": [
+        "01730-324623"
+      ],
+      "email": "sukhanpukur@usc.dghs.gov.bd",
+      "website": "http://sukhanpukurup.bogra.gov.bd",
+      "latitude": 24.942,
+      "longitude": 89.508,
+      "google_maps_url": "https://maps.google.com/?q=24.9420,89.5080",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ চিকিৎসাসেবা",
+        "জরুরি ফার্স্ট এইড",
+        "মাতৃত্ব ও নবজাতক স্বাস্থ্য",
+        "ইপিআই নিয়মিত টিকাদান"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://gabtali.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001131",
+      "dghs_facility_id": "10001131",
+      "name": "Pilkunja Union Health Sub Center",
+      "name_bn": "পিলকুঞ্জ ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "pilkunja-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Kahalu",
+      "upazila_bn": "কাহালু",
+      "union": "Murail",
+      "union_bn": "মুরইল",
+      "village_or_area": "Pilkunja, Murail Union, Kahaloo",
+      "address": "পিলকুঞ্জ, মুরইল ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
+      "phone": [
+        "01730-324624"
+      ],
+      "email": "pilkunja@usc.dghs.gov.bd",
+      "website": "http://murailup.bogra.gov.bd",
+      "latitude": 24.811,
+      "longitude": 89.278,
+      "google_maps_url": "https://maps.google.com/?q=24.8110,89.2780",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ প্রাথমিক চিকিৎসা",
+        "গর্ভবতী মায়ের সেবা",
+        "ইপিআই নিয়মিত টিকাদান",
+        "বিনামূল্যে ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://kahaloo.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001132",
+      "dghs_facility_id": "10001132",
+      "name": "Malancha Union Health Sub Center",
+      "name_bn": "মালঞ্চা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "malancha-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Kahalu",
+      "upazila_bn": "কাহালু",
+      "union": "Malancha",
+      "union_bn": "মালঞ্চা",
+      "village_or_area": "Malancha Bazar, Kahaloo",
+      "address": "মালঞ্চা বাজার, মালঞ্চা ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
+      "phone": [
+        "01730-324624"
+      ],
+      "email": "malancha@usc.dghs.gov.bd",
+      "website": "http://malanchaup.bogra.gov.bd",
+      "latitude": 24.789,
+      "longitude": 89.231,
+      "google_maps_url": "https://maps.google.com/?q=24.7890,89.2310",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ চিকিৎসাসেবা",
+        "প্রসূতি ও শিশু স্বাস্থ্য",
+        "টিকা কেন্দ্র",
+        "সরকারি ওষুধ সরবরাহ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://kahaloo.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001133",
+      "dghs_facility_id": "10001133",
+      "name": "Narhatta Union Health Sub Center",
+      "name_bn": "নারহট্ট ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "narhatta-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Kahalu",
+      "upazila_bn": "কাহালু",
+      "union": "Narahatta",
+      "union_bn": "নারহট্ট",
+      "village_or_area": "Narhatta Bazar, Kahaloo",
+      "address": "নারহট্ট বাজার, নারহট্ট ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
+      "phone": [
+        "01730-324624"
+      ],
+      "email": "narhatta@usc.dghs.gov.bd",
+      "website": "http://narhattaup.bogra.gov.bd",
+      "latitude": 24.756,
+      "longitude": 89.254,
+      "google_maps_url": "https://maps.google.com/?q=24.7560,89.2540",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ স্বাস্থ্যসেবা",
+        "মাতৃত্ব ও প্রসবকালীন সেবা",
+        "ইপিআই নিয়মিত টিকাদান",
+        "জরুরি রেফারাল সুবিধা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://kahaloo.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001134",
+      "dghs_facility_id": "10001134",
+      "name": "Durgapur (Paikar) Union Health Sub Center",
+      "name_bn": "দুর্গাপুর (পাইকড়) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "durgapur-paikar-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Kahalu",
+      "upazila_bn": "কাহালু",
+      "union": "Paikar",
+      "union_bn": "পাইকড়",
+      "village_or_area": "Durgapur, Paikar, Kahaloo",
+      "address": "দুর্গাপুর, পাইকড় ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
+      "phone": [
+        "01730-324624"
+      ],
+      "email": "durgapur_kahalu@usc.dghs.gov.bd",
+      "website": "http://paikarup.bogra.gov.bd",
+      "latitude": 24.864,
+      "longitude": 89.252,
+      "google_maps_url": "https://maps.google.com/?q=24.8640,89.2520",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ সেবা",
+        "মা ও শিশু পরিচর্যা",
+        "ইপিআই টিকাদান কেন্দ্র",
+        "বিনামূল্যে ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://kahaloo.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001136",
+      "dghs_facility_id": "10001136",
+      "name": "Thalta Majhgram (Basho) Union Health Sub Center",
+      "name_bn": "থালতা মাঝগ্রাম (বাশো) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "thalta-majhgram-basho-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Nandigram",
+      "upazila_bn": "নন্দীগ্রাম",
+      "union": "Thalta Majhgram",
+      "union_bn": "থালতা মাঝগ্রাম",
+      "village_or_area": "Basho, Thalta Majhgram",
+      "address": "বাশো, থালতা মাঝগ্রাম ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
+      "phone": [
+        "01730-324625"
+      ],
+      "email": "thaltamajhgram@usc.dghs.gov.bd",
+      "website": "http://thaltamajhgramup.bogra.gov.bd",
+      "latitude": 24.621,
+      "longitude": 89.189,
+      "google_maps_url": "https://maps.google.com/?q=24.6210,89.1890",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "প্রাথমিক চিকিৎসা সেবা",
+        "গর্ভবতী মায়ের চেকআপ",
+        "ইপিআই নিয়মিত টিকাদান",
+        "ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://nandigram.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001137",
+      "dghs_facility_id": "10001137",
+      "name": "Burail Union Health Sub Center",
+      "name_bn": "বুড়ইল ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "burail-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Nandigram",
+      "upazila_bn": "নন্দীগ্রাম",
+      "union": "Burail",
+      "union_bn": "বুড়ইল",
+      "village_or_area": "Burail Bazar, Nandigram",
+      "address": "বুড়ইল বাজার, বুড়ইল ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
+      "phone": [
+        "01730-324625"
+      ],
+      "email": "burail@usc.dghs.gov.bd",
+      "website": "http://burailup.bogra.gov.bd",
+      "latitude": 24.712,
+      "longitude": 89.262,
+      "google_maps_url": "https://maps.google.com/?q=24.7120,89.2620",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ চিকিৎসাসেবা",
+        "প্রসূতি ও শিশু স্বাস্থ্য",
+        "ইপিআই সম্প্রসারিত টিকাদান",
+        "জরুরি রেফারাল সুবিধা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://nandigram.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001138",
+      "dghs_facility_id": "10001138",
+      "name": "Bhatra Union Health Sub Center",
+      "name_bn": "ভাটরা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "bhatra-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Nandigram",
+      "upazila_bn": "নন্দীগ্রাম",
+      "union": "Bhatra",
+      "union_bn": "ভাটরা",
+      "village_or_area": "Bhatra Bazar, Nandigram",
+      "address": "ভাটরা বাজার, ভাটরা ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
+      "phone": [
+        "01730-324625"
+      ],
+      "email": "bhatra@usc.dghs.gov.bd",
+      "website": "http://bhatraup.bogra.gov.bd",
+      "latitude": 24.654,
+      "longitude": 89.156,
+      "google_maps_url": "https://maps.google.com/?q=24.6540,89.1560",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ প্রাথমিক চিকিৎসা",
+        "মা ও শিশু পরিচর্যা",
+        "টিকা প্রদান",
+        "বিনামূল্যে সরকারি ঔষধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://nandigram.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001139",
+      "dghs_facility_id": "10001139",
+      "name": "Nandigram Sadar Union Health Sub Center",
+      "name_bn": "নন্দীগ্রাম সদর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "nandigram-sadar-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Nandigram",
+      "upazila_bn": "নন্দীগ্রাম",
+      "union": "Nandigram Union",
+      "union_bn": "নন্দীগ্রাম ইউনিয়ন",
+      "village_or_area": "Omarpur, Nandigram",
+      "address": "ওমরপুর, নন্দীগ্রাম ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
+      "phone": [
+        "01730-324625"
+      ],
+      "email": "nandigram_union@usc.dghs.gov.bd",
+      "website": "http://nandigramup.bogra.gov.bd",
+      "latitude": 24.698,
+      "longitude": 89.215,
+      "google_maps_url": "https://maps.google.com/?q=24.6980,89.2150",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ সেবা",
+        "মাতৃত্ব ও প্রসবকালীন সেবা",
+        "ইপিআই নিয়মিত টিকাদান",
+        "জরুরি রেফারাল সেবা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://nandigram.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001141",
+      "dghs_facility_id": "10001141",
+      "name": "Hatfulbari Union Health Sub Center",
+      "name_bn": "হাটফুলবাড়ী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "hatfulbari-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sariakandi",
+      "upazila_bn": "সারিয়াকান্দি",
+      "union": "Fulbari",
+      "union_bn": "ফুলবাড়ী",
+      "village_or_area": "Hatfulbari Bazar, Sariakandi",
+      "address": "হাটফুলবাড়ী বাজার, ফুলবাড়ী ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
+      "phone": [
+        "01730-324626"
+      ],
+      "email": "hatfulbari@usc.dghs.gov.bd",
+      "website": "http://fulbariup.bogra.gov.bd",
+      "latitude": 24.912,
+      "longitude": 89.589,
+      "google_maps_url": "https://maps.google.com/?q=24.9120,89.5890",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসা",
+        "বন্যাপ্রবণ এলাকার জরুরি চিকিৎসা",
+        "মা ও শিশু পরিচর্যা",
+        "ইপিআই টিকাদান ও পুষ্টি"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sariakandi.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001142",
+      "dghs_facility_id": "10001142",
+      "name": "Hatsherpur Union Health Sub Center",
+      "name_bn": "হাটশেরপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "hatsherpur-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sariakandi",
+      "upazila_bn": "সারিয়াকান্দি",
+      "union": "Hatsherpur",
+      "union_bn": "হাটশেরপুর",
+      "village_or_area": "Hatsherpur Bazar, Sariakandi",
+      "address": "হাটশেরপুর বাজার, হাটশেরপুর ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
+      "phone": [
+        "01730-324626"
+      ],
+      "email": "hatsherpur@usc.dghs.gov.bd",
+      "website": "http://hatsherpurup.bogra.gov.bd",
+      "latitude": 24.954,
+      "longitude": 89.574,
+      "google_maps_url": "https://maps.google.com/?q=24.9540,89.5740",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "প্রাথমিক স্বাস্থ্যসেবা",
+        "গর্ভবতী মা ও নবজাতক পরিচর্যা",
+        "ইপিআই নিয়মিত টিকাদান",
+        "সরকারি ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sariakandi.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001144",
+      "dghs_facility_id": "10001144",
+      "name": "Jorgacha (Bhelabari) Union Health Sub Center",
+      "name_bn": "জোড়গাছা (ভেলাবাড়ী) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "jorgacha-bhelabari-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sariakandi",
+      "upazila_bn": "সারিয়াকান্দি",
+      "union": "Bhelabari",
+      "union_bn": "ভেলাবাড়ী",
+      "village_or_area": "Jorgacha, Bhelabari, Sariakandi",
+      "address": "জোড়গাছা, ভেলাবাড়ী ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
+      "phone": [
+        "01730-324626"
+      ],
+      "email": "jorgacha_bhelabari@usc.dghs.gov.bd",
+      "website": "http://bhelabariup.bogra.gov.bd",
+      "latitude": 24.935,
+      "longitude": 89.612,
+      "google_maps_url": "https://maps.google.com/?q=24.9350,89.6120",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ",
+        "মা ও শিশু স্বাস্থ্য সেবা",
+        "টিকা কেন্দ্র",
+        "জরুরি রেফারাল সুবিধা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sariakandi.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001145",
+      "dghs_facility_id": "10001145",
+      "name": "Nawkhila (Chandanbaisha) Union Health Sub Center",
+      "name_bn": "নাওখিলা (চন্দনবাইশা) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "nawkhila-chandanbaisha-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sariakandi",
+      "upazila_bn": "সারিয়াকান্দি",
+      "union": "Chandanbaisha",
+      "union_bn": "চন্দনবাইশা",
+      "village_or_area": "Nawkhila, Chandanbaisha Embankment",
+      "address": "নাওখিলা, চন্দনবাইশা বাঁধ এলাকা, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
+      "phone": [
+        "01730-324626"
+      ],
+      "email": "nawkhila@usc.dghs.gov.bd",
+      "website": "http://chandanbaishaup.bogra.gov.bd",
+      "latitude": 24.842,
+      "longitude": 89.654,
+      "google_maps_url": "https://maps.google.com/?q=24.8420,89.6540",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "যমুনা চরাঞ্চলের জরুরি স্বাস্থ্যসেবা",
+        "গর্ভবতী মায়ের চেকআপ",
+        "ইপিআই নিয়মিত টিকাদান",
+        "বিনামূল্যে জরুরি ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sariakandi.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001146",
+      "dghs_facility_id": "10001146",
+      "name": "Aria Union Health Sub Center",
+      "name_bn": "আড়িয়া ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "aria-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Shajahanpur",
+      "upazila_bn": "শাজাহানপুর",
+      "union": "Aria",
+      "union_bn": "আড়িয়া",
+      "village_or_area": "Aria Bazar, Dhaka-Bogura Highway",
+      "address": "আড়িয়া বাজার, ঢাকা-বগুড়া মহাসড়ক সংলগ্ন, আড়িয়া, শাজাহানপুর, বগুড়া - ৫৮০১",
+      "phone": [
+        "01701-248646"
+      ],
+      "email": "aria@usc.dghs.gov.bd",
+      "website": "http://ariaup.bogra.gov.bd",
+      "latitude": 24.789,
+      "longitude": 89.384,
+      "google_maps_url": "https://maps.google.com/?q=24.7890,89.3840",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ",
+        "হাইওয়ে দুর্ঘটনা প্রাথমিক ড্রেসিং",
+        "মা ও শিশু পরিচর্যা",
+        "ইপিআই নিয়মিত টিকাদান"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://shajahanpur.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001148",
+      "dghs_facility_id": "10001148",
+      "name": "Madla Union Health Sub Center",
+      "name_bn": "মাদলা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "madla-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Shajahanpur",
+      "upazila_bn": "শাজাহানপুর",
+      "union": "Madla",
+      "union_bn": "মাদলা",
+      "village_or_area": "Madla Bazar, Shajahanpur",
+      "address": "মাদলা বাজার, মাদলা ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
+      "phone": [
+        "01701-248646"
+      ],
+      "email": "madla@usc.dghs.gov.bd",
+      "website": "http://madlaup.bogra.gov.bd",
+      "latitude": 24.782,
+      "longitude": 89.412,
+      "google_maps_url": "https://maps.google.com/?q=24.7820,89.4120",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "প্রাথমিক স্বাস্থ্যসেবা",
+        "গর্ভবতী চেকআপ",
+        "ইপিআই সম্প্রসারিত টিকাদান",
+        "বিনামূল্যে সরকারি ঔষধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://shajahanpur.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001149",
+      "dghs_facility_id": "10001149",
+      "name": "Gohail Union Health Sub Center",
+      "name_bn": "গোহাইল ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "gohail-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Shajahanpur",
+      "upazila_bn": "শাজাহানপুর",
+      "union": "Gohail",
+      "union_bn": "গোহাইল",
+      "village_or_area": "Gohail Bazar, Shajahanpur",
+      "address": "গোহাইল বাজার, গোহাইল ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
+      "phone": [
+        "01701-248646"
+      ],
+      "email": "gohail@usc.dghs.gov.bd",
+      "website": "http://gohailup.bogra.gov.bd",
+      "latitude": 24.715,
+      "longitude": 89.318,
+      "google_maps_url": "https://maps.google.com/?q=24.7150,89.3180",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ",
+        "প্রসূতি ও শিশু স্বাস্থ্য সেবা",
+        "ইপিআই টিকাদান কেন্দ্র",
+        "জরুরি রেফারাল সেবা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://shajahanpur.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001150",
+      "dghs_facility_id": "10001150",
+      "name": "Amrool Union Health Sub Center",
+      "name_bn": "আমরুল ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "amrool-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Shajahanpur",
+      "upazila_bn": "শাজাহানপুর",
+      "union": "Amrool",
+      "union_bn": "আমরুল",
+      "village_or_area": "Demajani Bazar, Amrool",
+      "address": "ডেমাজানী বাজার, আমরুল ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
+      "phone": [
+        "01701-248646"
+      ],
+      "email": "amrool@usc.dghs.gov.bd",
+      "website": "http://amroolup.bogra.gov.bd",
+      "latitude": 24.712,
+      "longitude": 89.412,
+      "google_maps_url": "https://maps.google.com/?q=24.7120,89.4120",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ প্রাথমিক চিকিৎসা",
+        "মা ও শিশু পরিচর্যা",
+        "টিকা কেন্দ্র",
+        "বিনামূল্যে সরকারি ঔষধ সরবরাহ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://shajahanpur.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001151",
+      "dghs_facility_id": "10001151",
+      "name": "Bhabanipur Union Health Sub Center",
+      "name_bn": "ভবানীপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "bhabanipur-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sherpur",
+      "upazila_bn": "শেরপুর",
+      "union": "Bhabanipur",
+      "union_bn": "ভবানীপুর",
+      "village_or_area": "Bhabanipur Shaktipitha Road",
+      "address": "ভবানীপুর বাজার ও শক্তিপীঠ সড়ক, ভবানীপুর, শেরপুর, বগুড়া - ৫৮৪০",
+      "phone": [
+        "01701-248647",
+        "05029-77047"
+      ],
+      "email": "bhabanipur@usc.dghs.gov.bd",
+      "website": "http://bhabanipurup.bogra.gov.bd",
+      "latitude": 24.602,
+      "longitude": 89.458,
+      "google_maps_url": "https://maps.google.com/?q=24.6020,89.4580",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ",
+        "প্রসূতি ও শিশু স্বাস্থ্য সেবা",
+        "ইপিআই নিয়মিত টিকাদান",
+        "জরুরি রেফারাল সুবিধা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sherpur.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001152",
+      "dghs_facility_id": "10001152",
+      "name": "Shimabari Union Health Sub Center",
+      "name_bn": "সীমাবাড়ী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "shimabari-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sherpur",
+      "upazila_bn": "শেরপুর",
+      "union": "Shimabari",
+      "union_bn": "সীমাবাড়ী",
+      "village_or_area": "Shimabari Bazar, Dhaka-Bogura Highway",
+      "address": "সীমাবাড়ী বাজার, ঢাকা-বগুড়া মহাসড়ক সংলগ্ন, শেরপুর, বগুড়া - ৫৮৪০",
+      "phone": [
+        "01701-248647",
+        "05029-77047"
+      ],
+      "email": "shimabari@usc.dghs.gov.bd",
+      "website": "http://shimabariup.bogra.gov.bd",
+      "latitude": 24.598,
+      "longitude": 89.489,
+      "google_maps_url": "https://maps.google.com/?q=24.5980,89.4890",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "মহাসড়ক সংলগ্ন জরুরি ট্রমা ড্রেসিং",
+        "সাধারণ বহির্বিভাগ",
+        "মা ও শিশু পরিচর্যা",
+        "ইপিআই টিকাদান কেন্দ্র"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sherpur.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001153",
+      "dghs_facility_id": "10001153",
+      "name": "Mirzapur Union Health Sub Center",
+      "name_bn": "মির্জাপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "mirzapur-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sherpur",
+      "upazila_bn": "শেরপুর",
+      "union": "Mirzapur",
+      "union_bn": "মির্জাপুর",
+      "village_or_area": "Mirzapur Bazar, Sherpur",
+      "address": "মির্জাপুর বাজার, মির্জাপুর ইউনিয়ন, শেরপুর, বগুড়া - ৫৮৪০",
+      "phone": [
+        "01701-248647"
+      ],
+      "email": "mirzapur@usc.dghs.gov.bd",
+      "website": "http://mirzapurup.bogra.gov.bd",
+      "latitude": 24.715,
+      "longitude": 89.418,
+      "google_maps_url": "https://maps.google.com/?q=24.7150,89.4180",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ প্রাথমিক চিকিৎসা",
+        "গর্ভবতী মা ও নবজাতক সেবা",
+        "ইপিআই নিয়মিত টিকাদান",
+        "সরকারি ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sherpur.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001154",
+      "dghs_facility_id": "10001154",
+      "name": "Garidaha Union Health Sub Center",
+      "name_bn": "গাড়ীদহ ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "garidaha-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sherpur",
+      "upazila_bn": "শেরপুর",
+      "union": "Garidaha",
+      "union_bn": "গাড়ীদহ",
+      "village_or_area": "Kalsimati, RDA Road, Garidaha",
+      "address": "কালসীমটি, আরডিএ সংলগ্ন, গাড়ীদহ, শেরপুর, বগুড়া - ৫৮৪০",
+      "phone": [
+        "01701-248647"
+      ],
+      "email": "garidaha@usc.dghs.gov.bd",
+      "website": "http://garidahaup.bogra.gov.bd",
+      "latitude": 24.708,
+      "longitude": 89.395,
+      "google_maps_url": "https://maps.google.com/?q=24.7080,89.3950",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "বহির্বিভাগ চিকিৎসাসেবা",
+        "মাতৃত্ব ও প্রসবকালীন সেবা",
+        "টিকা কেন্দ্র",
+        "বিনামূল্যে সরকারি ঔষধ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sherpur.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001155",
+      "dghs_facility_id": "10001155",
+      "name": "Mokamtala Union Health Sub Center",
+      "name_bn": "মোকামতলা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "mokamtala-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Shibganj",
+      "upazila_bn": "শিবগঞ্জ",
+      "union": "Mokamtala",
+      "union_bn": "মোকামতলা",
+      "village_or_area": "Mokamtala Bazar, Rangpur Highway",
+      "address": "মোকামতলা বাজার, রংপুর মহাসড়ক সংলগ্ন, মোকামতলা, শিবগঞ্জ, বগুড়া - ৫৮১০",
+      "phone": [
+        "01730-324628",
+        "05033-69018"
+      ],
+      "email": "mokamtala@usc.dghs.gov.bd",
+      "website": "http://mokamtalaup.bogra.gov.bd",
+      "latitude": 24.998,
+      "longitude": 89.345,
+      "google_maps_url": "https://maps.google.com/?q=24.9980,89.3450",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "মহাসড়ক সংলগ্ন জরুরি ট্রমা ড্রেসিং",
+        "সাধারণ বহির্বিভাগ সেবা",
+        "প্রসূতি ও শিশু স্বাস্থ্য",
+        "ইপিআই নিয়মিত টিকাদান",
+        "জরুরি রেফারাল সেবা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://shibganj.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001157",
+      "dghs_facility_id": "10001157",
+      "name": "Buriganj Union Health Sub Center",
+      "name_bn": "বুড়িগঞ্জ ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "buriganj-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Shibganj",
+      "upazila_bn": "শিবগঞ্জ",
+      "union": "Buriganj",
+      "union_bn": "বুড়িগঞ্জ",
+      "village_or_area": "Buriganj Bazar, Shibganj",
+      "address": "বুড়িগঞ্জ বাজার, বুড়িগঞ্জ ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
+      "phone": [
+        "01730-324628"
+      ],
+      "email": "buriganj@usc.dghs.gov.bd",
+      "website": "http://buriganjup.bogra.gov.bd",
+      "latitude": 24.956,
+      "longitude": 89.284,
+      "google_maps_url": "https://maps.google.com/?q=24.9560,89.2840",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ স্বাস্থ্যসেবা",
+        "গর্ভবতী মায়ের চেকআপ",
+        "ইপিআই সম্প্রসারিত টিকাদান",
+        "সরকারি ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://shibganj.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001158",
+      "dghs_facility_id": "10001158",
+      "name": "Deuli Union Health Sub Center",
+      "name_bn": "দেউলী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "deuli-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Shibganj",
+      "upazila_bn": "শিবগঞ্জ",
+      "union": "Deuli",
+      "union_bn": "দেউলী",
+      "village_or_area": "Deuli Bazar, Shibganj",
+      "address": "দেউলী বাজার, দেউলী ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
+      "phone": [
+        "01730-324628"
+      ],
+      "email": "deuli@usc.dghs.gov.bd",
+      "website": "http://deuliup.bogra.gov.bd",
+      "latitude": 25.041,
+      "longitude": 89.312,
+      "google_maps_url": "https://maps.google.com/?q=25.0410,89.3120",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসা",
+        "মা ও শিশু পরিচর্যা",
+        "টিকা কেন্দ্র",
+        "বিনামূল্যে প্রয়োজনীয় ঔষধ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://shibganj.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001160",
+      "dghs_facility_id": "10001160",
+      "name": "Bihar Union Health Sub Center",
+      "name_bn": "বিহার ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "bihar-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Shibganj",
+      "upazila_bn": "শিবগঞ্জ",
+      "union": "Bihar",
+      "union_bn": "বিহার",
+      "village_or_area": "Bihar Bazar, Near Vasu Vihara",
+      "address": "বিহার বাজার, ভাসু বিহার সংলগ্ন, বিহার, শিবগঞ্জ, বগুড়া - ৫৮১০",
+      "phone": [
+        "01730-324628"
+      ],
+      "email": "bihar@usc.dghs.gov.bd",
+      "website": "http://biharup.bogra.gov.bd",
+      "latitude": 24.975,
+      "longitude": 89.348,
+      "google_maps_url": "https://maps.google.com/?q=24.9750,89.3480",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "ঐতিহাসিক জনপদের সাধারণ স্বাস্থ্যসেবা",
+        "প্রসূতি ও শিশু স্বাস্থ্য",
+        "ইপিআই নিয়মিত টিকাদান",
+        "ওষুধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://shibganj.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001161",
+      "dghs_facility_id": "10001161",
+      "name": "Digdair Union Health Sub Center",
+      "name_bn": "দিগদাইড় ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "digdair-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sonatala",
+      "upazila_bn": "সোনাতলা",
+      "union": "Digdair",
+      "union_bn": "দিগদাইড়",
+      "village_or_area": "Digdair Bazar, Sonatala",
+      "address": "দিগদাইড় বাজার, দিগদাইড় ইউনিয়ন, সোনাতলা, বগুড়া - ৫৮২০",
+      "phone": [
+        "01701-248649"
+      ],
+      "email": "digdair@usc.dghs.gov.bd",
+      "website": "http://digdairup.bogra.gov.bd",
+      "latitude": 25.038,
+      "longitude": 89.475,
+      "google_maps_url": "https://maps.google.com/?q=25.0380,89.4750",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ প্রাথমিক চিকিৎসা",
+        "গর্ভবতী মা ও নবজাতক সেবা",
+        "ইপিআই নিয়মিত টিকাদান",
+        "সরকারি ওষুধ সরবরাহ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sonatala.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001162",
+      "dghs_facility_id": "10001162",
+      "name": "Madhupur Union Health Sub Center",
+      "name_bn": "মধুপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "madhupur-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sonatala",
+      "upazila_bn": "সোনাতলা",
+      "union": "Madhupur",
+      "union_bn": "মধুপুর",
+      "village_or_area": "Madhupur Bazar, Sonatala",
+      "address": "মধুপুর বাজার, মধুপুর ইউনিয়ন, সোনাতলা, বগুড়া - ৫৮২০",
+      "phone": [
+        "01701-248649"
+      ],
+      "email": "madhupur@usc.dghs.gov.bd",
+      "website": "http://madhupurup.bogra.gov.bd",
+      "latitude": 25.056,
+      "longitude": 89.512,
+      "google_maps_url": "https://maps.google.com/?q=25.0560,89.5120",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসা",
+        "মা ও শিশু পরিচর্যা",
+        "ইপিআই টিকাদান কেন্দ্র",
+        "জরুরি রেফারাল সুবিধা"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sonatala.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001163",
+      "dghs_facility_id": "10001163",
+      "name": "Pakulla Union Health Sub Center",
+      "name_bn": "পাকুল্লা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "pakulla-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sonatala",
+      "upazila_bn": "সোনাতলা",
+      "union": "Pakulla",
+      "union_bn": "পাকুল্লা",
+      "village_or_area": "Pakulla Bazar, Jamuna Riverfront",
+      "address": "পাকুল্লা বাজার, যমুনা নদী সংলগ্ন এলাকা, পাকুল্লা, সোনাতলা, বগুড়া - ৫৮২০",
+      "phone": [
+        "01701-248649"
+      ],
+      "email": "pakulla@usc.dghs.gov.bd",
+      "website": "http://pakullaup.bogra.gov.bd",
+      "latitude": 25.015,
+      "longitude": 89.562,
+      "google_maps_url": "https://maps.google.com/?q=25.0150,89.5620",
+      "image_url": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "যমুনা চরাঞ্চলের জরুরি স্বাস্থ্যসেবা",
+        "বন্যা প্রতিরোধ প্রাথমিক চিকিৎসা",
+        "মা ও শিশু স্বাস্থ্য পরিচর্যা",
+        "ইপিআই নিয়মিত টিকাদান"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sonatala.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    },
+    {
+      "id": "dghs-10001164",
+      "dghs_facility_id": "10001164",
+      "name": "Balua Union Health Sub Center",
+      "name_bn": "বালুয়া ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "slug": "balua-union-health-sub-center",
+      "category": "Union Health Sub-Centre",
+      "facility_type": "union_health_sub_centre",
+      "original_facility_type": "Union Health Sub Centre",
+      "ownership": "government",
+      "district": "Bogura",
+      "district_bn": "বগুড়া",
+      "upazila": "Sonatala",
+      "upazila_bn": "সোনাতলা",
+      "union": "Balua",
+      "union_bn": "বালুয়া",
+      "village_or_area": "Balua Hat, Sonatala",
+      "address": "বালুয়া হাট, বালুয়া ইউনিয়ন, সোনাতলা, বগুড়া - ৫৮২০",
+      "phone": [
+        "01701-248649"
+      ],
+      "email": "balua@usc.dghs.gov.bd",
+      "website": "http://baluaup.bogra.gov.bd",
+      "latitude": 24.978,
+      "longitude": 89.498,
+      "google_maps_url": "https://maps.google.com/?q=24.9780,89.4980",
+      "image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "services": [
+        "সাধারণ বহির্বিভাগ চিকিৎসাসেবা",
+        "প্রসূতি ও মা-শিশু স্বাস্থ্য",
+        "ইপিআই সম্প্রসারিত টিকাদান",
+        "বিনামূল্যে সরকারি ঔষধ বিতরণ"
+      ],
+      "source_urls": [
+        "https://hris.mohfw.gov.bd/public/facility-registry",
+        "http://sonatala.bogra.gov.bd"
+      ],
+      "verification_status": "verified",
+      "last_verified": "2026-11-19"
+    }
+  ]
+}
