@@ -1960,3 +1960,4 @@ export function searchVillages(query: string): Array<{
   }
   return results.slice(0, 50);
 }
+
