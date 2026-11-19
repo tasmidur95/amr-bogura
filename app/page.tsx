@@ -23,7 +23,13 @@ import {
   exploreData,
   initialCommunityState,
   CommunityPost,
+  Upazila,
+  Hospital,
+  EmergencyContact,
+  SiteContent,
+  defaultSiteContent
 } from '@/lib/data/district-data';
+import { detailedExploreSpots } from '@/lib/data/explore-data';
 
 export default function HomePage() {
   const [currentView, setCurrentView] = useState<'home' | 'upazilas' | 'upazila-detail'>('home');
@@ -32,25 +38,54 @@ export default function HomePage() {
   const [hospitalFilter, setHospitalFilter] = useState<string>('all');
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isCommunityModalOpen, setIsCommunityModalOpen] = useState<boolean>(false);
+
+  // Dynamic CMS & Entity States
+  const [siteContent, setSiteContent] = useState<SiteContent>(defaultSiteContent);
+  const [upazilas, setUpazilas] = useState<Upazila[]>(upazilasData);
+  const [hospitals, setHospitals] = useState<Hospital[]>(hospitalsData);
+  const [emergencyContacts, setEmergencyContacts] = useState<EmergencyContact[]>(emergencyData);
+  const [exploreSpots, setExploreSpots] = useState<any[]>(detailedExploreSpots);
   const [communityData, setCommunityData] = useState<Record<string, CommunityPost[]>>(initialCommunityState);
 
-  // Fetch initial community data from API (Supabase or fallback)
+  // Fetch initial dynamic content and entities from API
   useEffect(() => {
-    async function loadCommunity() {
+    async function loadDynamicContent() {
       try {
-        const res = await fetch('/api/community?category=blood');
-        const json = await res.json();
-        if (json.success && json.data && json.data.length > 0) {
+        const [contentRes, upzRes, hospRes, emRes, expRes, commRes] = await Promise.allSettled([
+          fetch('/api/site-content').then(r => r.json()),
+          fetch('/api/upazilas').then(r => r.json()),
+          fetch('/api/hospitals').then(r => r.json()),
+          fetch('/api/emergency').then(r => r.json()),
+          fetch('/api/explore').then(r => r.json()),
+          fetch('/api/community?category=blood').then(r => r.json()),
+        ]);
+
+        if (contentRes.status === 'fulfilled' && contentRes.value?.success && contentRes.value?.data) {
+          setSiteContent(contentRes.value.data);
+        }
+        if (upzRes.status === 'fulfilled' && upzRes.value?.success && upzRes.value?.data) {
+          setUpazilas(upzRes.value.data);
+        }
+        if (hospRes.status === 'fulfilled' && hospRes.value?.success && hospRes.value?.data) {
+          setHospitals(hospRes.value.data);
+        }
+        if (emRes.status === 'fulfilled' && emRes.value?.success && emRes.value?.data) {
+          setEmergencyContacts(emRes.value.data);
+        }
+        if (expRes.status === 'fulfilled' && expRes.value?.success && expRes.value?.data) {
+          setExploreSpots(expRes.value.data);
+        }
+        if (commRes.status === 'fulfilled' && commRes.value?.success && commRes.value?.data?.length > 0) {
           setCommunityData(prev => ({
             ...prev,
-            blood: json.data,
+            blood: commRes.value.data,
           }));
         }
       } catch (e) {
-        // Fallback already in memory
+        // In-memory defaults already set
       }
     }
-    loadCommunity();
+    loadDynamicContent();
   }, []);
 
   const handleNavigate = (view: string, anchor?: string) => {
@@ -94,13 +129,14 @@ export default function HomePage() {
         currentView={currentView}
         onNavigate={handleNavigate}
         onOpenSearch={() => setIsSearchOpen(true)}
+        siteContent={siteContent}
       />
 
       {/* Main Content Areas based on current view */}
       <main className="flex-1">
         {currentView === 'home' && (
           <div className="animate-fade-in">
-            <Hero onNavigate={handleNavigate} />
+            <Hero onNavigate={handleNavigate} siteContent={siteContent} />
             <ServicesGrid
               onNavigate={handleNavigate}
               onFilterHospital={setHospitalFilter}
@@ -113,24 +149,24 @@ export default function HomePage() {
               onOpenModal={() => setIsCommunityModalOpen(true)}
             />
             <UpazilaSection
-              upazilas={upazilasData}
+              upazilas={upazilas}
               onNavigate={handleNavigate}
               onOpenDetail={handleOpenUpazilaDetail}
             />
             <HealthcareSection
-              hospitals={hospitalsData}
-              emergencyContacts={emergencyData}
+              hospitals={hospitals}
+              emergencyContacts={emergencyContacts}
               currentFilter={hospitalFilter}
               onFilterChange={setHospitalFilter}
             />
-            <ExploreSection exploreSpots={exploreData} />
-            <HistorySection />
+            <ExploreSection exploreSpots={exploreSpots} />
+            <HistorySection siteContent={siteContent} />
           </div>
         )}
 
         {currentView === 'upazilas' && (
           <UpazilasPageView
-            upazilas={upazilasData}
+            upazilas={upazilas}
             onNavigate={handleNavigate}
             onOpenDetail={handleOpenUpazilaDetail}
           />
@@ -139,7 +175,7 @@ export default function HomePage() {
         {currentView === 'upazila-detail' && (
           <UpazilaDetailView
             upazilaIndex={selectedUpazilaIdx}
-            upazilas={upazilasData}
+            upazilas={upazilas}
             onNavigate={handleNavigate}
             onSelectUpazila={setSelectedUpazilaIdx}
           />
@@ -150,6 +186,7 @@ export default function HomePage() {
       <Footer
         onNavigate={handleNavigate}
         onSwitchCommunityTab={setActiveCommunityTab}
+        siteContent={siteContent}
       />
 
       {/* Mobile App Bottom Nav */}
@@ -159,10 +196,10 @@ export default function HomePage() {
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-        upazilas={upazilasData}
-        hospitals={hospitalsData}
-        exploreSpots={exploreData}
-        emergencyContacts={emergencyData}
+        upazilas={upazilas}
+        hospitals={hospitals}
+        exploreSpots={exploreSpots}
+        emergencyContacts={emergencyContacts}
         onNavigate={handleNavigate}
         onOpenUpazilaDetail={handleOpenUpazilaDetail}
       />

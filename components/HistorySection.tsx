@@ -2,8 +2,13 @@
 
 import React from 'react';
 import { useLanguage } from '@/lib/context/LanguageContext';
+import { SiteContent } from '@/lib/data/district-data';
 
-export default function HistorySection() {
+interface HistorySectionProps {
+  siteContent?: SiteContent;
+}
+
+export default function HistorySection({ siteContent }: HistorySectionProps = {}) {
   const { t } = useLanguage();
 
   return (
@@ -11,12 +16,26 @@ export default function HistorySection() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* History Timeline Card (7 cols) */}
         <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
-          <span className="text-xs font-bold tracking-wider uppercase text-amber-800 bg-amber-100 px-2.5 py-1 rounded-md border border-amber-200">
-            {t('hisBadge')}
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 mb-6">
-            {t('hisTitle')}
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className="text-xs font-bold tracking-wider uppercase text-amber-800 bg-amber-100 px-2.5 py-1 rounded-md border border-amber-200">
+              {siteContent?.historyBadge || t('hisBadge')}
+            </span>
+            {siteContent?.historyPeriod && (
+              <span className="text-xs font-medium text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+                <i className="fa-regular fa-clock mr-1 text-emerald-600"></i>
+                {siteContent.historyPeriod}
+              </span>
+            )}
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 mb-3">
+            {siteContent?.historyTitle || t('hisTitle')}
           </h2>
+
+          {siteContent?.historySummary && (
+            <div className="p-4 mb-6 rounded-2xl bg-slate-50 border border-slate-200 text-sm text-slate-700 leading-relaxed">
+              <p>{siteContent.historySummary}</p>
+            </div>
+          )}
 
           <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-emerald-200">
             {/* Milestone 1 */}
@@ -84,27 +103,30 @@ export default function HistorySection() {
 
             <div className="grid grid-cols-2 gap-3.5">
               <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
-                <p className="text-xs text-emerald-200">মোট আয়তন</p>
-                <p className="text-xl sm:text-2xl font-bold text-white mt-1">
-                  ২,৮৯৮.৬৮ <span className="text-xs font-normal text-amber-300">বর্গ কিমি</span>
-                </p>
-              </div>
-              <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
                 <p className="text-xs text-emerald-200">উপজেলা ও থানা</p>
                 <p className="text-xl sm:text-2xl font-bold text-white mt-1">
-                  ১২ <span className="text-xs font-normal text-amber-300">টি উপজেলা</span>
-                </p>
-              </div>
-              <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
-                <p className="text-xs text-emerald-200">পৌরসভা</p>
-                <p className="text-xl sm:text-2xl font-bold text-white mt-1">
-                  ১২ <span className="text-xs font-normal text-amber-300">টি পৌরসভা</span>
+                  {siteContent?.stats?.upazilas ? siteContent.stats.upazilas.replace('টি', '') : '১২'}{' '}
+                  <span className="text-xs font-normal text-amber-300">টি উপজেলা</span>
                 </p>
               </div>
               <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
                 <p className="text-xs text-emerald-200">ইউনিয়ন পরিষদ</p>
                 <p className="text-xl sm:text-2xl font-bold text-white mt-1">
-                  ১০৮ <span className="text-xs font-normal text-amber-300">টি ইউনিয়ন</span>
+                  {siteContent?.stats?.unions ? siteContent.stats.unions.replace('টি', '') : '১০৮'}{' '}
+                  <span className="text-xs font-normal text-amber-300">টি ইউনিয়ন</span>
+                </p>
+              </div>
+              <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
+                <p className="text-xs text-emerald-200">গ্রাম ও মহল্লা</p>
+                <p className="text-xl sm:text-2xl font-bold text-white mt-1">
+                  {siteContent?.stats?.villages ? siteContent.stats.villages.replace('টি', '') : '২,৬৯২'}{' '}
+                  <span className="text-xs font-normal text-amber-300">টি গ্রাম</span>
+                </p>
+              </div>
+              <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
+                <p className="text-xs text-emerald-200">আনুমানিক জনসংখ্যা</p>
+                <p className="text-xl sm:text-2xl font-bold text-white mt-1">
+                  {siteContent?.stats?.population || '৩৫+ লক্ষ'}
                 </p>
               </div>
             </div>

@@ -19,7 +19,8 @@ export default function ExploreSection({ exploreSpots }: ExploreSectionProps = {
     showToast(`${title} — গুগল ম্যাপে অবস্থান সংরক্ষিত হয়েছে`);
   };
 
-  const previewSpots = detailedExploreSpots.slice(0, 6);
+  const list = exploreSpots && exploreSpots.length > 0 ? exploreSpots : detailedExploreSpots;
+  const previewSpots = list.slice(0, 6);
 
   return (
     <section id="explore" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -40,7 +41,7 @@ export default function ExploreSection({ exploreSpots }: ExploreSectionProps = {
           href="/explore"
           className="px-4 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-xs transition cursor-pointer shrink-0 self-start sm:self-auto"
         >
-          <span>সকল দর্শনীয় স্থান ({detailedExploreSpots.length})</span>
+          <span>সকল দর্শনীয় স্থান ({list.length})</span>
           <i className="fa-solid fa-arrow-right"></i>
         </Link>
       </div>

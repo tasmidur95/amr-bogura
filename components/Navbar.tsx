@@ -1,20 +1,38 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BrandLogo from '@/components/BrandLogo';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
+import { SiteContent } from '@/lib/data/district-data';
 
 interface NavbarProps {
   currentView: string;
   onNavigate: (view: string, anchor?: string) => void;
   onOpenSearch: () => void;
+  siteContent?: SiteContent;
 }
 
-export default function Navbar({ currentView, onNavigate, onOpenSearch }: NavbarProps) {
+export default function Navbar({ currentView, onNavigate, onOpenSearch, siteContent }: NavbarProps) {
   const { language, toggleLanguage, t } = useLanguage();
   const { showToast } = useToast();
+  const [activeContent, setActiveContent] = useState<SiteContent | undefined>(siteContent);
+
+  useEffect(() => {
+    if (siteContent) {
+      setActiveContent(siteContent);
+    } else {
+      fetch('/api/site-content')
+        .then(res => res.json())
+        .then(json => {
+          if (json.success && json.data) {
+            setActiveContent(json.data);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [siteContent]);
 
   const handleLangToggle = () => {
     toggleLanguage();
@@ -31,14 +49,14 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch }: Navbar
           <div className="flex items-center gap-3 overflow-hidden">
             <span className="inline-flex items-center gap-1.5 font-medium text-amber-400 shrink-0">
               <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-              <span>{t('topNoticeLabel')}</span>
+              <span>{activeContent?.topNoticeLabel || t('topNoticeLabel')}</span>
             </span>
-            <span className="truncate text-emerald-200/90">{t('topNoticeText')}</span>
+            <span className="truncate text-emerald-200/90">{activeContent?.topNoticeText || t('topNoticeText')}</span>
           </div>
           <div className="hidden sm:flex items-center gap-4 shrink-0 text-emerald-300">
             <span>
               <i className="fa-solid fa-location-dot text-amber-400 mr-1"></i>{' '}
-              {t('divisionBadge')}
+              {activeContent?.divisionBadge || t('divisionBadge')}
             </span>
           </div>
         </div>

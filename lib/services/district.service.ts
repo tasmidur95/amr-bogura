@@ -9,7 +9,9 @@ import {
   Hospital,
   EmergencyContact,
   ExploreSpot,
-  CommunityPost
+  CommunityPost,
+  SiteContent,
+  defaultSiteContent
 } from '@/lib/data/district-data';
 
 import {
@@ -17,6 +19,25 @@ import {
   DetailedExploreSpot,
   SpotReview
 } from '@/lib/data/explore-data';
+
+import {
+  boguraUpazilasData,
+  DetailedUpazilaData,
+  UnionData
+} from '@/lib/data/unions-villages-data';
+
+export type { SiteContent };
+
+/**
+ * In-memory state for upazilas & unions
+ */
+let memoryUpazilas: Upazila[] = [...upazilasData];
+let memoryDetailedUpazilas: DetailedUpazilaData[] = [...boguraUpazilasData];
+
+/**
+ * In-memory site content for real-time CMS editing
+ */
+let memorySiteContent: SiteContent = { ...defaultSiteContent };
 
 /**
  * In-memory state for explore spots and pending contributions
@@ -209,9 +230,9 @@ let systemAuditLogs: Array<{
  * Responsible for data access, filtering, Supabase synchronization & public contributor workflow.
  */
 export class DistrictService {
-  // Upazilas
+  // Upazilas (Dynamic with in-memory admin CRUD)
   static async getUpazilas(query?: string, filter?: string): Promise<Upazila[]> {
-    let list = [...upazilasData];
+    let list = [...memoryUpazilas];
 
     if (filter && filter !== 'all') {
       list = list.filter(u => u.tags.includes(filter));
@@ -232,7 +253,19 @@ export class DistrictService {
   }
 
   static async getUpazilaByIndex(index: number): Promise<Upazila | null> {
-    return upazilasData[index] || null;
+    return memoryUpazilas[index] || null;
+  }
+
+  static async getDetailedUpazilas(): Promise<DetailedUpazilaData[]> {
+    return memoryDetailedUpazilas;
+  }
+
+  static async getDetailedUpazilaById(idOrIndex: string | number): Promise<DetailedUpazilaData | null> {
+    if (typeof idOrIndex === 'number') {
+      return memoryDetailedUpazilas[idOrIndex] || null;
+    }
+    const found = memoryDetailedUpazilas.find(u => u.id === idOrIndex || u.name === idOrIndex || u.enName.toLowerCase() === idOrIndex.toLowerCase());
+    return found || null;
   }
 
   // Hospitals (Dynamic with in-memory admin support)
@@ -1150,6 +1183,19 @@ export class DistrictService {
   }
 
   /**
+   * Update emergency contact
+   */
+  static async updateEmergencyContact(title: string, updates: Partial<EmergencyContact>): Promise<boolean> {
+    const target = memoryEmergency.find(e => e.title === title);
+    if (target) {
+      Object.assign(target, updates);
+      this.addAuditLog('EMERGENCY_UPDATE', title, 'জরুরি সেবা হটলাইন আপডেট করা হয়েছে।', 'info');
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * Delete emergency contact
    */
   static async deleteEmergencyContact(title: string): Promise<boolean> {
@@ -1160,6 +1206,199 @@ export class DistrictService {
       return true;
     }
     return false;
+  }
+
+  // ==========================================
+  // UPAZILAS & UNIONS MASTER CRUD
+  // ==========================================
+
+  /**
+   * Add a new upazila
+   */
+  static async addUpazila(upazila: Upazila, detailed?: DetailedUpazilaData): Promise<Upazila> {
+    memoryUpazilas.push(upazila);
+    if (detailed) {
+      memoryDetailedUpazilas.push(detailed);
+    }
+    this.addAuditLog('UPAZILA_ADD', upazila.name, `নতুন উপজেলা তালিকাভুক্ত হয়েছে: ${upazila.enName}`, 'success');
+    return upazila;
+  }
+
+  /**
+   * Update upazila
+   */
+  static async updateUpazila(nameOrSerial: string, updates: Partial<Upazila & DetailedUpazilaData>): Promise<boolean> {
+    const target = memoryUpazilas.find(u => u.name === nameOrSerial || u.serialBn === nameOrSerial || u.enName.toLowerCase() === nameOrSerial.toLowerCase());
+    if (target) {
+      Object.assign(target, updates);
+      const detailed = memoryDetailedUpazilas.find(u => u.name === nameOrSerial || u.serialBn === nameOrSerial || u.enName.toLowerCase() === nameOrSerial.toLowerCase());
+      if (detailed) {
+        Object.assign(detailed, updates);
+      }
+      this.addAuditLog('UPAZILA_UPDATE', target.name, 'উপজেলার তথ্য ও যোগাযোগ আপডেট করা হয়েছে।', 'info');
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Delete upazila
+   */
+  static async deleteUpazila(nameOrSerial: string): Promise<boolean> {
+    const idx = memoryUpazilas.findIndex(u => u.name === nameOrSerial || u.serialBn === nameOrSerial);
+    if (idx !== -1) {
+      const removed = memoryUpazilas.splice(idx, 1)[0];
+      const dIdx = memoryDetailedUpazilas.findIndex(u => u.name === nameOrSerial || u.serialBn === nameOrSerial);
+      if (dIdx !== -1) {
+        memoryDetailedUpazilas.splice(dIdx, 1);
+      }
+      this.addAuditLog('UPAZILA_DELETE', removed.name, 'উপজেলা তালিকা থেকে মুছে ফেলা হয়েছে।', 'warning');
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Add union to upazila
+   */
+  static async addUnion(upazilaName: string, union: UnionData): Promise<UnionData> {
+    const target = memoryDetailedUpazilas.find(u => u.name === upazilaName || u.enName.toLowerCase() === upazilaName.toLowerCase());
+    if (target) {
+      target.unions.push(union);
+      target.unionCount = target.unions.length;
+    }
+    const simpleTarget = memoryUpazilas.find(u => u.name === upazilaName);
+    if (simpleTarget) {
+      if (!simpleTarget.unionList.includes(union.name)) {
+        simpleTarget.unionList.push(union.name);
+      }
+    }
+    this.addAuditLog('UNION_ADD', union.name, `${upazilaName} উপজেলায় নতুন ইউনিয়ন যুক্ত হয়েছে`, 'success');
+    return union;
+  }
+
+  /**
+   * Update union
+   */
+  static async updateUnion(upazilaName: string, unionId: string, updates: Partial<UnionData>): Promise<boolean> {
+    const target = memoryDetailedUpazilas.find(u => u.name === upazilaName);
+    if (target) {
+      const union = target.unions.find(un => un.id === unionId || un.name === unionId);
+      if (union) {
+        Object.assign(union, updates);
+        this.addAuditLog('UNION_UPDATE', union.name, 'ইউনিয়নের বিবরণ আপডেট করা হয়েছে।', 'info');
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Delete union
+   */
+  static async deleteUnion(upazilaName: string, unionId: string): Promise<boolean> {
+    const target = memoryDetailedUpazilas.find(u => u.name === upazilaName);
+    if (target) {
+      const idx = target.unions.findIndex(un => un.id === unionId || un.name === unionId);
+      if (idx !== -1) {
+        const removed = target.unions.splice(idx, 1)[0];
+        target.unionCount = target.unions.length;
+        this.addAuditLog('UNION_DELETE', removed.name, `${upazilaName} থেকে ইউনিয়ন মুছে ফেলা হয়েছে।`, 'warning');
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // ==========================================
+  // TOURIST SPOTS CRUD
+  // ==========================================
+
+  /**
+   * Update tourist spot
+   */
+  static async updateExploreSpot(id: string, updates: Partial<DetailedExploreSpot>): Promise<boolean> {
+    const spot = memoryExploreSpots.find(s => s.id === id);
+    if (spot) {
+      Object.assign(spot, updates);
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('tourist_spots').update({
+            title: spot.title,
+            en_title: spot.enTitle,
+            location: spot.location,
+            upazila: spot.upazila,
+            cover_image: spot.coverImage,
+            short_desc: spot.shortDesc,
+            history: spot.history,
+            how_to_reach: spot.howToReach,
+            timings: spot.timings,
+            entry_fee: spot.entryFee
+          }).eq('id', id);
+        } catch (e) {
+          console.warn('Supabase spot update fallback', e);
+        }
+      }
+      this.addAuditLog('SPOT_UPDATE', spot.title, 'দর্শনীয় স্থানের তথ্য আপডেট করা হয়েছে।', 'info');
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Delete tourist spot
+   */
+  static async deleteExploreSpot(id: string): Promise<boolean> {
+    return this.deleteSubmission('spot', id);
+  }
+
+  // ==========================================
+  // COMMUNITY & BLOOD CRUD
+  // ==========================================
+
+  /**
+   * Update community post
+   */
+  static async updateCommunityPost(id: string, updates: Partial<CommunityPost>): Promise<boolean> {
+    for (const cat of Object.keys(memoryCommunityState)) {
+      const item = memoryCommunityState[cat].find(c => c.id === id);
+      if (item) {
+        Object.assign(item, updates);
+        this.addAuditLog('COMMUNITY_UPDATE', item.name, 'কমিউনিটি এন্ট্রি আপডেট করা হয়েছে।', 'info');
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Delete community post
+   */
+  static async deleteCommunityPost(id: string): Promise<boolean> {
+    return this.deleteSubmission('community', id);
+  }
+
+  // ==========================================
+  // WEBSITE CONTENT CMS (HERO, BANNERS, NOTICES)
+  // ==========================================
+
+  /**
+   * Get dynamic site content
+   */
+  static async getSiteContent(): Promise<SiteContent> {
+    return memorySiteContent;
+  }
+
+  /**
+   * Update dynamic site content
+   */
+  static async updateSiteContent(updates: Partial<SiteContent>): Promise<SiteContent> {
+    Object.assign(memorySiteContent, updates);
+    if (updates.stats) {
+      Object.assign(memorySiteContent.stats, updates.stats);
+    }
+    this.addAuditLog('CMS_UPDATE', 'SiteContent', 'ওয়েবসাইটের ব্যানার ও টেক্সট কন্টেন্ট আপডেট করা হয়েছে।', 'success');
+    return memorySiteContent;
   }
 
   /**
@@ -1249,7 +1488,9 @@ export class DistrictService {
         exportedAt: new Date().toISOString(),
         version: '1.0.0-amar-bogura'
       },
-      upazilas: upazilasData,
+      siteContent: memorySiteContent,
+      upazilas: memoryUpazilas,
+      detailedUpazilas: memoryDetailedUpazilas,
       hospitals: memoryHospitals,
       emergencyContacts: memoryEmergency,
       exploreSpots: memoryExploreSpots,

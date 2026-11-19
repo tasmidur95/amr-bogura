@@ -67,6 +67,48 @@ export interface CommunityPost {
   rejectReason?: string;
 }
 
+export interface SiteContent {
+  topNoticeLabel: string;
+  topNoticeText: string;
+  divisionBadge: string;
+  heroBadge: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  coverImageUrl: string;
+  historyBadge: string;
+  historyTitle: string;
+  historySummary: string;
+  historyPeriod: string;
+  footerText: string;
+  stats: {
+    upazilas: string;
+    unions: string;
+    villages: string;
+    population: string;
+  };
+}
+
+export const defaultSiteContent: SiteContent = {
+  topNoticeLabel: 'জরুরি বিজ্ঞপ্তি',
+  topNoticeText: 'বগুড়া জেলা তথ্য বাতায়নে স্বাগতম — আড়াই হাজার বছরের পুণ্ড্রনগরীর ডিজিটাল সেবা ও তথ্য হাব।',
+  divisionBadge: 'রাজশাহী বিভাগ · উত্তরবঙ্গ',
+  heroBadge: 'করতোয়া বিধৌত প্রাচীন পুণ্ড্রবর্ধন',
+  heroTitle: 'আমার বগুড়া',
+  heroSubtitle: 'আড়াই হাজার বছরের ইতিহাস ও ঐতিহ্যে সমৃদ্ধ পুণ্ড্রনগরী। ১২টি উপজেলার পূর্ণাঙ্গ প্রশাসনিক তথ্য, জরুরি স্বাস্থ্যসেবা, রক্তদাতা নেটওয়ার্ক ও নাগরিক সেবায় একটি সমন্বিত ডিজিটাল বাতায়ন।',
+  coverImageUrl: '/images/amar-bogura-cover.jpg',
+  historyBadge: 'আড়াই হাজার বছরের গৌরবগাথা',
+  historyTitle: 'প্রাচীন পুণ্ড্রনগর থেকে আধুনিক বগুড়া',
+  historySummary: 'করতোয়া নদীর তীরে গড়ে ওঠা পুণ্ড্রবর্ধনের রাজধানী মহাস্থানগড় প্রাচীন বাংলার সর্বাপেক্ষা সমৃদ্ধ সুরক্ষিত নগর। মৌর্য, গুপ্ত, পাল ও সেন আমলের শিলালিপি, টেরাকোটা ফলক ও সুলতানি স্থাপত্যে সমৃদ্ধ এই ঐতিহাসিক জনপদ।',
+  historyPeriod: 'খ্রিস্টপূর্ব ৩য় শতক থেকে বর্তমান',
+  footerText: 'করতোয়া বিধৌত প্রাচীন পুণ্ড্রবর্ধনের ইতিহাস, ১২টি উপজেলার তথ্য, জরুরি স্বাস্থ্যসেবা, রক্তদাতা নেটওয়ার্ক ও স্থানীয় কমিউনিটিকে এক সুতোয় গাঁথার একটি নাগরিক উদ্যোগ।',
+  stats: {
+    upazilas: '১২টি',
+    unions: '১০৮টি',
+    villages: '২,৬৯২টি',
+    population: '৩৫+ লক্ষ'
+  }
+};
+
 export const upazilasData: Upazila[] = [
   {
     serialBn: '০১',

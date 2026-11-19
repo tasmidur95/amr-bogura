@@ -4,14 +4,17 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import BrandLogo from '@/components/BrandLogo';
+import { SiteContent } from '@/lib/data/district-data';
 
 interface HeroProps {
   onNavigate: (view: string, anchor?: string) => void;
+  siteContent?: SiteContent;
 }
 
-export default function Hero({ onNavigate }: HeroProps) {
+export default function Hero({ onNavigate, siteContent }: HeroProps) {
   const { t } = useLanguage();
   const [isCoverModalOpen, setIsCoverModalOpen] = useState(false);
+  const coverImg = siteContent?.coverImageUrl || '/images/amar-bogura-cover.jpg';
 
   return (
     <>
@@ -20,7 +23,7 @@ export default function Hero({ onNavigate }: HeroProps) {
         {/* Cover Photo Backdrop */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/amar-bogura-cover.jpg"
+            src={coverImg}
             alt="আমার বগুড়া কভার ফটো"
             className="w-full h-full object-cover object-center scale-105 filter blur-xs"
           />
@@ -48,7 +51,7 @@ export default function Hero({ onNavigate }: HeroProps) {
               <div className="flex flex-wrap items-center gap-2.5 mb-5">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs sm:text-sm font-bold shadow-xs">
                   <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                  <span>{t('heroBadge')}</span>
+                  <span>{siteContent?.heroBadge || t('heroBadge')}</span>
                 </div>
                 <span className="text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/20 text-amber-200 border border-amber-300/30">
                   ঐতিহ্য · কৃষি · সংস্কৃতি
@@ -58,16 +61,27 @@ export default function Hero({ onNavigate }: HeroProps) {
               {/* Sculpted Typography */}
               <div className="mb-4">
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white">
-                  বগুড়ার ইতিহাস, ঐতিহ্য ও নাগরিক সেবা{' '}
-                  <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 bg-clip-text text-transparent">
-                    এক ক্লিকে
-                  </span>
+                  {siteContent?.heroTitle ? (
+                    <>
+                      {siteContent.heroTitle}{' '}
+                      <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 bg-clip-text text-transparent">
+                        এক ক্লিকে
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      বগুড়ার ইতিহাস, ঐতিহ্য ও নাগরিক সেবা{' '}
+                      <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 bg-clip-text text-transparent">
+                        এক ক্লিকে
+                      </span>
+                    </>
+                  )}
                 </h1>
               </div>
 
               {/* Subtitle */}
               <p className="text-base sm:text-lg text-emerald-100/90 leading-relaxed mb-8 max-w-2xl">
-                পুণ্ড্রবর্ধন মহাস্থানগড়, সাতমাথা জিরো পয়েন্ট, জিআই স্বীকৃত বগুড়ার দই, ১২টি উপজেলা এবং ২,৬৯২টি গ্রামের সমন্বয়ে উত্তরবঙ্গের প্রবেশদ্বারের আধুনিক তথ্য ও কমিউনিটি প্ল্যাটফর্ম।
+                {siteContent?.heroSubtitle || 'পুণ্ড্রবর্ধন মহাস্থানগড়, সাতমাথা জিরো পয়েন্ট, জিআই স্বীকৃত বগুড়ার দই, ১২টি উপজেলা এবং ২,৬৯২টি গ্রামের সমন্বয়ে উত্তরবঙ্গের প্রবেশদ্বারের আধুনিক তথ্য ও কমিউনিটি প্ল্যাটফর্ম।'}
               </p>
 
               {/* Primary CTAs */}
@@ -119,7 +133,7 @@ export default function Hero({ onNavigate }: HeroProps) {
                     className="relative cursor-pointer overflow-hidden aspect-video w-full"
                   >
                     <img
-                      src="/images/amar-bogura-cover.jpg"
+                      src={coverImg}
                       alt="আমার বগুড়া অফিসিয়াল কভার ফটো"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
@@ -276,7 +290,7 @@ export default function Hero({ onNavigate }: HeroProps) {
 
             <div className="relative">
               <img
-                src="/images/amar-bogura-cover.jpg"
+                src={coverImg}
                 alt="আমার বগুড়া ফুল কভার আর্ট"
                 className="w-full h-auto max-h-[75vh] object-contain mx-auto"
               />
@@ -287,7 +301,7 @@ export default function Hero({ onNavigate }: HeroProps) {
                 অন্তর্ভুক্ত ঐতিহ্য: মহাস্থানগড় · সাতমাথা স্মৃতিস্তম্ভ · লাল দই · সারিয়াকান্দি যমুনা ঘাট · আলু ও শস্যভাণ্ডার
               </p>
               <a
-                href="/images/amar-bogura-cover.jpg"
+                href={coverImg}
                 download="amar-bogura-cover.jpg"
                 className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition flex items-center gap-1.5"
               >

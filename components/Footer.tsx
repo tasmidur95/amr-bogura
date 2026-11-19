@@ -1,17 +1,35 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BrandLogo from '@/components/BrandLogo';
 import { useLanguage } from '@/lib/context/LanguageContext';
+import { SiteContent } from '@/lib/data/district-data';
 
 interface FooterProps {
   onNavigate: (view: string, anchor?: string) => void;
   onSwitchCommunityTab: (tab: string) => void;
+  siteContent?: SiteContent;
 }
 
-export default function Footer({ onNavigate, onSwitchCommunityTab }: FooterProps) {
+export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }: FooterProps) {
   const { language } = useLanguage();
+  const [activeContent, setActiveContent] = useState<SiteContent | undefined>(siteContent);
+
+  useEffect(() => {
+    if (siteContent) {
+      setActiveContent(siteContent);
+    } else {
+      fetch('/api/site-content')
+        .then(res => res.json())
+        .then(json => {
+          if (json.success && json.data) {
+            setActiveContent(json.data);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [siteContent]);
 
   return (
     <footer className="bg-emerald-950 text-emerald-200 border-t border-emerald-900 mt-10">
@@ -22,7 +40,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab }: FooterProps
               <BrandLogo variant="horizontal" size="lg" theme="dark" />
             </div>
             <p className="text-sm text-emerald-300/90 max-w-md leading-relaxed">
-              করতোয়া বিধৌত প্রাচীন পুণ্ড্রবর্ধনের ইতিহাস, ১২টি উপজেলার তথ্য, জরুরি স্বাস্থ্যসেবা, রক্তদাতা নেটওয়ার্ক ও স্থানীয় কমিউনিটিকে এক সুতোয় গাঁথার একটি নাগরিক উদ্যোগ।
+              {activeContent?.footerText || 'করতোয়া বিধৌত প্রাচীন পুণ্ড্রবর্ধনের ইতিহাস, ১২টি উপজেলার তথ্য, জরুরি স্বাস্থ্যসেবা, রক্তদাতা নেটওয়ার্ক ও স্থানীয় কমিউনিটিকে এক সুতোয় গাঁথার একটি নাগরিক উদ্যোগ।'}
             </p>
           </div>
 

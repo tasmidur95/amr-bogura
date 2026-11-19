@@ -53,6 +53,29 @@ export async function POST(req: NextRequest) {
   }
 }
 
+export async function PUT(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { targetKey, ...updates } = body;
+
+    if (!targetKey) {
+      return NextResponse.json({ success: false, error: 'হাসপাতাল শনাক্তকারী আবশ্যক' }, { status: 400 });
+    }
+
+    const success = await DistrictService.updateHospital(targetKey, updates);
+    if (!success) {
+      return NextResponse.json({ success: false, error: 'হাসপাতাল পাওয়া যায়নি' }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, message: 'হাসপাতাল সফলভাবে আপডেট হয়েছে' });
+  } catch (err: any) {
+    return NextResponse.json(
+      { success: false, error: err.message || 'আপডেট ব্যর্থ' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function DELETE(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
