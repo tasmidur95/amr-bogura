@@ -30,7 +30,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             setActiveContent(json.data);
           }
         })
-        .catch(() => {});
+        .catch(() => { });
     }
   }, [siteContent]);
 
@@ -77,11 +77,10 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
           <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/70">
             <Link
               href="/"
-              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${
-                currentView === 'home'
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'home'
                   ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                   : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
-              }`}
+                }`}
             >
               {t('navHome')}
             </Link>
@@ -93,11 +92,10 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </button>
             <Link
               href="/upazilas"
-              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${
-                currentView === 'upazilas'
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'upazilas'
                   ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                   : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
-              }`}
+                }`}
             >
               {t('navUpazilas')}
             </Link>
@@ -109,11 +107,10 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </button>
             <Link
               href="/explore"
-              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${
-                currentView === 'explore'
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'explore'
                   ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                   : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
-              }`}
+                }`}
             >
               {t('navExplore')}
             </Link>
@@ -131,11 +128,10 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </button>
             <Link
               href="/contribute"
-              className={`px-3 py-1.5 rounded-lg text-sm transition cursor-pointer flex items-center gap-1.5 ${
-                currentView === 'contribute'
+              className={`px-3 py-1.5 rounded-lg text-sm transition cursor-pointer flex items-center gap-1.5 ${currentView === 'contribute'
                   ? 'font-bold text-emerald-950 bg-emerald-100 shadow-sm border border-emerald-300'
                   : 'font-semibold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200'
-              }`}
+                }`}
             >
               <i className="fa-solid fa-heart-circle-plus text-rose-500"></i>
               <span>{language === 'bn' ? 'অবদান রাখুন' : 'Contribute'}</span>

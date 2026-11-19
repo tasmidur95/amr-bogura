@@ -1,0 +1,55 @@
+{
+  "project": "Amr Bogura (আমার বগুড়া)",
+  "dataset": "Healthcare Facility Registry & Directory",
+  "generated_at": "2026-11-19",
+  "primary_sources": [
+    {
+      "name": "DGHS Facility Registry",
+      "url": "https://hris.mohfw.gov.bd/public/facility-registry",
+      "description": "Ministry of Health and Family Welfare (MoHFW) Central Human Resource Information System (HRIS) & Facility Registry."
+    },
+    {
+      "name": "DGHS Organization List Reports",
+      "url": "https://hris.mohfw.gov.bd/public/facility-registry/reports/organization-list",
+      "description": "Public organization lists with active facility codes and health administrative hierarchy."
+    },
+    {
+      "name": "Directorate General of Health Services (DGHS)",
+      "url": "https://dghs.gov.bd",
+      "description": "Official portal of the DGHS Bangladesh, including national emergency hotlines and facility contact rosters."
+    },
+    {
+      "name": "Bogura District National Portal",
+      "url": "http://bogra.gov.bd",
+      "description": "District Administration, Civil Surgeon Office, and Upazila Health Complex official listings."
+    },
+    {
+      "name": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org",
+      "description": "Geographical coordinates, nodes, ways, and highway landmarks."
+    },
+    {
+      "name": "Google Maps",
+      "url": "https://maps.google.com",
+      "description": "Plus Codes, street locations, and ground coordinates cross-verification."
+    }
+  ],
+  "facility_code_mapping": {
+    "10001095": "Adamdighi Upazila Health Complex",
+    "10001103": "Bogura (Sadar) Upazila Health Office",
+    "10001104": "Bogra Civil Surgeon Office",
+    "10001105": "Bogra District Reserve EPI Store & Training Centre",
+    "10001109": "Bogra 250 bed Mohammad Ali District Hospital",
+    "10001111": "Shaheed Ziaur Rahman Medical College Hospital, Bogra",
+    "10001115": "Dhunat Upazila Health Complex",
+    "10001117": "Dhupchanchia Upazila Health Complex",
+    "10001122": "Gabtali Upazila Health Complex",
+    "10001128": "Kahaloo Upazila Health Complex",
+    "10001135": "Nandigram Upazila Health Complex",
+    "10001140": "Sariakandi Upazila Health Complex",
+    "10001143": "Shajahanpur Upazila Health Complex",
+    "10001147": "Sherpur Upazila Health Complex",
+    "10001156": "Shibganj Upazila Health Complex",
+    "10001159": "Sonatala Upazila Health Complex"
+  }
+}
