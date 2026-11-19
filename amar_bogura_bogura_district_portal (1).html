@@ -1,0 +1,2621 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>আমার বগুড়া | Amar Bogura — বগুড়া জেলা পোর্টাল ও কমিউনিটি প্ল্যাটফর্ম</title>
+
+  <!-- Google Fonts: Hind Siliguri, Noto Sans Bengali & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome 6 for crisp civic & community icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            bengali: ['"Hind Siliguri"', '"Noto Sans Bengali"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', '"Hind Siliguri"', 'sans-serif'],
+          },
+          colors: {
+            emerald: {
+              950: '#022c22',
+              900: '#064e3b',
+              800: '#065f46',
+              700: '#047857',
+              600: '#059669',
+              50: '#ecfdf5',
+            },
+            terracotta: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom subtle terracotta & Karatoya river motif */
+    body {
+      font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .terracotta-pattern {
+      background-color: #064e3b;
+      background-image:
+        radial-gradient(circle at 18% 22%, rgba(217, 119, 6, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.24) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 14px);
+    }
+
+    .card-hover {
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px -8px rgba(6, 95, 70, 0.14);
+    }
+
+    /* Hide scrollbar for horizontal pill bars while keeping scrollability */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeSlideUp 0.28s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="pb-20 md:pb-0 antialiased selection:bg-emerald-700 selection:text-white">
+
+  <!-- Toast Notification Banner (No alert() ever used) -->
+  <div id="toast-container" class="fixed top-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Top Civic Bar -->
+  <div class="bg-emerald-950 text-emerald-100 text-xs py-1.5 px-4 border-b border-emerald-900">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3 overflow-hidden">
+        <span class="inline-flex items-center gap-1.5 font-medium text-amber-400 shrink-0">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          <span data-i18n="topNoticeLabel">জরুরি হটলাইন:</span>
+        </span>
+        <span class="truncate text-emerald-200/90" data-i18n="topNoticeText">
+          জাতীয় জরুরি সেবা ৯৯৯ · বগুড়া জেলা পুলিশ কন্ট্রোল রুম: ০১৩২০-১২৬৪৯৮ · ফায়ার সার্ভিস: ০১৭৩০-০০২৪২১
+        </span>
+      </div>
+      <div class="hidden sm:flex items-center gap-4 shrink-0 text-emerald-300">
+        <span><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> <span data-i18n="divisionBadge">রাজশাহী বিভাগ, বাংলাদেশ</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Main Header & Navigation -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- Brand Identity -->
+      <a href="#home" onclick="navigateToView('home'); return false;" class="flex items-center gap-3 group shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-800 to-emerald-600 text-white flex items-center justify-center shadow-md shadow-emerald-900/15 group-hover:scale-105 transition-transform">
+          <!-- Stylized Terracotta & River Emblem SVG -->
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 20h18M5 20V10l7-6 7 6v10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 20v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17c3-1.5 6 1.5 10 0s7 1.5 10 0" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xl font-bold tracking-tight text-emerald-900 leading-none" data-i18n="brandTitle">আমার বগুড়া</span>
+            <span class="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200">BD</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-medium mt-0.5" data-i18n="brandSubtitle">Bogura District · রাজশাহী বিভাগ</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/70">
+        <a href="#home" id="nav-btn-home" onclick="navigateToView('home'); return false;" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-semibold text-emerald-900 bg-white shadow-sm transition" data-i18n="navHome">হোম</a>
+        <a href="#services" onclick="navigateToView('home', 'services'); return false;" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition" data-i18n="navServices">সব সেবা</a>
+        <a href="#upazilas-page" id="nav-btn-upazilas" onclick="navigateToView('upazilas'); return false;" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition" data-i18n="navUpazilas">উপজেলা</a>
+        <a href="#healthcare" onclick="navigateToView('home', 'healthcare'); return false;" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition" data-i18n="navHealthcare">স্বাস্থ্যসেবা</a>
+        <a href="#explore" onclick="navigateToView('home', 'explore'); return false;" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition" data-i18n="navExplore">দর্শনীয় স্থান</a>
+        <a href="#history" onclick="navigateToView('home', 'history'); return false;" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition" data-i18n="navHistory">ইতিহাস</a>
+        <a href="#community" onclick="navigateToView('home', 'community'); return false;" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition" data-i18n="navCommunity">কমিউনিটি</a>
+      </nav>
+
+      <!-- Right Action Controls: Global Search & Bilingual Toggle -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="openGlobalSearch()" class="p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center gap-2 text-sm" title="Search Bogura">
+          <i class="fa-solid fa-magnifying-glass text-emerald-700"></i>
+          <span class="hidden sm:inline text-slate-500 text-xs font-medium" data-i18n="searchPlaceholderBtn">খুঁজুন...</span>
+        </button>
+
+        <!-- Bilingual Toggle Pill -->
+        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="px-3 py-2 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm flex items-center gap-1.5 transition cursor-pointer">
+          <i class="fa-solid fa-language text-amber-300 text-sm"></i>
+          <span id="lang-toggle-label">English</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== VIEW 1: HOME VIEW ==================== -->
+  <main id="view-home" class="block">
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="home" class="relative overflow-hidden terracotta-pattern text-white pt-10 pb-20 sm:pt-14 sm:pb-24">
+    <!-- Decorative Terracotta Arch SVG in background -->
+    <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none select-none">
+      <svg class="w-80 h-80 sm:w-[440px] sm:h-[440px]" viewBox="0 0 200 200" fill="none">
+        <circle cx="150" cy="150" r="120" stroke="#fbbf24" stroke-width="16" stroke-dasharray="10 8"/>
+        <circle cx="150" cy="150" r="85" stroke="#ffffff" stroke-width="8"/>
+        <path d="M50 190 Q120 70 190 190" stroke="#fbbf24" stroke-width="10" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <!-- District Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-amber-300 text-xs sm:text-sm font-semibold mb-5">
+          <i class="fa-solid fa-landmark-dome"></i>
+          <span data-i18n="heroBadge">বগুড়া জেলা · রাজশাহী বিভাগ</span>
+        </div>
+
+        <!-- Poetic Bangla Headline -->
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight leading-tight text-white mb-4" data-i18n="heroHeadline">
+          করতোয়ার তীরে প্রাচীন পুণ্ড্রবর্ধনের ঐতিহ্যবাহী জনপদ
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base sm:text-lg text-emerald-100/90 leading-relaxed mb-8 max-w-2xl" data-i18n="heroSubtitle">
+          উপজেলা, ইউনিয়ন, হাসপাতাল, দর্শনীয় স্থান ও জরুরি সেবার তথ্য এক জায়গায়। উত্তরবঙ্গের প্রবেশদ্বার বগুড়ার নাগরিক ও কমিউনিটি ডিজিটাল প্ল্যাটফর্ম।
+        </p>
+
+        <!-- Primary CTAs -->
+        <div class="flex flex-wrap items-center gap-3.5">
+          <a href="#healthcare" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold text-sm sm:text-base shadow-lg shadow-amber-950/25 flex items-center gap-2.5 transition transform hover:-translate-y-0.5">
+            <i class="fa-solid fa-hospital"></i>
+            <span data-i18n="ctaHospitals">হাসপাতাল খুঁজুন</span>
+          </a>
+          <button onclick="navigateToView('upazilas')" class="px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white border border-white/25 font-semibold text-sm sm:text-base flex items-center gap-2.5 transition cursor-pointer">
+            <i class="fa-solid fa-map-location-dot text-amber-300"></i>
+            <span data-i18n="ctaUpazilas">উপজেলা দেখুন</span>
+          </button>
+          <a href="#community" class="px-5 py-3.5 rounded-xl bg-emerald-950/60 hover:bg-emerald-950/80 text-emerald-100 border border-emerald-700/60 font-medium text-sm flex items-center gap-2 transition">
+            <i class="fa-solid fa-droplet text-rose-400"></i>
+            <span data-i18n="ctaBlood">রক্তদাতা খুঁজুন</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick-Link Cards Overlapping Hero Bottom (Amar Gaibandha Signature Layout) -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
+      <!-- Card 1: Hospitals -->
+      <a href="#healthcare" class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md card-hover flex items-start gap-3.5">
+        <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 text-lg border border-emerald-100">
+          <i class="fa-solid fa-bed-pulse"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-base sm:text-lg leading-snug" data-i18n="qlHospitalTitle">হাসপাতাল</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5" data-i18n="qlHospitalDesc">সরকারি ও বেসরকারি স্বাস্থ্যকেন্দ্র</p>
+        </div>
+      </a>
+
+      <!-- Card 2: Emergency -->
+      <a href="#emergency" class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md card-hover flex items-start gap-3.5">
+        <div class="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 text-lg border border-rose-100">
+          <i class="fa-solid fa-phone-volume"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-base sm:text-lg leading-snug" data-i18n="qlEmergencyTitle">জরুরি নম্বর</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5" data-i18n="qlEmergencyDesc">৯৯৯, পুলিশ, ফায়ার ও অ্যাম্বুলেন্স</p>
+        </div>
+      </a>
+
+      <!-- Card 3: 12 Upazilas -->
+      <button onclick="navigateToView('upazilas')" class="text-left bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md card-hover flex items-start gap-3.5 cursor-pointer">
+        <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 text-lg border border-amber-100">
+          <i class="fa-solid fa-sitemap"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-base sm:text-lg leading-snug" data-i18n="qlUpazilaTitle">১২টি উপজেলা</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5" data-i18n="qlUpazilaDesc">পৌরসভা ও ১০৮টি ইউনিয়নের তথ্য</p>
+        </div>
+      </button>
+
+      <!-- Card 4: Explore Heritage -->
+      <a href="#explore" class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md card-hover flex items-start gap-3.5">
+        <div class="w-11 h-11 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 text-lg border border-teal-100">
+          <i class="fa-solid fa-monument"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-base sm:text-lg leading-snug" data-i18n="qlExploreTitle">দর্শনীয় স্থান</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5" data-i18n="qlExploreDesc">মহাস্থানগড়, বেহুলার বাসর ও ঐতিহ্য</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION ০১ · সব সেবা (ALL SERVICES DIRECTORY) ==================== -->
+  <section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="text-xs font-bold tracking-wider uppercase text-amber-700 bg-amber-100/80 px-2.5 py-1 rounded-md border border-amber-200" data-i18n="sec01Badge">সেকশন ০১ · নাগরিক ডিরেক্টরি</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2" data-i18n="sec01Title">সব সেবা এক নজরে</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-1" data-i18n="sec01Subtitle">বগুড়া জেলার প্রয়োজনীয় সরকারি, স্বাস্থ্য, ঐতিহ্য ও প্রশাসনিক সেবাসমূহ</p>
+      </div>
+      <div class="text-xs text-slate-500 bg-white px-3.5 py-2 rounded-xl border border-slate-200 flex items-center gap-2 self-start sm:self-auto">
+        <i class="fa-solid fa-circle-check text-emerald-600"></i>
+        <span data-i18n="verifiedBadge">যাচাইকৃত জেলা তথ্যভাণ্ডার</span>
+      </div>
+    </div>
+
+    <!-- All Services Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <!-- Service 1: Hospitals -->
+      <a href="#healthcare" class="group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
+            <i class="fa-solid fa-hospital-user"></i>
+          </div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">১৮+ কেন্দ্র</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-lg group-hover:text-emerald-800 transition-colors" data-i18n="srvHospital">হাসপাতাল</h3>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="srvHospitalSub">শজিমেক, মোহাম্মদ আলী ও উপজেলা স্বাস্থ্য কমপ্লেক্স</p>
+        </div>
+      </a>
+
+      <!-- Service 2: Diagnostic -->
+      <a href="#healthcare" onclick="filterHospitalsByType('diagnostic')" class="group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-700 group-hover:bg-cyan-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
+            <i class="fa-solid fa-microscope"></i>
+          </div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-50 text-cyan-800 border border-cyan-200">২৫+ ল্যাব</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-lg group-hover:text-cyan-800 transition-colors" data-i18n="srvDiagnostic">ডায়াগনস্টিক</h3>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="srvDiagnosticSub">পপুলার, ইবনে সিনা, ল্যাবএইড ও আধুনিক প্যাথলজি</p>
+        </div>
+      </a>
+
+      <!-- Service 3: Emergency -->
+      <a href="#emergency" class="group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white transition-colors flex items-center justify-center text-xl">
+            <i class="fa-solid fa-truck-medical"></i>
+          </div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200">২৪/৭ সেবা</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-lg group-hover:text-rose-700 transition-colors" data-i18n="srvEmergency">জরুরি নম্বর</h3>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="srvEmergencySub">পুলিশ, ফায়ার সার্ভিস, অ্যাম্বুলেন্স ও বিদ্যুৎ অফিস</p>
+        </div>
+      </a>
+
+      <!-- Service 4: Upazilas & Pourashavas -->
+      <button onclick="navigateToView('upazilas')" class="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors flex items-center justify-center text-xl">
+            <i class="fa-solid fa-building-flag"></i>
+          </div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200">১২ উপজেলা</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-800 transition-colors" data-i18n="srvUpazila">উপজেলা ও পৌরসভা</h3>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="srvUpazilaSub">১২টি উপজেলা, ১২টি পৌরসভা ও ১০৮টি ইউনিয়ন</p>
+        </div>
+      </button>
+
+      <!-- Service 5: Tourist Spots -->
+      <a href="#explore" class="group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 group-hover:bg-teal-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
+            <i class="fa-solid fa-gopuram"></i>
+          </div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200">১০+ স্থান</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-lg group-hover:text-teal-800 transition-colors" data-i18n="srvExplore">দর্শনীয় স্থান</h3>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="srvExploreSub">মহাস্থানগড়, গোকুল মেধ, খেরুয়া মসজিদ ও যমুনা ঘাট</p>
+        </div>
+      </a>
+
+      <!-- Service 6: History -->
+      <a href="#history" class="group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-700 group-hover:bg-orange-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
+            <i class="fa-solid fa-scroll"></i>
+          </div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-orange-50 text-orange-800 border border-orange-200">১৮২১ সাল</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-lg group-hover:text-orange-800 transition-colors" data-i18n="srvHistory">জেলার ইতিহাস</h3>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="srvHistorySub">পুণ্ড্রনগর থেকে ১৮২১ সালে জেলা প্রতিষ্ঠা ও মুক্তিযুদ্ধ</p>
+        </div>
+      </a>
+
+      <!-- Service 7: District Map & Stats -->
+      <a href="#stats" class="group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-700 group-hover:bg-indigo-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-800 border border-indigo-200">২,৮৯৮ কিমি²</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-lg group-hover:text-indigo-800 transition-colors" data-i18n="srvStats">মানচিত্র ও পরিসংখ্যান</h3>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="srvStatsSub">আয়তন, জনসংখ্যা, নদ-নদী ও ভৌগোলিক পরিচিতি</p>
+        </div>
+      </a>
+
+      <!-- Service 8: Bogura Doi & Local Heritage -->
+      <a href="#community" onclick="switchCommunityTab('business')" class="group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-yellow-50 text-yellow-700 group-hover:bg-yellow-600 group-hover:text-white transition-colors flex items-center justify-center text-xl">
+            <i class="fa-solid fa-bowl-food"></i>
+          </div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-yellow-50 text-yellow-800 border border-yellow-200">GI পণ্য</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-lg group-hover:text-yellow-800 transition-colors" data-i18n="srvDoi">বগুড়ার দই ও ঐতিহ্য</h3>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="srvDoiSub">জিআই স্বীকৃত বগুড়ার দই, কটকটি ও স্থানীয় ব্যবসা</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION ০২ · কমিউনিটি সেবা (INTERACTIVE TABS) ==================== -->
+  <section id="community" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-5 sm:p-8">
+      <!-- Section Header -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div>
+          <span class="text-xs font-bold tracking-wider uppercase text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200" data-i18n="sec02Badge">সেকশন ০২ · নাগরিক সহযোগিতা</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2" data-i18n="sec02Title">কমিউনিটি সেবা</h2>
+          <p class="text-slate-600 text-sm sm:text-base mt-1" data-i18n="sec02Subtitle">রক্তদাতা খুঁজুন, টিউশন, বাসা ভাড়া, স্থানীয় দক্ষ কর্মী ও বগুড়ার ঐতিহ্যবাহী ব্যবসা</p>
+        </div>
+
+        <!-- Action Button to Post/Contribute -->
+        <button onclick="openCommunityModal()" class="px-5 py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-sm shadow-sm flex items-center justify-center gap-2 transition shrink-0 cursor-pointer">
+          <i class="fa-solid fa-plus"></i>
+          <span data-i18n="btnPostCommunity">তথ্য যুক্ত করুন / অনুরোধ করুন</span>
+        </button>
+      </div>
+
+      <!-- Community Tabs Bar -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-4 border-b border-slate-100" role="tablist">
+        <button onclick="switchCommunityTab('blood')" id="tab-blood" class="comm-tab px-4 py-2.5 rounded-xl text-sm font-bold bg-emerald-800 text-white shadow-sm flex items-center gap-2 shrink-0 transition cursor-pointer">
+          <i class="fa-solid fa-droplet text-rose-300"></i>
+          <span data-i18n="tabBlood">রক্তদাতা</span>
+          <span id="count-blood" class="text-xs px-1.5 py-0.5 rounded-full bg-white/20">6</span>
+        </button>
+
+        <button onclick="switchCommunityTab('tuition')" id="tab-tuition" class="comm-tab px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200/70 flex items-center gap-2 shrink-0 transition cursor-pointer">
+          <i class="fa-solid fa-graduation-cap text-emerald-700"></i>
+          <span data-i18n="tabTuition">টিউশন</span>
+          <span id="count-tuition" class="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 text-slate-700">4</span>
+        </button>
+
+        <button onclick="switchCommunityTab('rent')" id="tab-rent" class="comm-tab px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200/70 flex items-center gap-2 shrink-0 transition cursor-pointer">
+          <i class="fa-solid fa-house-chimney text-amber-600"></i>
+          <span data-i18n="tabRent">ভাড়া</span>
+          <span id="count-rent" class="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 text-slate-700">4</span>
+        </button>
+
+        <button onclick="switchCommunityTab('jobs')" id="tab-jobs" class="comm-tab px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200/70 flex items-center gap-2 shrink-0 transition cursor-pointer">
+          <i class="fa-solid fa-briefcase text-indigo-600"></i>
+          <span data-i18n="tabJobs">কাজ ও দক্ষতা</span>
+          <span id="count-jobs" class="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 text-slate-700">4</span>
+        </button>
+
+        <button onclick="switchCommunityTab('business')" id="tab-business" class="comm-tab px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200/70 flex items-center gap-2 shrink-0 transition cursor-pointer">
+          <i class="fa-solid fa-store text-amber-700"></i>
+          <span data-i18n="tabBusiness">ব্যবসা ও ঐতিহ্য</span>
+          <span id="count-business" class="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 text-slate-700">5</span>
+        </button>
+      </div>
+
+      <!-- Dynamic Filter Controls for Active Tab -->
+      <div id="community-filters" class="pt-5 pb-3 flex flex-wrap items-center gap-3">
+        <!-- Populated dynamically via JS -->
+      </div>
+
+      <!-- Dynamic Tab Content Grid -->
+      <div id="community-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-3 animate-fade-in">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== UPAZILA DIRECTORY (১২টি উপজেলা) ==================== -->
+  <section id="upazilas" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="text-xs font-bold tracking-wider uppercase text-amber-700 bg-amber-100/80 px-2.5 py-1 rounded-md border border-amber-200" data-i18n="upzBadge">প্রশাসনিক কাঠামো</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2" data-i18n="upzTitle">বগুড়া জেলার ১২টি উপজেলা</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-1" data-i18n="upzSubtitle">যেকোনো উপজেলায় ক্লিক করে আয়তন, ইউনিয়ন, পৌরসভা ও উল্লেখযোগ্য বৈশিষ্ট্য জানুন</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2.5">
+        <div class="relative w-full sm:w-56">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input type="text" id="upazila-search" oninput="renderUpazilas()" placeholder="উপজেলা খুঁজুন..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600" />
+        </div>
+        <button onclick="navigateToView('upazilas')" class="px-4 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-xs transition cursor-pointer shrink-0">
+          <span data-i18n="viewAllUpazilasBtn">সম্পূর্ণ উপজেলা পাতা</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="upazila-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <!-- Populated dynamically via JS -->
+    </div>
+  </section>
+
+  <!-- ==================== SECTION ০৩ · স্বাস্থ্যসেবা ও জরুরি সেবা ==================== -->
+  <section id="healthcare" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="text-xs font-bold tracking-wider uppercase text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-md border border-emerald-200" data-i18n="sec03Badge">সেকশন ০৩ · স্বাস্থ্য ও জরুরি</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2" data-i18n="sec03Title">হাসপাতাল ও ডায়াগনস্টিক ডিরেক্টরি</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-1" data-i18n="sec03Subtitle">বগুড়ার প্রধান সরকারি মেডিকেল কলেজ, জেলা সদর হাসপাতাল ও বেসরকারি স্বাস্থ্যকেন্দ্র</p>
+      </div>
+
+      <!-- Filter Pills & Search -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="filterHospitalsByType('all')" id="hosp-filter-all" class="hosp-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-800 text-white transition cursor-pointer">সবগুলো</button>
+        <button onclick="filterHospitalsByType('govt')" id="hosp-filter-govt" class="hosp-filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition cursor-pointer">সরকারি হাসপাতাল</button>
+        <button onclick="filterHospitalsByType('private')" id="hosp-filter-private" class="hosp-filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition cursor-pointer">বেসরকারি</button>
+        <button onclick="filterHospitalsByType('diagnostic')" id="hosp-filter-diagnostic" class="hosp-filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition cursor-pointer">ডায়াগনস্টিক</button>
+      </div>
+    </div>
+
+    <!-- Search bar for hospitals -->
+    <div class="mb-6">
+      <div class="relative max-w-md">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+        <input type="text" id="hospital-search" oninput="renderHospitals()" placeholder="হাসপাতাল বা এলাকার নাম লিখুন (যেমন: শজিমেক, শেরপুর রোড)..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600" />
+      </div>
+    </div>
+
+    <!-- Hospitals Grid -->
+    <div id="hospital-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      <!-- Populated dynamically via JS -->
+    </div>
+
+    <!-- Emergency Numbers Strip -->
+    <div id="emergency" class="bg-gradient-to-br from-rose-950 via-rose-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-lg">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-200 border border-rose-400/30">
+            <i class="fa-solid fa-siren-on"></i> <span data-i18n="emgBadge">২৪/৭ জরুরি সহায়তা</span>
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold mt-2" data-i18n="emgTitle">বগুড়া জেলার জরুরি টেলিফোন নম্বরসমূহ</h3>
+        </div>
+        <a href="tel:999" class="px-5 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md transition self-start sm:self-auto">
+          <i class="fa-solid fa-phone"></i>
+          <span>জাতীয় জরুরি সেবা: ৯৯৯</span>
+        </a>
+      </div>
+
+      <div id="emergency-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPLORE BOGURA (দর্শনীয় স্থান ও ঐতিহ্য) ==================== -->
+  <section id="explore" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <span class="text-xs font-bold tracking-wider uppercase text-teal-800 bg-teal-100/80 px-2.5 py-1 rounded-md border border-teal-200" data-i18n="expBadge">পর্যটন ও প্রত্নতত্ত্ব</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2" data-i18n="expTitle">বগুড়ার দর্শনীয় স্থান ও ঐতিহ্য</h2>
+      <p class="text-slate-600 text-sm sm:text-base mt-1" data-i18n="expSubtitle">আড়াই হাজার বছরের প্রাচীন সভ্যতা, বৌদ্ধ বিহার, সুলতানি মসজিদ ও করতোয়া-যমুনার প্রাকৃতিক সৌন্দর্য</p>
+    </div>
+
+    <div id="explore-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Populated dynamically via JS -->
+    </div>
+  </section>
+
+  <!-- ==================== HISTORY & DISTRICT OVERVIEW (ইতিহাস ও পরিসংখ্যান) ==================== -->
+  <section id="history" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- History Timeline Card (7 cols) -->
+      <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
+        <span class="text-xs font-bold tracking-wider uppercase text-amber-800 bg-amber-100 px-2.5 py-1 rounded-md border border-amber-200" data-i18n="hisBadge">ঐতিহাসিক পরিক্রমা</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 mb-6" data-i18n="hisTitle">পুণ্ড্রবর্ধন থেকে আধুনিক বগুড়া</h2>
+
+        <div class="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-emerald-200">
+          <!-- Milestone 1 -->
+          <div class="relative pl-10">
+            <span class="w-7 h-7 rounded-full bg-emerald-800 text-white text-xs font-bold flex items-center justify-center absolute left-0 top-0.5 shadow">১</span>
+            <span class="text-xs font-bold text-amber-700">খ্রিস্টপূর্ব ৩য় শতাব্দী · মৌর্য যুগ</span>
+            <h3 class="font-bold text-slate-900 text-lg mt-0.5">প্রাচীন রাজধানী পুণ্ড্রনগর (মহাস্থানগড়)</h3>
+            <p class="text-sm text-slate-600 mt-1 leading-relaxed">
+              করতোয়া নদীর পশ্চিম তীরে অবস্থিত মহাস্থানগড় ছিল প্রাচীন পুণ্ড্রবর্ধন রাজ্যের রাজধানী। এখান থেকে প্রাপ্ত ব্রাহ্মী শিলালিপি বাংলা অঞ্চলের প্রাচীনতম লিখিত নিদর্শন।
+            </p>
+          </div>
+
+          <!-- Milestone 2 -->
+          <div class="relative pl-10">
+            <span class="w-7 h-7 rounded-full bg-emerald-800 text-white text-xs font-bold flex items-center justify-center absolute left-0 top-0.5 shadow">২</span>
+            <span class="text-xs font-bold text-amber-700">পাল ও সুলতানি আমল · অষ্টম–ষোড়শ শতাব্দী</span>
+            <h3 class="font-bold text-slate-900 text-lg mt-0.5">বৌদ্ধ বিহার ও সুলতানি স্থাপত্যের বিকাশ</h3>
+            <p class="text-sm text-slate-600 mt-1 leading-relaxed">
+              পাল আমলে ভাসু বিহার ও বিহার ধাপ জ্ঞানচর্চার কেন্দ্রে পরিণত হয়। পরবর্তীতে ১৫৮২ সালে শেরপুরে নির্মিত ঐতিহাসিক খেরুয়া মসজিদ সুলতানি ও মুঘল স্থাপত্যের অপূর্ব নিদর্শন বহন করে।
+            </p>
+          </div>
+
+          <!-- Milestone 3 -->
+          <div class="relative pl-10">
+            <span class="w-7 h-7 rounded-full bg-emerald-800 text-white text-xs font-bold flex items-center justify-center absolute left-0 top-0.5 shadow">৩</span>
+            <span class="text-xs font-bold text-amber-700">১৮২১ সাল · ব্রিটিশ প্রশাসনিক সংস্কার</span>
+            <h3 class="font-bold text-slate-900 text-lg mt-0.5">স্বতন্ত্র বগুড়া জেলা প্রতিষ্ঠা</h3>
+            <p class="text-sm text-slate-600 mt-1 leading-relaxed">
+              রাজশাহী, রংপুর ও দিনাজপুর জেলার অংশবিশেষ নিয়ে ১৮২১ সালের ১৩ এপ্রিল স্বতন্ত্র বগুড়া জেলা গঠিত হয়। সুলতান গিয়াসউদ্দিন বলবনের পুত্র নাসিরউদ্দিন বগরা খানের নামানুসারে 'বগুড়া' নামকরণ হয়।
+            </p>
+          </div>
+
+          <!-- Milestone 4 -->
+          <div class="relative pl-10">
+            <span class="w-7 h-7 rounded-full bg-amber-600 text-white text-xs font-bold flex items-center justify-center absolute left-0 top-0.5 shadow">৪</span>
+            <span class="text-xs font-bold text-amber-700">১৯৭১ · মহান মুক্তিযুদ্ধ ও উত্তরবঙ্গের প্রাণকেন্দ্র</span>
+            <h3 class="font-bold text-slate-900 text-lg mt-0.5">মুক্তিযুদ্ধে বীরত্বগাথা ও বর্তমান বগুড়া</h3>
+            <p class="text-sm text-slate-600 mt-1 leading-relaxed">
+              ১৯৭১ সালের মুক্তিযুদ্ধে ৭ নম্বর সেক্টরের অধীনে বগুড়ার মুক্তিযোদ্ধারা অসীম সাহসিকতায় যুদ্ধ করেন। বর্তমানে বগুড়া উত্তরবঙ্গের শিক্ষা, চিকিৎসা, কৃষি ও ক্ষুদ্র-মাঝারি শিল্পের প্রধান কেন্দ্র।
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- District Stats & Map Card (5 cols) -->
+      <div id="stats" class="lg:col-span-5 space-y-6">
+        <div class="bg-emerald-950 text-white rounded-3xl p-6 sm:p-7 shadow-md">
+          <div class="flex items-center justify-between mb-5">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-400">এক নজরে বগুড়া</span>
+              <h3 class="text-xl font-bold mt-1">জেলা পরিসংখ্যান ও পরিচিতি</h3>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-amber-300 text-xl">
+              <i class="fa-solid fa-map"></i>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3.5">
+            <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+              <p class="text-xs text-emerald-200">মোট আয়তন</p>
+              <p class="text-xl sm:text-2xl font-bold text-white mt-1">২,৮৯৮.৬৮ <span class="text-xs font-normal text-amber-300">বর্গ কিমি</span></p>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+              <p class="text-xs text-emerald-200">উপজেলা ও থানা</p>
+              <p class="text-xl sm:text-2xl font-bold text-white mt-1">১২ <span class="text-xs font-normal text-amber-300">টি উপজেলা</span></p>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+              <p class="text-xs text-emerald-200">পৌরসভা</p>
+              <p class="text-xl sm:text-2xl font-bold text-white mt-1">১২ <span class="text-xs font-normal text-amber-300">টি পৌরসভা</span></p>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+              <p class="text-xs text-emerald-200">ইউনিয়ন পরিষদ</p>
+              <p class="text-xl sm:text-2xl font-bold text-white mt-1">১০৮ <span class="text-xs font-normal text-amber-300">টি ইউনিয়ন</span></p>
+            </div>
+          </div>
+
+          <div class="mt-5 pt-5 border-t border-white/10 space-y-2.5 text-sm text-emerald-100">
+            <div class="flex justify-between">
+              <span class="text-emerald-300">প্রধান নদ-নদী:</span>
+              <span class="font-semibold">করতোয়া, যমুনা, বাঙালি, নাগর</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-emerald-300">সংসদীয় আসন:</span>
+              <span class="font-semibold">৭টি (বগুড়া-১ থেকে বগুড়া-৭)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-emerald-300">জিআই স্বীকৃত পণ্য:</span>
+              <span class="font-semibold text-amber-300">বগুড়ার দই (২০২৩)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stylized Vector Map Card of Bogura -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="font-bold text-slate-900 text-base">ভৌগোলিক অবস্থান ও সীমানা</h4>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">উত্তরবঙ্গের প্রাণকেন্দ্র</span>
+          </div>
+          <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200/70 flex flex-col items-center">
+            <!-- Stylized Bogura District Boundary SVG -->
+            <svg class="w-full max-w-[260px] h-48" viewBox="0 0 260 220" fill="none">
+              <path d="M95 20 L145 18 L175 45 L195 95 L182 145 L155 185 L110 198 L72 182 L48 140 L55 88 L72 48 Z" fill="#ecfdf5" stroke="#047857" stroke-width="3"/>
+              <!-- Karatoya River Line -->
+              <path d="M118 18 C112 65, 132 105, 116 150 C108 175, 122 192, 125 200" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="4 3"/>
+              <!-- Jamuna River East -->
+              <path d="M180 42 C202 85, 200 130, 172 175" stroke="#0284c7" stroke-width="4" opacity="0.5"/>
+              <!-- Key Pins -->
+              <circle cx="120" cy="105" r="6" fill="#d97706"/>
+              <text x="130" y="109" fill="#064e3b" font-size="11" font-weight="bold">বগুড়া সদর</text>
+              <circle cx="116" cy="58" r="4.5" fill="#059669"/>
+              <text x="64" y="55" fill="#0f172a" font-size="9.5" font-weight="600">মহাস্থানগড়</text>
+              <circle cx="132" cy="162" r="4.5" fill="#059669"/>
+              <text x="139" y="166" fill="#0f172a" font-size="9.5" font-weight="600">শেরপুর</text>
+              <circle cx="176" cy="96" r="4.5" fill="#059669"/>
+              <text x="128" y="88" fill="#0f172a" font-size="9" font-weight="600">সারিয়াকান্দি</text>
+            </svg>
+            <div class="grid grid-cols-2 gap-x-6 gap-y-1 text-xs text-slate-600 mt-2 w-full pt-3 border-t border-slate-200/70">
+              <div><strong class="text-slate-800">উত্তরে:</strong> গাইবান্ধা ও জয়পুরহাট</div>
+              <div><strong class="text-slate-800">দক্ষিণে:</strong> নাটোর ও সিরাজগঞ্জ</div>
+              <div><strong class="text-slate-800">পূর্বে:</strong> জামালপুর (যমুনা নদী)</div>
+              <div><strong class="text-slate-800">পশ্চিমে:</strong> নওগাঁ জেলা</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- ==================== VIEW 2: DEDICATED UPAZILAS PAGE (/upazilas modeled on amargaibandha.bd/upazilas) ==================== -->
+  <section id="view-upazilas" class="hidden animate-fade-in">
+    <!-- Page Header Banner -->
+    <div class="bg-[#F9F8F4] border-b border-slate-200/90 pt-7 pb-10 sm:pt-10 sm:pb-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-500 mb-5">
+          <a href="#home" onclick="navigateToView('home'); return false;" class="text-emerald-800 hover:text-amber-700 font-semibold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-house text-xs"></i>
+            <span data-i18n="bcHome">হোম</span>
+          </a>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          <span class="text-slate-800 font-semibold" data-i18n="bcUpazilas">উপজেলা</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Left Header Copy & District Summary Metrics -->
+          <div class="lg:col-span-7">
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase text-[#C85A28] bg-amber-100/90 px-3 py-1 rounded-full border border-amber-200">
+              <i class="fa-solid fa-layer-group"></i>
+              <span data-i18n="upzPageEyebrow">উপজেলা ও ইউনিয়ন</span>
+            </span>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B4635] tracking-tight mt-3 leading-tight" data-i18n="upzPageTitle">
+              বগুড়া জেলার উপজেলা
+            </h1>
+            <p class="text-slate-600 text-base sm:text-lg mt-3 leading-relaxed max-w-2xl" data-i18n="upzPageSubtitle">
+              বারোটি উপজেলা, তাদের ইউনিয়ন, আয়তন ও ইতিহাস। মানচিত্রে ক্লিক করে যেকোনো উপজেলায় যান।
+            </p>
+
+            <!-- District Summary Stats Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-7">
+              <div class="bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-2xs">
+                <p class="text-[11px] font-semibold text-slate-500" data-i18n="statUpzLabel">মোট উপজেলা</p>
+                <p class="text-xl sm:text-2xl font-extrabold text-[#0B4635] mt-0.5" data-i18n="statUpzVal">১২টি</p>
+              </div>
+              <div class="bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-2xs">
+                <p class="text-[11px] font-semibold text-slate-500" data-i18n="statUnionLabel">মোট ইউনিয়ন</p>
+                <p class="text-xl sm:text-2xl font-extrabold text-[#0B4635] mt-0.5" data-i18n="statUnionVal">১০৮টি</p>
+              </div>
+              <div class="bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-2xs">
+                <p class="text-[11px] font-semibold text-slate-500" data-i18n="statPouraLabel">পৌরসভা</p>
+                <p class="text-xl sm:text-2xl font-extrabold text-[#C85A28] mt-0.5" data-i18n="statPouraVal">১২টি</p>
+              </div>
+              <div class="bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-2xs">
+                <p class="text-[11px] font-semibold text-slate-500" data-i18n="statAreaLabel">মোট আয়তন</p>
+                <p class="text-lg sm:text-xl font-extrabold text-slate-900 mt-0.5" data-i18n="statAreaVal">২,৮৯৮.৬৮ <span class="text-xs font-medium text-slate-500">কিমি²</span></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Interactive Bogura District SVG Map Card (<figure> style from amargaibandha.bd/upazilas) -->
+          <div class="lg:col-span-5">
+            <figure id="interactive-map-figure" class="bg-white rounded-3xl p-4 sm:p-5 border border-slate-200/90 shadow-sm relative">
+              <div class="flex items-center justify-between gap-2 mb-2.5">
+                <span class="text-xs font-bold text-[#0B4635] flex items-center gap-1.5">
+                  <i class="fa-solid fa-map-location-dot text-[#C85A28]"></i>
+                  <span data-i18n="mapCardTitle">বগুড়া জেলার প্রশাসনিক মানচিত্র</span>
+                </span>
+                <span id="map-hover-badge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  উপজেলায় ক্লিক করুন
+                </span>
+              </div>
+
+              <!-- Interactive SVG Map of all 12 Upazilas of Bogura -->
+              <div class="relative bg-[#F9F8F4] rounded-2xl border border-slate-200/80 p-2 overflow-hidden">
+                <svg id="bogura-interactive-svg" viewBox="0 0 420 360" class="w-full h-64 sm:h-72 select-none" role="img" aria-label="বগুড়া জেলার ১২টি উপজেলার মানচিত্র">
+                  <!-- Jamuna River Ribbon (East) -->
+                  <path d="M325 25 C355 85, 360 155, 342 225 C330 265, 315 305, 300 340" stroke="#bae6fd" stroke-width="18" fill="none" stroke-linecap="round"/>
+                  <text x="352" y="165" fill="#0369a1" font-size="10" font-weight="700" transform="rotate(78 352 165)">যমুনা নদী</text>
+
+                  <!-- 02. Shibganj (North-West) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="1" onmouseenter="highlightUpazilaMap(1)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(1)">
+                    <polygon points="120,32 195,28 205,85 165,105 112,92" fill="#d1fae5" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="156" y="68" text-anchor="middle" fill="#064e3b" font-size="11" font-weight="700">শিবগঞ্জ</text>
+                  </g>
+
+                  <!-- 04. Sonatala (North-East) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="3" onmouseenter="highlightUpazilaMap(3)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(3)">
+                    <polygon points="195,28 275,34 290,82 232,92 205,85" fill="#fef3c7" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="242" y="65" text-anchor="middle" fill="#92400e" font-size="11" font-weight="700">সোনাতলা</text>
+                  </g>
+
+                  <!-- 05. Sariakandi (East / Jamuna Bank) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="4" onmouseenter="highlightUpazilaMap(4)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(4)">
+                    <polygon points="275,34 328,55 338,165 295,195 258,155 262,90 290,82" fill="#e0f2fe" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="298" y="128" text-anchor="middle" fill="#075985" font-size="11" font-weight="700">সারিয়াকান্দি</text>
+                  </g>
+
+                  <!-- 06. Gabtali (East-Central) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="5" onmouseenter="highlightUpazilaMap(5)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(5)">
+                    <polygon points="205,85 262,90 258,155 215,165 195,125" fill="#d1fae5" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="230" y="128" text-anchor="middle" fill="#064e3b" font-size="11" font-weight="700">গাবতলী</text>
+                  </g>
+
+                  <!-- 10. Dupchanchia (West-North) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="9" onmouseenter="highlightUpazilaMap(9)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(9)">
+                    <polygon points="75,92 125,92 132,145 78,148" fill="#fef3c7" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="103" y="123" text-anchor="middle" fill="#92400e" font-size="10.5" font-weight="700">দুপচাঁচিয়া</text>
+                  </g>
+
+                  <!-- 11. Adamdighi (Far West) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="10" onmouseenter="highlightUpazilaMap(10)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(10)">
+                    <polygon points="32,125 78,125 84,185 36,182" fill="#d1fae5" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="58" y="158" text-anchor="middle" fill="#064e3b" font-size="10.5" font-weight="700">আদমদীঘি</text>
+                  </g>
+
+                  <!-- 09. Kahaloo (West-Central) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="8" onmouseenter="highlightUpazilaMap(8)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(8)">
+                    <polygon points="84,145 148,142 152,202 88,205" fill="#ecfdf5" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="118" y="177" text-anchor="middle" fill="#064e3b" font-size="11" font-weight="700">কাহালু</text>
+                  </g>
+
+                  <!-- 01. Bogura Sadar (Center Hub) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="0" onmouseenter="highlightUpazilaMap(0)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(0)">
+                    <polygon points="148,100 198,100 215,165 152,175" fill="#C85A28" stroke="#0B4635" stroke-width="2"/>
+                    <text x="181" y="142" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="800">বগুড়া সদর</text>
+                  </g>
+
+                  <!-- 12. Shajahanpur (South of Sadar) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="11" onmouseenter="highlightUpazilaMap(11)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(11)">
+                    <polygon points="152,175 215,165 225,222 156,225" fill="#fef3c7" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="188" y="198" text-anchor="middle" fill="#92400e" font-size="10.5" font-weight="700">শাজাহানপুর</text>
+                  </g>
+
+                  <!-- 08. Nandigram (South-West) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="7" onmouseenter="highlightUpazilaMap(7)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(7)">
+                    <polygon points="82,205 156,205 154,282 88,278" fill="#d1fae5" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="120" y="246" text-anchor="middle" fill="#064e3b" font-size="11" font-weight="700">নন্দীগ্রাম</text>
+                  </g>
+
+                  <!-- 03. Sherpur (South) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="2" onmouseenter="highlightUpazilaMap(2)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(2)">
+                    <polygon points="156,225 232,222 238,315 162,318" fill="#ecfdf5" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="197" y="274" text-anchor="middle" fill="#064e3b" font-size="11.5" font-weight="700">শেরপুর</text>
+                  </g>
+
+                  <!-- 07. Dhunat (South-East) -->
+                  <g class="upz-map-region cursor-pointer transition-opacity hover:opacity-90" data-upz-idx="6" onmouseenter="highlightUpazilaMap(6)" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(6)">
+                    <polygon points="225,165 295,195 292,285 235,288" fill="#fef3c7" stroke="#0B4635" stroke-width="1.8"/>
+                    <text x="262" y="236" text-anchor="middle" fill="#92400e" font-size="11" font-weight="700">ধুনট</text>
+                  </g>
+
+                  <!-- Karatoya River dashed trace -->
+                  <path d="M168 30 C164 82, 182 128, 176 185 C172 238, 192 280, 198 320" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 3" fill="none" pointer-events="none"/>
+                </svg>
+
+                <!-- Floating Map Tooltip -->
+                <div id="svg-map-tooltip" class="hidden absolute bottom-3 left-3 right-3 bg-emerald-950/95 text-white px-3.5 py-2.5 rounded-xl text-xs shadow-lg border border-emerald-700 flex items-center justify-between pointer-events-none">
+                  <div>
+                    <p id="tooltip-upz-name" class="font-bold text-amber-300 text-sm">বগুড়া সদর</p>
+                    <p id="tooltip-upz-meta" class="text-emerald-100 text-[11px]">আয়তন: ১৭৬.৫৮ বর্গকিমি · ১১টি ইউনিয়ন</p>
+                  </div>
+                  <span class="text-[11px] font-semibold bg-white/15 px-2 py-1 rounded-lg">পাতা দেখুন →</span>
+                </div>
+              </div>
+
+              <figcaption class="mt-3 flex items-center justify-between gap-2">
+                <span class="text-xs text-slate-500">মানচিত্রের যেকোনো উপজেলায় ক্লিক করুন</span>
+                <button onclick="document.getElementById('upazilas-directory-list').scrollIntoView({behavior: 'smooth'})" class="text-xs font-bold text-[#0B4635] hover:text-[#C85A28] flex items-center gap-1.5 transition cursor-pointer">
+                  <i class="fa-solid fa-compass"></i>
+                  <span data-i18n="interactiveMapBtn">ইন্টারেক্টিভ মানচিত্রে দেখুন</span>
+                </button>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter & Search Controls + 12 Upazila Cards Grid -->
+    <div id="upazilas-directory-list" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+      <!-- Filter Chips & Search Input -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-200/80">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <button onclick="setUpazilaPageFilter('all')" id="upz-chip-all" class="upz-filter-chip px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#0B4635] text-white shadow-xs shrink-0 cursor-pointer transition">
+            সব ১২টি উপজেলা
+          </button>
+          <button onclick="setUpazilaPageFilter('pourashava')" id="upz-chip-pourashava" class="upz-filter-chip px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shrink-0 cursor-pointer transition">
+            পৌরসভা সমৃদ্ধ (১১)
+          </button>
+          <button onclick="setUpazilaPageFilter('jamuna')" id="upz-chip-jamuna" class="upz-filter-chip px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shrink-0 cursor-pointer transition">
+            যমুনা ও বাঙালি তীরবর্তী
+          </button>
+          <button onclick="setUpazilaPageFilter('heritage')" id="upz-chip-heritage" class="upz-filter-chip px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shrink-0 cursor-pointer transition">
+            প্রত্নতত্ত্ব ও ঐতিহ্য
+          </button>
+        </div>
+
+        <div class="relative w-full md:w-72">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input type="text" id="upazilas-page-search" oninput="renderUpazilasPageGrid()" placeholder="উপজেলা, ইউনিয়ন বা নদীর নাম..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B4635]" />
+        </div>
+      </div>
+
+      <!-- Numbered 12-Upazila Cards Grid (Exact amargaibandha.bd/upazilas Card Anatomy) -->
+      <div id="upazilas-page-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== VIEW 3: DEDICATED UPAZILA DETAIL PAGE (উপজেলার পাতা) ==================== -->
+  <section id="view-upazila-detail" class="hidden animate-fade-in">
+    <div id="upazila-detail-container">
+      <!-- Populated dynamically when a user opens an Upazila Page -->
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-emerald-950 text-emerald-200 border-t border-emerald-900 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-emerald-900">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-800 text-amber-300 flex items-center justify-center font-bold">
+              <i class="fa-solid fa-landmark-dome"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white">আমার বগুড়া · Amar Bogura</h3>
+              <p class="text-xs text-emerald-400">বগুড়া জেলা নাগরিক ও কমিউনিটি ডিজিটাল পোর্টাল</p>
+            </div>
+          </div>
+          <p class="text-sm text-emerald-300/90 max-w-md leading-relaxed">
+            করতোয়া বিধৌত প্রাচীন পুণ্ড্রবর্ধনের ইতিহাস, ১২টি উপজেলার তথ্য, জরুরি স্বাস্থ্যসেবা, রক্তদাতা নেটওয়ার্ক ও স্থানীয় কমিউনিটিকে এক সুতোয় গাঁথার একটি নাগরিক উদ্যোগ।
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm mb-3">দ্রুত লিংক</h4>
+          <ul class="space-y-2 text-sm text-emerald-300">
+            <li><a href="#services" class="hover:text-amber-300 transition">সব নাগরিক সেবা</a></li>
+            <li><a href="#upazilas" class="hover:text-amber-300 transition">১২টি উপজেলা ডিরেক্টরি</a></li>
+            <li><a href="#healthcare" class="hover:text-amber-300 transition">হাসপাতাল ও ডায়াগনস্টিক</a></li>
+            <li><a href="#explore" class="hover:text-amber-300 transition">দর্শনীয় স্থান ও ঐতিহ্য</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm mb-3">কমিউনিটি প্ল্যাটফর্ম</h4>
+          <ul class="space-y-2 text-sm text-emerald-300">
+            <li><a href="#community" onclick="switchCommunityTab('blood')" class="hover:text-amber-300 transition">রক্তদাতা নেটওয়ার্ক</a></li>
+            <li><a href="#community" onclick="switchCommunityTab('tuition')" class="hover:text-amber-300 transition">টিউশন ও শিক্ষা</a></li>
+            <li><a href="#community" onclick="switchCommunityTab('rent')" class="hover:text-amber-300 transition">বাসা ও দোকান ভাড়া</a></li>
+            <li><a href="#community" onclick="switchCommunityTab('business')" class="hover:text-amber-300 transition">বগুড়ার দই ও স্থানীয় ব্যবসা</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-emerald-400">
+        <p>© ২০২৬ আমার বগুড়া (Amar Bogura) — বগুড়া জেলার নাগরিকদের জন্য নির্মিত।</p>
+        <p>তথ্যসূত্র: বাংলাদেশ জাতীয় তথ্য বাতায়ন (বগুড়া জেলা) ও স্থানীয় কমিউনিটি ডিরেক্টরি।</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MOBILE APP-LIKE BOTTOM NAVIGATION BAR ==================== -->
+  <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-2 py-1.5 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+    <div class="grid grid-cols-5 gap-1 text-center">
+      <a href="#home" id="mob-nav-home" onclick="navigateToView('home'); return false;" class="flex flex-col items-center justify-center py-1 text-emerald-800 font-bold text-[11px]">
+        <i class="fa-solid fa-house text-base mb-0.5"></i>
+        <span>হোম</span>
+      </a>
+      <a href="#upazilas-page" id="mob-nav-upazilas" onclick="navigateToView('upazilas'); return false;" class="flex flex-col items-center justify-center py-1 text-slate-600 hover:text-emerald-800 text-[11px]">
+        <i class="fa-solid fa-map-location-dot text-base mb-0.5"></i>
+        <span>উপজেলা</span>
+      </a>
+      <a href="#healthcare" onclick="navigateToView('home', 'healthcare'); return false;" class="flex flex-col items-center justify-center py-1 text-slate-600 hover:text-emerald-800 text-[11px]">
+        <i class="fa-solid fa-hospital text-base mb-0.5"></i>
+        <span>স্বাস্থ্য</span>
+      </a>
+      <a href="#explore" onclick="navigateToView('home', 'explore'); return false;" class="flex flex-col items-center justify-center py-1 text-slate-600 hover:text-emerald-800 text-[11px]">
+        <i class="fa-solid fa-monument text-base mb-0.5"></i>
+        <span>দর্শনীয়</span>
+      </a>
+      <a href="#community" onclick="navigateToView('home', 'community'); return false;" class="flex flex-col items-center justify-center py-1 text-slate-600 hover:text-emerald-800 text-[11px]">
+        <i class="fa-solid fa-users text-base mb-0.5"></i>
+        <span>কমিউনিটি</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ==================== UPAZILA DETAIL MODAL ==================== -->
+  <div id="upazila-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-200 animate-fade-in relative">
+      <button onclick="closeUpazilaModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center absolute right-5 top-5 cursor-pointer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="upazila-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ==================== COMMUNITY CONTRIBUTE / BLOOD REQUEST MODAL ==================== -->
+  <div id="community-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-200 animate-fade-in relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeCommunityModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center absolute right-5 top-5 cursor-pointer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">কমিউনিটি অবদান</span>
+      <h3 class="text-xl font-bold text-slate-900 mt-2">নতুন তথ্য বা জরুরি অনুরোধ যুক্ত করুন</h3>
+      <p class="text-xs text-slate-500 mt-1 mb-5">আপনার তথ্য সরাসরি বগুড়া কমিউনিটি বোর্ডে যুক্ত হবে।</p>
+
+      <form id="community-form" onsubmit="handleCommunitySubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">ক্যাটাগরি নির্বাচন করুন</label>
+          <select id="post-category" onchange="toggleFormFields()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-600">
+            <option value="blood">রক্তদাতা নিবন্ধন / জরুরি রক্তের অনুরোধ</option>
+            <option value="tuition">টিউশন (শিক্ষক / শিক্ষার্থী প্রয়োজন)</option>
+            <option value="rent">বাসা / মেস / দোকান ভাড়া</option>
+            <option value="jobs">কাজ ও স্থানীয় দক্ষ কর্মী</option>
+            <option value="business">স্থানীয় ব্যবসা ও বগুড়ার দই</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">নাম / প্রতিষ্ঠানের নাম *</label>
+            <input type="text" id="post-name" required placeholder="যেমন: তানভীর আহমেদ" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">উপজেলা / এলাকা *</label>
+            <select id="post-upazila" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+              <option value="বগুড়া সদর">বগুড়া সদর</option>
+              <option value="শেরপুর">শেরপুর</option>
+              <option value="শিবগঞ্জ">শিবগঞ্জ</option>
+              <option value="শাজাহানপুর">শাজাহানপুর</option>
+              <option value="সারিয়াকান্দি">সারিয়াকান্দি</option>
+              <option value="সোনাতলা">সোনাতলা</option>
+              <option value="গাবতলী">গাবতলী</option>
+              <option value="কাহালু">কাহালু</option>
+              <option value="দুপচাঁচিয়া">দুপচাঁচিয়া</option>
+              <option value="আদমদীঘি">আদমদীঘি</option>
+              <option value="নন্দীগ্রাম">নন্দীগ্রাম</option>
+              <option value="ধুনট">ধুনট</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Blood Specific Field -->
+        <div id="field-blood-group">
+          <div class="grid grid-cols-2 gap-3.5">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">রক্তের গ্রুপ *</label>
+              <select id="post-blood-group" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-rose-700 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <option value="A+">A+ (এ পজিটিভ)</option>
+                <option value="A-">A- (এ নেগেটিভ)</option>
+                <option value="B+">B+ (বি পজিটিভ)</option>
+                <option value="B-">B- (বি নেগেটিভ)</option>
+                <option value="O+">O+ (ও পজিটিভ)</option>
+                <option value="O-">O- (ও নেগেটিভ)</option>
+                <option value="AB+">AB+ (এবি পজিটিভ)</option>
+                <option value="AB-">AB- (এবি নেগেটিভ)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">ধরন</label>
+              <select id="post-blood-role" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <option value="রক্তদাতা">স্বেচ্ছায় রক্তদাতা</option>
+                <option value="জরুরি প্রয়োজন">জরুরি রক্ত প্রয়োজন</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- General Subtitle / Detail Field -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">বিস্তারিত তথ্য / বিষয় / পদবি *</label>
+          <input type="text" id="post-detail" required placeholder="যেমন: গণিত ও বিজ্ঞান টিউশন / ২ রুম ফ্ল্যাট ভাড়া / ইলেকট্রিশিয়ান" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">মোবাইল নম্বর *</label>
+          <input type="tel" id="post-phone" required placeholder="০১৭XX-XXXXXX" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600" />
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition cursor-pointer">
+          তথ্য প্রকাশ করুন
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== GLOBAL QUICK SEARCH MODAL ==================== -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden items-start justify-center bg-slate-950/60 backdrop-blur-xs p-4 pt-20">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-5 shadow-2xl border border-slate-200 animate-fade-in">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+        <i class="fa-solid fa-magnifying-glass text-emerald-700 text-lg"></i>
+        <input type="text" id="global-search-input" oninput="runGlobalSearch()" placeholder="বগুড়ার হাসপাতাল, উপজেলা, দর্শনীয় স্থান বা জরুরি নম্বর খুঁজুন..." class="w-full text-base focus:outline-none text-slate-900" />
+        <button onclick="closeGlobalSearch()" class="px-2.5 py-1 rounded-lg bg-slate-100 text-xs font-semibold text-slate-600 hover:bg-slate-200 cursor-pointer">ESC</button>
+      </div>
+      <div id="global-search-results" class="max-h-80 overflow-y-auto divide-y divide-slate-100 mt-2">
+        <p class="text-xs text-slate-400 py-6 text-center">খুঁজতে টাইপ করুন (যেমন: শজিমেক, মহাস্থানগড়, শেরপুর, ফায়ার সার্ভিস)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== APPLICATION DATA & INTERACTIVE LOGIC ==================== -->
+  <script>
+    // 1. Bilingual Dictionary (Bangla & English toggle support)
+    let currentLang = 'bn';
+
+    const i18n = {
+      bn: {
+        topNoticeLabel: 'জরুরি হটলাইন:',
+        topNoticeText: 'জাতীয় জরুরি সেবা ৯৯৯ · বগুড়া জেলা পুলিশ কন্ট্রোল রুম: ০১৩২০-১২৬৪৯৮ · ফায়ার সার্ভিস: ০১৭৩০-০০২৪২১',
+        divisionBadge: 'রাজশাহী বিভাগ, বাংলাদেশ',
+        brandTitle: 'আমার বগুড়া',
+        brandSubtitle: 'Bogura District · রাজশাহী বিভাগ',
+        navHome: 'হোম',
+        navServices: 'সব সেবা',
+        navUpazilas: 'উপজেলা',
+        navHealthcare: 'স্বাস্থ্যসেবা',
+        navExplore: 'দর্শনীয় স্থান',
+        navHistory: 'ইতিহাস',
+        navCommunity: 'কমিউনিটি',
+        searchPlaceholderBtn: 'খুঁজুন...',
+        heroBadge: 'বগুড়া জেলা · রাজশাহী বিভাগ',
+        heroHeadline: 'করতোয়ার তীরে প্রাচীন পুণ্ড্রবর্ধনের ঐতিহ্যবাহী জনপদ',
+        heroSubtitle: 'উপজেলা, ইউনিয়ন, হাসপাতাল, দর্শনীয় স্থান ও জরুরি সেবার তথ্য এক জায়গায়। উত্তরবঙ্গের প্রবেশদ্বার বগুড়ার নাগরিক ও কমিউনিটি ডিজিটাল প্ল্যাটফর্ম।',
+        ctaHospitals: 'হাসপাতাল খুঁজুন',
+        ctaUpazilas: 'উপজেলা দেখুন',
+        ctaBlood: 'রক্তদাতা খুঁজুন',
+        qlHospitalTitle: 'হাসপাতাল',
+        qlHospitalDesc: 'সরকারি ও বেসরকারি স্বাস্থ্যকেন্দ্র',
+        qlEmergencyTitle: 'জরুরি নম্বর',
+        qlEmergencyDesc: '৯৯৯, পুলিশ, ফায়ার ও অ্যাম্বুলেন্স',
+        qlUpazilaTitle: '১২টি উপজেলা',
+        qlUpazilaDesc: 'পৌরসভা ও ১০৮টি ইউনিয়নের তথ্য',
+        qlExploreTitle: 'দর্শনীয় স্থান',
+        qlExploreDesc: 'মহাস্থানগড়, বেহুলার বাসর ও ঐতিহ্য',
+        sec01Badge: 'সেকশন ০১ · নাগরিক ডিরেক্টরি',
+        sec01Title: 'সব সেবা এক নজরে',
+        sec01Subtitle: 'বগুড়া জেলার প্রয়োজনীয় সরকারি, স্বাস্থ্য, ঐতিহ্য ও প্রশাসনিক সেবাসমূহ',
+        verifiedBadge: 'যাচাইকৃত জেলা তথ্যভাণ্ডার',
+        srvHospital: 'হাসপাতাল',
+        srvHospitalSub: 'শজিমেক, মোহাম্মদ আলী ও উপজেলা স্বাস্থ্য কমপ্লেক্স',
+        srvDiagnostic: 'ডায়াগনস্টিক',
+        srvDiagnosticSub: 'পপুলার, ইবনে সিনা, ল্যাবএইড ও আধুনিক প্যাথলজি',
+        srvEmergency: 'জরুরি নম্বর',
+        srvEmergencySub: 'পুলিশ, ফায়ার সার্ভিস, অ্যাম্বুলেন্স ও বিদ্যুৎ অফিস',
+        srvUpazila: 'উপজেলা ও পৌরসভা',
+        srvUpazilaSub: '১২টি উপজেলা, ১২টি পৌরসভা ও ১০৮টি ইউনিয়ন',
+        srvExplore: 'দর্শনীয় স্থান',
+        srvExploreSub: 'মহাস্থানগড়, গোকুল মেধ, খেরুয়া মসজিদ ও যমুনা ঘাট',
+        srvHistory: 'জেলার ইতিহাস',
+        srvHistorySub: 'পুণ্ড্রনগর থেকে ১৮২১ সালে জেলা প্রতিষ্ঠা ও মুক্তিযুদ্ধ',
+        srvStats: 'মানচিত্র ও পরিসংখ্যান',
+        srvStatsSub: 'আয়তন, জনসংখ্যা, নদ-নদী ও ভৌগোলিক পরিচিতি',
+        srvDoi: 'বগুড়ার দই ও ঐতিহ্য',
+        srvDoiSub: 'জিআই স্বীকৃত বগুড়ার দই, কটকটি ও স্থানীয় ব্যবসা',
+        sec02Badge: 'সেকশন ০২ · নাগরিক সহযোগিতা',
+        sec02Title: 'কমিউনিটি সেবা',
+        sec02Subtitle: 'রক্তদাতা খুঁজুন, টিউশন, বাসা ভাড়া, স্থানীয় দক্ষ কর্মী ও বগুড়ার ঐতিহ্যবাহী ব্যবসা',
+        btnPostCommunity: 'তথ্য যুক্ত করুন / অনুরোধ করুন',
+        tabBlood: 'রক্তদাতা',
+        tabTuition: 'টিউশন',
+        tabRent: 'ভাড়া',
+        tabJobs: 'কাজ ও দক্ষতা',
+        tabBusiness: 'ব্যবসা ও ঐতিহ্য',
+        upzBadge: 'প্রশাসনিক কাঠামো',
+        upzTitle: 'বগুড়া জেলার ১২টি উপজেলা',
+        upzSubtitle: 'যেকোনো উপজেলায় ক্লিক করে আয়তন, ইউনিয়ন, পৌরসভা ও উল্লেখযোগ্য বৈশিষ্ট্য জানুন',
+        sec03Badge: 'সেকশন ০৩ · স্বাস্থ্য ও জরুরি',
+        sec03Title: 'হাসপাতাল ও ডায়াগনস্টিক ডিরেক্টরি',
+        sec03Subtitle: 'বগুড়ার প্রধান সরকারি মেডিকেল কলেজ, জেলা সদর হাসপাতাল ও বেসরকারি স্বাস্থ্যকেন্দ্র',
+        emgBadge: '২৪/৭ জরুরি সহায়তা',
+        emgTitle: 'বগুড়া জেলার জরুরি টেলিফোন নম্বরসমূহ',
+        expBadge: 'পর্যটন ও প্রত্নতত্ত্ব',
+        expTitle: 'বগুড়ার দর্শনীয় স্থান ও ঐতিহ্য',
+        expSubtitle: 'আড়াই হাজার বছরের প্রাচীন সভ্যতা, বৌদ্ধ বিহার, সুলতানি মসজিদ ও করতোয়া-যমুনার প্রাকৃতিক সৌন্দর্য',
+        hisBadge: 'ঐতিহাসিক পরিক্রমা',
+        hisTitle: 'পুণ্ড্রবর্ধন থেকে আধুনিক বগুড়া',
+        viewAllUpazilasBtn: 'সম্পূর্ণ উপজেলা পাতা',
+        bcHome: 'হোম',
+        bcUpazilas: 'উপজেলা',
+        upzPageEyebrow: 'উপজেলা ও ইউনিয়ন',
+        upzPageTitle: 'বগুড়া জেলার উপজেলা',
+        upzPageSubtitle: 'বারোটি উপজেলা, তাদের ইউনিয়ন, আয়তন ও ইতিহাস। মানচিত্রে ক্লিক করে যেকোনো উপজেলায় যান।',
+        statUpzLabel: 'মোট উপজেলা',
+        statUpzVal: '১২টি',
+        statUnionLabel: 'মোট ইউনিয়ন',
+        statUnionVal: '১০৮টি',
+        statPouraLabel: 'পৌরসভা',
+        statPouraVal: '১২টি',
+        statAreaLabel: 'মোট আয়তন',
+        statAreaVal: '২,৮৯৮.৬৮ কিমি²',
+        mapCardTitle: 'বগুড়া জেলার প্রশাসনিক মানচিত্র',
+        interactiveMapBtn: 'ইন্টারেক্টিভ মানচিত্রে দেখুন'
+      },
+      en: {
+        topNoticeLabel: 'Emergency Hotline:',
+        topNoticeText: 'National Emergency 999 · Bogura District Police Control: 01320-126498 · Fire Service: 01730-002421',
+        divisionBadge: 'Rajshahi Division, Bangladesh',
+        brandTitle: 'Amar Bogura',
+        brandSubtitle: 'আমার বগুড়া · Rajshahi Division',
+        navHome: 'Home',
+        navServices: 'Services',
+        navUpazilas: 'Upazilas',
+        navHealthcare: 'Healthcare',
+        navExplore: 'Explore',
+        navHistory: 'History',
+        navCommunity: 'Community',
+        searchPlaceholderBtn: 'Search...',
+        heroBadge: 'Bogura District · Rajshahi Division',
+        heroHeadline: 'Historic Land of Ancient Pundravardhana on the Banks of Karatoya',
+        heroSubtitle: 'Upazilas, unions, hospitals, heritage landmarks, and emergency directories in one place — the civic digital portal for the Gateway to North Bengal.',
+        ctaHospitals: 'Find Hospitals',
+        ctaUpazilas: 'Explore Upazilas',
+        ctaBlood: 'Find Blood Donors',
+        qlHospitalTitle: 'Hospitals',
+        qlHospitalDesc: 'Govt & Private Medical Centers',
+        qlEmergencyTitle: 'Emergency',
+        qlEmergencyDesc: '999, Police, Fire & Ambulance',
+        qlUpazilaTitle: '12 Upazilas',
+        qlUpazilaDesc: 'Pourashavas & 108 Unions Info',
+        qlExploreTitle: 'Explore Bogura',
+        qlExploreDesc: 'Mahasthangarh, Behula & Heritage',
+        sec01Badge: 'SECTION 01 · CIVIC DIRECTORY',
+        sec01Title: 'All Services at a Glance',
+        sec01Subtitle: 'Essential government, healthcare, heritage, and administrative services of Bogura District',
+        verifiedBadge: 'Verified District Directory',
+        srvHospital: 'Hospitals',
+        srvHospitalSub: 'SZRMC, Mohammad Ali Hospital & Upazila Complexes',
+        srvDiagnostic: 'Diagnostics',
+        srvDiagnosticSub: 'Popular, Ibn Sina, Labaid & Pathology Labs',
+        srvEmergency: 'Emergency Numbers',
+        srvEmergencySub: 'Police, Fire Service, Ambulance & Power Office',
+        srvUpazila: 'Upazilas & Pourashavas',
+        srvUpazilaSub: '12 Upazilas, 12 Pourashavas & 108 Unions',
+        srvExplore: 'Tourist Landmarks',
+        srvExploreSub: 'Mahasthangarh, Gokul Medh, Kherua Mosque & Jamuna',
+        srvHistory: 'District History',
+        srvHistorySub: 'From Pundranagara to 1821 District & Liberation War',
+        srvStats: 'Map & Statistics',
+        srvStatsSub: 'Area, population, rivers & geographic profile',
+        srvDoi: 'Bogura Doi & Heritage',
+        srvDoiSub: 'GI-certified Bogura Doi, Kotkoti & Local Businesses',
+        sec02Badge: 'SECTION 02 · CITIZEN NETWORK',
+        sec02Title: 'Community Services',
+        sec02Subtitle: 'Find blood donors, tuition, house rentals, local skilled workers, and iconic Bogura businesses',
+        btnPostCommunity: 'Add Listing / Request',
+        tabBlood: 'Blood Donors',
+        tabTuition: 'Tuition',
+        tabRent: 'Rentals',
+        tabJobs: 'Jobs & Skills',
+        tabBusiness: 'Business & Doi',
+        upzBadge: 'ADMINISTRATIVE STRUCTURE',
+        upzTitle: '12 Upazilas of Bogura District',
+        upzSubtitle: 'Click any upazila to inspect area, unions, pourashavas, and notable landmarks',
+        sec03Badge: 'SECTION 03 · HEALTH & EMERGENCY',
+        sec03Title: 'Hospitals & Diagnostics Directory',
+        sec03Subtitle: 'Major government medical colleges, district hospitals, and private healthcare centers in Bogura',
+        emgBadge: '24/7 EMERGENCY RESPONSE',
+        emgTitle: 'Bogura District Emergency Telephone Numbers',
+        expBadge: 'TOURISM & ARCHAEOLOGY',
+        expTitle: 'Heritage & Landmarks of Bogura',
+        expSubtitle: '2,500-year-old ancient civilization, Buddhist viharas, Sultanate mosques, and riverine beauty',
+        hisBadge: 'HISTORICAL TIMELINE',
+        hisTitle: 'From Pundravardhana to Modern Bogura',
+        viewAllUpazilasBtn: 'Full Upazilas Page',
+        bcHome: 'Home',
+        bcUpazilas: 'Upazilas',
+        upzPageEyebrow: 'UPAZILAS & UNIONS',
+        upzPageTitle: 'Upazilas of Bogura District',
+        upzPageSubtitle: 'Twelve upazilas, their unions, area, and history. Click on the map or cards to visit any upazila.',
+        statUpzLabel: 'Total Upazilas',
+        statUpzVal: '12',
+        statUnionLabel: 'Total Unions',
+        statUnionVal: '108',
+        statPouraLabel: 'Pourashavas',
+        statPouraVal: '12',
+        statAreaLabel: 'Total Area',
+        statAreaVal: '2,898.68 km²',
+        mapCardTitle: 'Administrative Map of Bogura District',
+        interactiveMapBtn: 'View on Interactive Map'
+      }
+    };
+
+    let currentActiveView = 'home';
+    let currentDetailUpzIndex = 0;
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'bn' ? 'en' : 'bn';
+      document.getElementById('lang-toggle-label').textContent = currentLang === 'bn' ? 'English' : 'বাংলা';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[currentLang][key]) {
+          el.textContent = i18n[currentLang][key];
+        }
+      });
+      renderUpazilas();
+      renderUpazilasPageGrid();
+      if (currentActiveView === 'upazila-detail') {
+        openUpazilaDetailPage(currentDetailUpzIndex, false);
+      }
+      showToast(currentLang === 'bn' ? 'ভাষা বাংলায় পরিবর্তন করা হয়েছে' : 'Language switched to English');
+    }
+
+    // 2. All 12 Upazilas Data (Ordered 01-12 with complete authentic data, unions, postal codes & bilingual descriptions)
+    const upazilasData = [
+      {
+        serialBn: '০১',
+        serialEn: '01',
+        name: 'বগুড়া সদর',
+        enName: 'Bogura Sadar',
+        area: '১৭৬.৫৮ বর্গকিমি',
+        areaEn: '176.58 sq km',
+        unionCount: '১১টি',
+        unionCountEn: '11 Unions',
+        unions: '১১টি ইউনিয়ন',
+        pourashava: 'বগুড়া পৌরসভা (১টি)',
+        pourashavaEn: 'Bogura Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava', 'heritage'],
+        postalCode: '৫৮০০',
+        rivers: 'করতোয়া নদী',
+        healthPhone: '051-66550',
+        landmark: 'নবাব প্যালেস, সাতমাথা, এডওয়ার্ড পার্ক, বগুড়া জিলা স্কুল',
+        desc: 'বগুড়া জেলার প্রশাসনিক, বাণিজ্যিক ও শিক্ষাকেন্দ্র। করতোয়া নদীর তীরে অবস্থিত উত্তরবঙ্গের প্রাণকেন্দ্র ও ব্যস্ততম নগরী।',
+        enDesc: 'The administrative, commercial, and educational hub of Bogura District situated along the Karatoya River.',
+        historyNote: '১৮২১ সালে বগুড়া জেলা প্রতিষ্ঠার পর থেকে সদর উপজেলা উত্তরবঙ্গের ব্যবসা-বাণিজ্য, শিক্ষা ও প্রশাসনের কেন্দ্রবিন্দু হিসেবে গড়ে ওঠে। সাতমাথা ও নবাব প্যালেস এই শহরের ঐতিহাসিক সাক্ষী।',
+        unionList: ['ফাপোর', 'সাবগ্রাম', 'নিশিন্দারা', 'এরুলিয়া', 'রাজাপুর', 'শাখারিয়া', 'শেখেরকোলা', 'গোকুল', 'নুনগোলা', 'লাহিড়ীপাড়া', 'নামুজা']
+      },
+      {
+        serialBn: '০২',
+        serialEn: '02',
+        name: 'শিবগঞ্জ',
+        enName: 'Shibganj',
+        area: '৩১৫.৩৩ বর্গকিমি',
+        areaEn: '315.33 sq km',
+        unionCount: '১২টি',
+        unionCountEn: '12 Unions',
+        unions: '১২টি ইউনিয়ন',
+        pourashava: 'শিবগঞ্জ পৌরসভা (১টি)',
+        pourashavaEn: 'Shibganj Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava', 'heritage'],
+        postalCode: '৫৮১০',
+        rivers: 'করতোয়া ও নাগর নদী',
+        healthPhone: '01730-324763',
+        landmark: 'মহাস্থানগড়, বেহুলার বাসর ঘর (গোকুল মেধ), ভাসু বিহার, মহাস্থানের কটকটি',
+        desc: 'প্রাচীন পুণ্ড্রবর্ধনের রাজধানী মহাস্থানগড় ও আড়াই হাজার বছরের প্রত্নতাত্ত্বিক নিদর্শনে সমৃদ্ধ ঐতিহ্যবাহী জনপদ।',
+        enDesc: 'Home to Mahasthangarh, the 3rd-century BCE capital of ancient Pundravardhana, Gokul Medh, and Vasu Vihara.',
+        historyNote: 'খ্রিস্টপূর্ব তৃতীয় শতাব্দীর মৌর্য যুগ থেকে পাল ও সেন আমল পর্যন্ত শিবগঞ্জের মহাস্থানগড় ছিল বাংলার অন্যতম প্রধান রাজধানী ও বৌদ্ধ জ্ঞানচর্চার কেন্দ্র।',
+        unionList: ['ময়দানহাট্টা', 'কিচক', 'আটমূল', 'পিরব', 'মাঝিহট্ট', 'বুড়িগঞ্জ', 'বিহার', 'শিবগঞ্জ', 'দেউলী', 'সৈয়দপুর', 'মোকামতলা', 'রায়নগর']
+      },
+      {
+        serialBn: '০৩',
+        serialEn: '03',
+        name: 'শেরপুর',
+        enName: 'Sherpur',
+        area: '২৯৬.২৭ বর্গকিমি',
+        areaEn: '296.27 sq km',
+        unionCount: '১০টি',
+        unionCountEn: '10 Unions',
+        unions: '১০টি ইউনিয়ন',
+        pourashava: 'শেরপুর পৌরসভা (১টি)',
+        pourashavaEn: 'Sherpur Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava', 'heritage'],
+        postalCode: '৫৮৪০',
+        rivers: 'করতোয়া ও বাঙালি নদী',
+        healthPhone: '01730-324762',
+        landmark: 'ঐতিহাসিক খেরুয়া মসজিদ (১৫৮২), ভবানীপুর শক্তিপীঠ, শাহ বন্দেগী মাজার, দই শিল্প',
+        desc: 'সুলতানি স্থাপত্য খেরুয়া মসজিদ, ভবানীপুর মন্দির এবং জিআই স্বীকৃত বগুড়ার দই উৎপাদনের অন্যতম ঐতিহাসিক কেন্দ্র।',
+        enDesc: 'Renowned for the 1582 Sultanate-era Kherua Mosque, Bhabanipur Shaktipeeth, and authentic Bogura Doi craftsmanship.',
+        historyNote: 'মুঘল ও সুলতানি আমলে শেরপুর ছিল একটি গুরুত্বপূর্ণ সামরিক ও প্রশাসনিক ঘাঁটি। ১৫৮২ সালে নির্মিত খেরুয়া মসজিদ এখানকার স্থাপত্য ঐতিহ্যের উজ্জ্বল নিদর্শন।',
+        unionList: ['কুসুম্বী', 'গাড়ীদহ', 'খামারকান্দি', 'খানপুর', 'মির্জাপুর', 'বিশালপুর', 'ভবানীপুর', 'সুঘাট', 'সীমাবাড়ী', 'শাহবন্দেগী']
+      },
+      {
+        serialBn: '০৪',
+        serialEn: '04',
+        name: 'সোনাতলা',
+        enName: 'Sonatala',
+        area: '১৫৬.৭৫ বর্গকিমি',
+        areaEn: '156.75 sq km',
+        unionCount: '৭টি',
+        unionCountEn: '7 Unions',
+        unions: '৭টি ইউনিয়ন',
+        pourashava: 'সোনাতলা পৌরসভা (১টি)',
+        pourashavaEn: 'Sonatala Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava', 'jamuna'],
+        postalCode: '৫৮২৬',
+        rivers: 'যমুনা ও বাঙালি নদী',
+        healthPhone: '01730-324764',
+        landmark: 'যমুনা ও বাঙালি নদীর মোহনা, হরিখালী হাট, সোনাতলা রেলস্টেশন',
+        desc: 'বগুড়ার উত্তর-পূর্বাঞ্চলে যমুনা ও বাঙালি নদীর মোহনায় অবস্থিত উর্বর কৃষি ও নদীমাতৃক জনপদ।',
+        enDesc: 'A fertile riverine upazila in northeastern Bogura situated at the confluence of the Jamuna and Bangali rivers.',
+        historyNote: 'যমুনা ও বাঙালি নদীর পলিগঠিত উর্বর ভূমিতে ধান, পাট ও মরিচ চাষের জন্য সোনাতলা সুপ্রাচীনকাল থেকেই প্রসিদ্ধ।',
+        unionList: ['সোনাতলা সদর', 'বালুয়া', 'দিগদাইড়', 'জোড়গাছা', 'মধুপুর', 'তেকানী চুকাইনগর', 'পাকুল্লা']
+      },
+      {
+        serialBn: '০৫',
+        serialEn: '05',
+        name: 'সারিয়াকান্দি',
+        enName: 'Sariakandi',
+        area: '৪০৮.৫০ বর্গকিমি',
+        areaEn: '408.50 sq km',
+        unionCount: '১২টি',
+        unionCountEn: '12 Unions',
+        unions: '১২টি ইউনিয়ন',
+        pourashava: 'সারিয়াকান্দি পৌরসভা (১টি)',
+        pourashavaEn: 'Sariakandi Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava', 'jamuna'],
+        postalCode: '৫৮৩০',
+        rivers: 'যমুনা, বাঙালি ও সুখদহ নদী',
+        healthPhone: '01730-324761',
+        landmark: 'প্রেম যমুনার ঘাট, কালিতলা গ্রোয়েন বাঁধ, যমুনার চরাঞ্চল',
+        desc: 'আয়তনে বগুড়ার বৃহত্তম উপজেলা; যমুনা নদীর বিশাল জলরাশি, চরাঞ্চল কৃষি ও প্রাকৃতিক সৌন্দর্যের লীলাভূমি।',
+        enDesc: 'The largest upazila in Bogura by area, celebrated for the sweeping Jamuna riverfront, Kalitala Groin, and char agriculture.',
+        historyNote: 'যমুনা নদীর তীরবর্তী সারিয়াকান্দি নৌবাণিজ্য, মৎস্য সম্পদ এবং চরাঞ্চলের ভুট্টা ও মরিচ উৎপাদনে জেলার অর্থনীতিতে বড় ভূমিকা রাখে।',
+        unionList: ['সারিয়াকান্দি সদর', 'নারচী', 'ভেলাবাড়ী', 'চন্দনবাইশা', 'কুতুবপুর', 'কর্ণিবাড়ী', 'বোহাইল', 'হাটশেরপুর', 'কাজলা', 'চালুয়াবাড়ী', 'কামালপুর', 'ফুলবাড়ী']
+      },
+      {
+        serialBn: '০৬',
+        serialEn: '06',
+        name: 'গাবতলী',
+        enName: 'Gabtali',
+        area: '২৩৯.৬০ বর্গকিমি',
+        areaEn: '239.60 sq km',
+        unionCount: '১১টি',
+        unionCountEn: '11 Unions',
+        unions: '১১টি ইউনিয়ন',
+        pourashava: 'গাবতলী পৌরসভা (১টি)',
+        pourashavaEn: 'Gabtali Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava', 'jamuna'],
+        postalCode: '৫৮২০',
+        rivers: 'বাঙালি ও ইছামতি নদী',
+        healthPhone: '01730-324757',
+        landmark: 'বাগবাড়ী, ঐতিহ্যবাহী পোড়াদহ মাছের মেলা, সুখানপুকুর',
+        desc: 'বাঙালি ও ইছামতি নদী বিধৌত কৃষি সমৃদ্ধ উপজেলা এবং শতবর্ষী ঐতিহ্যবাহী পোড়াদহ মেলার জন্য বিখ্যাত।',
+        enDesc: 'An agriculture-rich upazila along the Bangali and Ichamati rivers, famous for Bagbari and the traditional Poradaha Fair.',
+        historyNote: 'প্রতি বছর মাঘ মাসের শেষ বুধবার অনুষ্ঠিত ঐতিহ্যবাহী পোড়াদহ মেলা এবং সবজি ও ধান উৎপাদনের জন্য গাবতলী দেশব্যাপী পরিচিত।',
+        unionList: ['গাবতলী সদর', 'নেপালতলী', 'সোনাবাড়ী', 'কাগইল', 'রামেশ্বরপুর', 'মহিষাবান', 'দক্ষিণপাড়া', 'দুর্গাহাটা', 'বালিয়াদিঘী', 'নাড়ুয়ামালা', 'নশিপুর']
+      },
+      {
+        serialBn: '০৭',
+        serialEn: '07',
+        name: 'ধুনট',
+        enName: 'Dhunat',
+        area: '২৪৭.৭৩ বর্গকিমি',
+        areaEn: '247.73 sq km',
+        unionCount: '১০টি',
+        unionCountEn: '10 Unions',
+        unions: '১০টি ইউনিয়ন',
+        pourashava: 'ধুনট পৌরসভা (১টি)',
+        pourashavaEn: 'Dhunat Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava', 'jamuna'],
+        postalCode: '৫৮৫০',
+        rivers: 'যমুনা, বাঙালি ও ইছামতি নদী',
+        healthPhone: '01730-324756',
+        landmark: 'যমুনা স্পার বাঁধ (শহরাবাড়ী ঘাট), গোসাইবাড়ী, এলাঙ্গী',
+        desc: 'বগুড়ার দক্ষিণ-পূর্বাঞ্চলে যমুনা ও বাঙালি অববাহিকার শান্ত, সুজলা-সুফলা কৃষি ও মৎস্য সমৃদ্ধ উপজেলা।',
+        enDesc: 'Situated in southeastern Bogura within the Jamuna and Bangali river basin, known for scenic river spurs and agriculture.',
+        historyNote: 'যমুনা ও বাঙালি নদীর তীরবর্তী ধুনট উপজেলা প্রাচীন নৌপথ ও উর্বর ফসলি জমির জন্য সমৃদ্ধ এক জনপদ।',
+        unionList: ['ধুনট সদর', 'নিমগাছী', 'চিকাশী', 'গোসাইবাড়ী', 'ভান্ডারবাড়ী', 'এলাঙ্গী', 'কালেরপাড়া', 'চৌকিবাড়ী', 'মথুরাপুর', 'গোপালনগর']
+      },
+      {
+        serialBn: '০৮',
+        serialEn: '08',
+        name: 'নন্দীগ্রাম',
+        enName: 'Nandigram',
+        area: '২৬৫.৪৭ বর্গকিমি',
+        areaEn: '265.47 sq km',
+        unionCount: '৫টি',
+        unionCountEn: '5 Unions',
+        unions: '৫টি ইউনিয়ন',
+        pourashava: 'নন্দীগ্রাম পৌরসভা (১টি)',
+        pourashavaEn: 'Nandigram Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava'],
+        postalCode: '৫৮৬০',
+        rivers: 'নাগর ও ভদ্রাবতী নদী',
+        healthPhone: '01730-324760',
+        landmark: 'বিজরুল, ওমরপুর হাট, বরেন্দ্র শস্যভাণ্ডার অঞ্চল',
+        desc: 'বগুড়ার দক্ষিণাঞ্চলের প্রধান শস্যভাণ্ডার; বরেন্দ্র ভূমির উর্বর আমন ও বোরো ধান উৎপাদনের জন্য প্রসিদ্ধ।',
+        enDesc: 'The southern granary of Bogura situated in the fertile Barind tract, vital for paddy and winter crop production.',
+        historyNote: 'বরেন্দ্র অঞ্চলের সমতল ও উর্বর কৃষিভূমি নিয়ে গঠিত নন্দীগ্রাম উপজেলা জেলার খাদ্য উদ্বৃত্ত তৈরিতে অগ্রণী ভূমিকা রাখে।',
+        unionList: ['বুড়ইল', 'নন্দীগ্রাম সদর', 'ভাটরা', 'থালতা মাঝগ্রাম', 'ভাটগ্রাম']
+      },
+      {
+        serialBn: '০৯',
+        serialEn: '09',
+        name: 'কাহালু',
+        enName: 'Kahaloo',
+        area: '২৪০.৪২ বর্গকিমি',
+        areaEn: '240.42 sq km',
+        unionCount: '৯টি',
+        unionCountEn: '9 Unions',
+        unions: '৯টি ইউনিয়ন',
+        pourashava: 'কাহালু পৌরসভা (১টি)',
+        pourashavaEn: 'Kahaloo Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava', 'heritage'],
+        postalCode: '৫৮৭০',
+        rivers: 'নাগর নদী',
+        healthPhone: '01730-324758',
+        landmark: 'যোগীর ভবন আশ্রম ও মন্দির কমপ্লেক্স, নাগর নদী, নারহট্ট',
+        desc: 'নাগর নদীর তীরে অবস্থিত উন্নত মানের চাল উৎপাদন ও প্রাচীন স্থাপত্য নিদর্শন যোগীর ভবনের জন্য পরিচিত।',
+        enDesc: 'Located along the Nagar River, known for quality rice production and the historic Jogir Bhaban temple complex.',
+        historyNote: 'কাহালুর যোগীর ভবন নাথপন্থী সন্ন্যাসীদের প্রাচীন আস্তানা ও টেরাকোটা অলংকৃত মন্দির স্থাপত্যের জন্য প্রত্নতাত্ত্বিকভাবে গুরুত্বপূর্ণ।',
+        unionList: ['বীরকেদার', 'কালাই', 'পাইকড়', 'নারহট্ট', 'কাহালু সদর', 'মুরইল', 'দুর্গাপুর', 'জামগ্রাম', 'মালঞ্চা']
+      },
+      {
+        serialBn: '১০',
+        serialEn: '10',
+        name: 'দুপচাঁচিয়া',
+        enName: 'Dupchanchia',
+        area: '১৬২.৪৫ বর্গকিমি',
+        areaEn: '162.45 sq km',
+        unionCount: '৬টি',
+        unionCountEn: '6 Unions',
+        unions: '৬টি ইউনিয়ন',
+        pourashava: '২টি পৌরসভা (দুপচাঁচিয়া ও তালোড়া)',
+        pourashavaEn: '2 Pourashavas (Dupchanchia & Talora)',
+        hasPourashava: true,
+        tags: ['pourashava'],
+        postalCode: '৫৮৮০',
+        rivers: 'নাগর ও ইছামতি নদী',
+        healthPhone: '01730-324755',
+        landmark: 'তালোড়া বন্দর, উত্তরবঙ্গের অটো রাইস মিল শিল্পাঞ্চল',
+        desc: 'দুটি পৌরসভা সমৃদ্ধ উপজেলা এবং উত্তরবঙ্গের অন্যতম প্রধান চালকল (অটো রাইস মিল) ও শস্য বাণিজ্য কেন্দ্র।',
+        enDesc: 'Uniquely home to two pourashavas (Dupchanchia & Talora) and North Bengal’s major modern rice-milling hub.',
+        historyNote: 'ব্রিটিশ আমল থেকেই তালোড়া বন্দর ও দুপচাঁচিয়া শস্য প্রক্রিয়াজাতকরণ ও চাল ব্যবসার অন্যতম প্রধান কেন্দ্র হিসেবে পরিচিত।',
+        unionList: ['জিয়ানগর', 'চামরুল', 'দুপচাঁচিয়া সদর', 'গুনাহার', 'গোবিন্দপুর', 'তালোড়া']
+      },
+      {
+        serialBn: '১১',
+        serialEn: '11',
+        name: 'আদমদীঘি',
+        enName: 'Adamdighi',
+        area: '১৬৮.৮৩ বর্গকিমি',
+        areaEn: '168.83 sq km',
+        unionCount: '৬টি',
+        unionCountEn: '6 Unions',
+        unions: '৬টি ইউনিয়ন',
+        pourashava: 'সান্তাহার পৌরসভা (১টি)',
+        pourashavaEn: 'Santahar Pourashava (1)',
+        hasPourashava: true,
+        tags: ['pourashava', 'heritage'],
+        postalCode: '৫৮৯০',
+        rivers: 'রক্তদহ বিল ও তুলসীগঙ্গা নদী',
+        healthPhone: '01730-324754',
+        landmark: 'সান্তাহার রেলওয়ে জংশন, সান্তাহার সাইলো, রক্তদহ বিল, আদমদীঘি দীঘি',
+        desc: 'ঐতিহাসিক সান্তাহার রেলওয়ে জংশন, আধুনিক খাদ্য সাইলো ও রক্তদহ বিলের প্রাকৃতিক সৌন্দর্যের জন্য বিখ্যাত।',
+        enDesc: 'Famous for the historic Santahar Railway Junction, grain silo complex, and the scenic Raktadaha Beel wetland.',
+        historyNote: '১৮৭৮ সালে প্রতিষ্ঠিত সান্তাহার রেলওয়ে জংশন উত্তরবঙ্গের রেল যোগাযোগের ইতিহাসে এক অবিচ্ছেদ্য অধ্যায়।',
+        unionList: ['ছাতিয়ানগ্রাম', 'নশরতপুর', 'আদমদীঘি সদর', 'কুন্দগ্রাম', 'চাঁপাপুর', 'সান্তাহার']
+      },
+      {
+        serialBn: '১২',
+        serialEn: '12',
+        name: 'শাজাহানপুর',
+        enName: 'Shajahanpur',
+        area: '২২১.৬৯ বর্গকিমি',
+        areaEn: '221.69 sq km',
+        unionCount: '৯টি',
+        unionCountEn: '9 Unions',
+        unions: '৯টি ইউনিয়ন',
+        pourashava: 'পৌরসভা নেই (ক্যান্টনমেন্ট ও উপশহর)',
+        pourashavaEn: 'No Pourashava (Cantonment & Suburban Hub)',
+        hasPourashava: false,
+        tags: ['heritage'],
+        postalCode: '৫৮০১',
+        rivers: 'করতোয়া ও বাঙালি নদী',
+        healthPhone: '051-69965',
+        landmark: 'বগুড়া সেনানিবাস, শহীদ জিয়াউর রহমান মেডিকেল কলেজ (শজিমেক), মাঝিড়া',
+        desc: 'বগুড়া শহরের দক্ষিণ উপকণ্ঠে অবস্থিত ক্যান্টনমেন্ট, মেডিকেল কলেজ ও দ্রুত বর্ধনশীল আবাসিক-বাণিজ্যিক উপজেলা।',
+        enDesc: 'Bogura’s youngest upazila (established 2003), housing Bogura Cantonment, SZRMC Hospital, and suburban growth corridors.',
+        historyNote: '২০০৩ সালে বগুড়া সদর ও শেরপুর উপজেলার অংশবিশেষ নিয়ে প্রশাসনিক বিকেন্দ্রীকরণের লক্ষ্যে শাজাহানপুর উপজেলা গঠিত হয়।',
+        unionList: ['আশেকপুর', 'মাদলা', 'মাঝিড়া', 'আড়িয়া', 'খোট্টাপাড়া', 'চোপীনগর', 'খড়না', 'গোহাইল', 'আমরুল']
+      }
+    ];
+
+    let activeUpazilaPageFilter = 'all';
+
+    // Unified View Navigation Controller (Home <-> Upazilas <-> Upazila Detail)
+    function navigateToView(viewName, sectionAnchor = null) {
+      currentActiveView = viewName;
+
+      const viewHome = document.getElementById('view-home');
+      const viewUpazilas = document.getElementById('view-upazilas');
+      const viewDetail = document.getElementById('view-upazila-detail');
+
+      viewHome.classList.add('hidden');
+      viewUpazilas.classList.add('hidden');
+      viewDetail.classList.add('hidden');
+
+      if (viewName === 'home') {
+        viewHome.classList.remove('hidden');
+      } else if (viewName === 'upazilas') {
+        viewUpazilas.classList.remove('hidden');
+        renderUpazilasPageGrid();
+      } else if (viewName === 'upazila-detail') {
+        viewDetail.classList.remove('hidden');
+      }
+
+      // Sync desktop & mobile navbar active states
+      const navHome = document.getElementById('nav-btn-home');
+      const navUpz = document.getElementById('nav-btn-upazilas');
+      const mobHome = document.getElementById('mob-nav-home');
+      const mobUpz = document.getElementById('mob-nav-upazilas');
+
+      if (viewName === 'home') {
+        if (navHome) navHome.className = 'nav-link px-3.5 py-1.5 rounded-lg text-sm font-semibold text-emerald-900 bg-white shadow-sm transition';
+        if (navUpz) navUpz.className = 'nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition';
+        if (mobHome) mobHome.className = 'flex flex-col items-center justify-center py-1 text-emerald-800 font-bold text-[11px]';
+        if (mobUpz) mobUpz.className = 'flex flex-col items-center justify-center py-1 text-slate-600 hover:text-emerald-800 text-[11px]';
+      } else {
+        if (navUpz) navUpz.className = 'nav-link px-3.5 py-1.5 rounded-lg text-sm font-semibold text-emerald-900 bg-white shadow-sm transition';
+        if (navHome) navHome.className = 'nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition';
+        if (mobUpz) mobUpz.className = 'flex flex-col items-center justify-center py-1 text-emerald-800 font-bold text-[11px]';
+        if (mobHome) mobHome.className = 'flex flex-col items-center justify-center py-1 text-slate-600 hover:text-emerald-800 text-[11px]';
+      }
+
+      if (sectionAnchor) {
+        setTimeout(() => {
+          const target = document.getElementById(sectionAnchor);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        }, 40);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // SVG Map Hover & Highlight Helpers
+    function highlightUpazilaMap(index) {
+      const u = upazilasData[index];
+      if (!u) return;
+      const tooltip = document.getElementById('svg-map-tooltip');
+      const nameEl = document.getElementById('tooltip-upz-name');
+      const metaEl = document.getElementById('tooltip-upz-meta');
+      const badgeEl = document.getElementById('map-hover-badge');
+
+      nameEl.textContent = currentLang === 'bn' ? `${u.serialBn}. ${u.name} উপজেলা` : `${u.serialEn}. ${u.enName} Upazila`;
+      metaEl.textContent = currentLang === 'bn'
+        ? `আয়তন: ${u.area} · ${u.unions}`
+        : `Area: ${u.areaEn} · ${u.unionCountEn}`;
+      badgeEl.textContent = currentLang === 'bn' ? u.name : u.enName;
+      tooltip.classList.remove('hidden');
+
+      // Highlight matching card in grid if visible
+      document.querySelectorAll('.upz-dir-card').forEach(card => {
+        card.classList.remove('ring-2', 'ring-[#C85A28]');
+      });
+      const matchingCard = document.getElementById(`upz-dir-card-${index}`);
+      if (matchingCard) matchingCard.classList.add('ring-2', 'ring-[#C85A28]');
+    }
+
+    function resetUpazilaMap() {
+      const tooltip = document.getElementById('svg-map-tooltip');
+      const badgeEl = document.getElementById('map-hover-badge');
+      if (tooltip) tooltip.classList.add('hidden');
+      if (badgeEl) badgeEl.textContent = currentLang === 'bn' ? 'উপজেলায় ক্লিক করুন' : 'Click an upazila';
+      document.querySelectorAll('.upz-dir-card').forEach(card => {
+        card.classList.remove('ring-2', 'ring-[#C85A28]');
+      });
+    }
+
+    function setUpazilaPageFilter(filter) {
+      activeUpazilaPageFilter = filter;
+      document.querySelectorAll('.upz-filter-chip').forEach(btn => {
+        btn.className = 'upz-filter-chip px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shrink-0 cursor-pointer transition';
+      });
+      const activeBtn = document.getElementById(`upz-chip-${filter}`);
+      if (activeBtn) {
+        activeBtn.className = 'upz-filter-chip px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#0B4635] text-white shadow-xs shrink-0 cursor-pointer transition';
+      }
+      renderUpazilasPageGrid();
+    }
+
+    // Render Dedicated Upazilas Page Grid (modeled on amargaibandha.bd/upazilas)
+    function renderUpazilasPageGrid() {
+      const grid = document.getElementById('upazilas-page-grid');
+      if (!grid) return;
+
+      const q = (document.getElementById('upazilas-page-search')?.value || '').trim().toLowerCase();
+
+      const filtered = upazilasData.filter(u => {
+        const matchesFilter = activeUpazilaPageFilter === 'all' || u.tags.includes(activeUpazilaPageFilter);
+        const matchesQuery = !q ||
+          u.name.toLowerCase().includes(q) ||
+          u.enName.toLowerCase().includes(q) ||
+          u.rivers.toLowerCase().includes(q) ||
+          u.landmark.toLowerCase().includes(q) ||
+          u.unionList.some(un => un.toLowerCase().includes(q));
+        return matchesFilter && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 bg-white rounded-3xl border border-slate-200 text-slate-500 text-sm">
+            ${currentLang === 'bn' ? 'নির্বাচিত ফিল্টার বা অনুসন্ধানে কোনো উপজেলা পাওয়া যায়নি।' : 'No upazilas matched your search or filter.'}
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(u => {
+        const idx = upazilasData.indexOf(u);
+        const serial = currentLang === 'bn' ? u.serialBn : u.serialEn;
+        const title = currentLang === 'bn' ? u.name : u.enName;
+        const subTitle = currentLang === 'bn' ? u.enName : u.name;
+        const summary = currentLang === 'bn' ? u.desc : u.enDesc;
+        const areaLabel = currentLang === 'bn' ? 'আয়তন' : 'Area';
+        const areaVal = currentLang === 'bn' ? u.area : u.areaEn;
+        const unionLabel = currentLang === 'bn' ? 'ইউনিয়ন' : 'Unions';
+        const unionVal = currentLang === 'bn' ? u.unionCount : u.unionCountEn;
+        const pouraVal = currentLang === 'bn' ? u.pourashava : u.pourashavaEn;
+        const linkText = currentLang === 'bn' ? 'উপজেলার পাতা →' : 'Upazila Page →';
+
+        return `
+          <article id="upz-dir-card-${idx}" onmouseenter="highlightUpazilaMap(${idx})" onmouseleave="resetUpazilaMap()" onclick="openUpazilaDetailPage(${idx})" class="upz-dir-card group bg-white rounded-3xl p-6 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer">
+            <div>
+              <!-- Top Serial Number & Pourashava Badge -->
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="w-10 h-10 rounded-2xl bg-[#0B4635] text-white font-bold text-sm flex items-center justify-center shadow-xs group-hover:bg-[#C85A28] transition-colors">
+                  ${serial}
+                </span>
+                <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full ${u.hasPourashava ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}">
+                  ${pouraVal}
+                </span>
+              </div>
+
+              <!-- Upazila Name & English Subtitle -->
+              <div class="mb-2.5">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-[#0B4635] transition-colors">${title}</h2>
+                <p class="text-xs font-semibold text-slate-400 tracking-wide uppercase mt-0.5">${subTitle} Upazila</p>
+              </div>
+
+              <!-- Concise Historical / Geographical Summary -->
+              <p class="text-sm text-slate-600 leading-relaxed mb-5">${summary}</p>
+            </div>
+
+            <div>
+              <!-- Structured <dl> Metrics Box (matching amargaibandha.bd/upazilas) -->
+              <dl class="grid grid-cols-2 gap-3 bg-[#F9F8F4] rounded-2xl p-3.5 border border-slate-200/80 mb-4">
+                <div>
+                  <dt class="text-[11px] font-semibold text-slate-500">${areaLabel}</dt>
+                  <dd class="text-sm font-bold text-slate-900 mt-0.5">${areaVal}</dd>
+                </div>
+                <div class="border-l border-slate-200 pl-3">
+                  <dt class="text-[11px] font-semibold text-slate-500">${unionLabel}</dt>
+                  <dd class="text-sm font-bold text-[#0B4635] mt-0.5">${unionVal}</dd>
+                </div>
+              </dl>
+
+              <!-- Footer Action Link -->
+              <div class="pt-1 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-water text-sky-600 mr-1"></i> ${u.rivers}</span>
+                <span class="text-sm font-bold text-[#0B4635] group-hover:text-[#C85A28] transition-colors">
+                  ${linkText}
+                </span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Open Full Upazila Detail Page (উপজেলার পাতা)
+    function openUpazilaDetailPage(index, shouldScroll = true) {
+      currentDetailUpzIndex = index;
+      const u = upazilasData[index];
+      const prevIdx = (index - 1 + upazilasData.length) % upazilasData.length;
+      const nextIdx = (index + 1) % upazilasData.length;
+      const prevUpz = upazilasData[prevIdx];
+      const nextUpz = upazilasData[nextIdx];
+
+      const container = document.getElementById('upazila-detail-container');
+      container.innerHTML = `
+        <!-- Detail Hero Header -->
+        <div class="bg-[#F9F8F4] border-b border-slate-200/90 pt-7 pb-10 sm:pt-10 sm:pb-12">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb: হোম → উপজেলা → [Upazila Name] -->
+            <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-medium text-slate-500 mb-5">
+              <a href="#home" onclick="navigateToView('home'); return false;" class="text-emerald-800 hover:text-amber-700 font-semibold flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-house text-xs"></i>
+                <span>${currentLang === 'bn' ? 'হোম' : 'Home'}</span>
+              </a>
+              <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+              <a href="#upazilas-page" onclick="navigateToView('upazilas'); return false;" class="text-emerald-800 hover:text-amber-700 font-semibold transition">
+                ${currentLang === 'bn' ? 'উপজেলা' : 'Upazilas'}
+              </a>
+              <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+              <span class="text-slate-800 font-bold">${currentLang === 'bn' ? u.name : u.enName}</span>
+            </nav>
+
+            <!-- Back Button -->
+            <button onclick="navigateToView('upazilas')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-emerald-50 text-[#0B4635] border border-slate-200 text-xs sm:text-sm font-bold shadow-2xs mb-6 transition cursor-pointer">
+              <span>← ${currentLang === 'bn' ? 'সকল উপজেলায় ফিরুন' : 'Back to All Upazilas'}</span>
+            </button>
+
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+              <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B4635] text-white text-xs font-bold mb-3">
+                  <span>উপজেলা ক্রমিক #${currentLang === 'bn' ? u.serialBn : u.serialEn}</span>
+                  <span class="text-amber-300">·</span>
+                  <span class="text-amber-300">${u.enName} Upazila</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+                  ${currentLang === 'bn' ? `${u.name} উপজেলা` : `${u.enName} Upazila`}
+                </h1>
+                <p class="text-slate-600 text-base sm:text-lg mt-3 max-w-3xl leading-relaxed">
+                  ${currentLang === 'bn' ? u.desc : u.enDesc}
+                </p>
+              </div>
+            </div>
+
+            <!-- 5 Key Metrics Strip -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 mt-8">
+              <div class="bg-white rounded-2xl p-4 border border-slate-200/90">
+                <p class="text-xs text-slate-500 font-medium">${currentLang === 'bn' ? 'আয়তন' : 'Area'}</p>
+                <p class="text-base sm:text-lg font-extrabold text-[#0B4635] mt-1">${currentLang === 'bn' ? u.area : u.areaEn}</p>
+              </div>
+              <div class="bg-white rounded-2xl p-4 border border-slate-200/90">
+                <p class="text-xs text-slate-500 font-medium">${currentLang === 'bn' ? 'ইউনিয়ন সংখ্যা' : 'Unions'}</p>
+                <p class="text-base sm:text-lg font-extrabold text-slate-900 mt-1">${currentLang === 'bn' ? u.unions : u.unionCountEn}</p>
+              </div>
+              <div class="bg-white rounded-2xl p-4 border border-slate-200/90">
+                <p class="text-xs text-slate-500 font-medium">${currentLang === 'bn' ? 'পৌরসভা' : 'Pourashava'}</p>
+                <p class="text-sm sm:text-base font-bold text-[#C85A28] mt-1">${currentLang === 'bn' ? u.pourashava : u.pourashavaEn}</p>
+              </div>
+              <div class="bg-white rounded-2xl p-4 border border-slate-200/90">
+                <p class="text-xs text-slate-500 font-medium">${currentLang === 'bn' ? 'পোস্ট কোড' : 'Postal Code'}</p>
+                <p class="text-base sm:text-lg font-extrabold text-slate-900 mt-1">${u.postalCode}</p>
+              </div>
+              <div class="col-span-2 sm:col-span-1 bg-white rounded-2xl p-4 border border-slate-200/90">
+                <p class="text-xs text-slate-500 font-medium">${currentLang === 'bn' ? 'প্রধান নদ-নদী' : 'Major Rivers'}</p>
+                <p class="text-sm sm:text-base font-bold text-sky-800 mt-1">${u.rivers}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail Body Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Left 7 Cols: History & All Unions -->
+            <div class="lg:col-span-7 space-y-6">
+              <!-- Historical & Geographical Overview -->
+              <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-2xs">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-2.5 py-1 rounded-md border border-amber-200">
+                  ${currentLang === 'bn' ? 'ইতিহাস ও ভৌগোলিক পরিচিতি' : 'Historical & Geographical Overview'}
+                </span>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-3 mb-3">
+                  ${u.name} উপজেলার পটভূমি
+                </h2>
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                  ${u.historyNote}
+                </p>
+              </div>
+
+              <!-- Complete List of Unions -->
+              <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-2xs">
+                <div class="flex items-center justify-between gap-2 mb-4">
+                  <div>
+                    <h3 class="text-xl font-bold text-slate-900">
+                      ${currentLang === 'bn' ? `${u.name} উপজেলার ইউনিয়নসমূহ (${u.unionCount})` : `Unions of ${u.enName} (${u.unionCountEn})`}
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-0.5">প্রশাসনিক ইউনিয়ন পরিষদের তালিকা</p>
+                  </div>
+                  <span class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center font-bold text-sm border border-emerald-200">
+                    ${u.unionList.length}
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                  ${u.unionList.map((unionName, uIdx) => `
+                    <div class="px-3.5 py-2.5 rounded-xl bg-[#F9F8F4] border border-slate-200/80 flex items-center gap-2 text-sm font-semibold text-slate-800">
+                      <span class="w-5 h-5 rounded-md bg-emerald-800 text-white text-[10px] font-bold flex items-center justify-center shrink-0">${uIdx + 1}</span>
+                      <span class="truncate">${unionName}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+
+            <!-- Right 5 Cols: Landmarks & Civic Quick Links -->
+            <div class="lg:col-span-5 space-y-6">
+              <!-- Notable Landmarks -->
+              <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-2xs">
+                <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-100 px-2.5 py-1 rounded-md border border-teal-200">
+                  দর্শনীয় ও ঐতিহাসিক স্থান
+                </span>
+                <h3 class="text-xl font-bold text-slate-900 mt-3 mb-4">উল্লেখযোগ্য স্থান ও ঐতিহ্য</h3>
+                <div class="space-y-2.5">
+                  ${u.landmark.split(',').map(spot => `
+                    <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200/70 flex items-start gap-3">
+                      <div class="w-8 h-8 rounded-xl bg-emerald-800 text-amber-300 flex items-center justify-center shrink-0 text-xs mt-0.5">
+                        <i class="fa-solid fa-landmark"></i>
+                      </div>
+                      <div>
+                        <p class="font-bold text-slate-900 text-sm">${spot.trim()}</p>
+                        <p class="text-xs text-slate-500 mt-0.5">${u.name}, বগুড়া</p>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Upazila Health & Emergency Quick Card -->
+              <div class="bg-[#0B4635] text-white rounded-3xl p-6 shadow-md">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-300">জরুরি ও স্বাস্থ্যসেবা</span>
+                <h3 class="text-lg font-bold mt-1">${u.name} উপজেলা স্বাস্থ্য ও জরুরি যোগাযোগ</h3>
+                <p class="text-xs text-emerald-100/90 mt-1.5 leading-relaxed">
+                  উপজেলা স্বাস্থ্য কমপ্লেক্স ও জেলা জরুরি সেবার সাথে সরাসরি যুক্ত হোন।
+                </p>
+
+                <div class="mt-4 space-y-2.5">
+                  <a href="tel:${u.healthPhone}" class="w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold text-xs sm:text-sm flex items-center justify-between transition">
+                    <span><i class="fa-solid fa-hospital mr-1.5"></i> স্বাস্থ্য কমপ্লেক্স: ${u.healthPhone}</span>
+                    <i class="fa-solid fa-phone"></i>
+                  </a>
+                  <button onclick="navigateToView('home', 'community')" class="w-full py-2.5 px-4 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm flex items-center justify-between transition cursor-pointer">
+                    <span><i class="fa-solid fa-droplet text-rose-300 mr-1.5"></i> ${u.name} এলাকার রক্তদাতা খুঁজুন</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Previous / Next Upazila Navigation Bar -->
+          <div class="pt-6 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button onclick="openUpazilaDetailPage(${prevIdx})" class="text-left p-4 sm:p-5 rounded-2xl bg-white hover:bg-emerald-50/60 border border-slate-200 transition flex items-center gap-3.5 cursor-pointer group">
+              <div class="w-10 h-10 rounded-xl bg-slate-100 group-hover:bg-[#0B4635] group-hover:text-white text-slate-700 flex items-center justify-center transition shrink-0">
+                <i class="fa-solid fa-arrow-left"></i>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 font-medium">${currentLang === 'bn' ? '← পূর্ববর্তী উপজেলা' : '← Previous Upazila'}</p>
+                <p class="font-bold text-slate-900 text-base mt-0.5">${prevUpz.serialBn}. ${prevUpz.name} (${prevUpz.enName})</p>
+              </div>
+            </button>
+
+            <button onclick="openUpazilaDetailPage(${nextIdx})" class="text-right p-4 sm:p-5 rounded-2xl bg-white hover:bg-emerald-50/60 border border-slate-200 transition flex items-center justify-end gap-3.5 cursor-pointer group">
+              <div>
+                <p class="text-xs text-slate-500 font-medium">${currentLang === 'bn' ? 'পরবর্তী উপজেলা →' : 'Next Upazila →'}</p>
+                <p class="font-bold text-slate-900 text-base mt-0.5">${nextUpz.serialBn}. ${nextUpz.name} (${nextUpz.enName})</p>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-slate-100 group-hover:bg-[#0B4635] group-hover:text-white text-slate-700 flex items-center justify-center transition shrink-0">
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </button>
+          </div>
+        </div>
+      `;
+
+      navigateToView('upazila-detail');
+      if (shouldScroll) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function renderUpazilas() {
+      const query = (document.getElementById('upazila-search').value || '').toLowerCase();
+      const grid = document.getElementById('upazila-grid');
+      const filtered = upazilasData.filter(u =>
+        u.name.toLowerCase().includes(query) ||
+        u.enName.toLowerCase().includes(query) ||
+        u.landmark.toLowerCase().includes(query)
+      );
+
+      grid.innerHTML = filtered.map(u => {
+        const idx = upazilasData.indexOf(u);
+        return `
+        <button onclick="openUpazilaDetailPage(${idx})" class="text-left bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer group">
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-800 font-bold text-xs flex items-center justify-center border border-emerald-200 group-hover:bg-emerald-800 group-hover:text-white transition-colors">
+                ${u.serialBn}
+              </span>
+              <span class="text-[11px] font-semibold text-slate-400 group-hover:text-emerald-700 transition-colors">
+                ${u.enName} <i class="fa-solid fa-arrow-up-right-from-square ml-0.5 text-[10px]"></i>
+              </span>
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg group-hover:text-emerald-800 transition-colors">${u.name}</h3>
+            <p class="text-xs text-slate-500 mt-1 line-clamp-2">${u.landmark}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-emerald-800">
+            <span>${u.unions}</span>
+            <span class="text-amber-700">${u.area}</span>
+          </div>
+        </button>
+      `}).join('');
+    }
+
+    function openUpazilaModal(index) {
+      const u = upazilasData[index];
+      const body = document.getElementById('upazila-modal-body');
+      body.innerHTML = `
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-2.5 py-1 rounded-md border border-amber-200">${u.enName} Upazila</span>
+        <h3 class="text-2xl font-bold text-slate-900 mt-2">${u.name} উপজেলা</h3>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">${u.desc}</p>
+
+        <div class="grid grid-cols-2 gap-3 my-5">
+          <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80">
+            <p class="text-xs text-slate-500">মোট আয়তন</p>
+            <p class="font-bold text-slate-900 text-sm mt-0.5">${u.area}</p>
+          </div>
+          <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80">
+            <p class="text-xs text-slate-500">ইউনিয়ন সংখ্যা</p>
+            <p class="font-bold text-slate-900 text-sm mt-0.5">${u.unions}</p>
+          </div>
+          <div class="col-span-2 bg-emerald-50/70 p-3.5 rounded-2xl border border-emerald-200/70">
+            <p class="text-xs text-emerald-700">পৌরসভা</p>
+            <p class="font-bold text-emerald-950 text-sm mt-0.5">${u.pourashava}</p>
+          </div>
+        </div>
+
+        <div class="bg-amber-50/70 p-4 rounded-2xl border border-amber-200/70">
+          <p class="text-xs font-bold text-amber-800 mb-1"><i class="fa-solid fa-star mr-1"></i> উল্লেখযোগ্য স্থান ও ঐতিহ্য</p>
+          <p class="text-sm text-slate-800 font-medium">${u.landmark}</p>
+        </div>
+      `;
+      const modal = document.getElementById('upazila-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeUpazilaModal() {
+      const modal = document.getElementById('upazila-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // 3. Hospitals & Diagnostics Data
+    let currentHospitalFilter = 'all';
+    const hospitalsData = [
+      {
+        name: 'শহীদ জিয়াউর রহমান মেডিকেল কলেজ হাসপাতাল (শজিমেক)',
+        enName: 'Shaheed Ziaur Rahman Medical College Hospital (SZRMC)',
+        type: 'govt',
+        typeLabel: 'সরকারি মেডিকেল কলেজ',
+        address: 'সিলিমপুর, বগুড়া সদর / শাজাহানপুর',
+        phone: '051-69965',
+        emergency: '২৪/৭ জরুরি বিভাগ, আইসিইউ ও ট্রমা সেন্টার'
+      },
+      {
+        name: '২৫০ শয্যা বিশিষ্ট মোহাম্মদ আলী জেলা হাসপাতাল',
+        enName: '250-Bed Mohammad Ali District Hospital',
+        type: 'govt',
+        typeLabel: 'জেলা সদর হাসপাতাল',
+        address: 'শেরপুর রোড, বগুড়া সদর',
+        phone: '051-66550',
+        emergency: '২৪/৭ জরুরি বিভাগ, সার্জারি ও মাতৃসদন'
+      },
+      {
+        name: 'টিএমএসএস মেডিকেল কলেজ ও রাফাতুল্লাহ কমিউনিটি হাসপাতাল',
+        enName: 'TMSS Medical College & Rafatullah Community Hospital',
+        type: 'private',
+        typeLabel: 'বেসরকারি মেডিকেল কলেজ',
+        address: 'ঠেঙ্গামারা, রংপুর রোড, বগুড়া সদর',
+        phone: '01713-377077',
+        emergency: '২৪/৭ জরুরি বিভাগ, কার্ডিয়াক ও বিশেষজ্ঞ সেবা'
+      },
+      {
+        name: 'পপুলার ডায়াগনস্টিক সেন্টার লিমিটেড (বগুড়া শাখা)',
+        enName: 'Popular Diagnostic Centre Ltd.',
+        type: 'diagnostic',
+        typeLabel: 'ডায়াগনস্টিক ও কনসালটেশন',
+        address: 'শেরপুর রোড, ঠনঠনিয়া, বগুড়া',
+        phone: '09613-787812',
+        emergency: 'এমআরআই, সিটি স্ক্যান ও বিশেষজ্ঞ চিকিৎসক চেম্বার'
+      },
+      {
+        name: 'ইবনে সিনা ডায়াগনস্টিক অ্যান্ড কনসালটেশন সেন্টার',
+        enName: 'Ibn Sina Diagnostic & Consultation Center',
+        type: 'diagnostic',
+        typeLabel: 'ডায়াগনস্টিক সেন্টার',
+        address: 'শেরপুর রোড, কলোনি, বগুড়া',
+        phone: '09610-009622',
+        emergency: 'আধুনিক প্যাথলজি, আল্ট্রাসনোগ্রাম ও বিশেষজ্ঞ সেবা'
+      },
+      {
+        name: 'শেরপুর উপজেলা স্বাস্থ্য কমপ্লেক্স',
+        enName: 'Sherpur Upazila Health Complex',
+        type: 'govt',
+        typeLabel: 'উপজেলা স্বাস্থ্য কমপ্লেক্স',
+        address: 'শেরপুর, বগুড়া',
+        phone: '01730-324762',
+        emergency: '২৪/৭ জরুরি বিভাগ ও প্রাথমিক স্বাস্থ্যসেবা'
+      }
+    ];
+
+    function filterHospitalsByType(type) {
+      currentHospitalFilter = type;
+      document.querySelectorAll('.hosp-filter-btn').forEach(btn => {
+        btn.className = 'hosp-filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition cursor-pointer';
+      });
+      const activeBtn = document.getElementById(`hosp-filter-${type}`);
+      if (activeBtn) {
+        activeBtn.className = 'hosp-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-800 text-white transition cursor-pointer';
+      }
+      renderHospitals();
+    }
+
+    function renderHospitals() {
+      const query = (document.getElementById('hospital-search').value || '').toLowerCase();
+      const grid = document.getElementById('hospital-grid');
+
+      const filtered = hospitalsData.filter(h => {
+        const matchesType = currentHospitalFilter === 'all' || h.type === currentHospitalFilter;
+        const matchesQuery = h.name.toLowerCase().includes(query) ||
+                             h.enName.toLowerCase().includes(query) ||
+                             h.address.toLowerCase().includes(query);
+        return matchesType && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-10 bg-white rounded-2xl border border-slate-200 text-slate-500 text-sm">কোনো হাসপাতাল বা ডায়াগনস্টিক সেন্টার খুঁজে পাওয়া যায়নি।</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(h => {
+        const badgeColor = h.type === 'govt'
+          ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+          : h.type === 'private'
+            ? 'bg-amber-50 text-amber-800 border-amber-200'
+            : 'bg-cyan-50 text-cyan-800 border-cyan-200';
+
+        return `
+          <div class="bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-bold px-2.5 py-1 rounded-full border ${badgeColor}">${h.typeLabel}</span>
+                <span class="text-xs text-emerald-700 font-semibold"><i class="fa-solid fa-circle-check"></i> সচল</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg leading-snug">${h.name}</h3>
+              <p class="text-xs text-slate-400 mt-0.5">${h.enName}</p>
+              <p class="text-xs text-slate-600 mt-3 flex items-start gap-1.5">
+                <i class="fa-solid fa-location-dot text-emerald-700 mt-0.5"></i>
+                <span>${h.address}</span>
+              </p>
+              <p class="text-xs text-slate-500 mt-1.5 flex items-start gap-1.5">
+                <i class="fa-solid fa-notes-medical text-amber-600 mt-0.5"></i>
+                <span>${h.emergency}</span>
+              </p>
+            </div>
+
+            <div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center gap-2">
+              <a href="tel:${h.phone}" class="flex-1 py-2 px-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-phone"></i>
+                <span>${h.phone}</span>
+              </a>
+              <button onclick="copyText('${h.phone}', '${h.name}')" class="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition cursor-pointer" title="নম্বর কপি করুন">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 4. Emergency Numbers Data
+    const emergencyData = [
+      { title: 'জাতীয় জরুরি সেবা (পুলিশ, ফায়ার ও অ্যাম্বুলেন্স)', number: '999', icon: 'fa-phone-volume' },
+      { title: 'বগুড়া জেলা পুলিশ কন্ট্রোল রুম', number: '01320-126498', icon: 'fa-shield-halved' },
+      { title: 'বগুড়া সদর থানা (অফিসার ইনচার্জ)', number: '01320-126402', icon: 'fa-building-shield' },
+      { title: 'ফায়ার সার্ভিস ও সিভিল ডিফেন্স, বগুড়া', number: '01730-002421', icon: 'fa-fire-extinguisher' },
+      { title: 'নেসকো (বিদ্যুৎ অভিযোগ কেন্দ্র, বগুড়া)', number: '16603', icon: 'fa-bolt' },
+      { title: 'শজিমেক অ্যাম্বুলেন্স ও জরুরি ডেস্ক', number: '051-69965', icon: 'fa-truck-medical' }
+    ];
+
+    function renderEmergency() {
+      const grid = document.getElementById('emergency-grid');
+      grid.innerHTML = emergencyData.map(item => `
+        <div class="bg-white/10 backdrop-blur-xs border border-white/15 rounded-2xl p-4 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 rounded-xl bg-rose-500/25 text-rose-200 flex items-center justify-center shrink-0">
+              <i class="fa-solid ${item.icon}"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-xs text-rose-100/90 font-medium truncate">${item.title}</p>
+              <p class="text-base font-bold text-white tracking-wide mt-0.5">${item.number}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <a href="tel:${item.number}" class="w-9 h-9 rounded-xl bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center transition" title="কল করুন">
+              <i class="fa-solid fa-phone text-xs"></i>
+            </a>
+            <button onclick="copyText('${item.number}', '${item.title}')" class="w-9 h-9 rounded-xl bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition cursor-pointer" title="কপি করুন">
+              <i class="fa-regular fa-copy text-xs"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 5. Explore Bogura Landmarks Data
+    const exploreData = [
+      {
+        title: 'মহাস্থানগড় (প্রাচীন পুণ্ড্রনগর)',
+        enTitle: 'Mahasthangarh Citadel',
+        location: 'শিবগঞ্জ উপজেলা, বগুড়া',
+        tag: 'প্রত্নতাত্ত্বিক নিদর্শন',
+        desc: 'খ্রিস্টপূর্ব ৩য় শতাব্দীর প্রাচীন পুণ্ড্রবর্ধন রাজ্যের রাজধানী। করতোয়া নদীর তীরে অবস্থিত বাংলাদেশের প্রাচীনতম নগর সভ্যতার নিদর্শন ও জাদুঘর।',
+        icon: 'fa-gopuram',
+        color: 'from-amber-700 to-orange-800'
+      },
+      {
+        title: 'বেহুলার বাসর ঘর (গোকুল মেধ)',
+        enTitle: 'Gokul Medh (Behula Lakshindar)',
+        location: 'গোকুল, শিবগঞ্জ, বগুড়া',
+        tag: 'ঐতিহাসিক স্থাপনা',
+        desc: 'মহাস্থানগড়ের ২ কিমি দক্ষিণে অবস্থিত ১৭২টি কুঠুরি বিশিষ্ট অনন্য স্থাপত্য নিদর্শন, যা লোককাহিনী ও বৌদ্ধ স্তূপের ইতিহাসের সাথে জড়িত।',
+        icon: 'fa-landmark',
+        color: 'from-emerald-800 to-teal-900'
+      },
+      {
+        title: 'ভাসু বিহার (নরপতির ধাপ)',
+        enTitle: 'Vasu Vihara Buddhist Monastery',
+        location: 'বিহার, শিবগঞ্জ, বগুড়া',
+        tag: 'প্রাচীন বৌদ্ধ বিহার',
+        desc: 'চীনা পরিব্রাজক হিউয়েন সাং বর্ণিত 'পো-শি-পো' বিহার। এখানে প্রাচীন বৌদ্ধ সংঘারাম, পোড়ামাটির ফলক ও ব্রোঞ্জ মূর্তি আবিষ্কৃত হয়েছে।',
+        icon: 'fa-dharmachakra',
+        color: 'from-teal-800 to-emerald-900'
+      },
+      {
+        title: 'ঐতিহাসিক খেরুয়া মসজিদ (১৫৮২)',
+        enTitle: 'Historic Kherua Mosque',
+        location: 'খন্দকারটোলা, শেরপুর, বগুড়া',
+        tag: 'সুলতানি স্থাপত্য',
+        desc: '১৫৮২ সালে জওহর আলী কাকশালের পুত্র মির্জা মুরাদ খান কাকশাল নির্মিত তিন গম্বুজ বিশিষ্ট অপূর্ব পোড়ামাটির অলংকরণ সমৃদ্ধ মসজিদ।',
+        icon: 'fa-mosque',
+        color: 'from-emerald-900 to-slate-900'
+      },
+      {
+        title: 'প্রেম যমুনার ঘাট ও কালিতলা গ্রোয়েন',
+        enTitle: 'Sariakandi Jamuna Ghat',
+        location: 'সারিয়াকান্দি, বগুড়া',
+        tag: 'নদী পর্যটন',
+        desc: 'যমুনা নদীর বিশাল জলরাশি, সূর্যোদয়-সূর্যাস্ত এবং নৌকা ভ্রমণের জন্য বগুড়াবাসীর অন্যতম জনপ্রিয় অবকাশ কেন্দ্র।',
+        icon: 'fa-water',
+        color: 'from-sky-800 to-cyan-900'
+      },
+      {
+        title: 'নবাব প্যালেস ও বগুড়ার দই ঐতিহ্য',
+        enTitle: 'Nawab Palace & Bogura Doi Heritage',
+        location: 'সূত্রাপুর ও সাতমাথা, বগুড়া সদর',
+        tag: 'ঐতিহ্য ও সংস্কৃতি',
+        desc: 'পাকিস্তানের সাবেক প্রধানমন্ত্রী মোহাম্মদ আলী বগুড়ার ঐতিহাসিক নবাব প্যালেস এবং বগুড়ার বিশ্বখ্যাত জিআই স্বীকৃত দই ও মহাস্থানের কটকটি।',
+        icon: 'fa-crown',
+        color: 'from-amber-800 to-yellow-900'
+      }
+    ];
+
+    function renderExplore() {
+      const grid = document.getElementById('explore-grid');
+      grid.innerHTML = exploreData.map(spot => `
+        <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 card-hover flex flex-col justify-between">
+          <div>
+            <!-- Artistic Vector Banner Header (No external broken images) -->
+            <div class="h-36 bg-gradient-to-br ${spot.color} p-5 text-white relative overflow-hidden flex flex-col justify-between">
+              <div class="absolute -right-4 -bottom-4 text-white/10 text-8xl pointer-events-none">
+                <i class="fa-solid ${spot.icon}"></i>
+              </div>
+              <span class="self-start text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-xs border border-white/20">
+                ${spot.tag}
+              </span>
+              <div>
+                <p class="text-[11px] text-amber-300 font-medium">${spot.enTitle}</p>
+                <h3 class="text-lg font-bold leading-snug">${spot.title}</h3>
+              </div>
+            </div>
+
+            <div class="p-5">
+              <p class="text-xs font-semibold text-emerald-800 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-location-dot text-amber-600"></i> ${spot.location}
+              </p>
+              <p class="text-sm text-slate-600 leading-relaxed">${spot.desc}</p>
+            </div>
+          </div>
+
+          <div class="px-5 pb-5 pt-2 flex items-center justify-between text-xs">
+            <span class="text-slate-400 font-medium">বগুড়া ঐতিহ্য গাইড</span>
+            <button onclick="showToast('${spot.title} — গুগল ম্যাপে অবস্থান সংরক্ষিত হয়েছে')" class="text-emerald-800 hover:text-amber-700 font-bold flex items-center gap-1 cursor-pointer">
+              <span>দিকনির্দেশনা</span> <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 6. Community Services Data & Interactive State
+    let activeCommunityTab = 'blood';
+    let selectedBloodGroup = 'ALL';
+    let selectedCommUpazila = 'ALL';
+
+    const communityState = {
+      blood: [
+        { name: 'মোঃ রাশেদুল ইসলাম', group: 'O+', role: 'রক্তদাতা', upazila: 'বগুড়া সদর', detail: 'সাতমাথা, বগুড়া · সর্বশেষ দান: ৪ মাস আগে', phone: '01712-458920' },
+        { name: 'সাদিয়া আফরিন', group: 'A+', role: 'রক্তদাতা', upazila: 'শাজাহানপুর', detail: 'শজিমেক ক্যাম্পাস · যেকোনো সময় প্রস্তুত', phone: '01819-334112' },
+        { name: 'তানভীর হাসান', group: 'B+', role: 'রক্তদাতা', upazila: 'শেরপুর', detail: 'শেরপুর পৌরসভা · স্বেচ্ছাসেবী রক্তদাতা', phone: '01715-990231' },
+        { name: 'মাহমুদুল হক', group: 'O-', role: 'রক্তদাতা', upazila: 'শিবগঞ্জ', detail: 'মহাস্থানগড় এলাকা · জরুরি প্রয়োজনে কল করুন', phone: '01911-762340' },
+        { name: 'নুসরাত জাহান', group: 'AB+', role: 'রক্তদাতা', upazila: 'দুপচাঁচিয়া', detail: 'দুপচাঁচিয়া সদর · নিয়মিত রক্তদাতা', phone: '01722-618490' },
+        { name: 'জরুরি রক্ত প্রয়োজন (শজিমেক)', group: 'B-', role: 'জরুরি প্রয়োজন', upazila: 'বগুড়া সদর', detail: 'শজিমেক মেডিসিন ওয়ার্ড · ২ ব্যাগ রক্ত প্রয়োজন', phone: '01738-112233' }
+      ],
+      tuition: [
+        { name: 'আব্দুল্লাহ আল মামুন (বুয়েট শিক্ষার্থী)', upazila: 'বগুড়া সদর', detail: 'নবম–দ্বাদশ শ্রেণি: পদার্থবিজ্ঞান ও উচ্চতর গণিত', phone: '01745-882190', badge: 'শিক্ষক উপলব্ধ' },
+        { name: 'ফারহানা ইয়াসমিন (রাবি স্নাতকোত্তর)', upazila: 'বগুড়া সদর', detail: 'ইংরেজি ও বিজ্ঞান (৬ষ্ঠ–১০ম শ্রেণি, জলেশ্বরীতলা)', phone: '01823-449012', badge: 'শিক্ষিকা উপলব্ধ' },
+        { name: 'গৃহশিক্ষক প্রয়োজন (৭ম শ্রেণি)', upazila: 'শেরপুর', detail: 'সপ্তাহে ৪ দিন ইংরেজি ও গণিত · সম্মানী আলোচনা সাপেক্ষে', phone: '01711-552310', badge: 'টিউশন অফার' },
+        { name: 'সাকিবুল ইসলাম (শজিমেক)', upazila: 'শাজাহানপুর', detail: 'মেডিকেল ভর্তি প্রস্তুতি ও জীববিজ্ঞান স্পেশাল ব্যাচ', phone: '01675-221908', badge: 'শিক্ষক উপলব্ধ' }
+      ],
+      rent: [
+        { name: '২ বেডরুম ফ্যামিলি ফ্ল্যাট ভাড়া', upazila: 'বগুড়া সদর', detail: 'জলেশ্বরীতলা, বগুড়া · গ্যাস, লিফট ও গ্যারেজ সুবিধা · ভাড়া: ১২,৫০০৳', phone: '01711-334455', badge: 'ফ্যামিলি বাসা' },
+        { name: 'ছাত্র মেস / সিট ভাড়া (শজিমেক সংলগ্ন)', upazila: 'শাজাহানপুর', detail: 'সিলিমপুর, শজিমেক গেট সংলগ্ন · ওয়াইফাই ও মিল সুবিধা · ২,৮০০৳', phone: '01817-665544', badge: 'ছাত্র মেস' },
+        { name: 'মেইন রোডে বাণিজ্যিক দোকান ভাড়া', upazila: 'শেরপুর', detail: 'শেরপুর বাসস্ট্যান্ড বাজার · ৪৫০ বর্গফুট · অগ্রিম আলোচনা সাপেক্ষে', phone: '01712-908070', badge: 'দোকান / অফিস' },
+        { name: '৩ রুমের নিচতলা বাসা ভাড়া', upazila: 'বগুড়া সদর', detail: 'উপশহর, বগুড়া · শান্ত পরিবেশ, ২৪ ঘণ্টা পানি · ১০,০০০৳', phone: '01912-443322', badge: 'ফ্যামিলি বাসা' }
+      ],
+      jobs: [
+        { name: 'মোঃ শফিকুল ইসলাম — দক্ষ ইলেকট্রিশিয়ান', upazila: 'বগুড়া সদর', detail: 'বাসাবাড়ি ও অফিসের ওয়্যারিং, আইপিএস ও এসি সার্ভিসিং', phone: '01725-778899', badge: 'দক্ষ টেকনিশিয়ান' },
+        { name: 'রফিকুল আলম — অভিজ্ঞ প্রাইভেট কার ড্রাইভার', upazila: 'বগুড়া সদর', detail: 'বৈধ পেশাদার লাইসেন্সধারী · ঢাকা ও উত্তরবঙ্গ রুটে অভিজ্ঞ', phone: '01815-123987', badge: 'ড্রাইভার' },
+        { name: 'সেলস এক্সিকিউটিভ নিয়োগ (বগুড়া জোন)', upazila: 'বগুড়া সদর', detail: 'স্থানীয় এগ্রো ও ফুড কোম্পানিতে ফিল্ড অফিসার প্রয়োজন', phone: '01713-556677', badge: 'চাকরির বিজ্ঞপ্তি' },
+        { name: 'হাবিবুর রহমান — প্লাম্বার ও স্যানিটারি মিস্ত্রি', upazila: 'শেরপুর', detail: 'পানির লাইন, মোটর ও আধুনিক বাথরুম ফিটিংস কাজ', phone: '01921-654321', badge: 'স্যানিটারি কর্মী' }
+      ],
+      business: [
+        { name: 'এশিয়া সুইটমিট অ্যান্ড কোল্ড ড্রিংকস', upazila: 'বগুড়া সদর', detail: 'কবি নজরুল ইসলাম সড়ক, বগুড়া · ঐতিহ্যবাহী শাহী দই ও মিষ্টান্ন', phone: '051-66294', badge: 'জিআই বগুড়ার দই' },
+        { name: 'আকবরিয়া গ্র্যান্ড হোটেল অ্যান্ড সুইটস', upazila: 'বগুড়া সদর', detail: 'থানা রোড, বগুড়া · শতবর্ষী ঐতিহ্যবাহী দই, লাচ্ছা সেমাই ও রেস্তোরাঁ', phone: '01711-311222', badge: 'শতবর্ষী ঐতিহ্য' },
+        { name: 'মহাস্থান দই ঘর ও কটকটি ভান্ডার', upazila: 'শিবগঞ্জ', detail: 'মহাস্থানগড় বাসস্ট্যান্ড · খাঁটি সরের দই ও প্রসিদ্ধ মহাস্থানের কটকটি', phone: '01718-445566', badge: 'দই ও কটকটি' },
+        { name: 'শেরপুর সাউদিয়া দই ঘর', upazila: 'শেরপুর', detail: 'শেরপুর বাজার, বগুড়া · খাঁটি দুধের তৈরি স্পেশাল ক্ষীরসা দই', phone: '01714-778800', badge: 'শেরপুরের দই' },
+        { name: 'বগুড়া এগ্রো মেশিনারিজ ও ফাউন্ড্রি হাব', upazila: 'বগুড়া সদর', detail: 'বিসিক শিল্পনগরী ও রেলওয়ে মার্কেট · কৃষি যন্ত্রপাতি ও খুচরা যন্ত্রাংশ', phone: '01712-304050', badge: 'স্থানীয় শিল্প' }
+      ]
+    };
+
+    function switchCommunityTab(tab) {
+      activeCommunityTab = tab;
+      selectedBloodGroup = 'ALL';
+      selectedCommUpazila = 'ALL';
+
+      // Update Tab Button Styles
+      document.querySelectorAll('.comm-tab').forEach(btn => {
+        btn.className = 'comm-tab px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200/70 flex items-center gap-2 shrink-0 transition cursor-pointer';
+      });
+      const activeBtn = document.getElementById(`tab-${tab}`);
+      if (activeBtn) {
+        activeBtn.className = 'comm-tab px-4 py-2.5 rounded-xl text-sm font-bold bg-emerald-800 text-white shadow-sm flex items-center gap-2 shrink-0 transition cursor-pointer';
+      }
+
+      renderCommunityFilters();
+      renderCommunityContent();
+    }
+
+    function renderCommunityFilters() {
+      const filterContainer = document.getElementById('community-filters');
+      const upazilaOptions = ['ALL', 'বগুড়া সদর', 'শেরপুর', 'শিবগঞ্জ', 'শাজাহানপুর', 'দুপচাঁচিয়া', 'সারিয়াকান্দি'];
+
+      let html = `
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-slate-500">উপজেলা:</span>
+          <select onchange="selectedCommUpazila = this.value; renderCommunityContent();" class="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+            ${upazilaOptions.map(u => `<option value="${u}">${u === 'ALL' ? 'সব উপজেলা' : u}</option>`).join('')}
+          </select>
+        </div>
+      `;
+
+      if (activeCommunityTab === 'blood') {
+        const groups = ['ALL', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+        html += `
+          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+            <span class="text-xs font-bold text-slate-500 mr-1">গ্রুপ:</span>
+            ${groups.map(g => `
+              <button onclick="selectedBloodGroup = '${g}'; renderCommunityFilters(); renderCommunityContent();" class="px-2.5 py-1 rounded-lg text-xs font-bold transition cursor-pointer ${selectedBloodGroup === g ? 'bg-rose-600 text-white shadow-xs' : 'bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200'}">
+                ${g === 'ALL' ? 'সব' : g}
+              </button>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      filterContainer.innerHTML = html;
+    }
+
+    function renderCommunityContent() {
+      const container = document.getElementById('community-content');
+      const items = communityState[activeCommunityTab] || [];
+
+      // Update counts on tabs
+      Object.keys(communityState).forEach(key => {
+        const countEl = document.getElementById(`count-${key}`);
+        if (countEl) countEl.textContent = communityState[key].length;
+      });
+
+      const filtered = items.filter(item => {
+        const matchUpazila = selectedCommUpazila === 'ALL' || item.upazila === selectedCommUpazila;
+        const matchBlood = activeCommunityTab !== 'blood' || selectedBloodGroup === 'ALL' || item.group === selectedBloodGroup;
+        return matchUpazila && matchBlood;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-10 bg-slate-50 rounded-2xl border border-slate-200/70">
+            <p class="text-sm text-slate-500">নির্বাচিত ফিল্টারে কোনো তথ্য পাওয়া যায়নি। নতুন তথ্য যুক্ত করতে উপরের বাটনে ক্লিক করুন।</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => {
+        if (activeCommunityTab === 'blood') {
+          const isUrgent = item.role === 'জরুরি প্রয়োজন';
+          return `
+            <div class="rounded-2xl p-4 sm:p-5 border ${isUrgent ? 'bg-rose-50/60 border-rose-200' : 'bg-slate-50/70 border-slate-200/90'} card-hover flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <span class="w-11 h-11 rounded-xl ${isUrgent ? 'bg-rose-600 text-white' : 'bg-rose-100 text-rose-700 border border-rose-200'} font-extrabold text-base flex items-center justify-center shadow-xs">
+                    ${item.group}
+                  </span>
+                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-full ${isUrgent ? 'bg-rose-600 text-white animate-pulse' : 'bg-emerald-100 text-emerald-800'}">
+                    ${item.role}
+                  </span>
+                </div>
+                <h3 class="font-bold text-slate-900 text-base">${item.name}</h3>
+                <p class="text-xs font-semibold text-emerald-800 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> ${item.upazila}</p>
+                <p class="text-xs text-slate-600 mt-1.5">${item.detail}</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-200/70 flex items-center gap-2">
+                <a href="tel:${item.phone}" class="flex-1 py-2 px-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition">
+                  <i class="fa-solid fa-phone"></i> <span>${item.phone}</span>
+                </a>
+                <button onclick="copyText('${item.phone}', '${item.name}')" class="py-2 px-3 rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold cursor-pointer">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }
+
+        // Tuition, Rent, Jobs, Business Cards
+        return `
+          <div class="bg-slate-50/70 rounded-2xl p-4 sm:p-5 border border-slate-200/90 card-hover flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2.5">
+                <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+                  ${item.badge}
+                </span>
+                <span class="text-xs font-semibold text-emerald-800">
+                  <i class="fa-solid fa-location-dot text-amber-600 mr-0.5"></i> ${item.upazila}
+                </span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base leading-snug">${item.name}</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">${item.detail}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-200/70 flex items-center gap-2">
+              <a href="tel:${item.phone}" class="flex-1 py-2 px-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-phone"></i> <span>যোগাযোগ: ${item.phone}</span>
+              </a>
+              <button onclick="copyText('${item.phone}', '${item.name}')" class="py-2 px-3 rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold cursor-pointer">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 7. Community Modal Handlers
+    function openCommunityModal() {
+      const modal = document.getElementById('community-modal');
+      document.getElementById('post-category').value = activeCommunityTab;
+      toggleFormFields();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCommunityModal() {
+      const modal = document.getElementById('community-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function toggleFormFields() {
+      const cat = document.getElementById('post-category').value;
+      const bloodField = document.getElementById('field-blood-group');
+      if (cat === 'blood') {
+        bloodField.classList.remove('hidden');
+      } else {
+        bloodField.classList.add('hidden');
+      }
+    }
+
+    function handleCommunitySubmit(e) {
+      e.preventDefault();
+      const cat = document.getElementById('post-category').value;
+      const name = document.getElementById('post-name').value.trim();
+      const upazila = document.getElementById('post-upazila').value;
+      const detail = document.getElementById('post-detail').value.trim();
+      const phone = document.getElementById('post-phone').value.trim();
+
+      if (cat === 'blood') {
+        const group = document.getElementById('post-blood-group').value;
+        const role = document.getElementById('post-blood-role').value;
+        communityState.blood.unshift({ name, group, role, upazila, detail, phone });
+      } else {
+        const badgeMap = {
+          tuition: 'নতুন টিউশন',
+          rent: 'ভাড়া বিজ্ঞপ্তি',
+          jobs: 'কাজ ও দক্ষতা',
+          business: 'স্থানীয় ব্যবসা'
+        };
+        communityState[cat].unshift({
+          name,
+          upazila,
+          detail,
+          phone,
+          badge: badgeMap[cat] || 'নতুন তথ্য'
+        });
+      }
+
+      document.getElementById('community-form').reset();
+      closeCommunityModal();
+      switchCommunityTab(cat);
+      showToast('আপনার তথ্য সফলভাবে বগুড়া কমিউনিটি বোর্ডে যুক্ত হয়েছে!');
+    }
+
+    // 8. Global Search Modal Handlers
+    function openGlobalSearch() {
+      const modal = document.getElementById('search-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      setTimeout(() => document.getElementById('global-search-input').focus(), 60);
+    }
+
+    function closeGlobalSearch() {
+      const modal = document.getElementById('search-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function runGlobalSearch() {
+      const q = document.getElementById('global-search-input').value.trim().toLowerCase();
+      const resBox = document.getElementById('global-search-results');
+      if (!q) {
+        resBox.innerHTML = `<p class="text-xs text-slate-400 py-6 text-center">খুঁজতে টাইপ করুন (যেমন: শজিমেক, মহাস্থানগড়, শেরপুর, ফায়ার সার্ভিস)</p>`;
+        return;
+      }
+
+      const results = [];
+      upazilasData.forEach((u, idx) => {
+        if (u.name.toLowerCase().includes(q) || u.enName.toLowerCase().includes(q) || u.landmark.toLowerCase().includes(q) || u.unionList.some(un => un.toLowerCase().includes(q))) {
+          results.push({ type: 'উপজেলা', title: `${u.serialBn}. ${u.name} (${u.enName})`, sub: `${u.area} · ${u.unions}`, action: `closeGlobalSearch(); openUpazilaDetailPage(${idx});` });
+        }
+      });
+      hospitalsData.forEach(h => {
+        if (h.name.toLowerCase().includes(q) || h.address.toLowerCase().includes(q)) {
+          results.push({ type: 'হাসপাতাল', title: h.name, sub: `${h.address} · ${h.phone}`, action: `closeGlobalSearch(); navigateToView('home', 'healthcare');` });
+        }
+      });
+      exploreData.forEach(e => {
+        if (e.title.toLowerCase().includes(q) || e.location.toLowerCase().includes(q)) {
+          results.push({ type: 'দর্শনীয় স্থান', title: e.title, sub: e.location, action: `closeGlobalSearch(); navigateToView('home', 'explore');` });
+        }
+      });
+      emergencyData.forEach(em => {
+        if (em.title.toLowerCase().includes(q) || em.number.includes(q)) {
+          results.push({ type: 'জরুরি নম্বর', title: em.title, sub: em.number, action: `closeGlobalSearch(); copyText('${em.number}', '${em.title}');` });
+        }
+      });
+
+      if (results.length === 0) {
+        resBox.innerHTML = `<p class="text-xs text-slate-500 py-6 text-center">"${q}" সম্পর্কিত কোনো তথ্য পাওয়া যায়নি।</p>`;
+        return;
+      }
+
+      resBox.innerHTML = results.map(r => `
+        <button onclick="${r.action}" class="w-full text-left py-3 px-2 hover:bg-emerald-50/70 rounded-xl flex items-center justify-between gap-3 transition cursor-pointer">
+          <div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">${r.type}</span>
+            <p class="font-bold text-slate-900 text-sm mt-1">${r.title}</p>
+            <p class="text-xs text-slate-500">${r.sub}</p>
+          </div>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+        </button>
+      `).join('');
+    }
+
+    // 9. Clipboard Copy & Toast Notification Utilities (Iframe-safe execCommand)
+    function copyText(text, label) {
+      try {
+        const tempInput = document.createElement('input');
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        showToast(`কপি হয়েছে: ${label} (${text})`);
+      } catch (err) {
+        showToast(`নম্বর: ${text}`);
+      }
+    }
+
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'bg-emerald-950 text-white text-xs sm:text-sm font-medium px-4 py-3 rounded-xl shadow-lg border border-emerald-700 flex items-center gap-2.5 animate-fade-in pointer-events-auto';
+      toast.innerHTML = `<i class="fa-solid fa-circle-check text-amber-400"></i><span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.25s ease';
+        setTimeout(() => toast.remove(), 260);
+      }, 3000);
+    }
+
+    // Keyboard Escape handler for modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeUpazilaModal();
+        closeCommunityModal();
+        closeGlobalSearch();
+      }
+    });
+
+    // Initialize All Sections on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderUpazilas();
+      renderUpazilasPageGrid();
+      renderHospitals();
+      renderEmergency();
+      renderExplore();
+      renderCommunityFilters();
+      renderCommunityContent();
+    });
+  </script>
+</body>
+</html>
