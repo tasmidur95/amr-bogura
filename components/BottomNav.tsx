@@ -34,23 +34,28 @@ export default function BottomNav({ currentView, onNavigate }: BottomNavProps) {
           <span>উপজেলা</span>
         </Link>
 
-        <button
-          onClick={() => onNavigate('home', 'healthcare')}
-          className="flex flex-col items-center justify-center py-1 text-slate-600 hover:text-emerald-800 text-[11px] cursor-pointer"
-        >
-          <i className="fa-solid fa-hospital text-base mb-0.5"></i>
-          <span>স্বাস্থ্য</span>
-        </button>
-
         <Link
           href="/explore"
-          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${currentView === 'explore'
+          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${
+            currentView === 'explore'
               ? 'text-emerald-800 font-bold'
               : 'text-slate-600 hover:text-emerald-800'
-            }`}
+          }`}
         >
           <i className="fa-solid fa-landmark text-base mb-0.5"></i>
           <span>দর্শনীয়</span>
+        </Link>
+
+        <Link
+          href="/contribute"
+          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${
+            currentView === 'contribute'
+              ? 'text-amber-800 font-bold'
+              : 'text-emerald-800 hover:text-emerald-950 font-semibold'
+          }`}
+        >
+          <i className="fa-solid fa-heart-circle-plus text-base mb-0.5 text-rose-500"></i>
+          <span>অবদান</span>
         </Link>
 
         <button

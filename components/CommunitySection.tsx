@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
 import { CommunityPost } from '@/lib/data/district-data';
@@ -79,14 +80,24 @@ export default function CommunitySection({
             </p>
           </div>
 
-          {/* Action Button to Post/Contribute */}
-          <button
-            onClick={onOpenModal}
-            className="px-5 py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-sm shadow-sm flex items-center justify-center gap-2 transition shrink-0 cursor-pointer"
-          >
-            <i className="fa-solid fa-plus"></i>
-            <span>{t('btnPostCommunity')}</span>
-          </button>
+          {/* Action Buttons to Post/Contribute */}
+          <div className="flex items-center gap-2 shrink-0">
+            <Link
+              href="/contribute"
+              className="px-4 py-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold text-xs sm:text-sm transition flex items-center gap-2"
+            >
+              <i className="fa-solid fa-heart-circle-plus text-rose-500"></i>
+              <span>অবদান পোর্টাল</span>
+            </Link>
+
+            <button
+              onClick={onOpenModal}
+              className="px-5 py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 transition cursor-pointer"
+            >
+              <i className="fa-solid fa-plus"></i>
+              <span>{t('btnPostCommunity')}</span>
+            </button>
+          </div>
         </div>
 
         {/* Community Tabs Bar */}

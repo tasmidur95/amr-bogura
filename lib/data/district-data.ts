@@ -60,6 +60,11 @@ export interface CommunityPost {
   detail: string;
   phone: string;
   created_at?: string;
+  isApproved?: boolean;
+  status?: 'pending' | 'approved' | 'rejected';
+  contributorName?: string;
+  contributorPhone?: string;
+  rejectReason?: string;
 }
 
 export const upazilasData: Upazila[] = [

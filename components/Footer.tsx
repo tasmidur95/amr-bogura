@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import BrandLogo from '@/components/BrandLogo';
 import { useLanguage } from '@/lib/context/LanguageContext';
 
@@ -53,12 +54,30 @@ export default function Footer({ onNavigate, onSwitchCommunityTab }: FooterProps
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('home', 'explore')}
-                  className="hover:text-amber-300 transition text-left cursor-pointer"
+                <Link
+                  href="/explore"
+                  className="hover:text-amber-300 transition text-left cursor-pointer block"
                 >
                   দর্শনীয় স্থান ও ঐতিহ্য
-                </button>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contribute"
+                  className="hover:text-amber-300 transition text-left cursor-pointer flex items-center gap-1.5 text-amber-300 font-semibold"
+                >
+                  <i className="fa-solid fa-heart-circle-plus text-rose-400"></i>
+                  <span>নাগরিক অবদান রাখুন</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/admin"
+                  className="hover:text-amber-300 transition text-left cursor-pointer flex items-center gap-1.5 opacity-80"
+                >
+                  <i className="fa-solid fa-shield-halved text-emerald-400"></i>
+                  <span>অ্যাডমিন প্যানেল</span>
+                </Link>
               </li>
             </ul>
           </div>

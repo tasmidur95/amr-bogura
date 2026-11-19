@@ -21,7 +21,130 @@ import {
 /**
  * In-memory state for explore spots and pending contributions
  */
-let memoryExploreSpots: DetailedExploreSpot[] = [...detailedExploreSpots];
+let memoryExploreSpots: DetailedExploreSpot[] = [
+  ...detailedExploreSpots.map(s => ({
+    ...s,
+    isApproved: true,
+    status: 'approved' as const
+  })),
+  {
+    id: 'suka-shakuni-mound',
+    title: 'সুকা শকুনী প্রাচীন প্রত্নতাত্ত্বিক ঢিবি',
+    enTitle: 'Suka Shakuni Ancient Archaeological Mound',
+    category: 'archaeological',
+    categoryBn: 'প্রত্নতাত্ত্বিক নিদর্শন',
+    location: 'মুরইল ইউনিয়ন, কাহালু, বগুড়া',
+    upazila: 'কাহালু',
+    tag: 'নাগরিক প্রস্তাবিত স্থান',
+    coverImage: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80'
+    ],
+    shortDesc: 'কাহালু উপজেলার ঐতিহাসিক সমৃদ্ধ প্রাচীন ঢিবি যা এখনো সংরক্ষিত খননকাজের অপেক্ষায় রয়েছে।',
+    history: 'সুকা শকুনী ঢিবি বগুড়ার অন্যতম অনাবিষ্কৃত প্রত্নস্থান। স্থানীয় জনশ্রুতি মতে প্রাচীন রাজা ও সুফি সাধকদের স্মৃতিবিজড়িত এই ঢিবিটি প্রাচীন পুণ্ড্রনগরের বহিঃসীমার নিদর্শন।',
+    architecture: 'মাটির ঢিবি ও প্রাচীন পোড়ামাটির ইটের অবশিষ্টাংশ।',
+    howToReach: 'বগুড়া চারমাথা থেকে কাহালু মুরইল বাসস্ট্যান্ড, সেখান থেকে অটোরিকশায় ৫ মিনিট।',
+    highlights: ['প্রাচীন মাটির ঢিবি', 'পুণ্ড্রনগর সমসাময়িক নিদর্শন', 'শান্ত পল্লি পরিবেশ'],
+    timings: 'সূর্যোদয় থেকে সূর্যাস্ত',
+    entryFee: 'বিনামূল্যে',
+    bestTime: 'শীতকাল',
+    mapCoordinates: '24.8123, 89.2845',
+    mapUrl: 'https://maps.google.com/?q=Kahaloo+Bogura',
+    isApproved: false,
+    status: 'pending',
+    contributor: {
+      name: 'আরিফুল ইসলাম তনয়',
+      phone: '01719-887766',
+      email: 'ariful.kahalu@gmail.com',
+      date: '২০২৬-০৩-১৯',
+      note: 'কাহালুর এই প্রাচীন স্থানটিকে সরকারিভাবে দ্রুত সংরক্ষণের অনুরোধ জানাচ্ছি।'
+    },
+    reviews: []
+  }
+];
+
+/**
+ * In-memory state for community posts with approval statuses
+ */
+let memoryCommunityState: Record<string, CommunityPost[]> = {
+  blood: [
+    {
+      id: 'comm-pending-1',
+      category: 'blood',
+      name: 'মোঃ মাহমুদুল হাসান',
+      group: 'O+',
+      role: 'জরুরি রক্তদাতা',
+      badge: 'স্বেচ্ছাসেবী',
+      upazila: 'সারিয়াকান্দি',
+      detail: 'সারিয়াকান্দি সদর ও যমুনা চরাঞ্চল এলাকায় যেকোনো জরুরি মুহূর্তে রক্তদানে প্রস্তুত',
+      phone: '01712-998877',
+      isApproved: false,
+      status: 'pending',
+      contributorName: 'মাহমুদুল হাসান',
+      contributorPhone: '01712-998877',
+      created_at: '2026-03-19'
+    },
+    ...(initialCommunityState.blood || []).map(p => ({
+      ...p,
+      isApproved: true,
+      status: 'approved' as const
+    }))
+  ],
+  tuition: [
+    {
+      id: 'comm-pending-2',
+      category: 'tuition',
+      name: 'নাজমুল সাকিব (গণিত বিভাগ, আযিযুল হক কলেজ)',
+      upazila: 'বগুড়া সদর',
+      detail: 'এসএসসি ও এইচএসসি উচ্চতর গণিত এবং পদার্থবিজ্ঞান যত্নসহকারে পড়ানো হয়',
+      phone: '01815-443322',
+      badge: 'শিক্ষক উপলব্ধ',
+      isApproved: false,
+      status: 'pending',
+      contributorName: 'নাজমুল সাকিব',
+      contributorPhone: '01815-443322',
+      created_at: '2026-03-19'
+    },
+    ...(initialCommunityState.tuition || []).map(p => ({
+      ...p,
+      isApproved: true,
+      status: 'approved' as const
+    }))
+  ],
+  rent: (initialCommunityState.rent || []).map(p => ({
+    ...p,
+    isApproved: true,
+    status: 'approved' as const
+  })),
+  jobs: (initialCommunityState.jobs || []).map(p => ({
+    ...p,
+    isApproved: true,
+    status: 'approved' as const
+  })),
+  business: (initialCommunityState.business || []).map(p => ({
+    ...p,
+    isApproved: true,
+    status: 'approved' as const
+  }))
+};
+
+/**
+ * In-memory state for standalone / pending spot reviews
+ */
+let memorySpotReviews: SpotReview[] = [
+  {
+    id: 'rev-pending-1',
+    author: 'ড. শামীম আহমেদ (গবেষক, ঢাকা বিশ্ববিদ্যালয়)',
+    rating: 5,
+    comment: 'মহাস্থানগড়ে সাম্প্রতিক খননকাজে প্রাপ্ত নিদর্শন প্রদর্শনী বেশ পরিচ্ছন্ন ও চমৎকার। সরকারি গাইড সুবিধা আরও বাড়ানো দরকার।',
+    date: '২০২৬-০৩-১৯',
+    location: 'ঢাকা',
+    isApproved: false,
+    status: 'pending',
+    spotId: 'mahasthangarh',
+    spotTitle: 'মহাস্থানগড় (প্রাচীন পুণ্ড্রনগর)'
+  }
+];
 
 /**
  * DistrictService - NestJS-style modular service layer
@@ -241,10 +364,15 @@ export class DistrictService {
    * Submit new tourist spot as public contributor
    */
   static async createExploreSpot(
-    spot: Omit<DetailedExploreSpot, 'id' | 'isApproved' | 'reviews'> & { id?: string; autoApprove?: boolean }
+    spot: Omit<DetailedExploreSpot, 'id' | 'isApproved' | 'reviews'> & {
+      id?: string;
+      autoApprove?: boolean;
+      status?: 'pending' | 'approved' | 'rejected';
+    }
   ): Promise<DetailedExploreSpot> {
     const slug = spot.id || spot.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') || `spot-${Date.now()}`;
-    const autoApprove = spot.autoApprove ?? true; // Default auto-approve so contributors see their spot live!
+    const autoApprove = spot.autoApprove ?? false; // Default pending for contributor moderation!
+    const status = spot.status || (autoApprove ? 'approved' : 'pending');
 
     if (isSupabaseConfigured && supabase) {
       try {
@@ -305,6 +433,7 @@ export class DistrictService {
             mapCoordinates: data.map_coordinates || '',
             mapUrl: data.map_url || '',
             isApproved: data.is_approved,
+            status: data.is_approved ? 'approved' : 'pending',
             contributor: {
               name: data.contributor_name,
               phone: data.contributor_phone,
@@ -345,6 +474,7 @@ export class DistrictService {
       mapCoordinates: spot.mapCoordinates || '',
       mapUrl: spot.mapUrl || `https://maps.google.com/?q=${encodeURIComponent(spot.title + ', বগুড়া')}`,
       isApproved: autoApprove,
+      status,
       contributor: spot.contributor,
       reviews: []
     };
@@ -357,29 +487,7 @@ export class DistrictService {
    * Accept / Approve a contributor's tourist spot
    */
   static async acceptExploreSpot(id: string): Promise<boolean> {
-    if (isSupabaseConfigured && supabase) {
-      try {
-        const { error } = await supabase
-          .from('tourist_spots')
-          .update({ is_approved: true })
-          .eq('id', id);
-
-        if (!error) {
-          const item = memoryExploreSpots.find(s => s.id === id);
-          if (item) item.isApproved = true;
-          return true;
-        }
-      } catch (err) {
-        console.warn('Supabase spot accept fallback to memory:', err);
-      }
-    }
-
-    const item = memoryExploreSpots.find(s => s.id === id);
-    if (item) {
-      item.isApproved = true;
-      return true;
-    }
-    return false;
+    return this.approveSubmission('spot', id);
   }
 
   /**
@@ -395,7 +503,10 @@ export class DistrictService {
       rating: review.rating,
       comment: review.comment,
       location: review.location || 'বগুড়া',
-      date: '২০২৬'
+      date: '২০২৬',
+      isApproved: true,
+      status: 'approved',
+      spotId
     };
 
     if (isSupabaseConfigured && supabase) {
@@ -425,17 +536,24 @@ export class DistrictService {
 
     const targetSpot = memoryExploreSpots.find(s => s.id === spotId);
     if (targetSpot) {
+      newReview.spotTitle = targetSpot.title;
       if (!targetSpot.reviews) targetSpot.reviews = [];
       targetSpot.reviews.unshift(newReview);
     }
 
+    memorySpotReviews.unshift(newReview);
     return newReview;
   }
 
   // ==========================================
   // COMMUNITY POSTS
   // ==========================================
-  static async getCommunityPosts(category?: string, upazila?: string, bloodGroup?: string): Promise<CommunityPost[]> {
+  static async getCommunityPosts(
+    category?: string,
+    upazila?: string,
+    bloodGroup?: string,
+    includePending = false
+  ): Promise<CommunityPost[]> {
     if (isSupabaseConfigured && supabase) {
       try {
         let queryBuilder = supabase
@@ -443,6 +561,9 @@ export class DistrictService {
           .select('*')
           .order('created_at', { ascending: false });
 
+        if (!includePending) {
+          queryBuilder = queryBuilder.eq('is_approved', true);
+        }
         if (category) {
           queryBuilder = queryBuilder.eq('category', category);
         }
@@ -465,7 +586,9 @@ export class DistrictService {
             upazila: item.upazila,
             detail: item.detail,
             phone: item.phone,
-            created_at: item.created_at
+            created_at: item.created_at,
+            isApproved: item.is_approved,
+            status: item.is_approved ? 'approved' : 'pending'
           }));
         }
       } catch (err) {
@@ -473,9 +596,13 @@ export class DistrictService {
       }
     }
 
-    // Default In-Memory Fallback
+    // In-Memory Fallback using memoryCommunityState
     const targetCategory = category || 'blood';
-    let items = initialCommunityState[targetCategory] || [];
+    let items = memoryCommunityState[targetCategory] || [];
+
+    if (!includePending) {
+      items = items.filter(i => i.isApproved !== false && i.status !== 'rejected');
+    }
 
     if (upazila && upazila !== 'ALL') {
       items = items.filter(i => i.upazila === upazila);
@@ -488,7 +615,12 @@ export class DistrictService {
     return items;
   }
 
-  static async createCommunityPost(post: Omit<CommunityPost, 'id'>): Promise<CommunityPost> {
+  static async createCommunityPost(
+    post: Omit<CommunityPost, 'id'> & { autoApprove?: boolean }
+  ): Promise<CommunityPost> {
+    const autoApprove = post.autoApprove ?? false; // Default pending for moderator queue!
+    const status = autoApprove ? 'approved' : 'pending';
+
     if (isSupabaseConfigured && supabase) {
       try {
         const { data, error } = await supabase
@@ -502,14 +634,15 @@ export class DistrictService {
               badge: post.badge || null,
               upazila: post.upazila,
               detail: post.detail,
-              phone: post.phone
+              phone: post.phone,
+              is_approved: autoApprove
             }
           ])
           .select()
           .single();
 
         if (!error && data) {
-          return {
+          const created: CommunityPost = {
             id: data.id,
             category: data.category,
             name: data.name,
@@ -519,8 +652,17 @@ export class DistrictService {
             upazila: data.upazila,
             detail: data.detail,
             phone: data.phone,
-            created_at: data.created_at
+            created_at: data.created_at,
+            isApproved: data.is_approved,
+            status: data.is_approved ? 'approved' : 'pending',
+            contributorName: post.contributorName || post.name,
+            contributorPhone: post.contributorPhone || post.phone
           };
+
+          if (memoryCommunityState[post.category]) {
+            memoryCommunityState[post.category].unshift(created);
+          }
+          return created;
         }
       } catch (err) {
         console.warn('Supabase post insert fallback:', err);
@@ -530,13 +672,351 @@ export class DistrictService {
     // Local in-memory prepend
     const newPost: CommunityPost = {
       ...post,
-      id: `local-${Date.now()}`
+      id: `comm-${Date.now()}`,
+      isApproved: autoApprove,
+      status,
+      created_at: new Date().toISOString().split('T')[0]
     };
 
-    if (initialCommunityState[post.category]) {
-      initialCommunityState[post.category].unshift(newPost);
+    if (!memoryCommunityState[post.category]) {
+      memoryCommunityState[post.category] = [];
     }
+    memoryCommunityState[post.category].unshift(newPost);
 
     return newPost;
+  }
+
+  // ==========================================
+  // ADMIN PANEL & MODERATION WORKFLOW
+  // ==========================================
+
+  /**
+   * Fetch all submissions for Admin Panel (spots, community, reviews)
+   */
+  static async getAllAdminSubmissions(filter?: {
+    type?: string;
+    status?: string;
+    search?: string;
+    upazila?: string;
+  }) {
+    // 1. Gather Spots
+    let spots = [...memoryExploreSpots];
+
+    // 2. Gather Community posts
+    let community: CommunityPost[] = [];
+    Object.keys(memoryCommunityState).forEach(cat => {
+      community.push(...memoryCommunityState[cat]);
+    });
+
+    // 3. Gather Reviews
+    let reviews: SpotReview[] = [...memorySpotReviews];
+    memoryExploreSpots.forEach(s => {
+      if (s.reviews && s.reviews.length > 0) {
+        s.reviews.forEach(r => {
+          if (!reviews.some(existing => existing.id === r.id)) {
+            reviews.push({ ...r, spotId: s.id, spotTitle: s.title });
+          }
+        });
+      }
+    });
+
+    // Calculate global counts
+    const pendingSpots = spots.filter(s => s.status === 'pending' || !s.isApproved).length;
+    const pendingComm = community.filter(c => c.status === 'pending' || !c.isApproved).length;
+    const pendingRevs = reviews.filter(r => r.status === 'pending' || !r.isApproved).length;
+
+    const approvedSpots = spots.filter(s => s.status === 'approved' || s.isApproved).length;
+    const approvedComm = community.filter(c => c.status === 'approved' || c.isApproved).length;
+    const approvedRevs = reviews.filter(r => r.status === 'approved' || r.isApproved).length;
+
+    const rejectedSpots = spots.filter(s => s.status === 'rejected').length;
+    const rejectedComm = community.filter(c => c.status === 'rejected').length;
+    const rejectedRevs = reviews.filter(r => r.status === 'rejected').length;
+
+    // Apply Filters if provided
+    if (filter?.status && filter.status !== 'all') {
+      const st = filter.status;
+      if (st === 'pending') {
+        spots = spots.filter(s => s.status === 'pending' || !s.isApproved);
+        community = community.filter(c => c.status === 'pending' || !c.isApproved);
+        reviews = reviews.filter(r => r.status === 'pending' || !r.isApproved);
+      } else if (st === 'approved') {
+        spots = spots.filter(s => s.status === 'approved' || (s.isApproved && s.status !== 'rejected'));
+        community = community.filter(c => c.status === 'approved' || (c.isApproved && c.status !== 'rejected'));
+        reviews = reviews.filter(r => r.status === 'approved' || (r.isApproved && r.status !== 'rejected'));
+      } else if (st === 'rejected') {
+        spots = spots.filter(s => s.status === 'rejected');
+        community = community.filter(c => c.status === 'rejected');
+        reviews = reviews.filter(r => r.status === 'rejected');
+      }
+    }
+
+    if (filter?.upazila && filter.upazila !== 'ALL') {
+      spots = spots.filter(s => s.upazila === filter.upazila);
+      community = community.filter(c => c.upazila === filter.upazila);
+    }
+
+    if (filter?.search) {
+      const q = filter.search.toLowerCase();
+      spots = spots.filter(s =>
+        s.title.toLowerCase().includes(q) ||
+        s.location.toLowerCase().includes(q) ||
+        s.contributor.name.toLowerCase().includes(q) ||
+        (s.contributor.phone && s.contributor.phone.includes(q))
+      );
+      community = community.filter(c =>
+        c.name.toLowerCase().includes(q) ||
+        c.detail.toLowerCase().includes(q) ||
+        c.phone.includes(q)
+      );
+      reviews = reviews.filter(r =>
+        r.author.toLowerCase().includes(q) ||
+        r.comment.toLowerCase().includes(q)
+      );
+    }
+
+    return {
+      spots,
+      community,
+      reviews,
+      counts: {
+        totalPending: pendingSpots + pendingComm + pendingRevs,
+        totalApproved: approvedSpots + approvedComm + approvedRevs,
+        totalRejected: rejectedSpots + rejectedComm + rejectedRevs,
+        total: spots.length + community.length + reviews.length,
+        spotsPending: pendingSpots,
+        communityPending: pendingComm,
+        reviewsPending: pendingRevs,
+        spotsApproved: approvedSpots,
+        communityApproved: approvedComm,
+        reviewsApproved: approvedRevs
+      }
+    };
+  }
+
+  /**
+   * Approve any submission (spot, community, review)
+   */
+  static async approveSubmission(type: 'spot' | 'community' | 'review', id: string): Promise<boolean> {
+    if (type === 'spot') {
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('tourist_spots').update({ is_approved: true }).eq('id', id);
+        } catch (err) {
+          console.warn('Supabase spot approve fallback:', err);
+        }
+      }
+      const spot = memoryExploreSpots.find(s => s.id === id);
+      if (spot) {
+        spot.isApproved = true;
+        spot.status = 'approved';
+        spot.rejectReason = undefined;
+        return true;
+      }
+    } else if (type === 'community') {
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('community_posts').update({ is_approved: true }).eq('id', id);
+        } catch (err) {
+          console.warn('Supabase community approve fallback:', err);
+        }
+      }
+      for (const cat of Object.keys(memoryCommunityState)) {
+        const item = memoryCommunityState[cat].find(c => c.id === id);
+        if (item) {
+          item.isApproved = true;
+          item.status = 'approved';
+          item.rejectReason = undefined;
+          return true;
+        }
+      }
+    } else if (type === 'review') {
+      const rev = memorySpotReviews.find(r => r.id === id);
+      if (rev) {
+        rev.isApproved = true;
+        rev.status = 'approved';
+        rev.rejectReason = undefined;
+        return true;
+      }
+      for (const spot of memoryExploreSpots) {
+        const r = spot.reviews?.find(rev => rev.id === id);
+        if (r) {
+          r.isApproved = true;
+          r.status = 'approved';
+          r.rejectReason = undefined;
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Reject any submission with feedback reason
+   */
+  static async rejectSubmission(
+    type: 'spot' | 'community' | 'review',
+    id: string,
+    reason?: string
+  ): Promise<boolean> {
+    const feedback = reason || 'তথ্য যাচাই বা সংশোধন প্রয়োজন';
+
+    if (type === 'spot') {
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('tourist_spots').update({ is_approved: false }).eq('id', id);
+        } catch (err) {
+          console.warn('Supabase spot reject fallback:', err);
+        }
+      }
+      const spot = memoryExploreSpots.find(s => s.id === id);
+      if (spot) {
+        spot.isApproved = false;
+        spot.status = 'rejected';
+        spot.rejectReason = feedback;
+        return true;
+      }
+    } else if (type === 'community') {
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('community_posts').update({ is_approved: false }).eq('id', id);
+        } catch (err) {
+          console.warn('Supabase community reject fallback:', err);
+        }
+      }
+      for (const cat of Object.keys(memoryCommunityState)) {
+        const item = memoryCommunityState[cat].find(c => c.id === id);
+        if (item) {
+          item.isApproved = false;
+          item.status = 'rejected';
+          item.rejectReason = feedback;
+          return true;
+        }
+      }
+    } else if (type === 'review') {
+      const rev = memorySpotReviews.find(r => r.id === id);
+      if (rev) {
+        rev.isApproved = false;
+        rev.status = 'rejected';
+        rev.rejectReason = feedback;
+        return true;
+      }
+      for (const spot of memoryExploreSpots) {
+        const r = spot.reviews?.find(rev => rev.id === id);
+        if (r) {
+          r.isApproved = false;
+          r.status = 'rejected';
+          r.rejectReason = feedback;
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Delete any submission permanently
+   */
+  static async deleteSubmission(type: 'spot' | 'community' | 'review', id: string): Promise<boolean> {
+    if (type === 'spot') {
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('tourist_spots').delete().eq('id', id);
+        } catch (err) {
+          console.warn('Supabase spot delete fallback:', err);
+        }
+      }
+      const idx = memoryExploreSpots.findIndex(s => s.id === id);
+      if (idx !== -1) {
+        memoryExploreSpots.splice(idx, 1);
+        return true;
+      }
+    } else if (type === 'community') {
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('community_posts').delete().eq('id', id);
+        } catch (err) {
+          console.warn('Supabase community delete fallback:', err);
+        }
+      }
+      for (const cat of Object.keys(memoryCommunityState)) {
+        const idx = memoryCommunityState[cat].findIndex(c => c.id === id);
+        if (idx !== -1) {
+          memoryCommunityState[cat].splice(idx, 1);
+          return true;
+        }
+      }
+    } else if (type === 'review') {
+      const idx = memorySpotReviews.findIndex(r => r.id === id);
+      if (idx !== -1) {
+        memorySpotReviews.splice(idx, 1);
+        return true;
+      }
+      for (const spot of memoryExploreSpots) {
+        if (spot.reviews) {
+          const rIdx = spot.reviews.findIndex(rev => rev.id === id);
+          if (rIdx !== -1) {
+            spot.reviews.splice(rIdx, 1);
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Update submission details (edit and approve)
+   */
+  static async updateSubmission(type: 'spot' | 'community', id: string, updates: any): Promise<boolean> {
+    if (type === 'spot') {
+      const spot = memoryExploreSpots.find(s => s.id === id);
+      if (spot) {
+        Object.assign(spot, updates);
+        return true;
+      }
+    } else if (type === 'community') {
+      for (const cat of Object.keys(memoryCommunityState)) {
+        const item = memoryCommunityState[cat].find(c => c.id === id);
+        if (item) {
+          Object.assign(item, updates);
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Find contributions by contributor identifier (phone / email / name)
+   */
+  static async getContributorSubmissions(identifier: string) {
+    const idf = identifier.trim().toLowerCase();
+    if (!idf) return { spots: [], community: [] };
+
+    const spots = memoryExploreSpots.filter(s => {
+      const c = s.contributor;
+      return (
+        (c.phone && c.phone.toLowerCase().includes(idf)) ||
+        (c.email && c.email.toLowerCase().includes(idf)) ||
+        (c.name && c.name.toLowerCase().includes(idf))
+      );
+    });
+
+    const community: CommunityPost[] = [];
+    Object.keys(memoryCommunityState).forEach(cat => {
+      memoryCommunityState[cat].forEach(p => {
+        if (
+          (p.phone && p.phone.toLowerCase().includes(idf)) ||
+          (p.name && p.name.toLowerCase().includes(idf)) ||
+          (p.contributorName && p.contributorName.toLowerCase().includes(idf)) ||
+          (p.contributorPhone && p.contributorPhone.toLowerCase().includes(idf))
+        ) {
+          community.push(p);
+        }
+      });
+    });
+
+    return { spots, community };
   }
 }

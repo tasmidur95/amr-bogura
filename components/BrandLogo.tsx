@@ -232,11 +232,10 @@ export default function BrandLogo({
         <div className="flex flex-col">
           <div className="flex items-center gap-1.5">
             <span
-              className={`font-black tracking-tight leading-none drop-shadow-2xs ${
-                theme === 'dark'
+              className={`font-black tracking-tight leading-none drop-shadow-2xs ${theme === 'dark'
                   ? 'text-white'
                   : 'bg-gradient-to-r from-emerald-950 via-emerald-800 to-amber-700 bg-clip-text text-transparent'
-              } ${textSizes[size].title}`}
+                } ${textSizes[size].title}`}
               style={{
                 fontFamily: 'var(--font-noto), var(--font-hind), sans-serif',
               }}
@@ -250,18 +249,16 @@ export default function BrandLogo({
 
           <div className="flex items-center gap-1.5 mt-0.5">
             <span
-              className={`font-bold italic tracking-wide ${
-                theme === 'dark' ? 'text-amber-300' : 'text-[#C85A28]'
-              } ${textSizes[size].sub}`}
+              className={`font-bold italic tracking-wide ${theme === 'dark' ? 'text-amber-300' : 'text-[#C85A28]'
+                } ${textSizes[size].sub}`}
               style={{ fontFamily: 'var(--font-jakarta), sans-serif' }}
             >
               My Bogura
             </span>
             <span className={theme === 'dark' ? 'text-emerald-400' : 'text-slate-400'}>·</span>
             <span
-              className={`text-[10px] font-semibold ${
-                theme === 'dark' ? 'text-emerald-200' : 'text-emerald-800'
-              }`}
+              className={`text-[10px] font-semibold ${theme === 'dark' ? 'text-emerald-200' : 'text-emerald-800'
+                }`}
             >
               নাগরিক পোর্টাল
             </span>

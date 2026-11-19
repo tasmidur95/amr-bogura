@@ -5,6 +5,11 @@ export interface SpotReview {
   comment: string;
   date: string;
   location?: string;
+  isApproved?: boolean;
+  status?: 'pending' | 'approved' | 'rejected';
+  spotId?: string;
+  spotTitle?: string;
+  rejectReason?: string;
 }
 
 export interface DetailedExploreSpot {
@@ -29,6 +34,8 @@ export interface DetailedExploreSpot {
   mapCoordinates: string;
   mapUrl: string;
   isApproved: boolean;
+  status?: 'pending' | 'approved' | 'rejected';
+  rejectReason?: string;
   contributor: {
     name: string;
     phone?: string;

@@ -117,15 +117,15 @@ export default function ExploreIndexPage() {
                 </p>
               </div>
 
-              {/* Action: Open Contribute Modal */}
+              {/* Action: Open Contribute Modal or Page */}
               <div className="flex flex-wrap items-center gap-3">
-                <button
-                  onClick={() => setIsModalOpen(true)}
+                <Link
+                  href="/contribute"
                   className="px-5 py-3 rounded-2xl bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-950/15 flex items-center gap-2 transition cursor-pointer"
                 >
-                  <i className="fa-solid fa-circle-plus text-amber-300"></i>
-                  <span>নতুন স্থান প্রস্তাব করুন</span>
-                </button>
+                  <i className="fa-solid fa-heart-circle-plus text-amber-300"></i>
+                  <span>নাগরিক অবদান প্যানেল</span>
+                </Link>
 
                 {pendingCount > 0 && (
                   <button

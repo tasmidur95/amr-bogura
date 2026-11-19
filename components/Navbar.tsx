@@ -111,10 +111,29 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch }: Navbar
             >
               {t('navCommunity')}
             </button>
+            <Link
+              href="/contribute"
+              className={`px-3 py-1.5 rounded-lg text-sm transition cursor-pointer flex items-center gap-1.5 ${
+                currentView === 'contribute'
+                  ? 'font-bold text-emerald-950 bg-emerald-100 shadow-sm border border-emerald-300'
+                  : 'font-semibold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200'
+              }`}
+            >
+              <i className="fa-solid fa-heart-circle-plus text-rose-500"></i>
+              <span>{language === 'bn' ? 'অবদান রাখুন' : 'Contribute'}</span>
+            </Link>
           </nav>
 
-          {/* Right Action Controls: Search & Language Toggle */}
-          <div className="flex items-center gap-2.5">
+          {/* Right Action Controls: Search, Admin & Language Toggle */}
+          <div className="flex items-center gap-2">
+            <Link
+              href="/admin"
+              className="p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center justify-center text-sm cursor-pointer"
+              title="অ্যাডমিন প্যানেল"
+            >
+              <i className="fa-solid fa-shield-halved text-emerald-700"></i>
+            </Link>
+
             <button
               onClick={onOpenSearch}
               className="p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center gap-2 text-sm cursor-pointer"

@@ -2,7 +2,16 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Upazila, Hospital, ExploreSpot, EmergencyContact } from '@/lib/data/district-data';
+import {
+  Upazila,
+  Hospital,
+  ExploreSpot,
+  EmergencyContact,
+  upazilasData,
+  hospitalsData,
+  emergencyData,
+  exploreData
+} from '@/lib/data/district-data';
 import { detailedExploreSpots } from '@/lib/data/explore-data';
 import { searchVillages } from '@/lib/data/unions-villages-data';
 import { useToast } from '@/lib/context/ToastContext';
@@ -10,22 +19,22 @@ import { useToast } from '@/lib/context/ToastContext';
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
-  upazilas: Upazila[];
-  hospitals: Hospital[];
-  exploreSpots: ExploreSpot[];
-  emergencyContacts: EmergencyContact[];
-  onNavigate: (view: string, anchor?: string) => void;
-  onOpenUpazilaDetail: (index: number) => void;
+  upazilas?: Upazila[];
+  hospitals?: Hospital[];
+  exploreSpots?: ExploreSpot[];
+  emergencyContacts?: EmergencyContact[];
+  onNavigate?: (view: string, anchor?: string) => void;
+  onOpenUpazilaDetail?: (index: number) => void;
 }
 
 export default function SearchModal({
   isOpen,
   onClose,
-  upazilas,
-  hospitals,
-  emergencyContacts,
-  onNavigate,
-  onOpenUpazilaDetail,
+  upazilas = upazilasData,
+  hospitals = hospitalsData,
+  emergencyContacts = emergencyData,
+  onNavigate = () => {},
+  onOpenUpazilaDetail = () => {},
 }: SearchModalProps) {
   const router = useRouter();
   const [query, setQuery] = useState('');

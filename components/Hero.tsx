@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import BrandLogo from '@/components/BrandLogo';
 
@@ -94,6 +95,14 @@ export default function Hero({ onNavigate }: HeroProps) {
                   <i className="fa-solid fa-droplet text-rose-400"></i>
                   <span>{t('ctaBlood')}</span>
                 </button>
+
+                <Link
+                  href="/contribute"
+                  className="px-5 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm flex items-center gap-2 shadow-lg transition cursor-pointer"
+                >
+                  <i className="fa-solid fa-heart-circle-plus text-slate-950"></i>
+                  <span>অবদান রাখুন</span>
+                </Link>
               </div>
             </div>
 
