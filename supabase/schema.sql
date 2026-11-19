@@ -55,20 +55,48 @@ CREATE TABLE IF NOT EXISTS public.emergency_contacts (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
--- 4. Tourist & Heritage Spots Table
+-- 4. Tourist & Heritage Spots Table (Enhanced with detail info & contributor workflow)
 CREATE TABLE IF NOT EXISTS public.tourist_spots (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id TEXT PRIMARY KEY,
   title TEXT NOT NULL,
   en_title TEXT NOT NULL,
+  category TEXT CHECK (category IN ('archaeological', 'nature', 'religious', 'heritage')) NOT NULL,
+  category_bn TEXT NOT NULL,
   location TEXT NOT NULL,
+  upazila TEXT NOT NULL,
   tag TEXT NOT NULL,
-  description TEXT NOT NULL,
-  icon TEXT NOT NULL,
-  color TEXT NOT NULL,
+  cover_image TEXT NOT NULL,
+  gallery JSONB NOT NULL DEFAULT '[]',
+  short_desc TEXT NOT NULL,
+  history TEXT NOT NULL,
+  architecture TEXT NOT NULL,
+  how_to_reach TEXT NOT NULL,
+  highlights JSONB NOT NULL DEFAULT '[]',
+  timings TEXT NOT NULL,
+  entry_fee TEXT NOT NULL,
+  best_time TEXT NOT NULL,
+  map_coordinates TEXT,
+  map_url TEXT,
+  is_approved BOOLEAN DEFAULT true,
+  contributor_name TEXT NOT NULL,
+  contributor_phone TEXT,
+  contributor_email TEXT,
+  contributor_note TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
--- 5. Community Posts Table (Blood, Tuition, Rentals, Jobs, Business)
+-- 5. Spot Reviews & Visitor Feedback Table
+CREATE TABLE IF NOT EXISTS public.spot_reviews (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  spot_id TEXT REFERENCES public.tourist_spots(id) ON DELETE CASCADE,
+  author TEXT NOT NULL,
+  rating INTEGER CHECK (rating >= 1 AND rating <= 5) NOT NULL,
+  comment TEXT NOT NULL,
+  location TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- 6. Community Posts Table (Blood, Tuition, Rentals, Jobs, Business)
 CREATE TABLE IF NOT EXISTS public.community_posts (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   category TEXT CHECK (category IN ('blood', 'tuition', 'rent', 'jobs', 'business')) NOT NULL,
@@ -83,47 +111,146 @@ CREATE TABLE IF NOT EXISTS public.community_posts (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
--- Create Indexes for fast searches
+-- Create Indexes for lightning fast lookups
 CREATE INDEX IF NOT EXISTS idx_community_category ON public.community_posts (category);
 CREATE INDEX IF NOT EXISTS idx_community_upazila ON public.community_posts (upazila);
-CREATE INDEX IF NOT EXISTS idx_community_blood_group ON public.community_posts (blood_group);
-CREATE INDEX IF NOT EXISTS idx_upazilas_name ON public.upazilas (name);
+CREATE INDEX IF NOT EXISTS idx_spots_category ON public.tourist_spots (category);
+CREATE INDEX IF NOT EXISTS idx_spots_upazila ON public.tourist_spots (upazila);
+CREATE INDEX IF NOT EXISTS idx_spots_approved ON public.tourist_spots (is_approved);
+CREATE INDEX IF NOT EXISTS idx_reviews_spot ON public.spot_reviews (spot_id);
 
--- Row Level Security (RLS)
+-- Enable Row Level Security (RLS)
 ALTER TABLE public.upazilas ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.hospitals ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.emergency_contacts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.tourist_spots ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.spot_reviews ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.community_posts ENABLE ROW LEVEL SECURITY;
 
--- Allow public read access on all directory tables
+-- Allow public read access
 CREATE POLICY "Public read upazilas" ON public.upazilas FOR SELECT USING (true);
 CREATE POLICY "Public read hospitals" ON public.hospitals FOR SELECT USING (true);
 CREATE POLICY "Public read emergency" ON public.emergency_contacts FOR SELECT USING (true);
 CREATE POLICY "Public read tourist_spots" ON public.tourist_spots FOR SELECT USING (true);
+CREATE POLICY "Public read spot_reviews" ON public.spot_reviews FOR SELECT USING (true);
 CREATE POLICY "Public read community_posts" ON public.community_posts FOR SELECT USING (true);
 
--- Allow public insert on community_posts (so citizens can submit listings)
+-- Allow public inserts for community submissions & spot contributions
+CREATE POLICY "Public insert tourist_spots" ON public.tourist_spots FOR INSERT WITH CHECK (true);
+CREATE POLICY "Public update tourist_spots" ON public.tourist_spots FOR UPDATE USING (true);
+CREATE POLICY "Public insert spot_reviews" ON public.spot_reviews FOR INSERT WITH CHECK (true);
 CREATE POLICY "Public insert community_posts" ON public.community_posts FOR INSERT WITH CHECK (true);
 
 -- ========================================================
--- SEED DATA FOR COMMUNITY POSTS
+-- SEED DATA: TOURIST & HERITAGE SPOTS OF BOGURA
 -- ========================================================
-INSERT INTO public.community_posts (category, name, blood_group, blood_role, badge, upazila, detail, phone)
-VALUES
-  ('blood', 'মোঃ রাশেদুল ইসলাম', 'O+', 'রক্তদাতা', NULL, 'বগুড়া সদর', 'সাতমাথা, বগুড়া · সর্বশেষ দান: ৪ মাস আগে', '01712-458920'),
-  ('blood', 'সাদিয়া আফরিন', 'A+', 'রক্তদাতা', NULL, 'শাজাহানপুর', 'শজিমেক ক্যাম্পাস · যেকোনো সময় প্রস্তুত', '01819-334112'),
-  ('blood', 'তানভীর হাসান', 'B+', 'রক্তদাতা', NULL, 'শেরপুর', 'শেরপুর পৌরসভা · স্বেচ্ছাসেবী রক্তদাতা', '01715-990231'),
-  ('blood', 'মাহমুদুল হক', 'O-', 'রক্তদাতা', NULL, 'শিবগঞ্জ', 'মহাস্থানগড় এলাকা · জরুরি প্রয়োজনে কল করুন', '01911-762340'),
-  ('blood', 'নুসরাত জাহান', 'AB+', 'রক্তদাতা', NULL, 'দুপচাঁচিয়া', 'দুপচাঁচিয়া সদর · নিয়মিত রক্তদাতা', '01722-618490'),
-  ('blood', 'জরুরি রক্ত প্রয়োজন (শজিমেক)', 'B-', 'জরুরি প্রয়োজন', NULL, 'বগুড়া সদর', 'শজিমেক মেডিসিন ওয়ার্ড · ২ ব্যাগ রক্ত প্রয়োজন', '01738-112233'),
-  ('tuition', 'আব্দুল্লাহ আল মামুন (বুয়েট শিক্ষার্থী)', NULL, NULL, 'শিক্ষক উপলব্ধ', 'বগুড়া সদর', 'নবম–দ্বাদশ শ্রেণি: পদার্থবিজ্ঞান ও উচ্চতর গণিত', '01745-882190'),
-  ('tuition', 'ফারহানা ইয়াসমিন (রাবি স্নাতকোত্তর)', NULL, NULL, 'শিক্ষিকা উপলব্ধ', 'বগুড়া সদর', 'ইংরেজি ও বিজ্ঞান (৬ষ্ঠ–১০ম শ্রেণি, জলেশ্বরীতলা)', '01823-449012'),
-  ('tuition', 'গৃহশিক্ষক প্রয়োজন (৭ম শ্রেণি)', NULL, NULL, 'টিউশন অফার', 'শেরপুর', 'সপ্তাহে ৪ দিন ইংরেজি ও গণিত · সম্মানী আলোচনা সাপেক্ষে', '01711-552310'),
-  ('rent', '২ বেডরুম ফ্যামিলি ফ্ল্যাট ভাড়া', NULL, NULL, 'ফ্যামিলি বাসা', 'বগুড়া সদর', 'জলেশ্বরীতলা, বগুড়া · গ্যাস, লিফট ও গ্যারেজ সুবিধা · ভাড়া: ১২,৫০০৳', '01711-334455'),
-  ('rent', 'ছাত্র মেস / সিট ভাড়া (শজিমেক সংলগ্ন)', NULL, NULL, 'ছাত্র মেস', 'শাজাহানপুর', 'সিলিমপুর, শজিমেক গেট সংলগ্ন · ওয়াইফাই ও মিল সুবিধা · ২,৮০০৳', '01817-665544'),
-  ('jobs', 'মোঃ শফিকুল ইসলাম — দক্ষ ইলেকট্রিশিয়ান', NULL, NULL, 'দক্ষ টেকনিশিয়ান', 'বগুড়া সদর', 'বাসাবাড়ি ও অফিসের ওয়্যারিং, আইপিএস ও এসি সার্ভিসিং', '01725-778899'),
-  ('jobs', 'রফিকুল আলম — অভিজ্ঞ প্রাইভেট কার ড্রাইভার', NULL, NULL, 'ড্রাইভার', 'বগুড়া সদর', 'বৈধ পেশাদার লাইসেন্সধারী · ঢাকা ও উত্তরবঙ্গ রুটে অভিজ্ঞ', '01815-123987'),
-  ('business', 'এশিয়া সুইটমিট অ্যান্ড কোল্ড ড্রিংকস', NULL, NULL, 'জিআই বগুড়ার দই', 'বগুড়া সদর', 'কবি নজরুল ইসলাম সড়ক, বগুড়া · ঐতিহ্যবাহী শাহী দই ও মিষ্টান্ন', '051-66294'),
-  ('business', 'আকবরিয়া গ্র্যান্ড হোটেল অ্যান্ড সুইটস', NULL, NULL, 'শতবর্ষী ঐতিহ্য', 'বগুড়া সদর', 'থানা রোড, বগুড়া · শতবর্ষী ঐতিহ্যবাহী দই, লাচ্ছা সেমাই ও রেস্তোরাঁ', '01711-311222'),
-  ('business', 'মহাস্থান দই ঘর ও কটকটি ভান্ডার', NULL, NULL, 'দই ও কটকটি', 'শিবগঞ্জ', 'মহাস্থানগড় বাসস্ট্যান্ড · খাঁটি সরের দই ও প্রসিদ্ধ মহাস্থানের কটকটি', '01718-445566');
+INSERT INTO public.tourist_spots (
+  id, title, en_title, category, category_bn, location, upazila, tag, cover_image,
+  gallery, short_desc, history, architecture, how_to_reach, highlights, timings, entry_fee,
+  best_time, map_coordinates, map_url, is_approved, contributor_name, contributor_note
+) VALUES
+(
+  'mahasthangarh',
+  'মহাস্থানগড় (প্রাচীন পুণ্ড্রনগর)',
+  'Mahasthangarh Ancient Citadel',
+  'archaeological',
+  'প্রত্নতাত্ত্বিক নিদর্শন',
+  'মহাস্থান, শিবগঞ্জ উপজেলা, বগুড়া',
+  'শিবগঞ্জ',
+  'ইউনেস্কো সম্ভাব্য ঐতিহ্য',
+  'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80',
+  '["https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80"]',
+  'খ্রিস্টপূর্ব ৩য় শতাব্দীর পুণ্ড্রবর্ধন রাজ্যের রাজধানী। করতোয়া নদীর তীরে অবস্থিত বাংলাদেশের প্রাচীনতম সুরক্ষিত নগর সভ্যতার ধ্বংসাবশেষ।',
+  'মহাস্থানগড় বাংলাদেশের অন্যতম প্রাচীন প্রত্নতাত্ত্বিক নিদর্শন। খ্রিস্টপূর্ব ৩য় শতক থেকে দ্বাদশ শতক পর্যন্ত এটি পুণ্ড্রবর্ধনের রাজধানী ছিল। ১৮৭৯ সালে স্যার আলেকজান্ডার কানিংহাম এটি চিহ্নিত করেন। এখান থেকে প্রাপ্ত ব্রাহ্মী শিলালিপি প্রাচীনতম লিখিত দলিল।',
+  'করতোয়া নদীর তীরে আয়তাকার মাটির দুর্গপ্রাচীর ও পরিখা দ্বারা সুরক্ষিত। এর ভেতরে জিয়ত কুণ্ড, পরশুরামের প্রাসাদ, বৈরাগীর ভিটা, গোবিন্দ ভিটা এবং আধুনিক সরকারি জাদুঘর অবস্থিত।',
+  'বগুড়া সাতমাথা অথবা চারমাথা বাস টার্মিনাল থেকে রংপুর মহাসড়ক ধরে ১২ কিমি উত্তরে মহাস্থান বাসস্ট্যান্ড। সিএনজি বা বাসে সময় লাগে ২৫ মিনিট।',
+  '["প্রাচীন পুণ্ড্রনগরের সুউচ্চ মাটির দুর্গপ্রাচীর", "পরশুরামের প্রাসাদ ও ঐতিহাসিক জিয়ত কুণ্ড", "করতোয়া নদীর তীরের নান্দনিক গোবিন্দ ভিটা", "প্রত্নতাত্ত্বিক জাদুঘর ও প্রাচীন ব্রাহ্মী লিপি", "ঐতিহ্যবাহী মহাস্থানের কটকটি"]',
+  'সকাল ৯টা – বিকেল ৫টা (জাদুঘর রবিবার বন্ধ)',
+  'দেশি পর্যটক: ৩০ টাকা, শিক্ষার্থী: ৫ টাকা, বিদেশি: ৫০০ টাকা',
+  'অক্টোবর থেকে মার্চ',
+  '24.9606° N, 89.3458° E',
+  'https://maps.google.com/?q=Mahasthangarh,Bogura',
+  true,
+  'বগুড়া ইতিহাস পরিষদ',
+  'বাংলাদেশ প্রত্নতত্ত্ব অধিদপ্তরের তথ্যসূত্রে সংকলিত'
+),
+(
+  'gokul-medh',
+  'বেহুলার বাসর ঘর (গোকুল মেধ)',
+  'Gokul Medh (Behula Lakshindar)',
+  'archaeological',
+  'প্রত্নতাত্ত্বিক নিদর্শন',
+  'গোকুল গ্রাম, শিবগঞ্জ উপজেলা, বগুড়া',
+  'শিবগঞ্জ',
+  'মনসামঙ্গল কিংবদন্তি',
+  'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80',
+  '["https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80"]',
+  'মহাস্থানগড় থেকে ২ কিমি দক্ষিণে অবস্থিত ১৭২টি অন্ধ কুঠুরি বিশিষ্ট অনন্য স্তরভিত্তিক বৌদ্ধ স্তূপ ও স্থাপত্য নিদর্শন।',
+  'লোকবিশ্বাস মতে এটি বেহুলা-লখিন্দরের বাসর ঘর হলেও এটি মূলত ৭ম-১১শ শতাব্দীর একটি বৃহৎ বৌদ্ধ স্তূপ। ১৯৩৪-৩৬ সালে ননীগোপাল মজুমদারের প্রত্নতাত্ত্বিক খননে এটি উন্মোচিত হয়।',
+  'ইট নির্মিত ১৭২টি সমান্তরাল অন্ধ প্রকোষ্ঠের ওপর পিরামিড সদৃশ স্তরে স্তরে ওপরে উঠেছে এই স্থাপনা।',
+  'বগুড়া শহর থেকে উত্তরে মহাস্থানগড় যাওয়ার পথে গোকুল বাসস্ট্যান্ড নেমে পূর্বে ১ কিমি।',
+  '["১৭২টি সেলুলার অন্ধ কুঠুরি কাঠামো", "উঁচু ঢিবির ওপর থেকে সবুজ প্রকৃতির দৃশ্য", "বেহুলা-লখিন্দরের রোমাঞ্চকর লোকগাথা"]',
+  'সকাল ৯টা – বিকেল ৫টা',
+  'প্রবেশ ফি: ২০ টাকা',
+  'নভেম্বর থেকে ফেব্রুয়ারি',
+  '24.9458° N, 89.3492° E',
+  'https://maps.google.com/?q=Gokul+Medh,Bogura',
+  true,
+  'আরিফুল হক',
+  'স্থানীয় ইতিহাস সংগ্রাহক'
+),
+(
+  'kherua-mosque',
+  'ঐতিহাসিক খেরুয়া মসজিদ (১৫৮২)',
+  'Historic Kherua Mosque',
+  'heritage',
+  'সুলতানি ও মুঘল স্থাপত্য',
+  'খন্দকারটোলা, শেরপুর উপজেলা, বগুড়া',
+  'শেরপুর',
+  '১৫৮২ সালের স্থাপত্য',
+  'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80',
+  '["https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80"]',
+  '১৫৮২ খ্রিস্টাব্দে নির্মিত তিন গম্বুজ বিশিষ্ট অপূর্ব পোড়ামাটির টেরাকোটা অলংকরণ সমৃদ্ধ সুলতানি-মুঘল ট্রানজিশনাল মসজিদ।',
+  'মুঘল সম্রাট আকবরের আমলে ১৫৮২ খ্রিস্টাব্দে মির্জা মুরাদ খান কাকশাল এই অনন্য মসজিদটি নির্মাণ করেন। দরজার ফার্সি শিলালিপিতে এর সুনির্দিষ্ট নির্মাণকাল খোদাই করা আছে।',
+  'মসজিদের ছাদে তিনটি গোলাকার গম্বুজ এবং চার কোণে চারটি অষ্টভুজাকার মিনার রয়েছে। দেয়ালের গায়ে চমৎকার জ্যামিতিক ও পোড়ামাটির পদ্মফুল খোদাই করা।',
+  'বগুড়া শহর থেকে ঢাকা মহাসড়কে ২২ কিমি দক্ষিণে শেরপুর বাসস্ট্যান্ড থেকে ১ কিমি পশ্চিমে।',
+  '["সাড়ে চার শত বছরের প্রাচীন তিন গম্বুজ কাঠামো", "অষ্টভুজাকার কারুকার্যময় মিনার", "মূল ফার্সি শিলালিপি"]',
+  'সারাদিন উন্মুক্ত',
+  'সম্পূর্ণ বিনামূল্যে',
+  'সারা বছর',
+  '24.6732° N, 89.4216° E',
+  'https://maps.google.com/?q=Kherua+Mosque+Sherpur+Bogura',
+  true,
+  'শেরপুর ঐতিহ্য পরিষদ',
+  'ঐতিহাসিক তথ্যসূত্র যাচাইকৃত'
+),
+(
+  'sariakandi-jamuna-ghat',
+  'প্রেম যমুনার ঘাট ও কালিতলা গ্রোয়েন',
+  'Sariakandi Jamuna Ghat & Kalitala Groin',
+  'nature',
+  'নদী পর্যটন ও চরাঞ্চল',
+  'কালিতলা, সারিয়াকান্দি উপজেলা, বগুড়া',
+  'সারিয়াকান্দি',
+  'যমুনার সূর্যাস্ত ও নৌকাভ্রমণ',
+  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+  '["https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"]',
+  'যমুনা নদীর বিশাল জলরাশি, কালিতলা স্পার বাঁধ, চরাঞ্চল কৃষি ও সূর্যাস্তের মনোরম প্রাকৃতিক পর্যটন কেন্দ্র।',
+  'যমুনা নদীর ভাঙন রোধে নির্মিত কংক্রিট গ্রোয়েন বাঁধটি বর্তমানে উত্তরবঙ্গের অন্যতম নান্দনিক নদী অবকাশ কেন্দ্রে পরিণত হয়েছে।',
+  'কংক্রিটের স্পার বাঁধ নদীর গভীরে বিস্তৃত। ঘাট থেকে দেশি কাঠের নৌকায় চরাঞ্চল ঘুরে দেখা যায়।',
+  'বগুড়া সাতমাথা থেকে সরাসরি বাস বা সিএনজিতে ২৩ কিমি পূর্বে সারিয়াকান্দি সদর।',
+  '["যমুনা নদীর বুকে সূর্যাস্ত ও সূর্যোদয়ের অপূর্ব রূপ", "কালিতলা গ্রোয়েন বাঁধে শীতল হাওয়া", "দেশি কাঠের নৌকায় নদীভ্রমণ", "তাজা নদীর মাছ ভাজা"]',
+  'ভোর ৫টা – রাত ৮টা',
+  'ঘাট প্রবেশ বিনামূল্যে',
+  'জুলাই থেকে ফেব্রুয়ারি',
+  '24.8912° N, 89.5824° E',
+  'https://maps.google.com/?q=Sariakandi+Jamuna+Ghat,Bogura',
+  true,
+  'রাশেদুল কবির',
+  'সারিয়াকান্দি পর্যটন ফোরাম'
+)
+ON CONFLICT (id) DO UPDATE SET
+  title = EXCLUDED.title,
+  cover_image = EXCLUDED.cover_image,
+  short_desc = EXCLUDED.short_desc,
+  history = EXCLUDED.history;

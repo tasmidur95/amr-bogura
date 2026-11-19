@@ -499,3 +499,4 @@ export const initialCommunityState: Record<string, CommunityPost[]> = {
     { id: 'bu5', category: 'business', name: 'বগুড়া এগ্রো মেশিনারিজ ও ফাউন্ড্রি হাব', upazila: 'বগুড়া সদর', detail: 'বিসিক শিল্পনগরী ও রেলওয়ে মার্কেট · কৃষি যন্ত্রপাতি ও খুচরা যন্ত্রাংশ', phone: '01712-304050', badge: 'স্থানীয় শিল্প' }
   ]
 };
+

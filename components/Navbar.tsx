@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
 
@@ -46,12 +47,11 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch }: Navbar
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           {/* Brand Identity */}
-          <button
-            onClick={() => onNavigate('home')}
+          <Link
+            href="/"
             className="flex items-center gap-3 group shrink-0 text-left cursor-pointer"
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-800 to-emerald-600 text-white flex items-center justify-center shadow-md shadow-emerald-900/15 group-hover:scale-105 transition-transform">
-              {/* Stylized Terracotta & River Emblem SVG */}
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M3 20h18M5 20V10l7-6 7 6v10" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M9 20v-6h6v6" strokeLinecap="round" strokeLinejoin="round" />
@@ -71,12 +71,12 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch }: Navbar
                 {t('brandSubtitle')}
               </p>
             </div>
-          </button>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/70">
-            <button
-              onClick={() => onNavigate('home')}
+            <Link
+              href="/"
               className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${
                 currentView === 'home'
                   ? 'font-semibold text-emerald-900 bg-white shadow-sm'
@@ -84,15 +84,15 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch }: Navbar
               }`}
             >
               {t('navHome')}
-            </button>
+            </Link>
             <button
               onClick={() => onNavigate('home', 'services')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
             >
               {t('navServices')}
             </button>
-            <button
-              onClick={() => onNavigate('upazilas')}
+            <Link
+              href="/upazilas"
               className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${
                 currentView === 'upazilas'
                   ? 'font-semibold text-emerald-900 bg-white shadow-sm'
@@ -100,19 +100,23 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch }: Navbar
               }`}
             >
               {t('navUpazilas')}
-            </button>
+            </Link>
             <button
               onClick={() => onNavigate('home', 'healthcare')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
             >
               {t('navHealthcare')}
             </button>
-            <button
-              onClick={() => onNavigate('home', 'explore')}
-              className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
+            <Link
+              href="/explore"
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${
+                currentView === 'explore'
+                  ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                  : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+              }`}
             >
               {t('navExplore')}
-            </button>
+            </Link>
             <button
               onClick={() => onNavigate('home', 'history')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"

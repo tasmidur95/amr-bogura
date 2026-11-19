@@ -13,3 +13,4 @@ import { SupabaseService } from './supabase/supabase.service';
   providers: [UpazilasService, CommunityService, HealthcareService, SupabaseService],
 })
 export class AppModule {}
+

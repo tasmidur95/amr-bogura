@@ -14,3 +14,4 @@ export class HealthcareService {
     return this.hospitals.filter(h => h.type === type);
   }
 }
+

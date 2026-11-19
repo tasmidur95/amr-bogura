@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { Upazila, Hospital, ExploreSpot, EmergencyContact } from '@/lib/data/district-data';
+import { detailedExploreSpots } from '@/lib/data/explore-data';
 import { useToast } from '@/lib/context/ToastContext';
 
 interface SearchModalProps {
@@ -20,11 +22,11 @@ export default function SearchModal({
   onClose,
   upazilas,
   hospitals,
-  exploreSpots,
   emergencyContacts,
   onNavigate,
   onOpenUpazilaDetail,
 }: SearchModalProps) {
+  const router = useRouter();
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const { showToast } = useToast();
@@ -72,7 +74,27 @@ export default function SearchModal({
           sub: `${u.area} · ${u.unions}`,
           action: () => {
             onClose();
-            onOpenUpazilaDetail(idx);
+            router.push(`/upazilas/${idx}`);
+          },
+        });
+      }
+    });
+
+    // Detailed Explore Spots
+    detailedExploreSpots.forEach(e => {
+      if (
+        e.title.toLowerCase().includes(q) ||
+        e.enTitle.toLowerCase().includes(q) ||
+        e.location.toLowerCase().includes(q) ||
+        e.upazila.toLowerCase().includes(q)
+      ) {
+        results.push({
+          type: 'দর্শনীয় স্থান',
+          title: e.title,
+          sub: `${e.location} · ${e.categoryBn}`,
+          action: () => {
+            onClose();
+            router.push(`/explore/${e.id}`);
           },
         });
       }
@@ -92,25 +114,6 @@ export default function SearchModal({
           action: () => {
             onClose();
             onNavigate('home', 'healthcare');
-          },
-        });
-      }
-    });
-
-    // Explore
-    exploreSpots.forEach(e => {
-      if (
-        e.title.toLowerCase().includes(q) ||
-        e.enTitle.toLowerCase().includes(q) ||
-        e.location.toLowerCase().includes(q)
-      ) {
-        results.push({
-          type: 'দর্শনীয় স্থান',
-          title: e.title,
-          sub: e.location,
-          action: () => {
-            onClose();
-            onNavigate('home', 'explore');
           },
         });
       }
@@ -145,7 +148,7 @@ export default function SearchModal({
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="বগুড়ার হাসপাতাল, উপজেলা, দর্শনীয় স্থান বা জরুরি নম্বর খুঁজুন..."
+            placeholder="বগুড়ার দর্শনীয় স্থান, হাসপাতাল, উপজেলা বা জরুরি নম্বর..."
             className="w-full text-base focus:outline-none text-slate-900"
           />
           <button
@@ -159,7 +162,7 @@ export default function SearchModal({
         <div className="max-h-80 overflow-y-auto divide-y divide-slate-100 mt-2">
           {!q ? (
             <p className="text-xs text-slate-400 py-6 text-center">
-              খুঁজতে টাইপ করুন (যেমন: শজিমেক, মহাস্থানগড়, শেরপুর, ফায়ার সার্ভিস)
+              খুঁজতে টাইপ করুন (যেমন: মহাস্থানগড়, খেরুয়া মসজিদ, শজিমেক, শেরপুর, যমুনা ঘাট)
             </p>
           ) : results.length === 0 ? (
             <p className="text-xs text-slate-500 py-6 text-center">

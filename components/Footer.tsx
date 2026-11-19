@@ -127,3 +127,4 @@ export default function Footer({ onNavigate, onSwitchCommunityTab }: FooterProps
     </footer>
   );
 }
+

@@ -10,3 +10,4 @@ export class HealthcareController {
     return this.healthcareService.findAll(type);
   }
 }
+

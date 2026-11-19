@@ -20,3 +20,4 @@ export class CommunityController {
     return this.communityService.create(createPostDto);
   }
 }
+

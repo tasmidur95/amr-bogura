@@ -10,3 +10,4 @@ export class UpazilasController {
     return this.upazilasService.findAll(query);
   }
 }
+

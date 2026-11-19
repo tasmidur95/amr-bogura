@@ -23,3 +23,4 @@ export class UpazilasService {
     return this.upazilas.filter(u => u.name.toLowerCase().includes(q) || u.enName.toLowerCase().includes(q));
   }
 }
+

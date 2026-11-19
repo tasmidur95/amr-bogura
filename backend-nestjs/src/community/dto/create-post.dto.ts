@@ -8,3 +8,4 @@ export class CreatePostDto {
   detail: string;
   phone: string;
 }
+
