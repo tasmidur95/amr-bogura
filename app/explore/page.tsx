@@ -80,16 +80,12 @@ export default function ExploreIndexPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
-      <Navbar
-        currentView="explore"
-        onNavigate={() => {}}
-        onOpenSearch={() => {}}
-      />
+      <Navbar currentView="explore" />
 
       <main className="flex-1">
         {/* Explore Hero Banner (modeled on amargaibandha.bd/explore) */}
         <div className="bg-[#F9F8F4] border-b border-slate-200/90 pt-8 pb-10 sm:pt-12 sm:pb-14">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             {/* Breadcrumb Navigation */}
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-500 mb-5">
               <Link
@@ -172,7 +168,7 @@ export default function ExploreIndexPage() {
         </div>
 
         {/* Filter Chips & Search Bar */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-200/80">
             {/* Category Pills */}
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
@@ -393,8 +389,8 @@ export default function ExploreIndexPage() {
         </div>
       </main>
 
-      <Footer onNavigate={() => {}} onSwitchCommunityTab={() => {}} />
-      <BottomNav currentView="explore" onNavigate={() => {}} />
+      <Footer />
+      <BottomNav currentView="explore" />
 
       {/* Contributor Submission Modal */}
       <ExploreContributeModal

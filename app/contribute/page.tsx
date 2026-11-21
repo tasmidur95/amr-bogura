@@ -33,6 +33,8 @@ export default function ContributePage() {
   const [spotLocation, setSpotLocation] = useState('');
   const [spotTag, setSpotTag] = useState('');
   const [spotCoverImage, setSpotCoverImage] = useState('https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80');
+  const [spotGallery, setSpotGallery] = useState<string[]>([]);
+  const [customGalleryUrl, setCustomGalleryUrl] = useState('');
   const [spotShortDesc, setSpotShortDesc] = useState('');
   const [spotHistory, setSpotHistory] = useState('');
   const [spotHowToReach, setSpotHowToReach] = useState('');
@@ -252,7 +254,7 @@ export default function ContributePage() {
             upazila: spotUpazila,
             tag: spotTag || 'নাগরিক প্রস্তাবিত স্থান',
             coverImage: spotCoverImage,
-            gallery: [spotCoverImage],
+            gallery: Array.from(new Set([spotCoverImage, ...spotGallery].filter(Boolean))),
             shortDesc: spotShortDesc,
             history: spotHistory || spotShortDesc,
             architecture: '',
@@ -361,7 +363,6 @@ export default function ContributePage() {
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800">
       <Navbar
         currentView="contribute"
-        onNavigate={() => {}}
         onOpenSearch={() => setIsSearchOpen(true)}
       />
 
@@ -596,6 +597,73 @@ export default function ContributePage() {
                       placeholder="অথবা সরাসরি ছবির ইমেজ URL দিন (https://...)"
                       className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700/30 focus:border-emerald-700"
                     />
+                  </div>
+
+                  {/* Additional Gallery Photos */}
+                  <div className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-xs font-semibold text-slate-800">
+                        <i className="fa-regular fa-images text-emerald-700 mr-1.5"></i>
+                        অতিরিক্ত ছবির লিংক যোগ করুন (গ্যালারি অ্যালবাম)
+                      </label>
+                      <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+                        {spotGallery.length}টি অতিরিক্ত ছবি
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-500">
+                      এই স্থানটির আরও ছবি থাকলে তার লিংক যুক্ত করুন। দর্শনার্থীরা অ্যালবামে এগুলো স্লাইড করে দেখতে পাবেন।
+                    </p>
+                    <div className="flex gap-2">
+                      <input
+                        type="url"
+                        value={customGalleryUrl}
+                        onChange={e => setCustomGalleryUrl(e.target.value)}
+                        placeholder="https://... অন্য কোনো ছবির সরাসরি ইমেজ লিঙ্ক দিন"
+                        className="flex-1 px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-emerald-700/30"
+                        onKeyDown={e => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const val = customGalleryUrl.trim();
+                            if (val && !spotGallery.includes(val)) {
+                              setSpotGallery(prev => [...prev, val]);
+                              setCustomGalleryUrl('');
+                            }
+                          }
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const val = customGalleryUrl.trim();
+                          if (val && !spotGallery.includes(val)) {
+                            setSpotGallery(prev => [...prev, val]);
+                            setCustomGalleryUrl('');
+                          }
+                        }}
+                        className="px-3.5 py-2 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs shrink-0 cursor-pointer transition flex items-center gap-1"
+                      >
+                        <i className="fa-solid fa-plus text-[10px]"></i>
+                        <span>যোগ করুন</span>
+                      </button>
+                    </div>
+
+                    {spotGallery.length > 0 && (
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {spotGallery.map((img, idx) => (
+                          <div key={idx} className="relative group w-20 h-14 rounded-xl overflow-hidden border border-slate-300 shadow-2xs">
+                            <img src={img} alt={`gallery-${idx}`} className="w-full h-full object-cover" />
+                            <button
+                              type="button"
+                              onClick={() => setSpotGallery(prev => prev.filter((_, i) => i !== idx))}
+                              className="absolute top-1 right-1 w-5 h-5 bg-rose-600 text-white rounded-full flex items-center justify-center text-[10px] opacity-90 hover:opacity-100 transition shadow cursor-pointer"
+                              title="মুছে ফেলুন"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div>
@@ -1085,14 +1153,8 @@ export default function ContributePage() {
         </section>
       </main>
 
-      <Footer
-        onNavigate={() => {}}
-        onSwitchCommunityTab={() => {}}
-      />
-      <BottomNav
-        currentView="contribute"
-        onNavigate={() => {}}
-      />
+      <Footer />
+      <BottomNav currentView="contribute" />
 
       <SearchModal
         isOpen={isSearchOpen}

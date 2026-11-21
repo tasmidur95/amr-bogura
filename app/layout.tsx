@@ -57,7 +57,7 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
       </head>
-      <body className="pb-20 md:pb-0 antialiased selection:bg-emerald-700 selection:text-white">
+      <body className="min-h-screen w-full antialiased selection:bg-emerald-700 selection:text-white">
         <LanguageProvider>
           <ToastProvider>
             {children}

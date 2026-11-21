@@ -2,19 +2,40 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import BrandLogo from '@/components/BrandLogo';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { SiteContent } from '@/lib/data/district-data';
 
 interface FooterProps {
-  onNavigate: (view: string, anchor?: string) => void;
-  onSwitchCommunityTab: (tab: string) => void;
+  onNavigate?: (view: string, anchor?: string) => void;
+  onSwitchCommunityTab?: (tab: string) => void;
   siteContent?: SiteContent;
 }
 
 export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }: FooterProps) {
+  const router = useRouter();
   const { language } = useLanguage();
   const [activeContent, setActiveContent] = useState<SiteContent | undefined>(siteContent);
+
+  const handleNav = (view: string, anchor?: string) => {
+    if (onNavigate) {
+      onNavigate(view, anchor);
+    } else {
+      if (view === 'home') {
+        router.push(`/${anchor ? '#' + anchor : ''}`);
+      } else {
+        router.push(`/${view}`);
+      }
+    }
+  };
+
+  const handleCommunity = (tab: string) => {
+    if (onSwitchCommunityTab) {
+      onSwitchCommunityTab(tab);
+    }
+    handleNav('home', 'community');
+  };
 
   useEffect(() => {
     if (siteContent) {
@@ -49,7 +70,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
             <ul className="space-y-2 text-sm text-emerald-300">
               <li>
                 <button
-                  onClick={() => onNavigate('home', 'services')}
+                  onClick={() => handleNav('home', 'services')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
                   সব নাগরিক সেবা
@@ -57,7 +78,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('upazilas')}
+                  onClick={() => handleNav('upazilas')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
                   ১২টি উপজেলা ডিরেক্টরি
@@ -65,7 +86,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('home', 'healthcare')}
+                  onClick={() => handleNav('home', 'healthcare')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
                   হাসপাতাল ও ডায়াগনস্টিক
@@ -105,10 +126,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
             <ul className="space-y-2 text-sm text-emerald-300">
               <li>
                 <button
-                  onClick={() => {
-                    onSwitchCommunityTab('blood');
-                    onNavigate('home', 'community');
-                  }}
+                  onClick={() => handleCommunity('blood')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
                   রক্তদাতা নেটওয়ার্ক
@@ -116,10 +134,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
               </li>
               <li>
                 <button
-                  onClick={() => {
-                    onSwitchCommunityTab('tuition');
-                    onNavigate('home', 'community');
-                  }}
+                  onClick={() => handleCommunity('tuition')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
                   টিউশন ও শিক্ষা
@@ -127,10 +142,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
               </li>
               <li>
                 <button
-                  onClick={() => {
-                    onSwitchCommunityTab('rent');
-                    onNavigate('home', 'community');
-                  }}
+                  onClick={() => handleCommunity('rent')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
                   বাসা ও দোকান ভাড়া
@@ -138,10 +150,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
               </li>
               <li>
                 <button
-                  onClick={() => {
-                    onSwitchCommunityTab('business');
-                    onNavigate('home', 'community');
-                  }}
+                  onClick={() => handleCommunity('business')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
                   বগুড়ার দই ও স্থানীয় ব্যবসা

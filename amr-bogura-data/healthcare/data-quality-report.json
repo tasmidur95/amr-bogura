@@ -1,35 +1,131 @@
 {
-  "total_facilities": 63,
+  "project": "Amr Bogura (আমার বগুড়া)",
+  "report_title": "Healthcare Data Quality & Geographic Coverage Report",
+  "generated_at": "2026-11-21",
+  "total_facilities": 352,
   "upazilas_covered": 12,
+  "covered_upazila_list": [
+    "Adamdighi",
+    "Bogura Sadar",
+    "Dhunat",
+    "Dhupchanchia",
+    "Gabtali",
+    "Kahalu",
+    "Nandigram",
+    "Sariakandi",
+    "Shajahanpur",
+    "Sherpur",
+    "Shibganj",
+    "Sonatala"
+  ],
+  "step_exports": [
+    {
+      "file": "01.government-upazila-facilities.json",
+      "title": "Government Upazila Healthcare Facilities — Bogura District",
+      "step": "01",
+      "records": 14
+    },
+    {
+      "file": "02.union-health-sub-centres.json",
+      "title": "Union Health Sub-Centres (UHSC) — Bogura District",
+      "step": "02",
+      "records": 49
+    },
+    {
+      "file": "03.union-health-family-welfare-centres.json",
+      "title": "Union Health and Family Welfare Centres (UH&FWC) — Bogura District",
+      "step": "03",
+      "records": 65
+    },
+    {
+      "file": "04.community-clinics.json",
+      "title": "Community Clinics (কমিউনিটি ক্লিনিক) — Bogura District",
+      "step": "04",
+      "records": 72
+    },
+    {
+      "file": "05.government-hospitals.json",
+      "title": "Government Hospitals & Specialized Healthcare Facilities — Bogura District",
+      "step": "05",
+      "records": 18
+    },
+    {
+      "file": "06.private-hospitals-clinics.json",
+      "title": "Private Hospitals and Clinics — Bogura District",
+      "step": "06",
+      "records": 30
+    },
+    {
+      "file": "07.diagnostic-centres.json",
+      "title": "Diagnostic Centres and Laboratories — Bogura District",
+      "step": "07",
+      "records": 29
+    },
+    {
+      "file": "08.specialized-healthcare-facilities.json",
+      "title": "Specialized Healthcare Facilities, Eye Hospitals & Dental Clinics — Bogura District",
+      "step": "08",
+      "records": 29
+    },
+    {
+      "file": "09.ngo-healthcare-facilities.json",
+      "title": "NGO Healthcare Facilities — Bogura District",
+      "step": "09",
+      "records": 26
+    },
+    {
+      "file": "10.ambulance-and-blood-bank-services.json",
+      "title": "Ambulance and Blood Bank Services — Bogura District",
+      "step": "10",
+      "records": 20
+    }
+  ],
   "facilities_by_upazila": {
-    "Adamdighi": 5,
-    "Bogura Sadar": 8,
-    "Dhunat": 5,
-    "Dhupchanchia": 5,
-    "Gabtali": 5,
-    "Kahalu": 5,
-    "Nandigram": 5,
-    "Sariakandi": 5,
-    "Shajahanpur": 5,
-    "Sherpur": 5,
-    "Shibganj": 5,
-    "Sonatala": 5
+    "Adamdighi": 26,
+    "Bogura Sadar": 57,
+    "Dhunat": 27,
+    "Dhupchanchia": 26,
+    "Gabtali": 27,
+    "Kahalu": 26,
+    "Nandigram": 25,
+    "Sariakandi": 28,
+    "Shajahanpur": 26,
+    "Sherpur": 32,
+    "Shibganj": 27,
+    "Sonatala": 25
   },
   "facilities_by_category": {
     "Upazila Health Complex": 11,
     "Upazila Health Office": 1,
     "District Health Administration": 1,
     "Vaccine & Cold Chain Logistics": 1,
-    "Union Health Sub-Centre": 49
+    "Union Health Sub-Centre": 49,
+    "Union Health & Family Welfare Centre": 65,
+    "Community Clinic": 72,
+    "Medical Colleges and Hospitals": 2,
+    "Government District Hospitals": 1,
+    "Government Specialized Hospitals": 16,
+    "Private Hospitals": 16,
+    "Private Clinics": 13,
+    "Diagnostic Centres": 29,
+    "Specialized Healthcare Facilities": 14,
+    "Eye Hospitals": 8,
+    "Dental Clinics": 7,
+    "NGO Healthcare Facilities": 26,
+    "Blood Banks": 7,
+    "Ambulance Services": 13
   },
   "verification": {
-    "verified": 63,
+    "verified": 352,
     "partially_verified": 0,
     "unverified": 0
   },
   "completeness": {
     "missing_coordinates": 0,
     "missing_phones": 0,
-    "missing_images": 0
+    "missing_images": 0,
+    "duplicate_records": 0,
+    "invalid_source_urls": 0,
+    "dghs_facilities_missing_from_maps": 0
   }
 }

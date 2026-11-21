@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 interface BottomNavProps {
   currentView: string;
-  onNavigate: (view: string, anchor?: string) => void;
+  onNavigate?: (view: string, anchor?: string) => void;
 }
 
 export default function BottomNav({ currentView, onNavigate }: BottomNavProps) {
@@ -56,13 +56,16 @@ export default function BottomNav({ currentView, onNavigate }: BottomNavProps) {
           <span>অবদান</span>
         </Link>
 
-        <button
-          onClick={() => onNavigate('home', 'community')}
-          className="flex flex-col items-center justify-center py-1 text-slate-600 hover:text-emerald-800 text-[11px] cursor-pointer"
+        <Link
+          href="/healthcare"
+          className={`flex flex-col items-center justify-center py-1 text-[11px] cursor-pointer ${currentView === 'healthcare'
+              ? 'text-emerald-800 font-bold'
+              : 'text-slate-600 hover:text-emerald-800'
+            }`}
         >
-          <i className="fa-solid fa-users text-base mb-0.5"></i>
-          <span>কমিউনিটি</span>
-        </button>
+          <i className="fa-solid fa-notes-medical text-base mb-0.5 text-emerald-700"></i>
+          <span>স্বাস্থ্য</span>
+        </Link>
       </div>
     </nav>
   );

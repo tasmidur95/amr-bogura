@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import BrandLogo from '@/components/BrandLogo';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
@@ -9,15 +10,28 @@ import { SiteContent } from '@/lib/data/district-data';
 
 interface NavbarProps {
   currentView: string;
-  onNavigate: (view: string, anchor?: string) => void;
-  onOpenSearch: () => void;
+  onNavigate?: (view: string, anchor?: string) => void;
+  onOpenSearch?: () => void;
   siteContent?: SiteContent;
 }
 
 export default function Navbar({ currentView, onNavigate, onOpenSearch, siteContent }: NavbarProps) {
+  const router = useRouter();
   const { language, toggleLanguage, t } = useLanguage();
   const { showToast } = useToast();
   const [activeContent, setActiveContent] = useState<SiteContent | undefined>(siteContent);
+
+  const handleNavClick = (view: string, anchor?: string) => {
+    if (onNavigate) {
+      onNavigate(view, anchor);
+    } else {
+      if (view === 'home') {
+        router.push(`/${anchor ? '#' + anchor : ''}`);
+      } else {
+        router.push(`/${view}`);
+      }
+    }
+  };
 
   useEffect(() => {
     if (siteContent) {
@@ -85,7 +99,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
               {t('navHome')}
             </Link>
             <button
-              onClick={() => onNavigate('home', 'services')}
+              onClick={() => handleNavClick('home', 'services')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
             >
               {t('navServices')}
@@ -99,12 +113,24 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             >
               {t('navUpazilas')}
             </Link>
-            <button
-              onClick={() => onNavigate('home', 'healthcare')}
-              className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
+            <Link
+              href="/healthcare"
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'healthcare'
+                  ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                  : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                }`}
             >
               {t('navHealthcare')}
-            </button>
+            </Link>
+            <Link
+              href="/education"
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'education'
+                  ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                  : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                }`}
+            >
+              {language === 'bn' ? 'শিক্ষাপ্রতিষ্ঠান' : 'Education'}
+            </Link>
             <Link
               href="/explore"
               className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'explore'
@@ -115,13 +141,13 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
               {t('navExplore')}
             </Link>
             <button
-              onClick={() => onNavigate('home', 'history')}
+              onClick={() => handleNavClick('home', 'history')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
             >
               {t('navHistory')}
             </button>
             <button
-              onClick={() => onNavigate('home', 'community')}
+              onClick={() => handleNavClick('home', 'community')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
             >
               {t('navCommunity')}
@@ -149,7 +175,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
 
             <button
-              onClick={onOpenSearch}
+              onClick={() => onOpenSearch ? onOpenSearch() : router.push('/explore')}
               className="p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center gap-2 text-sm cursor-pointer"
               title="Search Bogura"
             >

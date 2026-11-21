@@ -298,7 +298,8 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
     tag: 'জিআই স্বীকৃত দই ও শতবর্ষী ইতিহাস',
     coverImage: 'https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=1200&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80'
     ],
     shortDesc: 'পাকিস্তানের সাবেক প্রধানমন্ত্রী মোহাম্মদ আলী বগুড়ার ঐতিহাসিক নবাব প্যালেস এবং বগুড়ার বিশ্বখ্যাত জিআই স্বীকৃত দই শিল্প।',
     history: 'বগুড়ার নবাব পরিবার উনবিংশ ও বিংশ শতাব্দীতে অবিভক্ত বাংলা ও উপমহাদেশের রাজনীতি ও শিক্ষায় গভীর প্রভাব রেখেছিল। এই পরিবারের কৃতী সন্তান মোহাম্মদ আলী বগুড়া পাকিস্তানের তৃতীয় প্রধানমন্ত্রী ছিলেন। তাদের ঐতিহাসিক প্রাসাদ সূত্রাপুরে অবস্থিত। পাশেই সাতমাথা ও কবি নজরুল ইসলাম সড়কে গড়ে উঠেছে বিশ্বখ্যাত বগুড়ার দই ও মিষ্টির শতবর্ষী ঐতিহ্য, যা ২০২৩ সালে আন্তর্জাতিক ভৌগোলিক নির্দেশক (GI) সনদ অর্জন করে।',
@@ -343,7 +344,8 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
     tag: 'সুপ্রাচীন নাথপন্থী তীর্থ',
     coverImage: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80'
     ],
     shortDesc: 'নাগর নদীর তীরে অবস্থিত নাথপন্থী সাধকদের ৮৮ একর বিস্তৃত প্রাচীন আশ্রম, শিব মন্দির ও পোড়ামাটির ফলকচিত্র।',
     history: 'কাহালুর যোগীর ভবন সুপ্রাচীন কাল থেকেই নাথপন্থী যোগী ও সন্ন্যাসীদের প্রধান সাধনক্ষেত্র হিসেবে খ্যাত। কিংবদন্তি অনুসারে গোরক্ষনাথ ও মীননাথের অনুসারীরা এখানে সাধনা করতেন। পরবর্তীতে সেন আমলে এবং মুঘল আমলে রাজা মানসিংহ এই আশ্রম পরিদর্শনে এসেছিলেন বলে জনশ্রুতি রয়েছে। এখানকার মন্দিরগুলো প্রাচীন বাংলার টেরাকোটা শিল্পের সমৃদ্ধ নিদর্শন বহন করে।',
@@ -387,7 +389,8 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
     tag: 'উপমহাদেশের ৫১ শক্তিপীঠের এক পীঠ',
     coverImage: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80'
     ],
     shortDesc: 'হিন্দু পৌরাণিক বিশ্বাসের ৫১ শক্তিপীঠের অন্যতম পবিত্র তীর্থ; নাটোরের রানী ভবানীর স্মৃতিবিজড়িত মন্দির প্রাঙ্গণ।',
     history: 'হিন্দু পৌরাণিক বিশ্বাস অনুসারে দেবী সতীর বাম পায়ের নূপুর বা অর্ঘ্য এখানে পতিত হয়েছিল। ফলে এটি শক্তিপীঠ হিসেবে উপমহাদেশব্যাপী বিখ্যাত। নাটোরের দানশীল রানী ভবানী এই মন্দিরের ভক্ত ছিলেন এবং তিনি মন্দিরের সংস্কার ও প্রাঙ্গণে বিশাল পুকুর ও অতিথিশালা নির্মাণ করেছিলেন। প্রতি বছর মাঘী পূর্ণিমায় এখানে ঐতিহ্যবাহী মেলা ও ভক্তদের ঢল নামে।',

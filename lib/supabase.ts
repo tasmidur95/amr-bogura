@@ -22,7 +22,23 @@ let supabaseInstance: SupabaseClient | null = null;
 
 if (isSupabaseConfigured) {
   try {
-    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey);
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false
+      },
+      global: {
+        fetch: (url, options: RequestInit = {}) => {
+          // Add a 2.5s timeout so unreachable/slow endpoints never freeze the server
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 2500);
+          return fetch(url, {
+            ...options,
+            signal: options.signal || controller.signal
+          }).finally(() => clearTimeout(timeoutId));
+        }
+      }
+    });
   } catch (err) {
     console.warn('Failed to initialize Supabase client:', err);
   }

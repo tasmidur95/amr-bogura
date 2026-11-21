@@ -1,0 +1,2021 @@
+[
+  {
+    "id": "govt-azizul-haque-college",
+    "name": "সরকারি আজিজুল হক কলেজ, বগুড়া",
+    "enName": "Govt. Azizul Haque College, Bogura",
+    "eiin": "119246",
+    "rank": 1,
+    "category": "college",
+    "categoryBn": "বিশ্ববিদ্যালয় কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "পুরাতন ভবন: জলেশ্বরীতলা; নতুন ভবন: ফুলবাড়ী, বগুড়া সদর",
+    "established": "১৯৩৯",
+    "management": "সরকারি",
+    "educationLevel": "উচ্চ মাধ্যমিক, ডিগ্রি (পাস), স্নাতক (সম্মান) ২৩টি বিষয় ও স্নাতকোত্তর",
+    "board": "রাজশাহী শিক্ষা বোর্ড ও জাতীয় বিশ্ববিদ্যালয়",
+    "coverImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
+    "logo": "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=300&q=80",
+    "phone": "051-65562, 01711-234567",
+    "email": "gahc_bogura@yahoo.com",
+    "website": "https://www.gahc.edu.bd",
+    "principal": "প্রফেসর মোঃ শাহজাহান আলী",
+    "stats": {
+      "appeared": "27,172",
+      "passed": "26,687",
+      "gpa5": "15,392",
+      "passRate": "98.2%"
+    },
+    "facilities": [
+      "কেন্দ্রীয় সুবিশাল লাইব্রেরি (৫০,০০০+ বই)",
+      "আধুনিক বিজ্ঞান ল্যাবরেটরি",
+      "ছাত্রদের ৩টি ও ছাত্রীদের ২টি আবাসিক হোস্টেল",
+      "বিশাল খেলার মাঠ ও জিমনেসিয়াম",
+      "নিজস্ব শিক্ষার্থী পরিবহন বাস",
+      "অডিটোরিয়াম ও সেমিনার হল"
+    ],
+    "courses": [
+      "এইচএসসি (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "স্নাতক (সম্মান) ২৩টি বিষয়ে",
+      "স্নাতকোত্তর ২৩টি বিষয়ে",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "উত্তরবঙ্গের শ্রেষ্ঠ বিদ্যাপীঠ হিসেবে খ্যাত সরকারি আজিজুল হক কলেজ ১৯৩৯ সালের জুলাই মাসে প্রতিষ্ঠিত হয়। চমৎকার একাডেমিক পরিবেশ ও ফলাফলে বগুড়া জেলার শীর্ষস্থান অধিকারী।",
+    "history": "১৯৩৯ সালের জুলাই মাসে বগুড়া শহরের বিশিষ্ট সমাজসেবক ও শিক্ষানুরাগীদের উদ্যোগে স্যার আজিজুল হকের নামানুসারে কলেজটি প্রতিষ্ঠিত হয়। পরবর্তীতে ১৯৬৮ সালে এটি সরকারিকরণ করা হয়। বর্তমানে ফুলবাড়ীতে সুবিশাল নতুন ক্যাম্পাসে অনার্স ও মাস্টার্স কার্যক্রম এবং জলেশ্বরীতলার পুরাতন ভবনে উচ্চ মাধ্যমিক কার্যক্রম পরিচালিত হয়।",
+    "mapUrl": "https://maps.google.com/?q=Govt.+Azizul+Haque+College,+Bogura",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "bogra-cantonment-public-school-and-college",
+    "name": "বগুড়া ক্যান্টনমেন্ট পাবলিক স্কুল ও কলেজ",
+    "enName": "Bogra Cantonment Public School and College",
+    "eiin": "119251",
+    "rank": 2,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "শাজাহানপুর",
+    "location": "বগুড়া সেনানিবাস, শাজাহানপুর, বগুড়া",
+    "established": "১৯৭৯",
+    "management": "সামরিক / ক্যান্টনমেন্ট বোর্ড",
+    "educationLevel": "প্রাথমিক, মাধ্যমিক ও উচ্চ মাধ্যমিক (বাংলা ও ইংরেজি ভার্সন)",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80",
+    "logo": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=300&q=80",
+    "phone": "051-78922, 01769-952400",
+    "email": "bcpsc79@gmail.com",
+    "website": "https://www.bcpsc.edu.bd",
+    "principal": "লেফটেন্যান্ট কর্নেল মোহাম্মদ আনোয়ার হোসেন",
+    "stats": {
+      "appeared": "12,208",
+      "passed": "12,176",
+      "gpa5": "6,277",
+      "passRate": "99.7%"
+    },
+    "facilities": [
+      "মাল্টিমিডিয়া শীতাতপ নিয়ন্ত্রিত ক্লাসরুম",
+      "রোবোটিক্স ও অত্যাধুনিক আইসিটি ল্যাব",
+      "আন্তর্জাতিক মানের খেলার মাঠ",
+      "সুবিশাল অডিটোরিয়াম",
+      "সিসিটিভি নিয়ন্ত্রিত নিরাপদ ক্যাম্পাস",
+      "অভিভাবক লাউঞ্জ ও ক্যাফেটেরিয়া"
+    ],
+    "courses": [
+      "এইচএসসি বিজ্ঞান বিভাগ (বাংলা ও ইংরেজি মাধ্যম)",
+      "এইচএসসি ব্যবসায় শিক্ষা বিভাগ",
+      "এইচএসসি মানবিক বিভাগ",
+      "মাধ্যমিক ও প্রাথমিক স্তর"
+    ],
+    "shortDesc": "সুশৃঙ্খল সামরিক তত্ত্বাবধানে পরিচালিত বগুড়া ক্যান্টনমেন্ট পাবলিক স্কুল ও কলেজ জাতীয় পর্যায়ে একাধিকবার শ্রেষ্ঠ শিক্ষাপ্রতিষ্ঠান হিসেবে পুরস্কৃত হয়েছে।",
+    "history": "১৯৭৯ সালে বগুড়া সেনানিবাসে সেনা কর্মকর্তা ও স্থানীয় সন্তানদের মানসম্মত আধুনিক শিক্ষার উদ্দেশ্যে প্রতিষ্ঠিত হয়। শতভাগ পাস এবং সর্বোচ্চ জিপিএ-৫ প্রাপ্তির জন্য প্রতিষ্ঠানটি সারাদেশে অত্যন্ত সুপরিচিত।",
+    "mapUrl": "https://maps.google.com/?q=Bogra+Cantonment+Public+School+and+College",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "govt-shah-sultan-college",
+    "name": "সরকারি শাহ সুলতান কলেজ, বগুড়া",
+    "enName": "Govt. Shah Sultan College, Bogura",
+    "eiin": "119248",
+    "rank": 3,
+    "category": "college",
+    "categoryBn": "বিশ্ববিদ্যালয় কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বনানী রোড, ফুলবাড়ী, বগুড়া সদর",
+    "established": "১৯৬৮",
+    "management": "সরকারি",
+    "educationLevel": "উচ্চ মাধ্যমিক, ডিগ্রি (পাস), স্নাতক (সম্মান) ও স্নাতকোত্তর",
+    "board": "রাজশাহী শিক্ষা বোর্ড ও জাতীয় বিশ্ববিদ্যালয়",
+    "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+    "logo": "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=300&q=80",
+    "phone": "051-62845, 01712-334455",
+    "email": "gssc_bogra@yahoo.com",
+    "website": "https://www.govssc.edu.bd",
+    "principal": "প্রফেসর ড. মোঃ আমিনুল ইসলাম",
+    "stats": {
+      "appeared": "26,237",
+      "passed": "23,182",
+      "gpa5": "4,718",
+      "passRate": "88.4%"
+    },
+    "facilities": [
+      "ডিজিটাল লাইব্রেরি ও রিডিং রুম",
+      "পদার্থ, রসায়ন, জীববিজ্ঞান ও আইসিটি ল্যাব",
+      "ছাত্র-ছাত্রী মিলনায়তন",
+      "বিএনসিসি ও রোভার স্কাউট ডেন",
+      "শহীদ মিনার ও মুক্তমঞ্চ"
+    ],
+    "courses": [
+      "এইচএসসি (বিজ্ঞান, মানবিক ও ব্যবসায় শিক্ষা)",
+      "অনার্স ১৬টি বিভাগ",
+      "মাস্টার্স কোর্স",
+      "ডিগ্রি (পাস)"
+    ],
+    "shortDesc": "হযরত শাহ সুলতান বলখী (রঃ) এর স্মৃতিবিজড়িত সরকারি শাহ সুলতান কলেজ বগুড়ার দ্বিতীয় বৃহত্তম সরকারি উচ্চশিক্ষা প্রতিষ্ঠান।",
+    "history": "১৯৬৮ সালে বগুড়া শহরের দক্ষিণ প্রান্তে উচ্চশিক্ষার দ্বার উন্মোচনের লক্ষ্যে এটি প্রতিষ্ঠিত হয়। ১৯৮৪ সালে সরকারিকরণ করা হয়। বর্তমানে স্নাতক ও স্নাতকোত্তর পর্যায়ে সহস্রাধিক শিক্ষার্থী অধ্যয়ন করছেন।",
+    "mapUrl": "https://maps.google.com/?q=Govt.+Shah+Sultan+College,+Bogura",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "armed-police-battalion-public-school-college",
+    "name": "আর্মড পুলিশ ব্যাটালিয়ন পাবলিক স্কুল ও কলেজ",
+    "enName": "Armed Police Battalion Public School & College",
+    "eiin": "119261",
+    "rank": 4,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "৪ এপিবিএন সদর দপ্তর সংলগ্ন, নিশিন্দারা, বগুড়া সদর",
+    "established": "১৯৮৬",
+    "management": "পুলিশ প্রশাসন",
+    "educationLevel": "প্রাথমিক, মাধ্যমিক ও উচ্চ মাধ্যমিক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-66780, 01713-374400",
+    "website": "https://www.apbncollegebogra.edu.bd",
+    "principal": "কমান্ড্যান্ট ও অধ্যক্ষ, এপিবিএন",
+    "stats": {
+      "appeared": "6,529",
+      "passed": "6,488",
+      "gpa5": "2,984",
+      "passRate": "99.4%"
+    },
+    "facilities": [
+      "ডিজিটাল স্মার্ট ক্লাসরুম",
+      "বিজ্ঞান ও কম্পিউটার ল্যাব",
+      "স্পোর্টস কমপ্লেক্স",
+      "সিসিটিভি নিরাপত্তা ব্যবস্থা"
+    ],
+    "courses": [
+      "এইচএসসি বিজ্ঞান",
+      "এইচএসসি ব্যবসায় শিক্ষা",
+      "এইচএসসি মানবিক"
+    ],
+    "shortDesc": "নিশিন্দারায় অবস্থিত এপিবিএন পাবলিক স্কুল অ্যান্ড কলেজ কঠোর শৃঙ্খলা ও ধারাবাহিক জিপিএ-৫ অর্জনে জেলার অন্যতম শীর্ষ মডেল প্রতিষ্ঠান।",
+    "history": "১৯৮৬ সালে ৪ আর্মড পুলিশ ব্যাটালিয়নের উদ্যোগে পুলিশ পরিবার ও সাধারণ নাগরিকদের জন্য প্রতিষ্ঠিত হয়।",
+    "mapUrl": "https://maps.google.com/?q=Armed+Police+Battalion+Public+School,+Bogura",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "government-mujibur-rahman-womens-college",
+    "name": "সরকারি মুজিবুর রহমান মহিলা কলেজ, বগুড়া",
+    "enName": "Government Mujibur Rahman Women's College, Bogura",
+    "eiin": "119250",
+    "rank": 5,
+    "category": "college",
+    "categoryBn": "সরকারি মহিলা কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "মালতীনগর, বগুড়া সদর",
+    "established": "১৯৬৩",
+    "management": "সরকারি",
+    "educationLevel": "উচ্চ মাধ্যমিক, ডিগ্রি (পাস), স্নাতক (সম্মান) ও স্নাতকোত্তর",
+    "board": "রাজশাহী শিক্ষা বোর্ড ও জাতীয় বিশ্ববিদ্যালয়",
+    "coverImage": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-63854",
+    "website": "https://www.gmrwc.edu.bd",
+    "principal": "প্রফেসর ড. রেহানা সুলতানা",
+    "stats": {
+      "appeared": "20,555",
+      "passed": "18,698",
+      "gpa5": "3,710",
+      "passRate": "91.0%"
+    },
+    "facilities": [
+      "নিরাপদ ছাত্রী হোস্টেল",
+      "সমৃদ্ধ লাইব্রেরি ও সাইবার সেন্টার",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "ছাত্রী কমনরুম ও খেলাধুলা সুবিধা"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "অনার্স ১৬টি বিষয়",
+      "মাস্টার্স কোর্স",
+      "ডিগ্রি কোর্স"
+    ],
+    "shortDesc": "উত্তরবঙ্গে নারী শিক্ষার পথিকৃৎ হিসেবে খ্যাত এই প্রতিষ্ঠানটি ১৯৬৩ সালে প্রতিষ্ঠিত হয় এবং ১৯৮০ সালে সরকারিকরণ লাভ করে।",
+    "history": "বগুড়া জেলার বিশিষ্ট শিক্ষানুরাগী মুজিবুর রহমান ভান্ডারীর আর্থিক ও জমি অনুদানে কলেজটির যাত্রা শুরু হয়।",
+    "mapUrl": "https://maps.google.com/?q=Govt.+Mujibur+Rahman+Women+College,+Bogura",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "sherwood-international-pvt-school-and-college",
+    "name": "শারউড ইন্টারন্যাশনাল প্রাইভেট স্কুল অ্যান্ড কলেজ",
+    "enName": "Sherwood International Pvt School and College",
+    "eiin": "137965",
+    "rank": 6,
+    "category": "school-college",
+    "categoryBn": "প্রাইভেট স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "কানুচগাড়ী, শেরপুর রোড, বগুড়া সদর",
+    "established": "২০১০",
+    "management": "বেসরকারি",
+    "educationLevel": "প্লে থেকে দ্বাদশ শ্রেণি",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80",
+    "phone": "01711-456789",
+    "stats": {
+      "appeared": "2,661",
+      "passed": "2,656",
+      "gpa5": "1,545",
+      "passRate": "99.8%"
+    },
+    "facilities": [
+      "আধুনিক ভাষা ল্যাব",
+      "কম্পিউটার ল্যাব",
+      "ইনডোর স্পোর্টস",
+      "শীতাতপ নিয়ন্ত্রিত পাঠদান রুম"
+    ],
+    "courses": [
+      "বিজ্ঞান",
+      "ব্যবসায় শিক্ষা",
+      "মানবিক"
+    ],
+    "shortDesc": "আন্তর্জাতিক মানসম্মত পাঠ্যক্রম ও শিক্ষাপদ্ধতির জন্য সুপরিচিত আধুনিক বেসরকারি প্রতিষ্ঠান।",
+    "status": "approved"
+  },
+  {
+    "id": "millennium-scholastic-school-college",
+    "name": "মিলেনিয়াম স্কলাস্টিক স্কুল অ্যান্ড কলেজ",
+    "enName": "Millennium Scholastic School & College",
+    "eiin": "134704",
+    "rank": 7,
+    "category": "school-college",
+    "categoryBn": "ইংরেজি মাধ্যম ও জাতীয় শিক্ষাক্রম",
+    "upazila": "শাজাহানপুর",
+    "location": "বগুড়া সেনানিবাস সংলগ্ন, জাহাঙ্গীরাবাদ, শাজাহানপুর",
+    "established": "১৯৯৮",
+    "management": "সামরিক / ট্রাস্ট",
+    "educationLevel": "ইংলিশ ভার্সন ও বাংলা মাধ্যম (১ম-দ্বাদশ)",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-78930",
+    "website": "https://www.msscbogra.edu.bd",
+    "stats": {
+      "appeared": "649",
+      "passed": "648",
+      "gpa5": "440",
+      "passRate": "99.8%"
+    },
+    "facilities": [
+      "আন্তর্জাতিক মানের ক্যাম্পাস",
+      "সুইমিং ও স্পোর্টস কমপ্লেক্স",
+      "রোবোটিক্স একাডেমি"
+    ],
+    "courses": [
+      "এইচএসসি বিজ্ঞান ও মানবিক"
+    ],
+    "shortDesc": "বগুড়ার অভিজাত ইংলিশ ভার্সন শিক্ষাপ্রতিষ্ঠান যা শিক্ষার্থীদের মেধা ও নেতৃত্ব বিকাশে অগ্রণী ভূমিকা পালন করছে।",
+    "status": "approved"
+  },
+  {
+    "id": "polli-unnayan-academy-laboratory-school-college",
+    "name": "পল্লী উন্নয়ন একাডেমি ল্যাবরেটরি স্কুল অ্যান্ড কলেজ (RDA)",
+    "enName": "Polli Unnayan Academy Laboratory School & College (RDA)",
+    "eiin": "119762",
+    "rank": 8,
+    "category": "school-college",
+    "categoryBn": "ল্যাবরেটরি স্কুল অ্যান্ড কলেজ",
+    "upazila": "শেরপুর",
+    "location": "পল্লী উন্নয়ন একাডেমি (RDA) ক্যাম্পাস, শেরপুর, বগুড়া",
+    "established": "১৯৮৫",
+    "management": "স্বায়ত্তশাসিত / সরকারি ট্রাস্ট",
+    "educationLevel": "প্রাথমিক থেকে উচ্চ মাধ্যমিক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-51001, 01712-454545",
+    "website": "https://www.rdalschool.edu.bd",
+    "stats": {
+      "appeared": "3,691",
+      "passed": "3,671",
+      "gpa5": "1,430",
+      "passRate": "99.5%"
+    },
+    "facilities": [
+      "সবুজ শ্যামল মনোরম আরডিএ ক্যাম্পাস",
+      "আধুনিক লাইব্রেরি",
+      "উদ্ভিদ উদ্যান ও বিজ্ঞানাগার",
+      "খেলার মাঠ"
+    ],
+    "courses": [
+      "এইচএসসি বিজ্ঞান",
+      "এইচএসসি ব্যবসায় শিক্ষা",
+      "এইচএসসি মানবিক"
+    ],
+    "shortDesc": "শেরপুরে আরডিএ-র সুদৃশ্য ক্যাম্পাসে অবস্থিত এই শিক্ষাপ্রতিষ্ঠানটি প্রতিবছর এইচএসসিতে শীর্ষ ফলাফল অর্জন করে।",
+    "status": "approved"
+  },
+  {
+    "id": "police-lines-high-school-and-college-bogra",
+    "name": "পুলিশ লাইন্স স্কুল অ্যান্ড কলেজ, বগুড়া",
+    "enName": "Police Lines High School and College, Bogra",
+    "eiin": "119253",
+    "rank": 9,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "পুলিশ লাইন্স সংলগ্ন, বগুড়া সদর",
+    "established": "১৯৮১",
+    "management": "পুলিশ প্রশাসন",
+    "educationLevel": "১ম থেকে দ্বাদশ শ্রেণি",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-66224",
+    "website": "https://www.plhscbogra.edu.bd",
+    "stats": {
+      "appeared": "4,806",
+      "passed": "4,720",
+      "gpa5": "1,322",
+      "passRate": "98.2%"
+    },
+    "facilities": [
+      "আইসিটি ল্যাব",
+      "বিজ্ঞানাগার",
+      "স্কাউট ও গার্ল গাইড ডেন",
+      "খেলার মাঠ"
+    ],
+    "courses": [
+      "বিজ্ঞান",
+      "ব্যবসায় শিক্ষা",
+      "মানবিক"
+    ],
+    "shortDesc": "বগুড়া জেলা পুলিশ সুপার মহোদয়ের প্রত্যক্ষ তত্ত্বাবধানে পরিচালিত জেলার সুপরিচিত স্বনামধন্য মডেল প্রতিষ্ঠান।",
+    "status": "approved"
+  },
+  {
+    "id": "biam-laboratory-school-and-college-dupchanchia",
+    "name": "বিয়াম ল্যাবরেটরি স্কুল অ্যান্ড কলেজ, দুপচাঁচিয়া",
+    "enName": "BIAM Laboratory School and College, Dupchanchia",
+    "eiin": "134237",
+    "rank": 10,
+    "category": "school-college",
+    "categoryBn": "ল্যাবরেটরি স্কুল অ্যান্ড কলেজ",
+    "upazila": "দুপচাঁচিয়া",
+    "location": "দুপচাঁচিয়া উপজেলা সদর, বগুড়া",
+    "established": "২০০৩",
+    "management": "প্রশাসন পরিচালিত / বিয়াম ফাউন্ডেশন",
+    "educationLevel": "নার্সারি থেকে দ্বাদশ শ্রেণি",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
+    "phone": "05023-56123",
+    "stats": {
+      "appeared": "2,378",
+      "passed": "2,353",
+      "gpa5": "850",
+      "passRate": "98.9%"
+    },
+    "facilities": [
+      "ডিজিটাল শ্রেণিকক্ষ",
+      "কম্পিউটার ল্যাব",
+      "বিজ্ঞান ল্যাব",
+      "নিরাপদ ক্যাম্পাস"
+    ],
+    "courses": [
+      "এইচএসসি বিজ্ঞান",
+      "এইচএসসি মানবিক ও ব্যবসায় শিক্ষা"
+    ],
+    "shortDesc": "দুপচাঁচিয়া উপজেলায় আধুনিক শিক্ষার আলো ছড়ানো শীর্ষস্থানীয় মডেল প্রতিষ্ঠান।",
+    "status": "approved"
+  },
+  {
+    "id": "karatoa-multimedia-school-and-college",
+    "name": "করতোয়া মাল্টিমিডিয়া স্কুল অ্যান্ড কলেজ",
+    "enName": "Karatoa Multimedia School and College",
+    "eiin": "134707",
+    "rank": 11,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "ফুলবাড়ী, বগুড়া সদর",
+    "established": "২০০৫",
+    "management": "বেসরকারি",
+    "educationLevel": "প্রাথমিক থেকে উচ্চ মাধ্যমিক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80",
+    "phone": "01712-889900",
+    "stats": {
+      "appeared": "3,334",
+      "passed": "3,238",
+      "gpa5": "907",
+      "passRate": "97.1%"
+    },
+    "facilities": [
+      "মাল্টিমিডিয়া ল্যাব",
+      "সায়েন্স ল্যাব",
+      "লাইব্রেরি"
+    ],
+    "courses": [
+      "বিজ্ঞান",
+      "মানবিক",
+      "ব্যবসায় শিক্ষা"
+    ],
+    "shortDesc": "আধুনিক প্রযুক্তিনির্ভর পাঠদান ও উচ্চ মাধ্যমিক পরীক্ষায় উচ্চ সাফল্যের জন্য নন্দিত।",
+    "status": "approved"
+  },
+  {
+    "id": "sherpur-town-club-public-mohila-college",
+    "name": "শেরপুর টাউন ক্লাব পাবলিক মহিলা কলেজ",
+    "enName": "Sherpur Town Club Public Mohila College",
+    "eiin": "119760",
+    "rank": 12,
+    "category": "college",
+    "categoryBn": "মহিলা কলেজ",
+    "upazila": "শেরপুর",
+    "location": "শেরপুর পৌরসভা, শেরপুর, বগুড়া",
+    "established": "১৯৯৪",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও ডিগ্রি (পাস)",
+    "board": "রাজশাহী শিক্ষা বোর্ড ও জাতীয় বিশ্ববিদ্যালয়",
+    "coverImage": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-51234",
+    "stats": {
+      "appeared": "7,787",
+      "passed": "6,979",
+      "gpa5": "556",
+      "passRate": "89.6%"
+    },
+    "facilities": [
+      "ছাত্রী মিলনায়তন",
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাব"
+    ],
+    "courses": [
+      "এইচএসসি ও ডিগ্রি কোর্স"
+    ],
+    "shortDesc": "শেরপুর অঞ্চলের নারী শিক্ষার বিস্তারে অনবদ্য ভূমিকা রাখা শীর্ষ মহিলা কলেজ।",
+    "status": "approved"
+  },
+  {
+    "id": "sos-hermann-gmeiner-college-bogra",
+    "name": "এসওএস হারম্যান মেইনার কলেজ, বগুড়া",
+    "enName": "SOS Hermann Gmeiner College Bogra",
+    "eiin": "119259",
+    "rank": 13,
+    "category": "school-college",
+    "categoryBn": "আন্তর্জাতিক চ্যারিটেবল কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "মালতীনগর, বগুড়া সদর",
+    "established": "১৯৯৩",
+    "management": "আন্তর্জাতিক এনজিও ট্রাস্ট",
+    "educationLevel": "১ম থেকে দ্বাদশ শ্রেণি",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-64532",
+    "stats": {
+      "appeared": "775",
+      "passed": "747",
+      "gpa5": "203",
+      "passRate": "96.4%"
+    },
+    "facilities": [
+      "শান্ত ও পরিপাটি ক্যাম্পাস",
+      "কম্পিউটার ও বিজ্ঞানাগার",
+      "খেলার মাঠ"
+    ],
+    "courses": [
+      "এইচএসসি বিজ্ঞান ও মানবিক"
+    ],
+    "shortDesc": "মানবিক মূল্যবোধ ও আন্তর্জাতিক মানের শিক্ষার সমন্বয়ে পরিচালিত পরিচ্ছন্ন প্রতিষ্ঠান।",
+    "status": "approved"
+  },
+  {
+    "id": "the-summit-international-school-and-college",
+    "name": "দ্য সামিট ইন্টারন্যাশনাল স্কুল অ্যান্ড কলেজ",
+    "enName": "The Summit International School and College",
+    "eiin": "134708",
+    "rank": 14,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "উপশহর, বগুড়া সদর",
+    "established": "২০০৮",
+    "management": "বেসরকারি",
+    "educationLevel": "প্লে থেকে দ্বাদশ",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+    "phone": "01711-332211",
+    "stats": {
+      "appeared": "2,236",
+      "passed": "2,082",
+      "gpa5": "554",
+      "passRate": "93.1%"
+    },
+    "facilities": [
+      "স্মার্ট মাল্টিমিডিয়া ক্লাসরুম",
+      "সায়েন্স ল্যাব",
+      "লাইব্রেরি"
+    ],
+    "courses": [
+      "বিজ্ঞান ও ব্যবসায় শিক্ষা"
+    ],
+    "shortDesc": "বগুড়া উপশহরের অন্যতম আধুনিক মানের বেসরকারি শিক্ষাপ্রতিষ্ঠান।",
+    "status": "approved"
+  },
+  {
+    "id": "biam-laboratory-school-and-college-bogra",
+    "name": "বিয়াম মডেল স্কুল ও কলেজ, বগুড়া সদর",
+    "enName": "BIAM Model School and College, Bogra",
+    "eiin": "134236",
+    "rank": 15,
+    "category": "school-college",
+    "categoryBn": "মডেল স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "নিশিন্দারা, বগুড়া সদর",
+    "established": "২০০৩",
+    "management": "প্রশাসন পরিচালিত / বিয়াম ফাউন্ডেশন",
+    "educationLevel": "প্রাথমিক থেকে উচ্চ মাধ্যমিক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-69241",
+    "stats": {
+      "appeared": "491",
+      "passed": "460",
+      "gpa5": "125",
+      "passRate": "93.7%"
+    },
+    "facilities": [
+      "বিজ্ঞান ল্যাব",
+      "কম্পিউটার ল্যাব",
+      "সাংস্কৃতিক কেন্দ্র"
+    ],
+    "courses": [
+      "এইচএসসি বিজ্ঞান ও মানবিক"
+    ],
+    "shortDesc": "জেলা প্রশাসনের সরাসরি পরিচালনায় মানসম্পন্ন নৈতিক ও আধুনিক শিক্ষার শীর্ষ ঠিকানা।",
+    "status": "approved"
+  },
+  {
+    "id": "syed-ahmmed-college-sukhanpukur",
+    "name": "সৈয়দ আহম্মেদ কলেজ, সুখানপুকুর",
+    "enName": "Syed Ahmmed College, Sukhanpukur, Bogra",
+    "eiin": "119495",
+    "rank": 24,
+    "category": "college",
+    "categoryBn": "অনার্স কলেজ",
+    "upazila": "গাবতলী",
+    "location": "সুখানপুকুর, গাবতলী, বগুড়া",
+    "established": "১৯৭০",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক, ডিগ্রি (পাস) ও অনার্স কোর্স",
+    "board": "রাজশাহী শিক্ষা বোর্ড ও জাতীয় বিশ্ববিদ্যালয়",
+    "coverImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-76543",
+    "website": "https://www.syedahmmedcollege.edu.bd",
+    "stats": {
+      "appeared": "10,997",
+      "passed": "8,295",
+      "gpa5": "305",
+      "passRate": "75.4%"
+    },
+    "facilities": [
+      "বিশাল খেলার মাঠ",
+      "অনার্স লাইব্রেরি",
+      "বিজ্ঞানাগার",
+      "ছাত্র হোস্টেল"
+    ],
+    "courses": [
+      "এইচএসসি (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি ও অনার্স বিষয়সমূহ"
+    ],
+    "shortDesc": "গাবতলীর ঐতিহ্যবাহী সুখানপুকুর রেলওয়ে স্টেশন সংলগ্ন সুবিশাল সবুজ ক্যাম্পাসে অবস্থিত ঐতিহ্যবাহী কলেজ।",
+    "status": "approved"
+  },
+  {
+    "id": "bogra-coronation-institution-and-college",
+    "name": "বগুড়া করোনেশন ইনস্টিটিউশন অ্যান্ড কলেজ",
+    "enName": "Bogra Coronation Institution & College",
+    "eiin": "119254",
+    "rank": 25,
+    "category": "school-college",
+    "categoryBn": "ঐতিহ্যবাহী স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "কাটাপুকুর, জলেশ্বরীতলা, বগুড়া সদর",
+    "established": "১৯১১",
+    "management": "বেসরকারি (ঐতিহ্যবাহী)",
+    "educationLevel": "মাধ্যমিক ও উচ্চ মাধ্যমিক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-65432",
+    "stats": {
+      "appeared": "4,147",
+      "passed": "3,471",
+      "gpa5": "164",
+      "passRate": "83.7%"
+    },
+    "facilities": [
+      "শতবর্ষী খেলার মাঠ",
+      "ঐতিহাসিক লাইব্রেরি",
+      "আইসিটি ল্যাব"
+    ],
+    "courses": [
+      "এইচএসসি বিজ্ঞান, মানবিক ও ব্যবসায় শিক্ষা"
+    ],
+    "shortDesc": "১৯১১ সালে পঞ্চম জর্জের করোনেশন উপলক্ষে প্রতিষ্ঠিত শতবর্ষী ঐতিহ্যবাহী শিক্ষাপ্রতিষ্ঠান।",
+    "status": "approved"
+  },
+  {
+    "id": "sherpur-college",
+    "name": "শেরপুর কলেজ, বগুড়া",
+    "enName": "Sherpur College, Bogura",
+    "eiin": "119758",
+    "rank": 26,
+    "category": "college",
+    "categoryBn": "অনার্স কলেজ",
+    "upazila": "শেরপুর",
+    "location": "শেরপুর উপজেলা সদর, শেরপুর, বগুড়া",
+    "established": "১৯৬৭",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক, ডিগ্রি ও অনার্স",
+    "board": "জাতীয় বিশ্ববিদ্যালয় ও রাজশাহী বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-51111",
+    "stats": {
+      "appeared": "7,886",
+      "passed": "6,168",
+      "gpa5": "319",
+      "passRate": "78.2%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞানাগার",
+      "খেলার মাঠ"
+    ],
+    "courses": [
+      "এইচএসসি, ডিগ্রি ও অনার্স কোর্সসমূহ"
+    ],
+    "shortDesc": "শেরপুর উপজেলার প্রধান উচ্চশিক্ষা প্রতিষ্ঠান যেখানে হাজারো শিক্ষার্থী অধ্যয়ন করে।",
+    "status": "approved"
+  },
+  {
+    "id": "gabtali-govt-college",
+    "name": "গাবতলী সরকারি কলেজ, বগুড়া",
+    "enName": "Gabtali Govt. College, Bogura",
+    "eiin": "119494",
+    "rank": 31,
+    "category": "college",
+    "categoryBn": "সরকারি কলেজ",
+    "upazila": "গাবতলী",
+    "location": "গাবতলী উপজেলা সদর, বগুড়া",
+    "established": "১৯৭২",
+    "management": "সরকারি",
+    "educationLevel": "এইচএসসি, ডিগ্রি (পাস) ও অনার্স",
+    "board": "রাজশাহী বোর্ড ও জাতীয় বিশ্ববিদ্যালয়",
+    "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-76110",
+    "stats": {
+      "appeared": "8,610",
+      "passed": "6,405",
+      "gpa5": "562",
+      "passRate": "74.4%"
+    },
+    "facilities": [
+      "সরকারি লাইব্রেরি",
+      "বিজ্ঞান ল্যাব",
+      "খেলার মাঠ"
+    ],
+    "courses": [
+      "বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা, অনার্স"
+    ],
+    "shortDesc": "গাবতলী উপজেলার প্রধান সরকারি কলেজ যা স্থানীয় ছাত্র-ছাত্রীদের উচ্চশিক্ষার বাতিঘর।",
+    "status": "approved"
+  },
+  {
+    "id": "santahar-govt-college",
+    "name": "সান্তাহার সরকারি কলেজ, বগুড়া",
+    "enName": "Santahar Govt. College, Bogra",
+    "eiin": "119159",
+    "rank": 41,
+    "category": "college",
+    "categoryBn": "সরকারি কলেজ",
+    "upazila": "আদমদীঘি",
+    "location": "সান্তাহার জংশন শহর, আদমদীঘি, বগুড়া",
+    "established": "১৯৬৭",
+    "management": "সরকারি",
+    "educationLevel": "এইচএসসি, ডিগ্রি (পাস) ও অনার্স",
+    "board": "রাজশাহী বোর্ড ও জাতীয় বিশ্ববিদ্যালয়",
+    "coverImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1200&q=80",
+    "phone": "05024-75120",
+    "stats": {
+      "appeared": "12,153",
+      "passed": "7,685",
+      "gpa5": "400",
+      "passRate": "63.2%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞানাগার",
+      "খেলার মাঠ",
+      "হোস্টেল"
+    ],
+    "courses": [
+      "এইচএসসি বিজ্ঞান, মানবিক, বাণিজ্য, ডিগ্রি ও অনার্স"
+    ],
+    "shortDesc": "ঐতিহাসিক সান্তাহার রেলওয়ে জংশন শহরে অবস্থিত আদমদীঘির বৃহত্তম সরকারি কলেজ।",
+    "status": "approved"
+  },
+  {
+    "id": "kahaloo-degree-college",
+    "name": "কাহালু ডিগ্রি কলেজ, বগুড়া",
+    "enName": "Kahaloo Degree College",
+    "eiin": "119643",
+    "rank": 44,
+    "category": "college",
+    "categoryBn": "ডিগ্রি ও অনার্স কলেজ",
+    "upazila": "কাহালু",
+    "location": "কাহালু উপজেলা সদর, বগুড়া",
+    "established": "১৯৭৩",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "এইচএসসি, ডিগ্রি ও অনার্স",
+    "board": "রাজশাহী বোর্ড ও জাতীয় বিশ্ববিদ্যালয়",
+    "coverImage": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=1200&q=80",
+    "phone": "05022-56111",
+    "stats": {
+      "appeared": "4,919",
+      "passed": "3,890",
+      "gpa5": "269",
+      "passRate": "79.1%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞানাগার",
+      "খেলার মাঠ"
+    ],
+    "courses": [
+      "এইচএসসি, ডিগ্রি ও অনার্স"
+    ],
+    "shortDesc": "কাহালু উপজেলায় উচ্চশিক্ষা প্রসারে দীর্ঘ ৫০ বছর ধরে ভূমিকা রেখে চলেছে।",
+    "status": "approved"
+  },
+  {
+    "id": "shibgonj-mh-college",
+    "name": "শিবগঞ্জ এম. এইচ. ডিগ্রি কলেজ",
+    "enName": "Shibgonj M.H. Degree College",
+    "eiin": "119852",
+    "rank": 50,
+    "category": "college",
+    "categoryBn": "ডিগ্রি ও অনার্স কলেজ",
+    "upazila": "শিবগঞ্জ",
+    "location": "শিবগঞ্জ উপজেলা সদর, বগুড়া",
+    "established": "১৯৭৫",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "এইচএসসি, ডিগ্রি ও অনার্স",
+    "board": "রাজশাহী বোর্ড ও জাতীয় বিশ্ববিদ্যালয়",
+    "coverImage": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
+    "phone": "05025-56201",
+    "stats": {
+      "appeared": "5,336",
+      "passed": "3,886",
+      "gpa5": "141",
+      "passRate": "72.8%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞানাগার",
+      "খেলার মাঠ"
+    ],
+    "courses": [
+      "বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা ও ডিগ্রি"
+    ],
+    "shortDesc": "ঐতিহাসিক শিবগঞ্জ উপজেলার অন্যতম শীর্ষ উচ্চশিক্ষা বিদ্যাপীঠ।",
+    "status": "approved"
+  },
+  {
+    "id": "shaheed-ziaur-rahman-medical-college",
+    "name": "শহীদ জিয়াউর রহমান মেডিকেল কলেজ (SZMC)",
+    "enName": "Shaheed Ziaur Rahman Medical College (SZMC), Bogura",
+    "eiin": "132101",
+    "rank": 0,
+    "category": "medical",
+    "categoryBn": "সরকারি মেডিকেল কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "সিলিমপুর, শেরপুর রোড, বগুড়া সদর",
+    "established": "১৯৯২",
+    "management": "সরকারি",
+    "educationLevel": "এমবিবিএস (MBBS), বিডিএস ও স্নাতকোত্তর চিকিৎসা শিক্ষা",
+    "board": "রাজশাহী মেডিকেল বিশ্ববিদ্যালয় ও বিএমডিসি",
+    "coverImage": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+    "logo": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=300&q=80",
+    "phone": "051-69004",
+    "website": "https://www.szmc.gov.bd",
+    "principal": "অধ্যাপক ডা. রেজাউল আলম জুয়েল",
+    "stats": {
+      "appeared": "২,৫০০+",
+      "passed": "২,৪৫০+",
+      "gpa5": "১,৮০০+",
+      "passRate": "৯৮.০%"
+    },
+    "facilities": [
+      "১০০০ শয্যাবিশিষ্ট টারশিয়ারি টিচিং হাসপাতাল",
+      "আন্তর্জাতিক মানের অ্যানাটমি ও হিস্টোলজি ল্যাব",
+      "কেন্দ্রীয় শীতাতপ নিয়ন্ত্রিত মেডিকেল লাইব্রেরি",
+      "ডাঃ ও শিক্ষার্থীদের আলাদা আবাসিক হোস্টেল",
+      "বিশাল অডিটোরিয়াম ও সম্মেলন কক্ষ"
+    ],
+    "courses": [
+      "এমবিবিএস (MBBS ৫ বছর + ১ বছর ইন্টার্নশিপ)",
+      "বিডিএস (BDS)",
+      "বিভিন্ন ফ্যাকাল্টিতে পোস্ট গ্রাজুয়েশন ডিপ্লোমা ও এমএস/এমডি"
+    ],
+    "shortDesc": "উত্তরবঙ্গের অন্যতম শীর্ষ সরকারি মেডিকেল কলেজ ও ১০০০ শয্যার সর্বাধুনিক হাসপাতাল। ১৯৯২ সালে প্রতিষ্ঠিত এই মেডিকেল কলেজ দেশ-বিদেশে খ্যাতিমান চিকিৎসক তৈরি করে চলেছে।",
+    "history": "১৯৯২ সালে সিলিমপুরে যাত্রা শুরু করে। পরবর্তীতে ৫০০ শয্যার হাসপাতাল থেকে উন্নীত হয়ে বর্তমানে ১০০০ শয্যার এক আধুনিক চিকিৎসা ও গবেষণা কেন্দ্র হিসেবে সেবা দিয়ে আসছে।",
+    "mapUrl": "https://maps.google.com/?q=Shaheed+Ziaur+Rahman+Medical+College,+Bogura",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "pundra-university-of-science-and-technology",
+    "name": "পুন্ড্র ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি (PUST)",
+    "enName": "Pundra University of Science & Technology (PUST)",
+    "eiin": "136502",
+    "rank": 0,
+    "category": "university",
+    "categoryBn": "বেসরকারি বিশ্ববিদ্যালয়",
+    "upazila": "বগুড়া সদর",
+    "location": "রংপুর রোড, গোকুল, মহাস্থান সংলগ্ন, বগুড়া",
+    "established": "২০০১",
+    "management": "বেসরকারি বিশ্ববিদ্যালয় ট্রাস্ট",
+    "educationLevel": "স্নাতক (অনার্স) ও স্নাতকোত্তর ডিগ্রি",
+    "board": "বাংলাদেশ বিশ্ববিদ্যালয় মঞ্জুরী কমিশন (UGC)",
+    "coverImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
+    "logo": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=300&q=80",
+    "phone": "051-78900, 01713-377000",
+    "website": "https://www.pust.ac.bd",
+    "principal": "উপাচার্য: প্রফেসর ড. মোজাফফর হোসেন",
+    "stats": {
+      "appeared": "৫,০০০+",
+      "passed": "৪,৮৫০+",
+      "gpa5": "২,০০০+",
+      "passRate": "৯৭.০%"
+    },
+    "facilities": [
+      "নিজস্ব স্থায়ী গ্রিন ক্যাম্পাস",
+      "হাইটেক কম্পিউটার ও সফটওয়্যার ল্যাব",
+      "ইইই ও সিভিল ইঞ্জিনিয়ারিং ল্যাব",
+      "ডিজিটাল ই-লাইব্রেরি",
+      "বাস পরিবহন ও হোস্টেল"
+    ],
+    "courses": [
+      "বিএসসি ইন সিএসই (CSE)",
+      "বিএসসি ইন ইইই (EEE)",
+      "বিএসসি ইন সিভিল ইঞ্জিনিয়ারিং",
+      "বিবিএ ও এমবিএ",
+      "এলএলবি (LLB) ও এলএলএম",
+      "ইংরেজি ও ইসলামিক স্টাডিজ"
+    ],
+    "shortDesc": "ঐতিহাসিক মহাস্থানগড় সংলগ্ন গোকুলে অবস্থিত বগুড়া জেলার একমাত্র সরকার অনুমোদিত পূর্ণাঙ্গ বেসরকারি বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়।",
+    "history": "২০০১ সালে প্রতিষ্ঠিত পুন্ড্র ইউনিভার্সিটি উত্তরবঙ্গের শিক্ষার্থীদের উচ্চশিক্ষার সুযোগ সম্প্রসারণে নিজস্ব স্থায়ী ক্যাম্পাসে আধুনিক প্রযুক্তিভিত্তিক শিক্ষা দিয়ে আসছে।",
+    "mapUrl": "https://maps.google.com/?q=Pundra+University+of+Science+and+Technology",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "bogura-polytechnic-institute",
+    "name": "বগুড়া পলিটেকনিক ইনস্টিটিউট (BPI)",
+    "enName": "Bogura Polytechnic Institute",
+    "eiin": "132924",
+    "rank": 0,
+    "category": "polytechnic",
+    "categoryBn": "পলিটেকনিক ইনস্টিটিউট",
+    "upazila": "বগুড়া সদর",
+    "location": "শেরপুর রোড, বনানী মোড় সংলগ্ন, বগুড়া সদর",
+    "established": "১৯৬২",
+    "management": "সরকারি",
+    "educationLevel": "৪ বছর মেয়াদী ডিপ্লোমা ইন ইঞ্জিনিয়ারিং",
+    "board": "বাংলাদেশ কারিগরি শিক্ষা বোর্ড (BTEB)",
+    "coverImage": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-66512",
+    "website": "https://www.bograpoly.gov.bd",
+    "principal": "অধ্যক্ষ: প্রকৌশলী মোঃ মোশাররফ হোসেন",
+    "stats": {
+      "appeared": "৮,০০০+",
+      "passed": "৭,৫০০+",
+      "gpa5": "৩,২০০+",
+      "passRate": "৯৩.৭%"
+    },
+    "facilities": [
+      "ভারী মেকানিক্যাল ও অটোমোবাইল ওয়ার্কশপ",
+      "ইলেকট্রিক্যাল ও ইলেকট্রনিক্স ল্যাব",
+      "কম্পিউটার ও আইটি সেন্টার",
+      "ছাত্র ও ছাত্রী হোস্টেল",
+      "বিশাল ক্যাম্পাস ও মাঠ"
+    ],
+    "courses": [
+      "ডিপ্লোমা ইন সিভিল ইঞ্জিনিয়ারিং",
+      "ডিপ্লোমা ইন ইলেকট্রিক্যাল ইঞ্জিনিয়ারিং",
+      "ডিপ্লোমা ইন মেকানিক্যাল ইঞ্জিনিয়ারিং",
+      "ডিপ্লোমা ইন কম্পিউটার টেকনোলজি",
+      "ডিপ্লোমা ইন ইলেকট্রনিক্স টেকনোলজি",
+      "ডিপ্লোমা ইন পাওয়ার টেকনোলজি"
+    ],
+    "shortDesc": "১৯৬২ সালে প্রতিষ্ঠিত বগুড়া পলিটেকনিক উত্তরবঙ্গের প্রাচীনতম ও সর্ববৃহৎ সরকারি কারিগরি শিক্ষাপ্রতিষ্ঠান যা আন্তর্জাতিক মানের ডিপ্লোমা প্রকৌশলী তৈরি করে।",
+    "history": "ফোর্ড ফাউন্ডেশনের আর্থিক সহায়তায় ১৯৬২ সালে প্রতিষ্ঠিত হয়। বর্তমানে ৮টি আধুনিক প্রকৌশল প্রযুক্তিতে সহস্রাধিক শিক্ষার্থী সফলভাবে ডিপ্লোমা ইঞ্জিনিয়ারিং সম্পন্ন করছেন।",
+    "mapUrl": "https://maps.google.com/?q=Bogura+Polytechnic+Institute",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "bogura-zilla-school",
+    "name": "বগুড়া জিলা স্কুল",
+    "enName": "Bogura Zilla School",
+    "eiin": "119252",
+    "rank": 0,
+    "category": "school",
+    "categoryBn": "ঐতিহাসিক সরকারি স্কুল",
+    "upazila": "বগুড়া সদর",
+    "location": "সার্কিট হাউজ রোড, জলেশ্বরীতলা, বগুড়া সদর",
+    "established": "১৮৫৩",
+    "management": "সরকারি",
+    "educationLevel": "৩য় শ্রেণি থেকে ১০ম শ্রেণি (মাধ্যমিক)",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-65520",
+    "website": "https://www.bogurazillaschool.edu.bd",
+    "principal": "প্রধান শিক্ষক: মোছাঃ শ্যামলী আক্তার",
+    "stats": {
+      "appeared": "৮,২০০",
+      "passed": "৮,১৮০",
+      "gpa5": "৭,৫০০",
+      "passRate": "৯৯.৭%"
+    },
+    "facilities": [
+      "১৭০ বছরের ঐতিহ্যবাহী আলিসান ক্যাম্পাস",
+      "বিশাল খেলার মাঠ",
+      "ঐতিহাসিক পাঠাগার",
+      "বিজ্ঞান গবেষণাগার",
+      "স্কাউট ও রেড ক্রিসেন্ট"
+    ],
+    "courses": [
+      "মাধ্যমিক বিজ্ঞান ও ব্যবসায় শিক্ষা (প্রভাতি ও দিবা শাখা)"
+    ],
+    "shortDesc": "১৮৫৩ সালে প্রতিষ্ঠিত উত্তরবঙ্গের সবচেয়ে ঐতিহ্যবাহী ও প্রাচীনতম সরকারি বিদ্যালয়। শতভাগ জিপিএ-৫ অর্জনে সারা বাংলাদেশে শীর্ষ তালিকার অন্যতম নাম।",
+    "history": "১৮৫৩ সালে তৎকালীন ইংরেজ কালেক্টরেটের উদ্যোগে প্রতিষ্ঠিত হয়। পরবর্তীতে বহু স্বনামধন্য বিজ্ঞানী, জাতীয় নেতা, বিচারপতি ও রাষ্ট্রনায়ক এই বিদ্যালয়ের শিক্ষার্থী ছিলেন।",
+    "mapUrl": "https://maps.google.com/?q=Bogura+Zilla+School",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "bogura-govt-girls-high-school",
+    "name": "বগুড়া সরকারি বালিকা উচ্চ বিদ্যালয় (ভি.এম.)",
+    "enName": "Bogura Govt. Girls' High School (V.M.)",
+    "eiin": "119247",
+    "rank": 0,
+    "category": "school",
+    "categoryBn": "ঐতিহাসিক বালিকা বিদ্যালয়",
+    "upazila": "বগুড়া সদর",
+    "location": "জলেশ্বরীতলা, বগুড়া সদর",
+    "established": "১৮৬৯",
+    "management": "সরকারি",
+    "educationLevel": "৩য় শ্রেণি থেকে ১০ম শ্রেণি (মাধ্যমিক)",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-66518",
+    "stats": {
+      "appeared": "৭,৫০০",
+      "passed": "৭,৪৭৫",
+      "gpa5": "৬,৯৫০",
+      "passRate": "৯৯.৬%"
+    },
+    "facilities": [
+      "সুসজ্জিত সায়েন্স ল্যাব",
+      "কম্পিউটার ল্যাব",
+      "লাইব্রেরি ও খেলার মাঠ",
+      "গার্ল গাইড"
+    ],
+    "courses": [
+      "মাধ্যমিক বিজ্ঞান ও ব্যবসায় শিক্ষা (প্রভাতি ও দিবা শাখা)"
+    ],
+    "shortDesc": "১৮৬৯ সালে প্রতিষ্ঠিত রানী ভিক্টোরিয়া মেমোরিয়াল (ভি.এম.) বালিকা উচ্চ বিদ্যালয় বগুড়ার নারী শিক্ষার অন্যতম প্রাচীন ও শীর্ষস্থানীয় ঐতিহ্যবাহী প্রতিষ্ঠান।",
+    "mapUrl": "https://maps.google.com/?q=Bogura+Govt.+Girls+High+School",
+    "isFeatured": true,
+    "status": "approved"
+  },
+  {
+    "id": "jahidur-rahman-woemen-s-college",
+    "name": "Jahidur Rahman Woemen's College (বগুড়া)",
+    "enName": "Jahidur Rahman Woemen's College",
+    "eiin": "119216",
+    "rank": 16,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯86",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60016",
+    "stats": {
+      "appeared": "3,334",
+      "passed": "2,979",
+      "gpa5": "173",
+      "passRate": "89.4%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Jahidur Rahman Woemen's College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 16ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Jahidur Rahman Woemen's College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "nishindara-fakir-uddin-school-college",
+    "name": "Nishindara Fakir Uddin School & College (বগুড়া)",
+    "enName": "Nishindara Fakir Uddin School & College",
+    "eiin": "119217",
+    "rank": 17,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯87",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60017",
+    "stats": {
+      "appeared": "3,984",
+      "passed": "3,670",
+      "gpa5": "303",
+      "passRate": "92.1%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Nishindara Fakir Uddin School & College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 17ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Nishindara Fakir Uddin School & College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "noon-gola-degree-collagi",
+    "name": "Noon Gola Degree Collagi (বগুড়া)",
+    "enName": "Noon Gola Degree Collagi",
+    "eiin": "119218",
+    "rank": 18,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯88",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60018",
+    "stats": {
+      "appeared": "3,290",
+      "passed": "2,910",
+      "gpa5": "147",
+      "passRate": "88.4%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Noon Gola Degree Collagi বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 18ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Noon Gola Degree Collagi বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "jalsuka-habibur-rahman-college",
+    "name": "Jalsuka Habibur Rahman College (বগুড়া)",
+    "enName": "Jalsuka Habibur Rahman College",
+    "eiin": "119219",
+    "rank": 19,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯89",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60019",
+    "stats": {
+      "appeared": "2,719",
+      "passed": "2,254",
+      "gpa5": "234",
+      "passRate": "82.9%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Jalsuka Habibur Rahman College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 19ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Jalsuka Habibur Rahman College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "adarsha-mohabiddyalaya-bogra",
+    "name": "Adarsha Mohabiddyalaya ,bogra (বগুড়া)",
+    "enName": "Adarsha Mohabiddyalaya ,bogra",
+    "eiin": "119220",
+    "rank": 20,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯90",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60020",
+    "stats": {
+      "appeared": "2,918",
+      "passed": "2,598",
+      "gpa5": "109",
+      "passRate": "89.0%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Adarsha Mohabiddyalaya ,bogra বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 20ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Adarsha Mohabiddyalaya ,bogra বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "chhoypukuria-girls-high-school-and-college",
+    "name": "Chhoypukuria Girls' High School And College (বগুড়া)",
+    "enName": "Chhoypukuria Girls' High School And College",
+    "eiin": "119221",
+    "rank": 21,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯91",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60021",
+    "stats": {
+      "appeared": "719",
+      "passed": "659",
+      "gpa5": "51",
+      "passRate": "91.7%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Chhoypukuria Girls' High School And College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 21ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Chhoypukuria Girls' High School And College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "dhunat-degree-college",
+    "name": "Dhunat Degree College (বগুড়া)",
+    "enName": "Dhunat Degree College",
+    "eiin": "119222",
+    "rank": 22,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "ধুনট",
+    "location": "ধুনট, বগুড়া",
+    "established": "১৯92",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60022",
+    "stats": {
+      "appeared": "7,862",
+      "passed": "6,192",
+      "gpa5": "321",
+      "passRate": "78.8%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Dhunat Degree College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 22ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Dhunat Degree College বগুড়ার ধুনট উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "kahaloo-adarsha-womens-dergee-college",
+    "name": "Kahaloo Adarsha Womens Dergee College (বগুড়া)",
+    "enName": "Kahaloo Adarsha Womens Dergee College",
+    "eiin": "119223",
+    "rank": 23,
+    "category": "college",
+    "categoryBn": "মহিলা কলেজ",
+    "upazila": "কাহালু",
+    "location": "কাহালু, বগুড়া",
+    "established": "১৯93",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60023",
+    "stats": {
+      "appeared": "3,025",
+      "passed": "2,546",
+      "gpa5": "191",
+      "passRate": "84.2%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Kahaloo Adarsha Womens Dergee College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 23ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Kahaloo Adarsha Womens Dergee College বগুড়ার কাহালু উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "bogra-ymca-public-school",
+    "name": "Bogra Ymca Public School (বগুড়া)",
+    "enName": "Bogra Ymca Public School",
+    "eiin": "119227",
+    "rank": 27,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯97",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60027",
+    "stats": {
+      "appeared": "1,411",
+      "passed": "1,189",
+      "gpa5": "58",
+      "passRate": "84.3%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Bogra Ymca Public School বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 27ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Bogra Ymca Public School বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "bogra-womens-college",
+    "name": "Bogra Womens College (বগুড়া)",
+    "enName": "Bogra Womens College",
+    "eiin": "119228",
+    "rank": 28,
+    "category": "college",
+    "categoryBn": "মহিলা কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯98",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60028",
+    "stats": {
+      "appeared": "3,178",
+      "passed": "2,746",
+      "gpa5": "119",
+      "passRate": "86.4%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Bogra Womens College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 28ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Bogra Womens College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "simabari-womens-college",
+    "name": "Simabari Womens College (বগুড়া)",
+    "enName": "Simabari Womens College",
+    "eiin": "119229",
+    "rank": 29,
+    "category": "college",
+    "categoryBn": "মহিলা কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯99",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60029",
+    "stats": {
+      "appeared": "260",
+      "passed": "236",
+      "gpa5": "37",
+      "passRate": "90.8%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Simabari Womens College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 29ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Simabari Womens College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "namuza-degree-college",
+    "name": "Namuza Degree College (বগুড়া)",
+    "enName": "Namuza Degree College",
+    "eiin": "119230",
+    "rank": 30,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯70",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60030",
+    "stats": {
+      "appeared": "3,091",
+      "passed": "2,556",
+      "gpa5": "88",
+      "passRate": "82.7%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Namuza Degree College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 30ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Namuza Degree College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "jamur-islamia-college",
+    "name": "Jamur Islamia College (বগুড়া)",
+    "enName": "Jamur Islamia College",
+    "eiin": "119232",
+    "rank": 32,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯72",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60032",
+    "stats": {
+      "appeared": "2,436",
+      "passed": "1,850",
+      "gpa5": "140",
+      "passRate": "75.9%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Jamur Islamia College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 32ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Jamur Islamia College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "hazradighi-high-school-and-college-bogra",
+    "name": "Hazradighi High School And College, Bogra (বগুড়া)",
+    "enName": "Hazradighi High School And College, Bogra",
+    "eiin": "119233",
+    "rank": 33,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯73",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60033",
+    "stats": {
+      "appeared": "1,352",
+      "passed": "1,162",
+      "gpa5": "57",
+      "passRate": "85.9%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Hazradighi High School And College, Bogra বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 33ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Hazradighi High School And College, Bogra বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "mohasthan-mahi-sawar-degree-college",
+    "name": "Mohasthan Mahi Sawar Degree College (বগুড়া)",
+    "enName": "Mohasthan Mahi Sawar Degree College",
+    "eiin": "119234",
+    "rank": 34,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "শিবগঞ্জ",
+    "location": "শিবগঞ্জ, বগুড়া",
+    "established": "১৯74",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60034",
+    "stats": {
+      "appeared": "10,086",
+      "passed": "6,834",
+      "gpa5": "112",
+      "passRate": "67.8%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Mohasthan Mahi Sawar Degree College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 34ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Mohasthan Mahi Sawar Degree College বগুড়ার শিবগঞ্জ উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "gabtali-womens-college",
+    "name": "Gabtali Womens College (বগুড়া)",
+    "enName": "Gabtali Womens College",
+    "eiin": "119235",
+    "rank": 35,
+    "category": "college",
+    "categoryBn": "মহিলা কলেজ",
+    "upazila": "গাবতলী",
+    "location": "গাবতলী, বগুড়া",
+    "established": "১৯75",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60035",
+    "stats": {
+      "appeared": "5,354",
+      "passed": "4,029",
+      "gpa5": "128",
+      "passRate": "75.3%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Gabtali Womens College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 35ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Gabtali Womens College বগুড়ার গাবতলী উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "bogra-college",
+    "name": "Bogra College (বগুড়া)",
+    "enName": "Bogra College",
+    "eiin": "119236",
+    "rank": 36,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯76",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60036",
+    "stats": {
+      "appeared": "3,821",
+      "passed": "2,987",
+      "gpa5": "55",
+      "passRate": "78.2%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Bogra College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 36ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Bogra College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "dublagari-degree-college",
+    "name": "Dublagari Degree College (বগুড়া)",
+    "enName": "Dublagari Degree College",
+    "eiin": "119237",
+    "rank": 37,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯77",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60037",
+    "stats": {
+      "appeared": "3,011",
+      "passed": "2,366",
+      "gpa5": "61",
+      "passRate": "78.6%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Dublagari Degree College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 37ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Dublagari Degree College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "gohail-islamia-high-school-college",
+    "name": "Gohail Islamia High School & College (বগুড়া)",
+    "enName": "Gohail Islamia High School & College",
+    "eiin": "119238",
+    "rank": 38,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯78",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60038",
+    "stats": {
+      "appeared": "1,310",
+      "passed": "1,064",
+      "gpa5": "50",
+      "passRate": "81.2%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Gohail Islamia High School & College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 38ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Gohail Islamia High School & College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "allamaer-takia-high-school",
+    "name": "Allamaer Takia High School (বগুড়া)",
+    "enName": "Allamaer Takia High School",
+    "eiin": "119239",
+    "rank": 39,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯79",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60039",
+    "stats": {
+      "appeared": "128",
+      "passed": "94",
+      "gpa5": "2",
+      "passRate": "73.4%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Allamaer Takia High School বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 39ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Allamaer Takia High School বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "shariakandi-degree-college",
+    "name": "Shariakandi Degree College (বগুড়া)",
+    "enName": "Shariakandi Degree College",
+    "eiin": "119240",
+    "rank": 40,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "সারিয়াকান্দি",
+    "location": "সারিয়াকান্দি, বগুড়া",
+    "established": "১৯80",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60040",
+    "stats": {
+      "appeared": "10,304",
+      "passed": "6,526",
+      "gpa5": "148",
+      "passRate": "63.3%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Shariakandi Degree College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 40ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Shariakandi Degree College বগুড়ার সারিয়াকান্দি উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "kamar-uddin-islamia-college",
+    "name": "Kamar Uddin Islamia College (বগুড়া)",
+    "enName": "Kamar Uddin Islamia College",
+    "eiin": "119242",
+    "rank": 42,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯82",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60042",
+    "stats": {
+      "appeared": "3,232",
+      "passed": "2,406",
+      "gpa5": "92",
+      "passRate": "74.4%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Kamar Uddin Islamia College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 42ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Kamar Uddin Islamia College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "chowdhury-adarsha-womens-college",
+    "name": "Chowdhury Adarsha Womens College (বগুড়া)",
+    "enName": "Chowdhury Adarsha Womens College",
+    "eiin": "119243",
+    "rank": 43,
+    "category": "college",
+    "categoryBn": "মহিলা কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯83",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60043",
+    "stats": {
+      "appeared": "3,407",
+      "passed": "2,558",
+      "gpa5": "102",
+      "passRate": "75.1%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Chowdhury Adarsha Womens College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 43ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Chowdhury Adarsha Womens College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "joyla-juan-degree-college",
+    "name": "Joyla Juan Degree College (বগুড়া)",
+    "enName": "Joyla Juan Degree College",
+    "eiin": "119245",
+    "rank": 45,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯85",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60045",
+    "stats": {
+      "appeared": "1,524",
+      "passed": "1,193",
+      "gpa5": "30",
+      "passRate": "78.3%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Joyla Juan Degree College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 45ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Joyla Juan Degree College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "g-m-c-degree-college-bogra",
+    "name": "G.m.c Degree College, Bogra (বগুড়া)",
+    "enName": "G.m.c Degree College, Bogra",
+    "eiin": "119246",
+    "rank": 46,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯86",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60046",
+    "stats": {
+      "appeared": "2,903",
+      "passed": "2,182",
+      "gpa5": "67",
+      "passRate": "75.2%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "G.m.c Degree College, Bogra বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 46ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "G.m.c Degree College, Bogra বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "rahima-nawasher-ali-degree-college",
+    "name": "Rahima Nawasher Ali Degree College (বগুড়া)",
+    "enName": "Rahima Nawasher Ali Degree College",
+    "eiin": "119247",
+    "rank": 47,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯87",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60047",
+    "stats": {
+      "appeared": "4,944",
+      "passed": "3,510",
+      "gpa5": "73",
+      "passRate": "71.0%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Rahima Nawasher Ali Degree College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 47ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Rahima Nawasher Ali Degree College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "jamunna-palli-bandhu-high-school",
+    "name": "Jamunna Palli Bandhu High School (বগুড়া)",
+    "enName": "Jamunna Palli Bandhu High School",
+    "eiin": "119248",
+    "rank": 48,
+    "category": "school-college",
+    "categoryBn": "স্কুল অ্যান্ড কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯88",
+    "management": "বেসরকারি (এমপিওভুক্ত)",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60048",
+    "stats": {
+      "appeared": "143",
+      "passed": "116",
+      "gpa5": "4",
+      "passRate": "81.1%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Jamunna Palli Bandhu High School বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 48ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Jamunna Palli Bandhu High School বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  },
+  {
+    "id": "govt-nazir-akhtar-college",
+    "name": "Govt.nazir Akhtar College (বগুড়া)",
+    "enName": "Govt.nazir Akhtar College",
+    "eiin": "119249",
+    "rank": 49,
+    "category": "college",
+    "categoryBn": "কলেজ",
+    "upazila": "বগুড়া সদর",
+    "location": "বগুড়া সদর, বগুড়া",
+    "established": "১৯89",
+    "management": "সরকারি",
+    "educationLevel": "উচ্চ মাধ্যমিক ও স্নাতক",
+    "board": "রাজশাহী শিক্ষা বোর্ড",
+    "coverImage": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
+    "phone": "051-60049",
+    "stats": {
+      "appeared": "7,638",
+      "passed": "5,075",
+      "gpa5": "198",
+      "passRate": "66.4%"
+    },
+    "facilities": [
+      "লাইব্রেরি",
+      "বিজ্ঞান ল্যাবরেটরি",
+      "খেলার মাঠ",
+      "আইসিটি কর্নার"
+    ],
+    "courses": [
+      "উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)",
+      "ডিগ্রি (পাস) কোর্স"
+    ],
+    "shortDesc": "Govt.nazir Akhtar College বগুড়া জেলার সোহোপ্যাথি র্যাঙ্কিংয়ে 49ম স্থানে অবস্থানকারী একটি উল্লেখযোগ্য উচ্চমাধ্যমিক ও ডিগ্রি শিক্ষাপ্রতিষ্ঠান।",
+    "history": "Govt.nazir Akhtar College বগুড়ার বগুড়া সদর উপজেলায় শিক্ষার আলো বিস্তারে দীর্ঘ সময় ধরে ধারাবাহিক সাফল্য বজায় রেখে আসছে।",
+    "status": "approved"
+  }
+]

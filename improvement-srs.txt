@@ -1,0 +1,938 @@
+# Project: Amar Bogura — Admin Panel & Contributor Portal
+
+## 1. Role and Responsibilities
+
+Act as a Senior Software Architect, Senior Full-Stack Developer, UI/UX Designer, Database Architect and QA Engineer.
+
+Develop a production-oriented Admin Panel and Contributor Portal for **Amar Bogura (আমার বগুড়া)**, a comprehensive district information and community platform for Bogura, Bangladesh.
+
+Do not create only static mockups. Build functional interfaces, database models, APIs, authentication, authorization, validation, submission workflows and realistic demo data.
+
+First inspect the existing repository and identify the current technology stack, coding conventions, existing components and implemented features. Preserve working code. Do not unnecessarily replace existing architecture.
+
+If the repository is empty, follow the recommended architecture below.
+
+---
+
+## 2. Product Vision
+
+Amar Bogura is a digital information platform that collects, verifies, manages and publishes reliable information about Bogura district.
+
+The platform should cover:
+
+- Administrative geography
+- Upazilas, unions, municipalities, wards and villages
+- Educational institutions
+- Hospitals, clinics and diagnostic centres
+- Government offices
+- Tourism and historical places
+- Rivers, canals and natural resources
+- Markets, shops and businesses
+- Agriculture and industries
+- Transportation and infrastructure
+- Blood donation and community services
+- Local news, notices and events
+- Jobs, rentals and local opportunities
+
+Every important information record must have a source, location, verification status and update history.
+
+## 3. Recommended Technology Stack
+
+Use the following stack for a new implementation:
+
+### Frontend
+- Next.js with App Router
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Lucide icons
+- React Hook Form
+- Zod validation
+- TanStack Table
+- TanStack Query where appropriate
+
+### Backend
+- NestJS
+- TypeScript
+- REST API
+- Prisma ORM
+- PostgreSQL with PostGIS
+- JWT authentication with refresh-token rotation
+- Role-based and geographic-scope authorization
+
+### Storage and deployment
+- Supabase PostgreSQL where compatible with PostGIS requirements
+- Supabase Storage or S3-compatible object storage
+- Environment-based configuration
+- Docker-ready deployment
+- Swagger/OpenAPI documentation
+
+Do not introduce Redis, RabbitMQ or additional infrastructure unless a demonstrated requirement justifies it.
+
+If the repository already uses a different established stack, adapt the implementation rather than blindly replacing it.
+
+## 4. Application Structure
+
+Build two separate workspaces under one shared application:
+
+### Admin
+`/admin`
+
+### Contributor
+`/contributor`
+
+### Authentication
+`/login`
+`/register`
+`/forgot-password`
+
+### Public website integration
+`/`
+
+Use shared UI components and business services, but enforce separate navigation, permissions and experiences.
+
+---
+
+# 5. Admin Panel
+
+## 5.1 Admin Dashboard
+
+Create a modern responsive dashboard with:
+
+- Total information records
+- Published records
+- Pending submissions
+- Under-review submissions
+- Revision requests
+- Rejected submissions
+- Active contributors
+- Verified locations
+- Records needing re-verification
+- Geographic coverage statistics
+- Category-wise information coverage
+- Recent contributor activities
+- Recent admin activities
+- Submission trend charts
+- Geographic data completeness
+
+Dashboard statistics must come from APIs and database queries.
+
+Do not hardcode production statistics.
+
+## 5.2 Geographic Management
+
+Build complete CRUD functionality for:
+
+- District
+- Upazila
+- Union
+- Municipality
+- City Corporation
+- Ward
+- Village
+- Mauza
+- Locality
+- Postal code
+
+Important requirements:
+
+- Parent-child geographic relationships
+- Bangla and English names
+- Unique codes where available
+- Geographic coordinates
+- Polygon boundaries
+- Administrative hierarchy
+- Active/inactive status
+- Effective start and end dates
+- Historical administrative changes
+- Source references
+- Boundary version history
+
+Do not hardcode the traditional 12-upazila structure as an immutable truth.
+
+Use verified official administrative records and maintain historical administrative structures.
+
+## 5.3 Interactive Map Management
+
+Implement an interactive Bogura map using Leaflet and OpenStreetMap.
+
+Features:
+
+- District boundary
+- Upazila boundaries
+- Union boundaries where data is available
+- Municipality and ward layers
+- Village and mauza layers where data is available
+- Rivers and water bodies
+- Roads
+- Schools
+- Hospitals
+- Tourist locations
+- Government offices
+- Business locations
+
+Map functionality:
+
+- Zoom and pan
+- Layer visibility
+- Search by location
+- Upazila selector
+- Union selector dependent on upazila
+- Map marker selection
+- Add and edit coordinates
+- Point-in-polygon validation
+- Draw/edit polygons for authorized administrators
+- Import GeoJSON
+- Export GeoJSON
+- Display source and boundary verification information
+
+Never fabricate administrative boundaries or geographic coordinates.
+
+If official GIS data is unavailable, display a clearly labeled placeholder and allow authorized import of verified GeoJSON.
+
+## 5.4 Information Directory Management
+
+Create category-wise management for:
+
+1. Educational institutions
+2. Healthcare facilities
+3. Government offices
+4. Tourist attractions
+5. Historical places
+6. Rivers and water bodies
+7. Businesses
+8. Markets and shopping centres
+9. Transportation facilities
+10. Agriculture and industries
+11. Community services
+12. Local personalities
+
+Each module should support:
+
+- Create
+- Read
+- Update
+- Archive
+- Search
+- Filter
+- Sort
+- Pagination
+- Bulk actions where appropriate
+- Bangla and English information
+- Geographic assignment
+- Image uploads
+- Contact details
+- Coordinates
+- Source references
+- Verification status
+- Version history
+
+Use reusable category-specific forms rather than creating one completely separate implementation for every category.
+
+## 5.5 Content Management
+
+Build management for:
+
+- District profile
+- Upazila profiles
+- Local history
+- Heritage articles
+- News
+- Notices
+- Events
+- Tourism guides
+- Agriculture articles
+- Emergency information
+- Public service information
+
+Support:
+
+- Bangla and English content
+- Rich-text editor
+- Draft and published states
+- SEO title and description
+- Featured image
+- Author information
+- Scheduled publication
+- Content revisions
+
+## 5.6 Contributor Management
+
+Admin must be able to:
+
+- View contributors
+- Approve registrations
+- Assign roles
+- Assign upazila or geographic scopes
+- Assign content categories
+- Suspend/reactivate accounts
+- Review contribution history
+- View approved/rejected submissions
+- View contributor accuracy statistics
+- Assign reviewers
+
+## 5.7 Review Center
+
+Create a dedicated moderation workspace.
+
+Include:
+
+- Submission queue
+- Category filters
+- Upazila filters
+- Contributor filters
+- Submission date filters
+- Duplicate warnings
+- Source/evidence preview
+- Image preview
+- Map location preview
+- Before/after comparison
+- Review comments
+- Approve
+- Request revision
+- Reject
+- Assign reviewer
+- Bulk review where safe
+
+A reviewer must provide a reason when requesting revisions or rejecting information.
+
+Contributors must never approve their own submissions.
+
+Approval and publication must be separate permissions.
+
+## 5.8 Source Management
+
+Build a reference/source registry.
+
+Fields:
+
+- Source name
+- Source type
+- Source URL
+- Organization
+- Reference title
+- Publication date
+- Access date
+- Reliability classification
+- Notes
+- Attached evidence
+- Verification status
+
+Source types:
+
+- Government
+- Official institutional
+- Academic
+- News media
+- Community
+- Field verification
+- Other
+
+Every important public factual record should have at least one supporting reference.
+
+## 5.9 Media Management
+
+Features:
+
+- Image upload
+- Image preview
+- Document upload
+- Image credits
+- Copyright/license metadata
+- Alt text
+- File validation
+- Duplicate file detection
+- Storage management
+- Media usage tracking
+
+Never publish copyrighted third-party images without appropriate usage permission.
+
+## 5.10 Reports and Audit Logs
+
+Reports:
+
+- Geographic coverage
+- Category coverage
+- Verification completion
+- Pending submissions
+- Contributor performance
+- Duplicate records
+- Expired contact information
+- Records requiring re-verification
+
+Audit logs must record:
+
+- Actor
+- Action
+- Entity type
+- Entity ID
+- Previous value
+- New value
+- Timestamp
+- IP/session context where appropriate
+
+---
+
+# 6. Contributor Portal
+
+The contributor interface must be significantly simpler than the admin panel.
+
+Use Bangla-first UI with optional English support.
+
+## 6.1 Contributor Dashboard
+
+Display:
+
+- My submissions
+- Approved submissions
+- Pending submissions
+- Revision requests
+- Rejected submissions
+- Total published contributions
+- Contribution activity
+- Assigned upazila
+- Assigned categories
+- Recent reviewer feedback
+
+## 6.2 Add Information
+
+Create an easy step-by-step submission workflow.
+
+### Step 1: Select Category
+
+- Educational institution
+- Hospital/clinic
+- Government office
+- Tourist attraction
+- Historical place
+- River/water body
+- Business
+- Market
+- Transport
+- Agriculture
+- Community service
+
+### Step 2: Select Geographic Location
+
+- District
+- Upazila
+- Union/municipality
+- Ward
+- Village/mauza
+
+The selector must be dependent:
+
+Selecting an upazila loads its available unions.
+
+Selecting a union loads its available villages.
+
+Allow map-based location selection.
+
+### Step 3: Enter Information
+
+Common fields:
+
+- Bangla name
+- English name
+- Category
+- Description in Bangla
+- Description in English
+- Address
+- Phone
+- Email
+- Website
+- Latitude
+- Longitude
+- Operating hours
+- Images
+- Additional details
+
+Show category-specific fields dynamically.
+
+### Step 4: Add Sources
+
+Allow:
+
+- Website URL
+- Government document
+- Institutional reference
+- Field verification
+- Photograph evidence
+- Other supporting documents
+
+### Step 5: Preview and Submit
+
+Display the complete information before submission.
+
+Allow:
+
+- Save draft
+- Submit for review
+- Edit draft
+- Cancel draft
+
+After submission, lock the submitted version until revision is requested or the submission is otherwise returned to the contributor.
+
+## 6.3 My Submissions
+
+Display submissions in a searchable table or card list.
+
+Columns:
+
+- Record name
+- Category
+- Upazila
+- Submission date
+- Status
+- Reviewer
+- Last updated
+- Actions
+
+Contributor can view:
+
+- Submission details
+- Reviewer comments
+- Revision history
+- Approval history
+- Publication link if published
+
+## 6.4 Revision Requests
+
+When a reviewer requests a revision:
+
+- Show the reviewer's comments.
+- Highlight the fields needing correction.
+- Allow the contributor to update the submission.
+- Require a response to review comments.
+- Preserve the old submission version.
+- Allow resubmission.
+
+## 6.5 Report Incorrect Information
+
+Allow contributors to report incorrect public records.
+
+Fields:
+
+- Record
+- Problem category
+- Description
+- Suggested correction
+- Evidence
+- Contact details if voluntarily provided
+
+---
+
+# 7. Submission Workflow and Business Logic
+
+Implement the following state transitions:
+
+Draft → Submitted → Pending Review → Under Review
+
+Under Review can transition to:
+
+- Approved
+- Revision Requested
+- Rejected
+
+Revision Requested → Resubmitted → Under Review
+
+Approved → Published
+
+Published → Correction Requested / Archived / Superseded
+
+Important rules:
+
+1. Only authenticated contributors can submit information.
+2. Contributors can manage their own drafts and returned submissions.
+3. Geographic scope restrictions must be enforced on the backend.
+4. Category permissions must be enforced on the backend.
+5. Duplicate detection must run before accepting a submission.
+6. Required fields must be validated server-side.
+7. Source/evidence requirements depend on the record category.
+8. Contributors cannot approve their own records.
+9. Only authorized publishers can publish approved records.
+10. All important transitions must be recorded.
+11. Published data must be versioned.
+12. Rejected records must retain their rejection reasons.
+13. Archived records must remain available for audit purposes.
+14. Public APIs must return published records only.
+15. Corrections to published records must not silently overwrite the previous published version.
+
+Use database transactions for approval and publication operations.
+
+---
+
+# 8. Authentication and Authorization
+
+Implement RBAC plus geographic and category scopes.
+
+Roles:
+
+- Super Admin
+- Administrator
+- Editor
+- Reviewer
+- Publisher
+- Area Coordinator
+- Local Reporter
+- Verified Contributor
+- Contributor
+- Visitor
+
+Permissions should be granular.
+
+Examples:
+
+- geography.read
+- geography.manage
+- information.create
+- information.update
+- information.review
+- information.approve
+- information.publish
+- information.archive
+- contributor.manage
+- source.manage
+- media.manage
+- audit.read
+
+A contributor assigned to Bogura Sadar must not be able to create records under another restricted upazila.
+
+Never trust client-side permissions alone.
+
+Enforce all permissions through backend guards and services.
+
+---
+
+# 9. Database Design
+
+Use PostgreSQL and PostGIS.
+
+Create normalized entities:
+
+## Identity
+- users
+- roles
+- permissions
+- user_roles
+- role_permissions
+- contributor_profiles
+- user_geographic_scopes
+- user_category_scopes
+
+## Geography
+- districts
+- upazilas
+- unions
+- municipalities
+- wards
+- villages
+- mauzas
+- geographic_boundaries
+- geographic_versions
+
+## Information
+- categories
+- information_records
+- information_details
+- information_contacts
+- information_locations
+- record_versions
+- record_categories
+
+## Sources
+- sources
+- record_sources
+- evidence_files
+
+## Workflow
+- submissions
+- submission_reviews
+- workflow_transitions
+- revision_requests
+- correction_reports
+
+## Media
+- media_files
+- media_credits
+
+## Audit
+- audit_logs
+- verification_logs
+
+Use UUID primary keys where appropriate.
+
+Use foreign keys and database constraints.
+
+Use soft deletion where required.
+
+Use timestamps consistently.
+
+Support Bangla Unicode.
+
+Create appropriate indexes for:
+
+- Geographic relationships
+- Category
+- Status
+- Name
+- Phone
+- Submission date
+- Spatial queries
+
+Create migrations and seed scripts.
+
+Do not insert invented geographic boundaries or present illustrative information as verified official data.
+
+---
+
+# 10. UI/UX Design System
+
+Product identity: Amar Bogura / আমার বগুড়া.
+
+Theme concept: GeoBogura — Land of Rivers, Plains & Heritage.
+
+Colors:
+
+- Primary river blue: #176A9A
+- Landscape green: #24966A
+- Forest green: #165C43
+- Terracotta: #C96F46
+- Sand: #E9D8B7
+- Background: #F7F8F5
+- Surface: #FFFFFF
+- Text: #24332C
+
+Typography:
+
+- Bangla: Hind Siliguri
+- English: Inter
+
+Design principles:
+
+- Modern government-service portal
+- Clean SaaS dashboard
+- Responsive layout
+- Accessible contrast
+- Consistent spacing
+- Clear status indicators
+- Searchable tables
+- Helpful empty states
+- Skeleton loading
+- Error and success feedback
+- Confirmation dialogs for destructive operations
+
+Admin and Contributor must have different navigation and dashboard experiences.
+
+Avoid overcrowded dashboards and excessive gradients.
+
+Support desktop, tablet and mobile.
+
+---
+
+# 11. Required Pages
+
+## Admin
+
+1. Admin Dashboard
+2. Geographic Directory
+3. Upazila Management
+4. Union Management
+5. Village/Mauza Management
+6. GIS Map Explorer
+7. Information Directory
+8. Category Management
+9. Content Management
+10. Submission Review Center
+11. Submission Details
+12. Contributor Management
+13. Source Registry
+14. Media Library
+15. Reports
+16. Audit Logs
+17. Role and Permission Management
+18. System Settings
+
+## Contributor
+
+1. Contributor Dashboard
+2. Add Information
+3. Submission Wizard
+4. My Submissions
+5. Submission Details
+6. Revision Requests
+7. Drafts
+8. Report Incorrect Information
+9. My Contributions
+10. Profile and Settings
+11. Contributor Guidelines
+
+---
+
+# 12. API Architecture
+
+Use versioned REST APIs.
+
+Base path:
+
+`/api/v1`
+
+Suggested modules:
+
+- auth
+- users
+- roles
+- permissions
+- geography
+- maps
+- categories
+- information
+- submissions
+- reviews
+- sources
+- media
+- corrections
+- reports
+- audit
+
+Example endpoints:
+
+GET `/geography/upazilas`
+
+GET `/geography/upazilas/:id/unions`
+
+GET `/geography/unions/:id/villages`
+
+GET `/geography/map`
+
+POST `/submissions`
+
+GET `/submissions/my`
+
+GET `/admin/submissions`
+
+POST `/admin/submissions/:id/approve`
+
+POST `/admin/submissions/:id/request-revision`
+
+POST `/admin/submissions/:id/reject`
+
+POST `/admin/information/:id/publish`
+
+GET `/information`
+
+GET `/information/:slug`
+
+Document all APIs with Swagger.
+
+Add pagination, sorting, filtering and consistent error responses.
+
+---
+
+# 13. Testing Requirements
+
+Implement:
+
+- Unit tests for business services
+- Integration tests for APIs
+- Authorization tests
+- Geographic scope tests
+- Submission workflow tests
+- Duplicate detection tests
+- Validation tests
+- File upload security tests
+- End-to-end tests for the main contributor and admin workflows
+
+Important test cases:
+
+1. Contributor cannot access another contributor's drafts.
+2. Contributor cannot submit outside assigned geographic scope.
+3. Contributor cannot approve own submission.
+4. Reviewer can request revision.
+5. Contributor can resubmit revised data.
+6. Publisher can publish approved records.
+7. Unpublished records never appear in public APIs.
+8. Published versions retain historical data.
+9. Invalid coordinates are rejected.
+10. Unauthorized users cannot access admin APIs.
+
+---
+
+# 14. Development Execution Plan
+
+Work in the following order.
+
+Phase 1: Repository inspection and architecture setup.
+
+Phase 2: Database schema, migrations, seed data and authentication.
+
+Phase 3: Geographic master data and map foundation.
+
+Phase 4: Admin dashboard and geographic management.
+
+Phase 5: Contributor dashboard and submission wizard.
+
+Phase 6: Review center and workflow engine.
+
+Phase 7: Source management, media and versioning.
+
+Phase 8: Public information API and publishing integration.
+
+Phase 9: Reports, audit logs and permissions.
+
+Phase 10: Testing, security review, documentation and deployment preparation.
+
+At the end of each phase:
+
+- Run lint.
+- Run type checking.
+- Run relevant tests.
+- Fix errors before moving on.
+- Update implementation documentation.
+
+---
+
+# 15. Required Deliverables
+
+Produce actual working code, not just screenshots.
+
+Deliver:
+
+1. Complete Admin Panel.
+2. Complete Contributor Portal.
+3. Shared authentication and authorization.
+4. Database ERD.
+5. Prisma schema.
+6. Database migrations.
+7. Seed data.
+8. NestJS REST APIs.
+9. Swagger documentation.
+10. Interactive GIS map.
+11. Submission and review workflow.
+12. Source and evidence management.
+13. Automated tests.
+14. Environment example file.
+15. Docker configuration where applicable.
+16. Local development instructions.
+17. Production deployment instructions.
+18. README with implemented features and known limitations.
+
+## 16. Critical Development Instructions
+
+- Inspect the repository before making changes.
+- Build working features, not decorative controls.
+- Do not fake API success.
+- Do not invent official Bogura information.
+- Do not fabricate coordinates or boundaries.
+- Use clearly marked demo data only.
+- Keep frontend and backend validation consistent.
+- Never expose secrets in frontend code.
+- Never trust role permissions supplied by the browser.
+- Use transactions for sensitive workflow transitions.
+- Preserve audit history.
+- Do not overengineer with unnecessary microservices.
+- Keep modules maintainable and reusable.
+- Use proper error handling and loading states.
+- Ensure the application can run locally.
+
+Start by inspecting the repository and producing a concise implementation plan. Then implement Phase 1 and continue through the phases. Do not stop after generating the plan or the UI mockup. Report completed features, tests, limitations and remaining work accurately.

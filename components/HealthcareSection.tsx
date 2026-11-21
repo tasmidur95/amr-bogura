@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
 import { Hospital, EmergencyContact } from '@/lib/data/district-data';
@@ -240,6 +241,28 @@ export default function HealthcareSection({
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Link to Full Directory & Map */}
+      <div className="mt-8 bg-gradient-to-r from-emerald-800 to-teal-800 rounded-2xl p-5 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
+        <div>
+          <span className="text-xs bg-amber-400 text-slate-900 font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+            নতুন ডাটাবেজ
+          </span>
+          <h3 className="text-lg sm:text-xl font-bold mt-1.5">
+            বগুড়ার ১২টি উপজেলার ৩৫২টি স্বাস্থ্যসেবা প্রতিষ্ঠান ম্যাপে দেখুন
+          </h3>
+          <p className="text-xs sm:text-sm text-emerald-100 mt-0.5">
+            সরকারি হাসপাতাল, ইউনিয়ন সাব-সেন্টার, কমিউনিটি ক্লিনিক, ডায়াগনস্টিক, ব্লাড ব্যাংক ও অ্যাম্বুলেন্স তালিকা।
+          </p>
+        </div>
+        <Link
+          href="/healthcare"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-900 rounded-xl text-sm font-bold shadow transition shrink-0"
+        >
+          <span>পূর্ণ ডিরেক্টরি ও ম্যাপ খুলুন</span>
+          <i className="fa-solid fa-arrow-right text-xs"></i>
+        </Link>
       </div>
     </section>
   );

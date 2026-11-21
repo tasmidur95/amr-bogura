@@ -254,3 +254,51 @@ ON CONFLICT (id) DO UPDATE SET
   cover_image = EXCLUDED.cover_image,
   short_desc = EXCLUDED.short_desc,
   history = EXCLUDED.history;
+
+
+-- 7. Master Healthcare Facilities Table
+CREATE TABLE IF NOT EXISTS public.healthcare_facilities (
+  id TEXT PRIMARY KEY,
+  dghs_facility_id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  name_bn TEXT NOT NULL,
+  slug TEXT NOT NULL,
+  category TEXT NOT NULL,
+  facility_type TEXT NOT NULL,
+  original_facility_type TEXT NOT NULL,
+  ownership TEXT NOT NULL,
+  district TEXT NOT NULL,
+  district_bn TEXT NOT NULL,
+  upazila TEXT NOT NULL,
+  upazila_bn TEXT NOT NULL,
+  union_name TEXT,
+  union_bn TEXT,
+  village_or_area TEXT,
+  address TEXT NOT NULL,
+  phone JSONB NOT NULL DEFAULT '[]',
+  email TEXT,
+  website TEXT,
+  latitude DOUBLE PRECISION NOT NULL,
+  longitude DOUBLE PRECISION NOT NULL,
+  google_maps_url TEXT NOT NULL,
+  image_url TEXT,
+  services JSONB NOT NULL DEFAULT '[]',
+  source_urls JSONB NOT NULL DEFAULT '[]',
+  verification_status TEXT NOT NULL DEFAULT 'verified',
+  last_verified DATE NOT NULL DEFAULT CURRENT_DATE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_healthcare_upazila ON public.healthcare_facilities (upazila);
+CREATE INDEX IF NOT EXISTS idx_healthcare_category ON public.healthcare_facilities (category);
+CREATE INDEX IF NOT EXISTS idx_healthcare_ownership ON public.healthcare_facilities (ownership);
+CREATE INDEX IF NOT EXISTS idx_healthcare_dghs_id ON public.healthcare_facilities (dghs_facility_id);
+
+ALTER TABLE public.healthcare_facilities ENABLE ROW LEVEL SECURITY;
+DO $$ BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE tablename = 'healthcare_facilities' AND policyname = 'Public read healthcare_facilities'
+  ) THEN
+    CREATE POLICY "Public read healthcare_facilities" ON public.healthcare_facilities FOR SELECT USING (true);
+  END IF;
+END $$;

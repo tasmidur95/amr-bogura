@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import {
   upazilasData,
@@ -26,7 +28,88 @@ import {
   UnionData
 } from '@/lib/data/unions-villages-data';
 
-export type { SiteContent };
+import { EducationalInstitute } from '@/lib/types/education';
+
+export type { SiteContent, EducationalInstitute };
+
+/**
+ * File-backed persistence helper for educational institutes
+ */
+function getEducationFilePath(): string {
+  return path.join(process.cwd(), 'amr-bogura-data', 'education', 'institutes.json');
+}
+
+function loadInitialInstitutes(): EducationalInstitute[] {
+  try {
+    const p = getEducationFilePath();
+    if (fs.existsSync(p)) {
+      const raw = fs.readFileSync(p, 'utf-8');
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to load institutes from disk:', e);
+  }
+  return [];
+}
+
+function savePersistentInstitutes(list: EducationalInstitute[]): void {
+  try {
+    const p = getEducationFilePath();
+    const dir = path.dirname(p);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(p, JSON.stringify(list, null, 2), 'utf-8');
+  } catch (e) {
+    console.warn('Failed to save institutes to disk:', e);
+  }
+}
+
+let memoryInstitutes: EducationalInstitute[] = loadInitialInstitutes();
+
+/**
+ * File-backed persistence helper for explore spots
+ */
+function getSpotsFilePath(): string {
+  return path.join(process.cwd(), 'amr-bogura-data', 'explore', 'explore-spots.json');
+}
+
+function loadInitialSpots(): DetailedExploreSpot[] {
+  try {
+    const p = getSpotsFilePath();
+    if (fs.existsSync(p)) {
+      const raw = fs.readFileSync(p, 'utf-8');
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed.map((s: any) => ({
+          ...s,
+          isApproved: s.isApproved ?? true,
+          status: s.status || (s.isApproved ? 'approved' : 'pending'),
+          gallery: Array.isArray(s.gallery) ? s.gallery : (s.coverImage ? [s.coverImage] : [])
+        }));
+      }
+    }
+  } catch (e) {
+    console.warn('Fallback loading initial spots from code:', e);
+  }
+  return detailedExploreSpots.map(s => ({
+    ...s,
+    isApproved: true,
+    status: 'approved' as const
+  }));
+}
+
+function savePersistentSpots(spots: DetailedExploreSpot[]): void {
+  try {
+    const p = getSpotsFilePath();
+    const dir = path.dirname(p);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(p, JSON.stringify(spots, null, 2), 'utf-8');
+  } catch (e) {
+    console.warn('Failed to save persistent spots to disk:', e);
+  }
+}
 
 /**
  * In-memory state for upazilas & unions
@@ -40,114 +123,105 @@ let memoryDetailedUpazilas: DetailedUpazilaData[] = [...boguraUpazilasData];
 let memorySiteContent: SiteContent = { ...defaultSiteContent };
 
 /**
- * In-memory state for explore spots and pending contributions
+ * Persistent state for explore spots
  */
-let memoryExploreSpots: DetailedExploreSpot[] = [
-  ...detailedExploreSpots.map(s => ({
-    ...s,
-    isApproved: true,
-    status: 'approved' as const
-  })),
-  {
-    id: 'suka-shakuni-mound',
-    title: 'সুকা শকুনী প্রাচীন প্রত্নতাত্ত্বিক ঢিবি',
-    enTitle: 'Suka Shakuni Ancient Archaeological Mound',
-    category: 'archaeological',
-    categoryBn: 'প্রত্নতাত্ত্বিক নিদর্শন',
-    location: 'মুরইল ইউনিয়ন, কাহালু, বগুড়া',
-    upazila: 'কাহালু',
-    tag: 'নাগরিক প্রস্তাবিত স্থান',
-    coverImage: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80'
-    ],
-    shortDesc: 'কাহালু উপজেলার ঐতিহাসিক সমৃদ্ধ প্রাচীন ঢিবি যা এখনো সংরক্ষিত খননকাজের অপেক্ষায় রয়েছে।',
-    history: 'সুকা শকুনী ঢিবি বগুড়ার অন্যতম অনাবিষ্কৃত প্রত্নস্থান। স্থানীয় জনশ্রুতি মতে প্রাচীন রাজা ও সুফি সাধকদের স্মৃতিবিজড়িত এই ঢিবিটি প্রাচীন পুণ্ড্রনগরের বহিঃসীমার নিদর্শন।',
-    architecture: 'মাটির ঢিবি ও প্রাচীন পোড়ামাটির ইটের অবশিষ্টাংশ।',
-    howToReach: 'বগুড়া চারমাথা থেকে কাহালু মুরইল বাসস্ট্যান্ড, সেখান থেকে অটোরিকশায় ৫ মিনিট।',
-    highlights: ['প্রাচীন মাটির ঢিবি', 'পুণ্ড্রনগর সমসাময়িক নিদর্শন', 'শান্ত পল্লি পরিবেশ'],
-    timings: 'সূর্যোদয় থেকে সূর্যাস্ত',
-    entryFee: 'বিনামূল্যে',
-    bestTime: 'শীতকাল',
-    mapCoordinates: '24.8123, 89.2845',
-    mapUrl: 'https://maps.google.com/?q=Kahaloo+Bogura',
-    isApproved: false,
-    status: 'pending',
-    contributor: {
-      name: 'আরিফুল ইসলাম তনয়',
-      phone: '01719-887766',
-      email: 'ariful.kahalu@gmail.com',
-      date: '২০২৬-০৩-১৯',
-      note: 'কাহালুর এই প্রাচীন স্থানটিকে সরকারিভাবে দ্রুত সংরক্ষণের অনুরোধ জানাচ্ছি।'
-    },
-    reviews: []
+let memoryExploreSpots: DetailedExploreSpot[] = loadInitialSpots();
+
+function getCommunityFilePath(): string {
+  return path.join(process.cwd(), 'amr-bogura-data', 'community', 'community-posts.json');
+}
+
+function loadInitialCommunity(): Record<string, CommunityPost[]> {
+  try {
+    const p = getCommunityFilePath();
+    if (fs.existsSync(p)) {
+      const raw = fs.readFileSync(p, 'utf-8');
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        return parsed;
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to load persistent community posts:', e);
   }
-];
+  return {
+    blood: [
+      {
+        id: 'comm-pending-1',
+        category: 'blood',
+        name: 'মোঃ মাহমুদুল হাসান',
+        group: 'O+',
+        role: 'জরুরি রক্তদাতা',
+        badge: 'স্বেচ্ছাসেবী',
+        upazila: 'সারিয়াকান্দি',
+        detail: 'সারিয়াকান্দি সদর ও যমুনা চরাঞ্চল এলাকায় যেকোনো জরুরি মুহূর্তে রক্তদানে প্রস্তুত',
+        phone: '01712-998877',
+        isApproved: false,
+        status: 'pending',
+        contributorName: 'মাহমুদুল হাসান',
+        contributorPhone: '01712-998877',
+        created_at: '2026-03-19'
+      },
+      ...(initialCommunityState.blood || []).map(p => ({
+        ...p,
+        isApproved: true,
+        status: 'approved' as const
+      }))
+    ],
+    tuition: [
+      {
+        id: 'comm-pending-2',
+        category: 'tuition',
+        name: 'নাজমুল সাকিব (গণিত বিভাগ, আযিযুল হক কলেজ)',
+        upazila: 'বগুড়া সদর',
+        detail: 'এসএসসি ও এইচএসসি উচ্চতর গণিত এবং পদার্থবিজ্ঞান যত্নসহকারে পড়ানো হয়',
+        phone: '01815-443322',
+        badge: 'শিক্ষক উপলব্ধ',
+        isApproved: false,
+        status: 'pending',
+        contributorName: 'নাজমুল সাকিব',
+        contributorPhone: '01815-443322',
+        created_at: '2026-03-19'
+      },
+      ...(initialCommunityState.tuition || []).map(p => ({
+        ...p,
+        isApproved: true,
+        status: 'approved' as const
+      }))
+    ],
+    rent: (initialCommunityState.rent || []).map(p => ({
+      ...p,
+      isApproved: true,
+      status: 'approved' as const
+    })),
+    jobs: (initialCommunityState.jobs || []).map(p => ({
+      ...p,
+      isApproved: true,
+      status: 'approved' as const
+    })),
+    business: (initialCommunityState.business || []).map(p => ({
+      ...p,
+      isApproved: true,
+      status: 'approved' as const
+    }))
+  };
+}
+
+function savePersistentCommunity(comm: Record<string, CommunityPost[]>): void {
+  try {
+    const p = getCommunityFilePath();
+    const dir = path.dirname(p);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(p, JSON.stringify(comm, null, 2), 'utf-8');
+  } catch (e) {
+    console.warn('Failed to save persistent community posts:', e);
+  }
+}
 
 /**
- * In-memory state for community posts with approval statuses
+ * In-memory state for community posts with approval statuses & disk persistence
  */
-let memoryCommunityState: Record<string, CommunityPost[]> = {
-  blood: [
-    {
-      id: 'comm-pending-1',
-      category: 'blood',
-      name: 'মোঃ মাহমুদুল হাসান',
-      group: 'O+',
-      role: 'জরুরি রক্তদাতা',
-      badge: 'স্বেচ্ছাসেবী',
-      upazila: 'সারিয়াকান্দি',
-      detail: 'সারিয়াকান্দি সদর ও যমুনা চরাঞ্চল এলাকায় যেকোনো জরুরি মুহূর্তে রক্তদানে প্রস্তুত',
-      phone: '01712-998877',
-      isApproved: false,
-      status: 'pending',
-      contributorName: 'মাহমুদুল হাসান',
-      contributorPhone: '01712-998877',
-      created_at: '2026-03-19'
-    },
-    ...(initialCommunityState.blood || []).map(p => ({
-      ...p,
-      isApproved: true,
-      status: 'approved' as const
-    }))
-  ],
-  tuition: [
-    {
-      id: 'comm-pending-2',
-      category: 'tuition',
-      name: 'নাজমুল সাকিব (গণিত বিভাগ, আযিযুল হক কলেজ)',
-      upazila: 'বগুড়া সদর',
-      detail: 'এসএসসি ও এইচএসসি উচ্চতর গণিত এবং পদার্থবিজ্ঞান যত্নসহকারে পড়ানো হয়',
-      phone: '01815-443322',
-      badge: 'শিক্ষক উপলব্ধ',
-      isApproved: false,
-      status: 'pending',
-      contributorName: 'নাজমুল সাকিব',
-      contributorPhone: '01815-443322',
-      created_at: '2026-03-19'
-    },
-    ...(initialCommunityState.tuition || []).map(p => ({
-      ...p,
-      isApproved: true,
-      status: 'approved' as const
-    }))
-  ],
-  rent: (initialCommunityState.rent || []).map(p => ({
-    ...p,
-    isApproved: true,
-    status: 'approved' as const
-  })),
-  jobs: (initialCommunityState.jobs || []).map(p => ({
-    ...p,
-    isApproved: true,
-    status: 'approved' as const
-  })),
-  business: (initialCommunityState.business || []).map(p => ({
-    ...p,
-    isApproved: true,
-    status: 'approved' as const
-  }))
-};
+let memoryCommunityState: Record<string, CommunityPost[]> = loadInitialCommunity();
 
 /**
  * In-memory state for standalone / pending spot reviews
@@ -324,7 +398,7 @@ export class DistrictService {
 
         const { data, error } = await queryBuilder;
         if (!error && data && data.length > 0) {
-          return data.map(item => ({
+          const dbSpots: DetailedExploreSpot[] = data.map(item => ({
             id: item.id,
             title: item.title,
             enTitle: item.en_title,
@@ -334,7 +408,7 @@ export class DistrictService {
             upazila: item.upazila,
             tag: item.tag,
             coverImage: item.cover_image,
-            gallery: Array.isArray(item.gallery) ? item.gallery : [],
+            gallery: Array.isArray(item.gallery) ? item.gallery : (item.cover_image ? [item.cover_image] : []),
             shortDesc: item.short_desc,
             history: item.history,
             architecture: item.architecture,
@@ -346,6 +420,7 @@ export class DistrictService {
             mapCoordinates: item.map_coordinates || '',
             mapUrl: item.map_url || '',
             isApproved: item.is_approved,
+            status: item.is_approved ? 'approved' : 'pending',
             contributor: {
               name: item.contributor_name,
               phone: item.contributor_phone,
@@ -355,17 +430,35 @@ export class DistrictService {
             },
             reviews: []
           }));
+
+          // Sync into persistent storage
+          dbSpots.forEach(ds => {
+            const idx = memoryExploreSpots.findIndex(m => m.id === ds.id);
+            if (idx !== -1) {
+              const local = memoryExploreSpots[idx];
+              memoryExploreSpots[idx] = {
+                ...ds,
+                ...local,
+                gallery: (local.gallery && local.gallery.length > 0)
+                  ? local.gallery
+                  : (ds.gallery && ds.gallery.length > 0 ? ds.gallery : (local.coverImage ? [local.coverImage] : []))
+              };
+            } else {
+              memoryExploreSpots.push(ds);
+            }
+          });
+          savePersistentSpots(memoryExploreSpots);
         }
-      } catch (err) {
-        console.warn('Supabase explore fetch fallback to memory:', err);
+      } catch (err: any) {
+        console.warn('Supabase explore fetch fallback to persistent file:', err.message);
       }
     }
 
-    // In-memory fallback
+    // Disk-backed persistent fallback
     let list = [...memoryExploreSpots];
 
     if (!includePending) {
-      list = list.filter(s => s.isApproved);
+      list = list.filter(s => s.isApproved || s.status === 'approved');
     }
 
     if (category && category !== 'all') {
@@ -376,7 +469,7 @@ export class DistrictService {
       const q = query.toLowerCase();
       list = list.filter(s =>
         s.title.toLowerCase().includes(q) ||
-        s.enTitle.toLowerCase().includes(q) ||
+        (s.enTitle && s.enTitle.toLowerCase().includes(q)) ||
         s.location.toLowerCase().includes(q) ||
         s.upazila.toLowerCase().includes(q) ||
         s.shortDesc.toLowerCase().includes(q)
@@ -447,7 +540,12 @@ export class DistrictService {
       }
     }
 
-    const found = memoryExploreSpots.find(s => s.id === id);
+    let found = memoryExploreSpots.find(s => s.id === id);
+    if (!found) {
+      const diskSpots = loadInitialSpots();
+      found = diskSpots.find(s => s.id === id);
+      if (found) memoryExploreSpots = diskSpots;
+    }
     return found || null;
   }
 
@@ -461,104 +559,40 @@ export class DistrictService {
       status?: 'pending' | 'approved' | 'rejected';
     }
   ): Promise<DetailedExploreSpot> {
-    const slug = spot.id || spot.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') || `spot-${Date.now()}`;
-    const autoApprove = spot.autoApprove ?? false; // Default pending for contributor moderation!
-    const status = spot.status || (autoApprove ? 'approved' : 'pending');
-
-    if (isSupabaseConfigured && supabase) {
-      try {
-        const { data, error } = await supabase
-          .from('tourist_spots')
-          .insert([
-            {
-              id: slug,
-              title: spot.title,
-              en_title: spot.enTitle || spot.title,
-              category: spot.category,
-              category_bn: spot.categoryBn,
-              location: spot.location,
-              upazila: spot.upazila,
-              tag: spot.tag || 'নাগরিক প্রস্তাবিত স্থান',
-              cover_image: spot.coverImage || 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80',
-              gallery: spot.gallery || [],
-              short_desc: spot.shortDesc,
-              history: spot.history,
-              architecture: spot.architecture,
-              how_to_reach: spot.howToReach,
-              highlights: spot.highlights || [],
-              timings: spot.timings || 'উন্মুক্ত',
-              entry_fee: spot.entryFee || 'বিনামূল্যে',
-              best_time: spot.bestTime || 'সারা বছর',
-              map_coordinates: spot.mapCoordinates || '',
-              map_url: spot.mapUrl || `https://maps.google.com/?q=${encodeURIComponent(spot.title + ', বগুড়া')}`,
-              is_approved: autoApprove,
-              contributor_name: spot.contributor.name,
-              contributor_phone: spot.contributor.phone || null,
-              contributor_email: spot.contributor.email || null,
-              contributor_note: spot.contributor.note || null
-            }
-          ])
-          .select()
-          .single();
-
-        if (!error && data) {
-          const created: DetailedExploreSpot = {
-            id: data.id,
-            title: data.title,
-            enTitle: data.en_title,
-            category: data.category,
-            categoryBn: data.category_bn,
-            location: data.location,
-            upazila: data.upazila,
-            tag: data.tag,
-            coverImage: data.cover_image,
-            gallery: Array.isArray(data.gallery) ? data.gallery : [],
-            shortDesc: data.short_desc,
-            history: data.history,
-            architecture: data.architecture,
-            howToReach: data.how_to_reach,
-            highlights: Array.isArray(data.highlights) ? data.highlights : [],
-            timings: data.timings,
-            entryFee: data.entry_fee,
-            bestTime: data.best_time,
-            mapCoordinates: data.map_coordinates || '',
-            mapUrl: data.map_url || '',
-            isApproved: data.is_approved,
-            status: data.is_approved ? 'approved' : 'pending',
-            contributor: {
-              name: data.contributor_name,
-              phone: data.contributor_phone,
-              email: data.contributor_email,
-              date: data.created_at ? data.created_at.split('T')[0] : '২০২৬',
-              note: data.contributor_note
-            },
-            reviews: []
-          };
-          memoryExploreSpots.unshift(created);
-          return created;
-        }
-      } catch (err) {
-        console.warn('Supabase spot insert fallback to memory:', err);
-      }
+    let rawSlug = (spot.id || '').trim();
+    if (!rawSlug && spot.enTitle) {
+      rawSlug = spot.enTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     }
+    if (!rawSlug) {
+      const enPart = (spot.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      rawSlug = enPart || `spot-${Date.now()}`;
+    }
+    const slug = rawSlug;
+    const autoApprove = spot.autoApprove ?? true;
+    const status = spot.status || (autoApprove ? 'approved' : 'pending');
+    const contributor = spot.contributor || {
+      name: 'Amr Bogura Editorial',
+      date: new Date().toISOString().split('T')[0]
+    };
 
-    // Local fallback
     const newSpot: DetailedExploreSpot = {
       id: slug,
       title: spot.title,
       enTitle: spot.enTitle || spot.title,
-      category: spot.category,
-      categoryBn: spot.categoryBn,
+      category: spot.category || 'heritage',
+      categoryBn: spot.categoryBn || 'ঐতিহাসিক স্থাপত্য ও সংস্কৃতি',
       location: spot.location,
-      upazila: spot.upazila,
+      upazila: spot.upazila || 'বগুড়া সদর',
       tag: spot.tag || 'নাগরিক প্রস্তাবিত স্থান',
       coverImage: spot.coverImage || 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80',
-      gallery: spot.gallery || [],
+      gallery: Array.isArray(spot.gallery) && spot.gallery.length > 0
+        ? spot.gallery
+        : (spot.coverImage ? [spot.coverImage] : ['https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80']),
       shortDesc: spot.shortDesc,
-      history: spot.history,
-      architecture: spot.architecture,
-      howToReach: spot.howToReach,
-      highlights: spot.highlights || [],
+      history: spot.history || '',
+      architecture: spot.architecture || '',
+      howToReach: spot.howToReach || '',
+      highlights: Array.isArray(spot.highlights) ? spot.highlights : [],
       timings: spot.timings || 'উন্মুক্ত',
       entryFee: spot.entryFee || 'বিনামূল্যে',
       bestTime: spot.bestTime || 'সারা বছর',
@@ -566,11 +600,63 @@ export class DistrictService {
       mapUrl: spot.mapUrl || `https://maps.google.com/?q=${encodeURIComponent(spot.title + ', বগুড়া')}`,
       isApproved: autoApprove,
       status,
-      contributor: spot.contributor,
+      contributor,
       reviews: []
     };
 
-    memoryExploreSpots.unshift(newSpot);
+    // 1. Update local memory & write to persistent disk file
+    const existingIdx = memoryExploreSpots.findIndex(s => s.id === slug);
+    if (existingIdx !== -1) {
+      memoryExploreSpots[existingIdx] = newSpot;
+    } else {
+      memoryExploreSpots.unshift(newSpot);
+    }
+    savePersistentSpots(memoryExploreSpots);
+
+    // 2. Insert into Supabase if configured
+    if (isSupabaseConfigured && supabase) {
+      try {
+        const { error } = await supabase
+          .from('tourist_spots')
+          .insert([
+            {
+              id: slug,
+              title: newSpot.title,
+              en_title: newSpot.enTitle,
+              category: newSpot.category,
+              category_bn: newSpot.categoryBn,
+              location: newSpot.location,
+              upazila: newSpot.upazila,
+              tag: newSpot.tag,
+              cover_image: newSpot.coverImage,
+              gallery: newSpot.gallery,
+              short_desc: newSpot.shortDesc,
+              history: newSpot.history,
+              architecture: newSpot.architecture,
+              how_to_reach: newSpot.howToReach,
+              highlights: newSpot.highlights,
+              timings: newSpot.timings,
+              entry_fee: newSpot.entryFee,
+              best_time: newSpot.bestTime,
+              map_coordinates: newSpot.mapCoordinates,
+              map_url: newSpot.mapUrl,
+              is_approved: autoApprove,
+              contributor_name: contributor.name || 'Amr Bogura Editorial',
+              contributor_phone: contributor.phone || null,
+              contributor_email: contributor.email || null,
+              contributor_note: contributor.note || null
+            }
+          ]);
+
+        if (error) {
+          console.warn('Supabase tourist_spots insert warning:', error.message);
+        }
+      } catch (err: any) {
+        console.warn('Supabase spot insert fallback:', err.message);
+      }
+    }
+
+    this.addAuditLog('SPOT_CREATE', newSpot.title, 'নতুন দর্শনীয় স্থান তৈরি করা হয়েছে।', 'info');
     return newSpot;
   }
 
@@ -630,6 +716,7 @@ export class DistrictService {
       newReview.spotTitle = targetSpot.title;
       if (!targetSpot.reviews) targetSpot.reviews = [];
       targetSpot.reviews.unshift(newReview);
+      savePersistentSpots(memoryExploreSpots);
     }
 
     memorySpotReviews.unshift(newReview);
@@ -790,8 +877,8 @@ export class DistrictService {
     search?: string;
     upazila?: string;
   }) {
-    // 1. Gather Spots
-    let spots = [...memoryExploreSpots];
+    // 1. Gather Spots (freshly synced from persistent storage / Supabase)
+    let spots = await this.getDetailedExploreSpots(undefined, undefined, true);
 
     // 2. Gather Community posts
     let community: CommunityPost[] = [];
@@ -886,38 +973,78 @@ export class DistrictService {
   }
 
   /**
-   * Approve any submission (spot, community, review)
+   * Auto-detect submission type from ID across spots, community posts, and reviews
    */
-  static async approveSubmission(type: 'spot' | 'community' | 'review', id: string): Promise<boolean> {
+  static async detectSubmissionType(id: string): Promise<'spot' | 'community' | 'review' | null> {
+    if (!id) return null;
+    let spot = memoryExploreSpots.find(s => s.id === id);
+    if (!spot) {
+      const diskSpots = loadInitialSpots();
+      if (diskSpots.some(s => s.id === id)) return 'spot';
+    } else {
+      return 'spot';
+    }
+
+    for (const cat of Object.keys(memoryCommunityState)) {
+      if (memoryCommunityState[cat].some(c => c.id === id)) return 'community';
+    }
+
+    if (memorySpotReviews.some(r => r.id === id)) return 'review';
+    for (const s of memoryExploreSpots) {
+      if (s.reviews?.some(r => r.id === id)) return 'review';
+    }
+
+    return null;
+  }
+
+  /**
+   * Approve any submission (spot, community, review) with disk & cross-type safety net
+   */
+  static async approveSubmission(type: 'spot' | 'community' | 'review' | string, id: string): Promise<boolean> {
+    if (!id) return false;
+
+    // 1. Primary check based on requested type
     if (type === 'spot') {
-      if (isSupabaseConfigured && supabase) {
-        try {
-          await supabase.from('tourist_spots').update({ is_approved: true }).eq('id', id);
-        } catch (err) {
-          console.warn('Supabase spot approve fallback:', err);
+      let spot = memoryExploreSpots.find(s => s.id === id);
+      if (!spot) {
+        const diskSpots = loadInitialSpots();
+        const diskSpot = diskSpots.find(s => s.id === id);
+        if (diskSpot) {
+          memoryExploreSpots = diskSpots;
+          spot = memoryExploreSpots.find(s => s.id === id);
         }
       }
-      const spot = memoryExploreSpots.find(s => s.id === id);
       if (spot) {
         spot.isApproved = true;
         spot.status = 'approved';
         spot.rejectReason = undefined;
+        savePersistentSpots(memoryExploreSpots);
+
+        if (isSupabaseConfigured && supabase) {
+          try {
+            await supabase.from('tourist_spots').update({ is_approved: true }).eq('id', id);
+          } catch (err) {
+            console.warn('Supabase spot approve fallback:', err);
+          }
+        }
         return true;
       }
     } else if (type === 'community') {
-      if (isSupabaseConfigured && supabase) {
-        try {
-          await supabase.from('community_posts').update({ is_approved: true }).eq('id', id);
-        } catch (err) {
-          console.warn('Supabase community approve fallback:', err);
-        }
-      }
       for (const cat of Object.keys(memoryCommunityState)) {
         const item = memoryCommunityState[cat].find(c => c.id === id);
         if (item) {
           item.isApproved = true;
           item.status = 'approved';
           item.rejectReason = undefined;
+          savePersistentCommunity(memoryCommunityState);
+
+          if (isSupabaseConfigured && supabase) {
+            try {
+              await supabase.from('community_posts').update({ is_approved: true }).eq('id', id);
+            } catch (err) {
+              console.warn('Supabase community approve fallback:', err);
+            }
+          }
           return true;
         }
       }
@@ -935,10 +1062,59 @@ export class DistrictService {
           r.isApproved = true;
           r.status = 'approved';
           r.rejectReason = undefined;
+          savePersistentSpots(memoryExploreSpots);
           return true;
         }
       }
     }
+
+    // 2. Cross-category fallback safety net (if type was imprecise or omitted)
+    let anySpot = memoryExploreSpots.find(s => s.id === id);
+    if (!anySpot) {
+      const diskSpots = loadInitialSpots();
+      const diskSpot = diskSpots.find(s => s.id === id);
+      if (diskSpot) {
+        memoryExploreSpots = diskSpots;
+        anySpot = memoryExploreSpots.find(s => s.id === id);
+      }
+    }
+    if (anySpot) {
+      anySpot.isApproved = true;
+      anySpot.status = 'approved';
+      anySpot.rejectReason = undefined;
+      savePersistentSpots(memoryExploreSpots);
+      return true;
+    }
+
+    for (const cat of Object.keys(memoryCommunityState)) {
+      const item = memoryCommunityState[cat].find(c => c.id === id);
+      if (item) {
+        item.isApproved = true;
+        item.status = 'approved';
+        item.rejectReason = undefined;
+        savePersistentCommunity(memoryCommunityState);
+        return true;
+      }
+    }
+
+    const anyRev = memorySpotReviews.find(r => r.id === id);
+    if (anyRev) {
+      anyRev.isApproved = true;
+      anyRev.status = 'approved';
+      anyRev.rejectReason = undefined;
+      return true;
+    }
+    for (const spot of memoryExploreSpots) {
+      const r = spot.reviews?.find(rev => rev.id === id);
+      if (r) {
+        r.isApproved = true;
+        r.status = 'approved';
+        r.rejectReason = undefined;
+        savePersistentSpots(memoryExploreSpots);
+        return true;
+      }
+    }
+
     return false;
   }
 
@@ -946,41 +1122,53 @@ export class DistrictService {
    * Reject any submission with feedback reason
    */
   static async rejectSubmission(
-    type: 'spot' | 'community' | 'review',
+    type: 'spot' | 'community' | 'review' | string,
     id: string,
     reason?: string
   ): Promise<boolean> {
     const feedback = reason || 'তথ্য যাচাই বা সংশোধন প্রয়োজন';
 
     if (type === 'spot') {
-      if (isSupabaseConfigured && supabase) {
-        try {
-          await supabase.from('tourist_spots').update({ is_approved: false }).eq('id', id);
-        } catch (err) {
-          console.warn('Supabase spot reject fallback:', err);
+      let spot = memoryExploreSpots.find(s => s.id === id);
+      if (!spot) {
+        const diskSpots = loadInitialSpots();
+        const diskSpot = diskSpots.find(s => s.id === id);
+        if (diskSpot) {
+          memoryExploreSpots = diskSpots;
+          spot = memoryExploreSpots.find(s => s.id === id);
         }
       }
-      const spot = memoryExploreSpots.find(s => s.id === id);
       if (spot) {
         spot.isApproved = false;
         spot.status = 'rejected';
         spot.rejectReason = feedback;
+        savePersistentSpots(memoryExploreSpots);
+
+        if (isSupabaseConfigured && supabase) {
+          try {
+            await supabase.from('tourist_spots').update({ is_approved: false }).eq('id', id);
+          } catch (err) {
+            console.warn('Supabase spot reject fallback:', err);
+          }
+        }
         return true;
       }
     } else if (type === 'community') {
-      if (isSupabaseConfigured && supabase) {
-        try {
-          await supabase.from('community_posts').update({ is_approved: false }).eq('id', id);
-        } catch (err) {
-          console.warn('Supabase community reject fallback:', err);
-        }
-      }
       for (const cat of Object.keys(memoryCommunityState)) {
         const item = memoryCommunityState[cat].find(c => c.id === id);
         if (item) {
           item.isApproved = false;
           item.status = 'rejected';
           item.rejectReason = feedback;
+          savePersistentCommunity(memoryCommunityState);
+
+          if (isSupabaseConfigured && supabase) {
+            try {
+              await supabase.from('community_posts').update({ is_approved: false }).eq('id', id);
+            } catch (err) {
+              console.warn('Supabase community reject fallback:', err);
+            }
+          }
           return true;
         }
       }
@@ -998,42 +1186,68 @@ export class DistrictService {
           r.isApproved = false;
           r.status = 'rejected';
           r.rejectReason = feedback;
+          savePersistentSpots(memoryExploreSpots);
           return true;
         }
       }
     }
+
+    // Safety net lookup
+    for (const cat of Object.keys(memoryCommunityState)) {
+      const item = memoryCommunityState[cat].find(c => c.id === id);
+      if (item) {
+        item.isApproved = false;
+        item.status = 'rejected';
+        item.rejectReason = feedback;
+        savePersistentCommunity(memoryCommunityState);
+        return true;
+      }
+    }
+    const anySpot = memoryExploreSpots.find(s => s.id === id);
+    if (anySpot) {
+      anySpot.isApproved = false;
+      anySpot.status = 'rejected';
+      anySpot.rejectReason = feedback;
+      savePersistentSpots(memoryExploreSpots);
+      return true;
+    }
+
     return false;
   }
 
   /**
    * Delete any submission permanently
    */
-  static async deleteSubmission(type: 'spot' | 'community' | 'review', id: string): Promise<boolean> {
+  static async deleteSubmission(type: 'spot' | 'community' | 'review' | string, id: string): Promise<boolean> {
     if (type === 'spot') {
-      if (isSupabaseConfigured && supabase) {
-        try {
-          await supabase.from('tourist_spots').delete().eq('id', id);
-        } catch (err) {
-          console.warn('Supabase spot delete fallback:', err);
-        }
-      }
       const idx = memoryExploreSpots.findIndex(s => s.id === id);
       if (idx !== -1) {
         memoryExploreSpots.splice(idx, 1);
+        savePersistentSpots(memoryExploreSpots);
+
+        if (isSupabaseConfigured && supabase) {
+          try {
+            await supabase.from('tourist_spots').delete().eq('id', id);
+          } catch (err) {
+            console.warn('Supabase spot delete fallback:', err);
+          }
+        }
         return true;
       }
     } else if (type === 'community') {
-      if (isSupabaseConfigured && supabase) {
-        try {
-          await supabase.from('community_posts').delete().eq('id', id);
-        } catch (err) {
-          console.warn('Supabase community delete fallback:', err);
-        }
-      }
       for (const cat of Object.keys(memoryCommunityState)) {
         const idx = memoryCommunityState[cat].findIndex(c => c.id === id);
         if (idx !== -1) {
           memoryCommunityState[cat].splice(idx, 1);
+          savePersistentCommunity(memoryCommunityState);
+
+          if (isSupabaseConfigured && supabase) {
+            try {
+              await supabase.from('community_posts').delete().eq('id', id);
+            } catch (err) {
+              console.warn('Supabase community delete fallback:', err);
+            }
+          }
           return true;
         }
       }
@@ -1048,22 +1262,41 @@ export class DistrictService {
           const rIdx = spot.reviews.findIndex(rev => rev.id === id);
           if (rIdx !== -1) {
             spot.reviews.splice(rIdx, 1);
+            savePersistentSpots(memoryExploreSpots);
             return true;
           }
         }
       }
     }
+
+    // Safety net lookup
+    for (const cat of Object.keys(memoryCommunityState)) {
+      const idx = memoryCommunityState[cat].findIndex(c => c.id === id);
+      if (idx !== -1) {
+        memoryCommunityState[cat].splice(idx, 1);
+        savePersistentCommunity(memoryCommunityState);
+        return true;
+      }
+    }
+    const spotIdx = memoryExploreSpots.findIndex(s => s.id === id);
+    if (spotIdx !== -1) {
+      memoryExploreSpots.splice(spotIdx, 1);
+      savePersistentSpots(memoryExploreSpots);
+      return true;
+    }
+
     return false;
   }
 
   /**
    * Update submission details (edit and approve)
    */
-  static async updateSubmission(type: 'spot' | 'community', id: string, updates: any): Promise<boolean> {
+  static async updateSubmission(type: 'spot' | 'community' | string, id: string, updates: any): Promise<boolean> {
     if (type === 'spot') {
       const spot = memoryExploreSpots.find(s => s.id === id);
       if (spot) {
         Object.assign(spot, updates);
+        savePersistentSpots(memoryExploreSpots);
         return true;
       }
     } else if (type === 'community') {
@@ -1071,6 +1304,7 @@ export class DistrictService {
         const item = memoryCommunityState[cat].find(c => c.id === id);
         if (item) {
           Object.assign(item, updates);
+          savePersistentCommunity(memoryCommunityState);
           return true;
         }
       }
@@ -1318,9 +1552,22 @@ export class DistrictService {
    * Update tourist spot
    */
   static async updateExploreSpot(id: string, updates: Partial<DetailedExploreSpot>): Promise<boolean> {
-    const spot = memoryExploreSpots.find(s => s.id === id);
+    let spot = memoryExploreSpots.find(s => s.id === id);
+    if (!spot) {
+      const diskSpots = loadInitialSpots();
+      const diskSpot = diskSpots.find(s => s.id === id);
+      if (diskSpot) {
+        memoryExploreSpots = diskSpots;
+        spot = memoryExploreSpots.find(s => s.id === id);
+      }
+    }
     if (spot) {
       Object.assign(spot, updates);
+      if (!Array.isArray(spot.gallery) || spot.gallery.length === 0) {
+        spot.gallery = spot.coverImage ? [spot.coverImage] : [];
+      }
+      savePersistentSpots(memoryExploreSpots);
+
       if (isSupabaseConfigured && supabase) {
         try {
           await supabase.from('tourist_spots').update({
@@ -1328,12 +1575,21 @@ export class DistrictService {
             en_title: spot.enTitle,
             location: spot.location,
             upazila: spot.upazila,
+            category: spot.category,
+            category_bn: spot.categoryBn,
+            tag: spot.tag,
             cover_image: spot.coverImage,
+            gallery: Array.isArray(spot.gallery) ? spot.gallery : (spot.coverImage ? [spot.coverImage] : []),
             short_desc: spot.shortDesc,
             history: spot.history,
+            architecture: spot.architecture,
             how_to_reach: spot.howToReach,
+            highlights: Array.isArray(spot.highlights) ? spot.highlights : [],
             timings: spot.timings,
-            entry_fee: spot.entryFee
+            entry_fee: spot.entryFee,
+            best_time: spot.bestTime,
+            map_coordinates: spot.mapCoordinates,
+            map_url: spot.mapUrl
           }).eq('id', id);
         } catch (e) {
           console.warn('Supabase spot update fallback', e);
@@ -1423,6 +1679,167 @@ export class DistrictService {
     }
   }
 
+  // ==========================================
+  // EDUCATIONAL INSTITUTES & COLLEGES CRUD
+  // ==========================================
+
+  /**
+   * Get all educational institutes with filtering, search, sorting and pagination
+   */
+  static async getEducationalInstitutes(filter?: {
+    category?: string;
+    upazila?: string;
+    search?: string;
+    sort?: 'rank' | 'gpa5' | 'name' | 'established';
+    page?: number;
+    limit?: number;
+  }) {
+    if (memoryInstitutes.length === 0) {
+      memoryInstitutes = loadInitialInstitutes();
+    }
+
+    let list = [...memoryInstitutes];
+
+    if (filter?.category && filter.category !== 'all') {
+      list = list.filter(i => i.category === filter.category);
+    }
+
+    if (filter?.upazila && filter.upazila !== 'ALL') {
+      list = list.filter(i => i.upazila === filter.upazila);
+    }
+
+    if (filter?.search) {
+      const q = filter.search.toLowerCase().trim();
+      list = list.filter(i =>
+        i.name.toLowerCase().includes(q) ||
+        i.enName.toLowerCase().includes(q) ||
+        (i.eiin && i.eiin.includes(q)) ||
+        i.location.toLowerCase().includes(q) ||
+        i.upazila.toLowerCase().includes(q) ||
+        (i.principal && i.principal.toLowerCase().includes(q))
+      );
+    }
+
+    // Sort
+    const sortBy = filter?.sort || 'rank';
+    if (sortBy === 'rank') {
+      list.sort((a, b) => {
+        const rA = a.rank && a.rank > 0 ? a.rank : 9999;
+        const rB = b.rank && b.rank > 0 ? b.rank : 9999;
+        return rA - rB;
+      });
+    } else if (sortBy === 'gpa5') {
+      list.sort((a, b) => {
+        const gA = parseInt((a.stats?.gpa5 || '0').replace(/,/g, ''), 10);
+        const gB = parseInt((b.stats?.gpa5 || '0').replace(/,/g, ''), 10);
+        return gB - gA;
+      });
+    } else if (sortBy === 'name') {
+      list.sort((a, b) => a.name.localeCompare(b.name, 'bn'));
+    }
+
+    const total = list.length;
+    const page = filter?.page || 1;
+    const limit = filter?.limit || 50;
+    const paginated = list.slice((page - 1) * limit, page * limit);
+
+    return {
+      institutes: paginated,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit)
+    };
+  }
+
+  /**
+   * Get single educational institute by ID or EIIN
+   */
+  static async getEducationalInstituteById(idOrEiin: string): Promise<EducationalInstitute | null> {
+    if (memoryInstitutes.length === 0) {
+      memoryInstitutes = loadInitialInstitutes();
+    }
+    const found = memoryInstitutes.find(i => i.id === idOrEiin || i.eiin === idOrEiin);
+    return found || null;
+  }
+
+  /**
+   * Create new educational institute
+   */
+  static async createEducationalInstitute(data: Omit<EducationalInstitute, 'id'> & { id?: string }): Promise<EducationalInstitute> {
+    let rawSlug = (data.id || '').trim();
+    if (!rawSlug && data.enName) {
+      rawSlug = data.enName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+    if (!rawSlug) {
+      rawSlug = `inst-${Date.now()}`;
+    }
+
+    const newInst: EducationalInstitute = {
+      id: rawSlug,
+      name: data.name,
+      enName: data.enName || data.name,
+      eiin: data.eiin || '',
+      rank: data.rank,
+      category: data.category || 'college',
+      categoryBn: data.categoryBn || 'কলেজ',
+      upazila: data.upazila || 'বগুড়া সদর',
+      location: data.location || '',
+      established: data.established || '১৯৮০',
+      management: data.management || 'বেসরকারি',
+      educationLevel: data.educationLevel || 'উচ্চ মাধ্যমিক',
+      board: data.board || 'রাজশাহী শিক্ষা বোর্ড',
+      coverImage: data.coverImage || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+      logo: data.logo,
+      phone: data.phone || '',
+      email: data.email,
+      website: data.website,
+      principal: data.principal,
+      stats: data.stats || {},
+      facilities: Array.isArray(data.facilities) ? data.facilities : ['লাইব্রেরি', 'বিজ্ঞান ল্যাবরেটরি'],
+      courses: Array.isArray(data.courses) ? data.courses : ['উচ্চ মাধ্যমিক (বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা)'],
+      shortDesc: data.shortDesc || '',
+      history: data.history || '',
+      mapUrl: data.mapUrl,
+      isFeatured: data.isFeatured ?? false,
+      status: 'approved'
+    };
+
+    memoryInstitutes.unshift(newInst);
+    savePersistentInstitutes(memoryInstitutes);
+    this.addAuditLog('INSTITUTE_CREATE', newInst.name, `নতুন প্রতিষ্ঠান ${newInst.name} যোগ করা হয়েছে।`, 'info');
+
+    return newInst;
+  }
+
+  /**
+   * Update existing educational institute
+   */
+  static async updateEducationalInstitute(id: string, updates: Partial<EducationalInstitute>): Promise<boolean> {
+    const inst = memoryInstitutes.find(i => i.id === id || i.eiin === id);
+    if (inst) {
+      Object.assign(inst, updates);
+      savePersistentInstitutes(memoryInstitutes);
+      this.addAuditLog('INSTITUTE_UPDATE', inst.name, `${inst.name} তথ্য আপডেট করা হয়েছে।`, 'info');
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Delete educational institute
+   */
+  static async deleteEducationalInstitute(id: string): Promise<boolean> {
+    const idx = memoryInstitutes.findIndex(i => i.id === id || i.eiin === id);
+    if (idx !== -1) {
+      const removed = memoryInstitutes.splice(idx, 1)[0];
+      savePersistentInstitutes(memoryInstitutes);
+      this.addAuditLog('INSTITUTE_DELETE', removed.name, `${removed.name} স্থায়ীভাবে মুছে ফেলা হয়েছে।`, 'warning');
+      return true;
+    }
+    return false;
+  }
+
   /**
    * System diagnostics and global telemetry
    */
@@ -1459,6 +1876,7 @@ export class DistrictService {
         hospitals: memoryHospitals.length,
         emergencyContacts: memoryEmergency.length,
         exploreSpots: memoryExploreSpots.length,
+        institutes: memoryInstitutes.length,
         communityPosts: communityCount,
         reviews: memorySpotReviews.length,
         pendingTotal: pendingSpots + pendingCommunity + pendingReviews
@@ -1494,6 +1912,7 @@ export class DistrictService {
       hospitals: memoryHospitals,
       emergencyContacts: memoryEmergency,
       exploreSpots: memoryExploreSpots,
+      institutes: memoryInstitutes,
       communityPosts: memoryCommunityState,
       reviews: memorySpotReviews,
       systemSettings,

@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed:healthcare": "node scripts/seed-healthcare.mjs"
+    "clean": "node -e \"const fs = require('fs'); fs.rmSync('.next', { recursive: true, force: true }); console.log('✓ Cleaned .next build and cache');\"",
+    "seed:healthcare": "node scripts/seed-healthcare.mjs",
+    "seed:all": "node scripts/seed-all.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.6",

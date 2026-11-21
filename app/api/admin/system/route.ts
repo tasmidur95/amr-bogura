@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DistrictService } from '@/lib/services/district.service';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET() {
   try {
     const diagnostics = await DistrictService.getSystemDiagnostics();

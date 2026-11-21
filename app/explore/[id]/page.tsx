@@ -114,7 +114,7 @@ export default function ExploreDetailPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
-      <Navbar currentView="explore" onNavigate={() => {}} onOpenSearch={() => {}} />
+      <Navbar currentView="explore" />
 
       <main className="flex-1">
         {/* Top Breadcrumb & Hero Header */}
@@ -487,8 +487,8 @@ export default function ExploreDetailPage() {
         </div>
       </main>
 
-      <Footer onNavigate={() => {}} onSwitchCommunityTab={() => {}} />
-      <BottomNav currentView="explore" onNavigate={() => {}} />
+      <Footer />
+      <BottomNav currentView="explore" />
     </div>
   );
 }
