@@ -273,31 +273,31 @@ let systemAuditLogs: Array<{
   timestamp: string;
   status: 'success' | 'warning' | 'info';
 }> = [
-  {
-    id: 'log-1',
-    action: 'SYSTEM_BOOT',
-    target: 'Next.js 14 App Router',
-    details: 'আমার বগুড়া প্ল্যাটফর্ম সফলভাবে বুটস্ট্র্যাপ হয়েছে।',
-    timestamp: 'আজ ১৫:৪৫',
-    status: 'success'
-  },
-  {
-    id: 'log-2',
-    action: 'DATABASE_SYNC',
-    target: 'Supabase PostgreSQL Pooler',
-    details: 'সুপাবেস কানেকশন যাচাই সফলভাবে সম্পন্ন হয়েছে।',
-    timestamp: 'আজ ১৫:৪৭',
-    status: 'info'
-  },
-  {
-    id: 'log-3',
-    action: 'MODERATION_QUEUE',
-    target: 'Approval Process',
-    details: 'নাগরিক অবদান ও অনুমোদন ইঞ্জিন সক্রিয় রয়েছে।',
-    timestamp: 'আজ ১৫:৫০',
-    status: 'warning'
-  }
-];
+    {
+      id: 'log-1',
+      action: 'SYSTEM_BOOT',
+      target: 'Next.js 14 App Router',
+      details: 'আমার বগুড়া প্ল্যাটফর্ম সফলভাবে বুটস্ট্র্যাপ হয়েছে।',
+      timestamp: 'আজ ১৫:৪৫',
+      status: 'success'
+    },
+    {
+      id: 'log-2',
+      action: 'DATABASE_SYNC',
+      target: 'Supabase PostgreSQL Pooler',
+      details: 'সুপাবেস কানেকশন যাচাই সফলভাবে সম্পন্ন হয়েছে।',
+      timestamp: 'আজ ১৫:৪৭',
+      status: 'info'
+    },
+    {
+      id: 'log-3',
+      action: 'MODERATION_QUEUE',
+      target: 'Approval Process',
+      details: 'নাগরিক অবদান ও অনুমোদন ইঞ্জিন সক্রিয় রয়েছে।',
+      timestamp: 'আজ ১৫:৫০',
+      status: 'warning'
+    }
+  ];
 
 /**
  * DistrictService - NestJS-style modular service layer
@@ -839,6 +839,7 @@ export class DistrictService {
 
           if (memoryCommunityState[post.category]) {
             memoryCommunityState[post.category].unshift(created);
+            savePersistentCommunity(memoryCommunityState);
           }
           return created;
         }
@@ -847,7 +848,7 @@ export class DistrictService {
       }
     }
 
-    // Local in-memory prepend
+    // Local in-memory prepend with persistent disk write
     const newPost: CommunityPost = {
       ...post,
       id: `comm-${Date.now()}`,
@@ -860,6 +861,7 @@ export class DistrictService {
       memoryCommunityState[post.category] = [];
     }
     memoryCommunityState[post.category].unshift(newPost);
+    savePersistentCommunity(memoryCommunityState);
 
     return newPost;
   }
@@ -973,10 +975,12 @@ export class DistrictService {
   }
 
   /**
-   * Auto-detect submission type from ID across spots, community posts, and reviews
+   * Auto-detect submission type from ID across spots, community posts, reviews, and institutes
    */
-  static async detectSubmissionType(id: string): Promise<'spot' | 'community' | 'review' | null> {
+  static async detectSubmissionType(id: string): Promise<'spot' | 'community' | 'review' | 'education' | null> {
     if (!id) return null;
+
+    // 1. Check spots
     let spot = memoryExploreSpots.find(s => s.id === id);
     if (!spot) {
       const diskSpots = loadInitialSpots();
@@ -985,22 +989,39 @@ export class DistrictService {
       return 'spot';
     }
 
+    // 2. Check community (memory + disk)
     for (const cat of Object.keys(memoryCommunityState)) {
       if (memoryCommunityState[cat].some(c => c.id === id)) return 'community';
     }
+    const diskComm = loadInitialCommunity();
+    for (const cat of Object.keys(diskComm)) {
+      if (diskComm[cat].some(c => c.id === id)) {
+        memoryCommunityState = diskComm;
+        return 'community';
+      }
+    }
 
+    // 3. Check reviews
     if (memorySpotReviews.some(r => r.id === id)) return 'review';
     for (const s of memoryExploreSpots) {
       if (s.reviews?.some(r => r.id === id)) return 'review';
+    }
+
+    // 4. Check educational institutes
+    if (memoryInstitutes.some(i => i.id === id || i.eiin === id)) return 'education';
+    const diskInst = loadInitialInstitutes();
+    if (diskInst.some(i => i.id === id || i.eiin === id)) {
+      memoryInstitutes = diskInst;
+      return 'education';
     }
 
     return null;
   }
 
   /**
-   * Approve any submission (spot, community, review) with disk & cross-type safety net
+   * Approve any submission (spot, community, review, education) with disk & cross-type safety net
    */
-  static async approveSubmission(type: 'spot' | 'community' | 'review' | string, id: string): Promise<boolean> {
+  static async approveSubmission(type: 'spot' | 'community' | 'review' | 'education' | string, id: string): Promise<boolean> {
     if (!id) return false;
 
     // 1. Primary check based on requested type
@@ -1030,23 +1051,42 @@ export class DistrictService {
         return true;
       }
     } else if (type === 'community') {
+      let found = false;
       for (const cat of Object.keys(memoryCommunityState)) {
         const item = memoryCommunityState[cat].find(c => c.id === id);
         if (item) {
           item.isApproved = true;
           item.status = 'approved';
           item.rejectReason = undefined;
-          savePersistentCommunity(memoryCommunityState);
-
-          if (isSupabaseConfigured && supabase) {
-            try {
-              await supabase.from('community_posts').update({ is_approved: true }).eq('id', id);
-            } catch (err) {
-              console.warn('Supabase community approve fallback:', err);
-            }
-          }
-          return true;
+          found = true;
+          break;
         }
+      }
+      if (!found) {
+        const diskComm = loadInitialCommunity();
+        for (const cat of Object.keys(diskComm)) {
+          const item = diskComm[cat].find(c => c.id === id);
+          if (item) {
+            item.isApproved = true;
+            item.status = 'approved';
+            item.rejectReason = undefined;
+            memoryCommunityState = diskComm;
+            found = true;
+            break;
+          }
+        }
+      }
+      if (found) {
+        savePersistentCommunity(memoryCommunityState);
+
+        if (isSupabaseConfigured && supabase) {
+          try {
+            await supabase.from('community_posts').update({ is_approved: true }).eq('id', id);
+          } catch (err) {
+            console.warn('Supabase community approve fallback:', err);
+          }
+        }
+        return true;
       }
     } else if (type === 'review') {
       const rev = memorySpotReviews.find(r => r.id === id);
@@ -1065,6 +1105,21 @@ export class DistrictService {
           savePersistentSpots(memoryExploreSpots);
           return true;
         }
+      }
+    } else if (type === 'education' || type === 'institute') {
+      let inst = memoryInstitutes.find(i => i.id === id || i.eiin === id);
+      if (!inst) {
+        const diskInst = loadInitialInstitutes();
+        const foundInst = diskInst.find(i => i.id === id || i.eiin === id);
+        if (foundInst) {
+          memoryInstitutes = diskInst;
+          inst = memoryInstitutes.find(i => i.id === id || i.eiin === id);
+        }
+      }
+      if (inst) {
+        inst.status = 'approved';
+        savePersistentInstitutes(memoryInstitutes);
+        return true;
       }
     }
 
@@ -1096,6 +1151,18 @@ export class DistrictService {
         return true;
       }
     }
+    const diskComm = loadInitialCommunity();
+    for (const cat of Object.keys(diskComm)) {
+      const item = diskComm[cat].find(c => c.id === id);
+      if (item) {
+        item.isApproved = true;
+        item.status = 'approved';
+        item.rejectReason = undefined;
+        memoryCommunityState = diskComm;
+        savePersistentCommunity(memoryCommunityState);
+        return true;
+      }
+    }
 
     const anyRev = memorySpotReviews.find(r => r.id === id);
     if (anyRev) {
@@ -1113,6 +1180,13 @@ export class DistrictService {
         savePersistentSpots(memoryExploreSpots);
         return true;
       }
+    }
+
+    const anyInst = memoryInstitutes.find(i => i.id === id || i.eiin === id);
+    if (anyInst) {
+      anyInst.status = 'approved';
+      savePersistentInstitutes(memoryInstitutes);
+      return true;
     }
 
     return false;
@@ -1190,6 +1264,13 @@ export class DistrictService {
           return true;
         }
       }
+    } else if (type === 'education' || type === 'institute') {
+      let inst = memoryInstitutes.find(i => i.id === id || i.eiin === id);
+      if (inst) {
+        inst.status = 'pending';
+        savePersistentInstitutes(memoryInstitutes);
+        return true;
+      }
     }
 
     // Safety net lookup
@@ -1212,13 +1293,20 @@ export class DistrictService {
       return true;
     }
 
+    const anyInst = memoryInstitutes.find(i => i.id === id || i.eiin === id);
+    if (anyInst) {
+      anyInst.status = 'pending';
+      savePersistentInstitutes(memoryInstitutes);
+      return true;
+    }
+
     return false;
   }
 
   /**
    * Delete any submission permanently
    */
-  static async deleteSubmission(type: 'spot' | 'community' | 'review' | string, id: string): Promise<boolean> {
+  static async deleteSubmission(type: 'spot' | 'community' | 'review' | 'education' | string, id: string): Promise<boolean> {
     if (type === 'spot') {
       const idx = memoryExploreSpots.findIndex(s => s.id === id);
       if (idx !== -1) {
@@ -1267,6 +1355,35 @@ export class DistrictService {
           }
         }
       }
+    } else if (type === 'education' || type === 'institute') {
+      const idx = memoryInstitutes.findIndex(i => i.id === id || i.eiin === id);
+      if (idx !== -1) {
+        memoryInstitutes.splice(idx, 1);
+        savePersistentInstitutes(memoryInstitutes);
+        return true;
+      }
+    }
+
+    // Safety net for delete
+    for (const cat of Object.keys(memoryCommunityState)) {
+      const idx = memoryCommunityState[cat].findIndex(c => c.id === id);
+      if (idx !== -1) {
+        memoryCommunityState[cat].splice(idx, 1);
+        savePersistentCommunity(memoryCommunityState);
+        return true;
+      }
+    }
+    const sIdx = memoryExploreSpots.findIndex(s => s.id === id);
+    if (sIdx !== -1) {
+      memoryExploreSpots.splice(sIdx, 1);
+      savePersistentSpots(memoryExploreSpots);
+      return true;
+    }
+    const eIdx = memoryInstitutes.findIndex(i => i.id === id || i.eiin === id);
+    if (eIdx !== -1) {
+      memoryInstitutes.splice(eIdx, 1);
+      savePersistentInstitutes(memoryInstitutes);
+      return true;
     }
 
     // Safety net lookup

@@ -1,0 +1,39 @@
+{
+  "blood": [
+    {
+      "id": "comm-pending-1",
+      "category": "blood",
+      "name": "মোঃ মাহমুদুল হাসান",
+      "group": "O+",
+      "role": "জরুরি রক্তদাতা",
+      "badge": "স্বেচ্ছাসেবী",
+      "upazila": "সারিয়াকান্দি",
+      "detail": "সারিয়াকান্দি সদর ও যমুনা চরাঞ্চল এলাকায় যেকোনো জরুরি মুহূর্তে রক্তদানে প্রস্তুত",
+      "phone": "01712-998877",
+      "isApproved": true,
+      "status": "approved",
+      "contributorName": "মাহমুদুল হাসান",
+      "contributorPhone": "01712-998877",
+      "created_at": "2026-03-19"
+    }
+  ],
+  "tuition": [
+    {
+      "id": "comm-pending-2",
+      "category": "tuition",
+      "name": "নাজমুল সাকিব (গণিত বিভাগ, আযিযুল হক কলেজ)",
+      "upazila": "বগুড়া সদর",
+      "detail": "এসএসসি ও এইচএসসি উচ্চতর গণিত এবং পদার্থবিজ্ঞান যত্নসহকারে পড়ানো হয়",
+      "phone": "01815-443322",
+      "badge": "শিক্ষক উপলব্ধ",
+      "isApproved": false,
+      "status": "pending",
+      "contributorName": "নাজমুল সাকিব",
+      "contributorPhone": "01815-443322",
+      "created_at": "2026-03-19"
+    }
+  ],
+  "rent": [],
+  "jobs": [],
+  "business": []
+}

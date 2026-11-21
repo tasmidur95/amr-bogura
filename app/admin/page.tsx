@@ -661,35 +661,35 @@ export default function AdminPage() {
       const method = upazilaModal.mode === 'add' ? 'POST' : 'PUT';
       const body = upazilaModal.mode === 'add'
         ? {
-            upazila: {
-              serialBn: data.serialBn || '১৩',
-              serialEn: data.serialEn || '13',
-              name: data.name,
-              enName: data.enName || data.name,
-              area: data.area,
-              areaEn: data.area,
-              unionCount: `${data.unionCount || 0}টি`,
-              unionCountEn: `${data.unionCount || 0} Unions`,
-              unions: `${data.unionCount || 0}টি ইউনিয়ন`,
-              pourashava: data.pourashava || 'নাই',
-              pourashavaEn: data.pourashava || 'None',
-              hasPourashava: data.hasPourashava || false,
-              tags: ['upazila'],
-              postalCode: data.postalCode || '৫৮০০',
-              rivers: data.rivers || 'করতোয়া',
-              healthPhone: data.healthPhone || '01700-000000',
-              landmark: data.landmark || data.name,
-              desc: data.desc || data.name,
-              enDesc: data.desc || data.name,
-              historyNote: data.historyNote || data.name,
-              unionList: []
-            },
-            detailed: data
-          }
-        : {
+          upazila: {
+            serialBn: data.serialBn || '১৩',
+            serialEn: data.serialEn || '13',
             name: data.name,
-            updates: data
-          };
+            enName: data.enName || data.name,
+            area: data.area,
+            areaEn: data.area,
+            unionCount: `${data.unionCount || 0}টি`,
+            unionCountEn: `${data.unionCount || 0} Unions`,
+            unions: `${data.unionCount || 0}টি ইউনিয়ন`,
+            pourashava: data.pourashava || 'নাই',
+            pourashavaEn: data.pourashava || 'None',
+            hasPourashava: data.hasPourashava || false,
+            tags: ['upazila'],
+            postalCode: data.postalCode || '৫৮০০',
+            rivers: data.rivers || 'করতোয়া',
+            healthPhone: data.healthPhone || '01700-000000',
+            landmark: data.landmark || data.name,
+            desc: data.desc || data.name,
+            enDesc: data.desc || data.name,
+            historyNote: data.historyNote || data.name,
+            unionList: []
+          },
+          detailed: data
+        }
+        : {
+          name: data.name,
+          updates: data
+        };
 
       const res = await fetch('/api/admin/upazilas', {
         method,
@@ -970,7 +970,7 @@ export default function AdminPage() {
   };
 
   // Moderation Approval / Reject
-  const handleApprove = async (type: 'spot' | 'community' | 'review', id: string, title: string) => {
+  const handleApprove = async (type: 'spot' | 'community' | 'review' | 'education' | string, id: string, title: string) => {
     try {
       const res = await fetch('/api/admin/approve', {
         method: 'POST',
@@ -980,11 +980,18 @@ export default function AdminPage() {
       const json = await res.json();
       if (json.success) {
         showToast(`"${title}" সফলভাবে অনুমোদিত ও লাইভ হয়েছে!`);
+        // Optimistic local update
+        setSpots(prev => prev.map(s => s.id === id ? { ...s, status: 'approved', isApproved: true } : s));
+        setCommunity(prev => prev.map(c => c.id === id ? { ...c, status: 'approved', isApproved: true } : c));
+        setReviews(prev => prev.map(r => r.id === id ? { ...r, status: 'approved', isApproved: true } : r));
+        setInstitutes(prev => prev.map(i => (i.id === id || i.eiin === id) ? { ...i, status: 'approved' } : i));
         fetchAllData();
         if (inspectSpot?.id === id) setInspectSpot(null);
+      } else {
+        showToast(json.error || 'অনুমোদন ব্যর্থ হয়েছে', 'error');
       }
-    } catch (err) {
-      showToast('অনুমোদন ব্যর্থ', 'error');
+    } catch (err: any) {
+      showToast(err?.message || 'অনুমোদন প্রক্রিয়া ব্যর্থ', 'error');
     }
   };
 
@@ -1004,11 +1011,17 @@ export default function AdminPage() {
       const json = await res.json();
       if (json.success) {
         showToast(`"${rejectTarget.title}" বাতিল করা হয়েছে।`);
+        // Optimistic local update
+        setSpots(prev => prev.map(s => s.id === rejectTarget.id ? { ...s, status: 'rejected', isApproved: false } : s));
+        setCommunity(prev => prev.map(c => c.id === rejectTarget.id ? { ...c, status: 'rejected', isApproved: false } : c));
+        setReviews(prev => prev.map(r => r.id === rejectTarget.id ? { ...r, status: 'rejected', isApproved: false } : r));
         setRejectTarget(null);
         fetchAllData();
+      } else {
+        showToast(json.error || 'বাতিলকরণ ব্যর্থ হয়েছে', 'error');
       }
-    } catch (err) {
-      showToast('বাতিল ব্যর্থ', 'error');
+    } catch (err: any) {
+      showToast(err?.message || 'বাতিল প্রক্রিয়া ব্যর্থ', 'error');
     }
   };
 
@@ -1077,8 +1090,8 @@ export default function AdminPage() {
       communityStatusFilter === 'ALL'
         ? true
         : communityStatusFilter === 'approved'
-        ? c.isApproved || c.status === 'approved'
-        : !c.isApproved || c.status === 'pending';
+          ? c.isApproved || c.status === 'approved'
+          : !c.isApproved || c.status === 'pending';
     return matchSearch && matchCat && matchUpazila && matchStatus;
   });
   const paginatedCommunity = filteredCommunity.slice((communityPage - 1) * communityPageSize, communityPage * communityPageSize);
@@ -1163,8 +1176,8 @@ export default function AdminPage() {
       activeStatusTab === 'pending'
         ? item.status === 'pending' || !item.isApproved
         : activeStatusTab === 'approved'
-        ? item.status === 'approved' || (item.isApproved && item.status !== 'rejected')
-        : item.status === 'rejected';
+          ? item.status === 'approved' || (item.isApproved && item.status !== 'rejected')
+          : item.status === 'rejected';
 
     const matchType = selectedType === 'all' || item.itemType === selectedType;
     const matchUpazila = selectedUpazila === 'ALL' || (item.upazila !== undefined && item.upazila === selectedUpazila);
@@ -1220,13 +1233,13 @@ export default function AdminPage() {
   // ==========================================
   return (
     <div className="space-y-8">
-        {/* ======================================================== */}
-        {/* TAB 1: OVERVIEW & TELEMETRY */}
-        {/* ======================================================== */}
-        {currentNav === 'overview' && (
-          tabLoading && !systemDiag ? (
-            <AdminSkeletonLoader variant="dashboard" />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB 1: OVERVIEW & TELEMETRY */}
+      {/* ======================================================== */}
+      {currentNav === 'overview' && (
+        tabLoading && !systemDiag ? (
+          <AdminSkeletonLoader variant="dashboard" />
+        ) : (
           <div className="space-y-8">
             {/* System Banner */}
             <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-700">
@@ -1378,9 +1391,8 @@ export default function AdminPage() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-bold text-slate-500 uppercase">পলিসি ১</span>
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                      systemDiag?.settings?.autoApprove ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-                    }`}>
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${systemDiag?.settings?.autoApprove ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                      }`}>
                       {systemDiag?.settings?.autoApprove ? 'সরাসরি লাইভ' : 'মডারেশন অপেক্ষমাণ'}
                     </span>
                   </div>
@@ -1389,9 +1401,8 @@ export default function AdminPage() {
                 </div>
                 <button
                   onClick={() => handleToggleSetting('autoApprove')}
-                  className={`mt-4 w-full py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
-                    systemDiag?.settings?.autoApprove ? 'bg-emerald-800 text-white' : 'bg-slate-200 text-slate-700'
-                  }`}
+                  className={`mt-4 w-full py-2 rounded-xl text-xs font-bold transition cursor-pointer ${systemDiag?.settings?.autoApprove ? 'bg-emerald-800 text-white' : 'bg-slate-200 text-slate-700'
+                    }`}
                 >
                   {systemDiag?.settings?.autoApprove ? 'চালু (Active)' : 'বন্ধ (Manual Approval)'}
                 </button>
@@ -1401,9 +1412,8 @@ export default function AdminPage() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-bold text-slate-500 uppercase">পলিসি ২</span>
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                      systemDiag?.settings?.allowPublicContributions ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
-                    }`}>
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${systemDiag?.settings?.allowPublicContributions ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
+                      }`}>
                       {systemDiag?.settings?.allowPublicContributions ? 'উন্মুক্ত' : 'স্থগিত'}
                     </span>
                   </div>
@@ -1412,9 +1422,8 @@ export default function AdminPage() {
                 </div>
                 <button
                   onClick={() => handleToggleSetting('allowPublicContributions')}
-                  className={`mt-4 w-full py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
-                    systemDiag?.settings?.allowPublicContributions ? 'bg-emerald-800 text-white' : 'bg-rose-800 text-white'
-                  }`}
+                  className={`mt-4 w-full py-2 rounded-xl text-xs font-bold transition cursor-pointer ${systemDiag?.settings?.allowPublicContributions ? 'bg-emerald-800 text-white' : 'bg-rose-800 text-white'
+                    }`}
                 >
                   {systemDiag?.settings?.allowPublicContributions ? 'উন্মুক্ত (Open)' : 'স্থগিত (Paused)'}
                 </button>
@@ -1424,9 +1433,8 @@ export default function AdminPage() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-bold text-slate-500 uppercase">পলিসি ৩</span>
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                      systemDiag?.settings?.maintenanceMode ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'
-                    }`}>
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${systemDiag?.settings?.maintenanceMode ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'
+                      }`}>
                       {systemDiag?.settings?.maintenanceMode ? 'রক্ষণাবেক্ষণ' : 'লাইভ প্রোডাকশন'}
                     </span>
                   </div>
@@ -1435,9 +1443,8 @@ export default function AdminPage() {
                 </div>
                 <button
                   onClick={() => handleToggleSetting('maintenanceMode')}
-                  className={`mt-4 w-full py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
-                    systemDiag?.settings?.maintenanceMode ? 'bg-rose-800 text-white' : 'bg-slate-200 text-slate-700'
-                  }`}
+                  className={`mt-4 w-full py-2 rounded-xl text-xs font-bold transition cursor-pointer ${systemDiag?.settings?.maintenanceMode ? 'bg-rose-800 text-white' : 'bg-slate-200 text-slate-700'
+                    }`}
                 >
                   {systemDiag?.settings?.maintenanceMode ? 'সক্রিয়' : 'নিষ্ক্রিয়'}
                 </button>
@@ -1479,9 +1486,8 @@ export default function AdminPage() {
                   paginatedAuditLogs.map(log => (
                     <div key={log.id} className="py-2.5 flex items-start justify-between gap-4 text-xs hover:bg-slate-50/60 px-2 rounded-xl transition">
                       <div className="flex items-start gap-2.5">
-                        <span className={`p-1.5 rounded-lg text-xs shrink-0 mt-0.5 ${
-                          log.status === 'success' ? 'bg-emerald-100 text-emerald-700' : log.status === 'warning' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-700'
-                        }`}>
+                        <span className={`p-1.5 rounded-lg text-xs shrink-0 mt-0.5 ${log.status === 'success' ? 'bg-emerald-100 text-emerald-700' : log.status === 'warning' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-700'
+                          }`}>
                           <i className={`fa-solid ${log.status === 'success' ? 'fa-check' : log.status === 'warning' ? 'fa-triangle-exclamation' : 'fa-info'}`}></i>
                         </span>
                         <div>
@@ -1512,16 +1518,16 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
-        {/* ======================================================== */}
-        {/* TAB 2: MODERATION & QUEUE */}
-        {/* ======================================================== */}
-        {currentNav === 'moderation' && (
-          tabLoading && !loadedTabs['moderation'] ? (
-            <AdminSkeletonLoader variant="moderation" />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB 2: MODERATION & QUEUE */}
+      {/* ======================================================== */}
+      {currentNav === 'moderation' && (
+        tabLoading && !loadedTabs['moderation'] ? (
+          <AdminSkeletonLoader variant="moderation" />
+        ) : (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
@@ -1531,9 +1537,8 @@ export default function AdminPage() {
                       setActiveStatusTab('pending');
                       setModerationPage(1);
                     }}
-                    className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer ${
-                      activeStatusTab === 'pending' ? 'bg-amber-500 text-slate-950 shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
+                    className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer ${activeStatusTab === 'pending' ? 'bg-amber-500 text-slate-950 shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
                   >
                     <i className="fa-solid fa-hourglass-half text-amber-900"></i>
                     <span>অপেক্ষমাণ কিউ</span>
@@ -1545,9 +1550,8 @@ export default function AdminPage() {
                       setActiveStatusTab('approved');
                       setModerationPage(1);
                     }}
-                    className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer ${
-                      activeStatusTab === 'approved' ? 'bg-emerald-800 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
+                    className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer ${activeStatusTab === 'approved' ? 'bg-emerald-800 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
                   >
                     <i className="fa-solid fa-check-double text-emerald-300"></i>
                     <span>অনুমোদিত ও লাইভ</span>
@@ -1558,9 +1562,8 @@ export default function AdminPage() {
                       setActiveStatusTab('rejected');
                       setModerationPage(1);
                     }}
-                    className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer ${
-                      activeStatusTab === 'rejected' ? 'bg-rose-800 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
+                    className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer ${activeStatusTab === 'rejected' ? 'bg-rose-800 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
                   >
                     <i className="fa-solid fa-xmark text-rose-300"></i>
                     <span>বাতিলকৃত</span>
@@ -1584,9 +1587,8 @@ export default function AdminPage() {
                       setSelectedType('all');
                       setModerationPage(1);
                     }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition ${
-                      selectedType === 'all' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'
-                    }`}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition ${selectedType === 'all' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'
+                      }`}
                   >
                     সকল বিভাগ
                   </button>
@@ -1595,9 +1597,8 @@ export default function AdminPage() {
                       setSelectedType('spot');
                       setModerationPage(1);
                     }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition flex items-center gap-1.5 ${
-                      selectedType === 'spot' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'
-                    }`}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition flex items-center gap-1.5 ${selectedType === 'spot' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'
+                      }`}
                   >
                     <i className="fa-solid fa-landmark text-amber-500"></i>
                     <span>দর্শনীয় স্থান ({spots.filter(s => activeStatusTab === 'pending' ? (!s.isApproved || s.status === 'pending') : (s.isApproved && s.status !== 'rejected')).length})</span>
@@ -1607,9 +1608,8 @@ export default function AdminPage() {
                       setSelectedType('community');
                       setModerationPage(1);
                     }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition flex items-center gap-1.5 ${
-                      selectedType === 'community' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'
-                    }`}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition flex items-center gap-1.5 ${selectedType === 'community' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'
+                      }`}
                   >
                     <i className="fa-solid fa-users text-rose-500"></i>
                     <span>কমিউনিটি ও রক্তদাতা</span>
@@ -1619,9 +1619,8 @@ export default function AdminPage() {
                       setSelectedType('review');
                       setModerationPage(1);
                     }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition flex items-center gap-1.5 ${
-                      selectedType === 'review' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'
-                    }`}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition flex items-center gap-1.5 ${selectedType === 'review' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'
+                      }`}
                   >
                     <i className="fa-solid fa-star text-yellow-500"></i>
                     <span>রিভিউ ({reviews.length})</span>
@@ -1729,13 +1728,12 @@ export default function AdminPage() {
                             </p>
                           </td>
                           <td className="py-3 px-3">
-                            <span className={`px-2 py-0.5 rounded-md text-[11px] font-bold ${
-                              item.itemType === 'spot'
+                            <span className={`px-2 py-0.5 rounded-md text-[11px] font-bold ${item.itemType === 'spot'
                                 ? 'bg-amber-100 text-amber-800'
                                 : item.itemType === 'community'
-                                ? 'bg-purple-100 text-purple-800'
-                                : 'bg-blue-100 text-blue-800'
-                            }`}>
+                                  ? 'bg-purple-100 text-purple-800'
+                                  : 'bg-blue-100 text-blue-800'
+                              }`}>
                               {item.itemType === 'spot' ? 'দর্শনীয় স্থান' : item.itemType === 'community' ? 'কমিউনিটি' : 'রিভিউ'}
                             </span>
                           </td>
@@ -1761,16 +1759,14 @@ export default function AdminPage() {
                             )}
                           </td>
                           <td className="py-3 px-3">
-                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold inline-flex items-center gap-1 ${
-                              item.status === 'approved'
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold inline-flex items-center gap-1 ${item.status === 'approved'
                                 ? 'bg-emerald-100 text-emerald-800'
                                 : item.status === 'rejected'
-                                ? 'bg-rose-100 text-rose-800'
-                                : 'bg-amber-100 text-amber-800 animate-pulse'
-                            }`}>
-                              <span className={`w-1.5 h-1.5 rounded-full ${
-                                item.status === 'approved' ? 'bg-emerald-600' : item.status === 'rejected' ? 'bg-rose-600' : 'bg-amber-600'
-                              }`}></span>
+                                  ? 'bg-rose-100 text-rose-800'
+                                  : 'bg-amber-100 text-amber-800 animate-pulse'
+                              }`}>
+                              <span className={`w-1.5 h-1.5 rounded-full ${item.status === 'approved' ? 'bg-emerald-600' : item.status === 'rejected' ? 'bg-rose-600' : 'bg-amber-600'
+                                }`}></span>
                               {item.status === 'approved' ? 'অনুমোদিত' : item.status === 'rejected' ? 'বাতিলকৃত' : 'অপেক্ষমাণ'}
                             </span>
                           </td>
@@ -1846,16 +1842,16 @@ export default function AdminPage() {
               </div>
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
-        {/* ======================================================== */}
-        {/* TAB 3: SPOTS CRUD (দর্শনীয় স্থান ও ঐতিহ্য CMS) */}
-        {/* ======================================================== */}
-        {currentNav === 'spots' && (
-          tabLoading && !loadedTabs['spots'] ? (
-            <AdminSkeletonLoader variant="table" rows={6} />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB 3: SPOTS CRUD (দর্শনীয় স্থান ও ঐতিহ্য CMS) */}
+      {/* ======================================================== */}
+      {currentNav === 'spots' && (
+        tabLoading && !loadedTabs['spots'] ? (
+          <AdminSkeletonLoader variant="table" rows={6} />
+        ) : (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
@@ -2008,9 +2004,8 @@ export default function AdminPage() {
                           </td>
                           <td className="py-3 px-3 text-slate-600">{s.timings} · {s.entryFee}</td>
                           <td className="py-3 px-3">
-                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                              s.isApproved ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-                            }`}>
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${s.isApproved ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                              }`}>
                               {s.isApproved ? 'লাইভ' : 'অপেক্ষমাণ'}
                             </span>
                           </td>
@@ -2076,16 +2071,16 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
-        {/* ======================================================== */}
-        {/* TAB: EDUCATIONAL INSTITUTES & COLLEGES REGISTER */}
-        {/* ======================================================== */}
-        {currentNav === 'education' && (
-          tabLoading && !loadedTabs['education'] ? (
-            <AdminSkeletonLoader variant="table" rows={6} />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB: EDUCATIONAL INSTITUTES & COLLEGES REGISTER */}
+      {/* ======================================================== */}
+      {currentNav === 'education' && (
+        tabLoading && !loadedTabs['education'] ? (
+          <AdminSkeletonLoader variant="table" rows={6} />
+        ) : (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
@@ -2317,16 +2312,16 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
-        {/* ======================================================== */}
-        {/* TAB 4: UPAZILAS & UNIONS CRUD */}
-        {/* ======================================================== */}
-        {currentNav === 'upazilas' && (
-          tabLoading && !loadedTabs['upazilas'] ? (
-            <AdminSkeletonLoader variant="table" rows={6} />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB 4: UPAZILAS & UNIONS CRUD */}
+      {/* ======================================================== */}
+      {currentNav === 'upazilas' && (
+        tabLoading && !loadedTabs['upazilas'] ? (
+          <AdminSkeletonLoader variant="table" rows={6} />
+        ) : (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
@@ -2468,16 +2463,16 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
-        {/* ======================================================== */}
-        {/* TAB 5: HOSPITALS CRUD */}
-        {/* ======================================================== */}
-        {currentNav === 'hospitals' && (
-          tabLoading && !loadedTabs['hospitals'] ? (
-            <AdminSkeletonLoader variant="table" rows={6} />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB 5: HOSPITALS CRUD */}
+      {/* ======================================================== */}
+      {currentNav === 'hospitals' && (
+        tabLoading && !loadedTabs['hospitals'] ? (
+          <AdminSkeletonLoader variant="table" rows={6} />
+        ) : (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
@@ -2593,9 +2588,8 @@ export default function AdminPage() {
                             <span className="text-[11px] text-slate-400">{h.enName}</span>
                           </td>
                           <td className="py-3 px-3">
-                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                              h.type === 'govt' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'
-                            }`}>
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${h.type === 'govt' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'
+                              }`}>
                               {h.typeLabel}
                             </span>
                           </td>
@@ -2644,16 +2638,16 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
-        {/* ======================================================== */}
-        {/* TAB 6: EMERGENCY HOTLINES CRUD */}
-        {/* ======================================================== */}
-        {currentNav === 'emergency' && (
-          tabLoading && !loadedTabs['emergency'] ? (
-            <AdminSkeletonLoader variant="table" rows={6} />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB 6: EMERGENCY HOTLINES CRUD */}
+      {/* ======================================================== */}
+      {currentNav === 'emergency' && (
+        tabLoading && !loadedTabs['emergency'] ? (
+          <AdminSkeletonLoader variant="table" rows={6} />
+        ) : (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
@@ -2718,18 +2712,16 @@ export default function AdminPage() {
                   <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-xs">
                     <button
                       onClick={() => setEmergencyViewMode('table')}
-                      className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 cursor-pointer ${
-                        emergencyViewMode === 'table' ? 'bg-white text-emerald-800 shadow-xs' : 'text-slate-600'
-                      }`}
+                      className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 cursor-pointer ${emergencyViewMode === 'table' ? 'bg-white text-emerald-800 shadow-xs' : 'text-slate-600'
+                        }`}
                     >
                       <i className="fa-solid fa-table-list text-xs"></i>
                       <span className="hidden sm:inline">টেবিল</span>
                     </button>
                     <button
                       onClick={() => setEmergencyViewMode('grid')}
-                      className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 cursor-pointer ${
-                        emergencyViewMode === 'grid' ? 'bg-white text-emerald-800 shadow-xs' : 'text-slate-600'
-                      }`}
+                      className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 cursor-pointer ${emergencyViewMode === 'grid' ? 'bg-white text-emerald-800 shadow-xs' : 'text-slate-600'
+                        }`}
                     >
                       <i className="fa-solid fa-border-all text-xs"></i>
                       <span className="hidden sm:inline">গ্রিড</span>
@@ -2858,16 +2850,16 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
-        {/* ======================================================== */}
-        {/* TAB 7: BLOOD & COMMUNITY CRUD */}
-        {/* ======================================================== */}
-        {currentNav === 'community' && (
-          tabLoading && !loadedTabs['community'] ? (
-            <AdminSkeletonLoader variant="table" rows={6} />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB 7: BLOOD & COMMUNITY CRUD */}
+      {/* ======================================================== */}
+      {currentNav === 'community' && (
+        tabLoading && !loadedTabs['community'] ? (
+          <AdminSkeletonLoader variant="table" rows={6} />
+        ) : (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
@@ -2980,18 +2972,16 @@ export default function AdminPage() {
                   <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-xs">
                     <button
                       onClick={() => setCommunityViewMode('table')}
-                      className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 cursor-pointer ${
-                        communityViewMode === 'table' ? 'bg-white text-emerald-800 shadow-xs' : 'text-slate-600'
-                      }`}
+                      className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 cursor-pointer ${communityViewMode === 'table' ? 'bg-white text-emerald-800 shadow-xs' : 'text-slate-600'
+                        }`}
                     >
                       <i className="fa-solid fa-table-list text-xs"></i>
                       <span className="hidden sm:inline">টেবিল</span>
                     </button>
                     <button
                       onClick={() => setCommunityViewMode('grid')}
-                      className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 cursor-pointer ${
-                        communityViewMode === 'grid' ? 'bg-white text-emerald-800 shadow-xs' : 'text-slate-600'
-                      }`}
+                      className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 cursor-pointer ${communityViewMode === 'grid' ? 'bg-white text-emerald-800 shadow-xs' : 'text-slate-600'
+                        }`}
                     >
                       <i className="fa-solid fa-border-all text-xs"></i>
                       <span className="hidden sm:inline">গ্রিড</span>
@@ -3040,9 +3030,8 @@ export default function AdminPage() {
                             </td>
                             <td className="py-3 px-3 font-mono text-emerald-800 font-bold">{item.phone}</td>
                             <td className="py-3 px-3">
-                              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                                item.isApproved ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-                              }`}>
+                              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${item.isApproved ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                                }`}>
                                 {item.isApproved ? 'অনুমোদিত' : 'অপেক্ষমাণ'}
                               </span>
                             </td>
@@ -3135,16 +3124,16 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
-        {/* ======================================================== */}
-        {/* TAB 8: WEBSITE BANNERS & CONTENT CMS */}
-        {/* ======================================================== */}
-        {currentNav === 'cms' && (
-          tabLoading || !siteContent ? (
-            <AdminSkeletonLoader variant="form" />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB 8: WEBSITE BANNERS & CONTENT CMS */}
+      {/* ======================================================== */}
+      {currentNav === 'cms' && (
+        tabLoading || !siteContent ? (
+          <AdminSkeletonLoader variant="form" />
+        ) : (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
               <div className="pb-6 mb-6 border-b border-slate-100">
@@ -3286,16 +3275,16 @@ export default function AdminPage() {
               </form>
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
-        {/* ======================================================== */}
-        {/* TAB 9: SETTINGS & BACKUP */}
-        {/* ======================================================== */}
-        {currentNav === 'settings' && (
-          tabLoading && !systemDiag ? (
-            <AdminSkeletonLoader variant="dashboard" />
-          ) : (
+      {/* ======================================================== */}
+      {/* TAB 9: SETTINGS & BACKUP */}
+      {/* ======================================================== */}
+      {currentNav === 'settings' && (
+        tabLoading && !systemDiag ? (
+          <AdminSkeletonLoader variant="dashboard" />
+        ) : (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
@@ -3366,9 +3355,8 @@ export default function AdminPage() {
                 {paginatedAuditLogs.map(log => (
                   <div key={log.id} className="py-2.5 flex items-start justify-between gap-4 text-xs hover:bg-slate-50/60 px-2 rounded-xl transition">
                     <div className="flex items-start gap-2.5">
-                      <span className={`p-1.5 rounded-lg text-xs shrink-0 mt-0.5 ${
-                        log.status === 'success' ? 'bg-emerald-100 text-emerald-700' : log.status === 'warning' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-700'
-                      }`}>
+                      <span className={`p-1.5 rounded-lg text-xs shrink-0 mt-0.5 ${log.status === 'success' ? 'bg-emerald-100 text-emerald-700' : log.status === 'warning' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-700'
+                        }`}>
                         <i className={`fa-solid ${log.status === 'success' ? 'fa-check' : log.status === 'warning' ? 'fa-triangle-exclamation' : 'fa-info'}`}></i>
                       </span>
                       <div>
@@ -3393,8 +3381,8 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          )
-        )}
+        )
+      )}
 
       {/* ======================================================== */}
       {/* MODAL 1: ADD / EDIT SPOT MODAL */}
@@ -3638,9 +3626,8 @@ export default function AdminPage() {
                         return (
                           <div
                             key={i}
-                            className={`flex items-center gap-2.5 p-2 rounded-xl border transition ${
-                              isCover ? 'bg-emerald-50/80 border-emerald-300' : 'bg-white border-slate-200'
-                            }`}
+                            className={`flex items-center gap-2.5 p-2 rounded-xl border transition ${isCover ? 'bg-emerald-50/80 border-emerald-300' : 'bg-white border-slate-200'
+                              }`}
                           >
                             <span className="w-5 text-center text-[10px] font-bold text-slate-400 shrink-0">
                               #{i + 1}
@@ -4368,9 +4355,18 @@ export default function AdminPage() {
             <p className="text-xs text-slate-700 leading-relaxed">{inspectSpot.shortDesc}</p>
             {inspectSpot.history && <p className="text-xs text-slate-600 mt-2 leading-relaxed bg-slate-50 p-3 rounded-xl">{inspectSpot.history}</p>}
             <div className="mt-4 pt-3 border-t flex justify-end gap-2">
-              <button onClick={() => setInspectSpot(null)} className="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold">
+              <button onClick={() => setInspectSpot(null)} className="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold cursor-pointer">
                 বন্ধ করুন
               </button>
+              {inspectSpot.status !== 'approved' && (
+                <button
+                  onClick={() => handleApprove('spot', inspectSpot.id, inspectSpot.title)}
+                  className="px-4 py-2 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-sm cursor-pointer flex items-center gap-1.5"
+                >
+                  <i className="fa-solid fa-check"></i>
+                  <span>অনুমোদন করুন</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

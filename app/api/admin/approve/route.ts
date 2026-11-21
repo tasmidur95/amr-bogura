@@ -18,8 +18,12 @@ export async function GET(req: NextRequest) {
       });
     }
 
-    let detectedType = type;
-    if (!detectedType) {
+    let detectedType = (type || '').toString().toLowerCase().trim();
+    if (detectedType === 'spots') detectedType = 'spot';
+    if (['blood', 'tuition', 'rent', 'jobs', 'business', 'community_posts'].includes(detectedType)) detectedType = 'community';
+    if (['education', 'institutes', 'institute'].includes(detectedType)) detectedType = 'education';
+
+    if (!detectedType || !['spot', 'community', 'review', 'education'].includes(detectedType)) {
       detectedType = (await DistrictService.detectSubmissionType(id)) || 'spot';
     }
 
@@ -80,9 +84,12 @@ export async function POST(req: NextRequest) {
       normalizedType = 'community';
     }
     if (normalizedType === 'reviews') normalizedType = 'review';
+    if (['education', 'institutes', 'institute', 'school', 'college', 'madrasah'].includes(normalizedType)) {
+      normalizedType = 'education';
+    }
 
     // 3. Auto-detect type if not provided or invalid
-    if (!normalizedType || !['spot', 'community', 'review'].includes(normalizedType)) {
+    if (!normalizedType || !['spot', 'community', 'review', 'education'].includes(normalizedType)) {
       normalizedType = (await DistrictService.detectSubmissionType(id)) || 'spot';
     }
 
