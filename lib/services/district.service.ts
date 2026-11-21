@@ -1701,7 +1701,11 @@ export class DistrictService {
     let list = [...memoryInstitutes];
 
     if (filter?.category && filter.category !== 'all') {
-      list = list.filter(i => i.category === filter.category);
+      if (filter.category === 'top50') {
+        list = list.filter(i => typeof i.rank === 'number' && i.rank > 0 && i.rank <= 50);
+      } else {
+        list = list.filter(i => i.category === filter.category);
+      }
     }
 
     if (filter?.upazila && filter.upazila !== 'ALL') {
@@ -1740,15 +1744,16 @@ export class DistrictService {
 
     const total = list.length;
     const page = filter?.page || 1;
-    const limit = filter?.limit || 50;
-    const paginated = list.slice((page - 1) * limit, page * limit);
+    const limit = filter?.limit !== undefined ? filter.limit : 50;
+    const paginated = limit > 0 ? list.slice((page - 1) * limit, page * limit) : list;
+    const totalPages = limit > 0 ? Math.ceil(total / limit) : 1;
 
     return {
       institutes: paginated,
       total,
       page,
       limit,
-      totalPages: Math.ceil(total / limit)
+      totalPages
     };
   }
 

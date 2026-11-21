@@ -4,7 +4,7 @@ export interface EducationalInstitute {
   enName: string;
   eiin: string;
   rank?: number;
-  category: 'college' | 'university' | 'medical' | 'polytechnic' | 'school-college' | 'madrasah' | 'school';
+  category: 'college' | 'university' | 'medical' | 'polytechnic' | 'technical' | 'vocational' | 'school-college' | 'madrasah' | 'school' | 'kindergarten';
   categoryBn: string;
   upazila: string;
   location: string;

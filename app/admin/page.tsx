@@ -2151,12 +2151,15 @@ export default function AdminPage() {
                     className="px-3 py-1.5 rounded-xl border border-slate-300 text-xs bg-white text-slate-700 font-medium"
                   >
                     <option value="ALL">সকল ক্যাটাগরি</option>
+                    <option value="school">মাধ্যমিক ও উচ্চ বিদ্যালয়</option>
+                    <option value="madrasah">মাদ্রাসা শিক্ষা</option>
+                    <option value="technical">কারিগরি ও ভোকেশনাল</option>
                     <option value="college">কলেজ ও বিশ্ববিদ্যালয় কলেজ</option>
                     <option value="school-college">স্কুল অ্যান্ড কলেজ</option>
+                    <option value="kindergarten">কিন্ডারগার্টেন ও কেজি</option>
                     <option value="university">বিশ্ববিদ্যালয়</option>
                     <option value="medical">মেডিকেল কলেজ</option>
                     <option value="polytechnic">পলিটেকনিক ও কারিগরি</option>
-                    <option value="school">ঐতিহাসিক স্কুল</option>
                   </select>
 
                   {/* Upazila Filter */}
@@ -4461,30 +4464,36 @@ export default function AdminPage() {
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">ক্যাটাগরি</label>
                   <select
-                    value={educationModal.data.category || 'college'}
+                    value={educationModal.data.category || 'school'}
                     onChange={e => {
                       const val = e.target.value as any;
                       const bnMap: Record<string, string> = {
+                        school: 'উচ্চ বিদ্যালয়',
+                        madrasah: 'মাদ্রাসা',
+                        technical: 'কারিগরি ও ভোকেশনাল',
                         college: 'কলেজ',
                         'school-college': 'স্কুল অ্যান্ড কলেজ',
+                        kindergarten: 'কিন্ডারগার্টেন',
                         university: 'বিশ্ববিদ্যালয়',
                         medical: 'মেডিকেল কলেজ',
-                        polytechnic: 'পলিটেকনিক ইনস্টিটিউট',
-                        school: 'স্কুল'
+                        polytechnic: 'পলিটেকনিক ইনস্টিটিউট'
                       };
                       setEducationModal(prev => ({
                         ...prev,
-                        data: { ...prev.data, category: val, categoryBn: bnMap[val] || 'কলেজ' }
+                        data: { ...prev.data, category: val, categoryBn: bnMap[val] || 'প্রতিষ্ঠান' }
                       }));
                     }}
                     className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white text-slate-800 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                   >
+                    <option value="school">মাধ্যমিক ও উচ্চ বিদ্যালয়</option>
+                    <option value="madrasah">মাদ্রাসা শিক্ষা</option>
+                    <option value="technical">কারিগরি ও ভোকেশনাল</option>
                     <option value="college">কলেজ ও বিশ্ববিদ্যালয় কলেজ</option>
                     <option value="school-college">স্কুল অ্যান্ড কলেজ</option>
+                    <option value="kindergarten">কিন্ডারগার্টেন ও কেজি</option>
                     <option value="university">বিশ্ববিদ্যালয়</option>
                     <option value="medical">মেডিকেল কলেজ</option>
                     <option value="polytechnic">পলিটেকনিক ও কারিগরি</option>
-                    <option value="school">ঐতিহাসিক স্কুল</option>
                   </select>
                 </div>
 
