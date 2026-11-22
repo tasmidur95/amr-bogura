@@ -91,7 +91,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
           <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/70">
             <Link
               href="/"
-              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'home'
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'home'
                 ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
@@ -100,13 +100,13 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
             <button
               onClick={() => handleNavClick('home', 'services')}
-              className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition-all duration-200 ease-out active:scale-95 cursor-pointer"
             >
               {t('navServices')}
             </button>
             <Link
               href="/upazilas"
-              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'upazilas'
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'upazilas'
                 ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
@@ -115,7 +115,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
             <Link
               href="/healthcare"
-              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'healthcare'
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'healthcare'
                 ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
@@ -124,7 +124,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
             <Link
               href="/education"
-              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'education'
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'education'
                 ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
@@ -133,7 +133,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
             <Link
               href="/explore"
-              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'explore'
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'explore'
                 ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
@@ -142,7 +142,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
             <Link
               href="/transport"
-              className={`px-3 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'transport'
+              className={`px-3 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'transport'
                 ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
@@ -151,7 +151,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
             <Link
               href="/hospitality"
-              className={`px-3 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'hospitality'
+              className={`px-3 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'hospitality'
                 ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
@@ -160,13 +160,13 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
             <button
               onClick={() => handleNavClick('home', 'history')}
-              className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition-all duration-200 ease-out active:scale-95 cursor-pointer"
             >
               {t('navHistory')}
             </button>
             <Link
               href="/community"
-              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'community'
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'community'
                 ? 'font-semibold text-emerald-900 bg-white shadow-sm'
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
@@ -175,7 +175,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
             <Link
               href="/contribute"
-              className={`px-3 py-1.5 rounded-lg text-sm transition cursor-pointer flex items-center gap-1.5 ${currentView === 'contribute'
+              className={`px-3 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer flex items-center gap-1.5 ${currentView === 'contribute'
                 ? 'font-bold text-emerald-950 bg-emerald-100 shadow-sm border border-emerald-300'
                 : 'font-semibold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200'
                 }`}

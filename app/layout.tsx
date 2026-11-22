@@ -1,7 +1,9 @@
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import './globals.css';
 import { LanguageProvider } from '@/lib/context/LanguageContext';
 import { ToastProvider } from '@/lib/context/ToastContext';
+import RouteTransitionBar from '@/components/RouteTransitionBar';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://amar-bogura.vercel.app'),
@@ -58,6 +60,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen w-full antialiased selection:bg-emerald-700 selection:text-white">
+        <Suspense fallback={null}>
+          <RouteTransitionBar />
+        </Suspense>
         <LanguageProvider>
           <ToastProvider>
             {children}

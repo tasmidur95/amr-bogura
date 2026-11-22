@@ -275,16 +275,75 @@ export default function TransportPage() {
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               placeholder="টার্মিনাল, রুট বা অপারেটর..."
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full pl-9 pr-8 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Content Listing */}
+        {/* CRO Quick-Search Intent Chips */}
+        <div className="mb-6 -mt-4 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+          <span className="text-[11px] font-bold text-slate-400 shrink-0 mr-1 flex items-center gap-1">
+            <i className="fa-solid fa-route text-blue-600"></i>জনপ্রিয় অনুসন্ধান:
+          </span>
+          {[
+            { label: 'চারমাথা কেন্দ্রীয় বাস টার্মিনাল', q: 'চারমাথা' },
+            { label: 'বগুড়া রেলওয়ে স্টেশন', q: 'রেলওয়ে' },
+            { label: 'শ্যামলী পরিবহন', q: 'শ্যামলী' },
+            { label: 'হানিফ এন্টারপ্রাইজ', q: 'হানিফ' },
+            { label: 'একতা পরিবহন', q: 'একতা' },
+            { label: 'ঢাকা-বগুড়া রুট', q: 'ঢাকা' },
+            { label: 'রেন্ট-এ-কার', q: 'রেন্ট' },
+          ].map(chip => (
+            <button
+              key={chip.label}
+              type="button"
+              onClick={() => setSearchQuery(chip.q)}
+              className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition shrink-0 cursor-pointer ${
+                searchQuery === chip.q
+                  ? 'bg-blue-700 text-white font-bold'
+                  : 'bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200/80'
+              }`}
+            >
+              {chip.label}
+            </button>
+          ))}
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery('')}
+              className="px-2 py-1 rounded-lg text-[11px] font-bold text-rose-600 hover:bg-rose-50 transition shrink-0 cursor-pointer"
+            >
+              <i className="fa-solid fa-rotate-left mr-1"></i>রিসেট
+            </button>
+          )}
+        </div>
+
+        {/* Content Listing - Zero-Layout-Shift Skeleton */}
         {loading ? (
-          <div className="text-center py-20 bg-white rounded-3xl border border-slate-200">
-            <i className="fa-solid fa-spinner fa-spin text-3xl text-blue-600 mb-3"></i>
-            <p className="text-slate-600 text-sm">পরিবহন ও যোগাযোগ তথ্য লোড হচ্ছে...</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map(i => (
+              <div key={i} className="bg-white rounded-3xl border border-slate-200 overflow-hidden space-y-3 p-4">
+                <div className="h-44 w-full rounded-2xl skeleton-shimmer" />
+                <div className="h-5 w-3/4 rounded-md skeleton-shimmer" />
+                <div className="h-4 w-1/2 rounded-md skeleton-shimmer" />
+                <div className="flex gap-2 pt-1">
+                  <div className="h-5 w-16 rounded-md skeleton-shimmer" />
+                  <div className="h-5 w-16 rounded-md skeleton-shimmer" />
+                </div>
+                <div className="pt-3 border-t border-slate-100 flex justify-between items-center">
+                  <div className="h-8 w-28 rounded-xl skeleton-shimmer" />
+                  <div className="h-8 w-16 rounded-xl skeleton-shimmer" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : totalResults === 0 ? (
           <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 p-6">
@@ -610,6 +669,55 @@ export default function TransportPage() {
             )}
           </div>
         )}
+
+        {/* CRO Bottom Civic Conversion Closer Funnel */}
+        <section className="mt-14 rounded-3xl bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 text-white p-6 sm:p-10 border border-blue-800 shadow-xl relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+            <div className="max-w-2xl text-center lg:text-left">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-400/30 mb-3">
+                <i className="fa-solid fa-bus"></i>
+                <span>যোগাযোগ ও পরিবহন নেটওয়ার্ক</span>
+              </span>
+              <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+                আপনার বাস সার্ভিস, কাউন্টার বা রেন্ট-এ-কার কি তালিকায় বাদ পড়েছে?
+              </h2>
+              <p className="text-xs sm:text-sm text-blue-100/90 mt-2 leading-relaxed">
+                বগুড়ার হাজারো দৈনিক যাত্রী ও দূরদূরান্ত থেকে আগত মানুষদের যাতায়াত নির্বিঘ্ন করতে আপনার বাস সার্ভিস, কাউন্টারের মোবাইল নম্বর ও রুটের তথ্য যুক্ত করুন।
+              </p>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-[11px] text-blue-200 font-medium mt-4">
+                <span className="flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-emerald-400"></i> ১-ট্যাপে সরাসরি ফোন ও যোগাযোগ
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-emerald-400"></i> অনলাইন টিকিট বুকিং লিংক
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-emerald-400"></i> বিনামূল্যে তালিকাভুক্তি
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+              <Link
+                href="/contribute"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg text-center transition flex items-center justify-center gap-2 group cursor-pointer"
+              >
+                <i className="fa-solid fa-plus-circle text-slate-950 group-hover:rotate-90 transition-transform"></i>
+                <span>পরিবহন সেবা যুক্ত করুন</span>
+              </Link>
+              <a
+                href="https://eticket.railway.gov.bd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 text-center transition flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <i className="fa-solid fa-train text-amber-300"></i>
+                <span>রেলওয়ে ই-টিকেট</span>
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Multiple Phones Modal */}

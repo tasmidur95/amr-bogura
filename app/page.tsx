@@ -138,27 +138,24 @@ export default function HomePage() {
       <main className="flex-1">
         {currentView === 'home' && (
           <div className="animate-fade-in">
-            <Hero onNavigate={handleNavigate} siteContent={siteContent} />
-            <WeatherSection />
-            <DistrictOverviewSection />
+            {/* 1. Value Proposition, Instant Search, High-Contrast CTAs & Trust Proofs */}
+            <Hero
+              onNavigate={handleNavigate}
+              siteContent={siteContent}
+              onOpenSearch={() => setIsSearchOpen(true)}
+            />
+
+            {/* 2. Immediate Action Gateways (8 Core Services — Low Friction Navigation) */}
             <ServicesGrid
               onNavigate={handleNavigate}
               onFilterHospital={setHospitalFilter}
               onSwitchCommunityTab={setActiveCommunityTab}
             />
-            <CommunitySection
-              activeTab={activeCommunityTab}
-              onTabChange={setActiveCommunityTab}
-              communityData={communityData}
-              onOpenModal={() => setIsCommunityModalOpen(true)}
-              isHome={true}
-            />
-            <UpazilaSection
-              upazilas={upazilas}
-              onNavigate={handleNavigate}
-              onOpenDetail={handleOpenUpazilaDetail}
-              isHome={true}
-            />
+
+            {/* 3. Realtime Live Context: Weather & Civic Advisory */}
+            <WeatherSection />
+
+            {/* 4. Highest Urgency Civic Conversion: Healthcare & 24/7 Emergency */}
             <HealthcareSection
               hospitals={hospitals}
               emergencyContacts={emergencyContacts}
@@ -166,7 +163,31 @@ export default function HomePage() {
               onFilterChange={setHospitalFilter}
               isHome={true}
             />
+
+            {/* 5. High-Intent Civic Network: Blood Donors & Community Support */}
+            <CommunitySection
+              activeTab={activeCommunityTab}
+              onTabChange={setActiveCommunityTab}
+              communityData={communityData}
+              onOpenModal={() => setIsCommunityModalOpen(true)}
+              isHome={true}
+            />
+
+            {/* 6. Authority, Scale & Trust: District Master Overview (6 Pillars) */}
+            <DistrictOverviewSection />
+
+            {/* 7. Administrative Discovery: Upazilas & Unions */}
+            <UpazilaSection
+              upazilas={upazilas}
+              onNavigate={handleNavigate}
+              onOpenDetail={handleOpenUpazilaDetail}
+              isHome={true}
+            />
+
+            {/* 8. Culture & Heritage Engagement: Explore Bogura */}
             <ExploreSection exploreSpots={exploreSpots} />
+
+            {/* 9. Civic Contribution Closer & Historical Roots */}
             <HistorySection siteContent={siteContent} />
           </div>
         )}

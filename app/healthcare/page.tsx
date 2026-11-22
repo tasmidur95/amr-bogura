@@ -6,9 +6,11 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import HealthcareMap from '@/components/HealthcareMap';
+import { useToast } from '@/lib/context/ToastContext';
 import { HealthcareFacility } from '@/lib/services/healthcare.service';
 
 export default function HealthcarePage() {
+  const { showToast } = useToast();
   const [facilities, setFacilities] = useState<HealthcareFacility[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedUpazila, setSelectedUpazila] = useState<string>('all');
@@ -285,7 +287,7 @@ export default function HealthcarePage() {
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
                   >
                     <i className="fa-solid fa-xmark"></i>
                   </button>
@@ -328,6 +330,44 @@ export default function HealthcarePage() {
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* CRO High-Intent Quick Search Chips */}
+            <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+              <span className="text-[11px] font-bold text-slate-400 shrink-0 mr-1">
+                <i className="fa-solid fa-bolt text-amber-500 mr-1"></i>জনপ্রিয় অনুসন্ধান:
+              </span>
+              {[
+                { label: 'শজিমেক হাসপাতাল', q: 'শহীদ জিয়াউর রহমান' },
+                { label: 'মোহাম্মদ আলী', q: 'মোহাম্মদ আলী' },
+                { label: 'টিএমএসএস', q: 'টিএমএসএস' },
+                { label: 'শেরপুর স্বাস্থ্য কমপ্লেক্স', q: 'শেরপুর' },
+                { label: 'রেড ক্রিসেন্ট ব্লাড ব্যাংক', q: 'রেড ক্রিসেন্ট' },
+                { label: 'জরুরী অ্যাম্বুলেন্স', q: 'অ্যাম্বুলেন্স' },
+                { label: 'কমিউনিটি ক্লিনিক', q: 'কমিউনিটি ক্লিনিক' },
+              ].map((chip) => (
+                <button
+                  key={chip.label}
+                  type="button"
+                  onClick={() => setSearchQuery(chip.q)}
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition shrink-0 cursor-pointer ${
+                    searchQuery === chip.q
+                      ? 'bg-emerald-800 text-white font-bold'
+                      : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80'
+                  }`}
+                >
+                  {chip.label}
+                </button>
+              ))}
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="px-2 py-1 rounded-lg text-[11px] font-bold text-rose-600 hover:bg-rose-50 transition shrink-0 cursor-pointer"
+                >
+                  <i className="fa-solid fa-rotate-left mr-1"></i>রিসেট
+                </button>
+              )}
             </div>
 
             {/* Upazila Tabs Filter */}
@@ -381,11 +421,33 @@ export default function HealthcarePage() {
             </div>
           </div>
 
-          {/* Loading state */}
+          {/* Zero-Layout-Shift Skeleton Loading state */}
           {loading ? (
-            <div className="py-20 text-center">
-              <div className="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-slate-600 font-medium">৩৫২টি স্বাস্থ্যসেবা প্রতিষ্ঠানের তথ্য লোড হচ্ছে...</p>
+            <div className="space-y-6 mb-8">
+              {viewMode !== 'grid' && (
+                <div className="h-[420px] sm:h-[480px] rounded-3xl skeleton-shimmer border border-slate-200" />
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className="bg-white rounded-2xl border border-slate-200 p-5 space-y-3">
+                    <div className="flex justify-between items-center">
+                      <div className="h-4 w-16 rounded-md skeleton-shimmer" />
+                      <div className="h-4 w-20 rounded-md skeleton-shimmer" />
+                    </div>
+                    <div className="h-5 w-3/4 rounded-md skeleton-shimmer" />
+                    <div className="h-4 w-1/2 rounded-md skeleton-shimmer" />
+                    <div className="h-4 w-full rounded-md skeleton-shimmer" />
+                    <div className="flex gap-2 pt-1">
+                      <div className="h-5 w-16 rounded-md skeleton-shimmer" />
+                      <div className="h-5 w-16 rounded-md skeleton-shimmer" />
+                    </div>
+                    <div className="pt-3 border-t border-slate-100 flex justify-between items-center">
+                      <div className="h-7 w-28 rounded-xl skeleton-shimmer" />
+                      <div className="h-7 w-20 rounded-xl skeleton-shimmer" />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           ) : (
             <>
@@ -434,6 +496,14 @@ export default function HealthcarePage() {
                       facility={f}
                       isSelected={selectedFacility?.id === f.id}
                       onSelect={() => setSelectedFacility(f)}
+                      onCopyPhone={(phone) => {
+                        if (navigator.clipboard) {
+                          navigator.clipboard.writeText(phone);
+                          showToast(`কপি হয়েছে: ${f.name_bn} (${phone})`);
+                        } else {
+                          showToast(`নম্বর: ${phone}`);
+                        }
+                      }}
                     />
                   ))}
                 </div>
@@ -489,6 +559,53 @@ export default function HealthcarePage() {
               )}
             </>
           )}
+
+          {/* CRO Bottom Civic Conversion Closer Funnel */}
+          <section className="mt-14 rounded-3xl bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-900 text-white p-6 sm:p-10 border border-emerald-800 shadow-xl relative overflow-hidden">
+            <div className="absolute right-0 top-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+              <div className="max-w-2xl text-center lg:text-left">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-400/30 mb-3">
+                  <i className="fa-solid fa-hand-holding-medical"></i>
+                  <span>নাগরিক স্বাস্থ্যসেবা সহযোগিতা</span>
+                </span>
+                <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+                  আপনার ক্লিনিক বা স্বাস্থ্যসেবা কেন্দ্র কি তালিকায় নেই?
+                </h2>
+                <p className="text-xs sm:text-sm text-emerald-100/90 mt-2 leading-relaxed">
+                  বগুড়া জেলা তথ্যভাণ্ডার সম্পূর্ণ উন্মুক্ত ও নাগরিক উদ্যোগে পরিচালিত। নতুন হাসপাতাল, ডায়াগনস্টিক সেন্টার, অ্যাম্বুলেন্স কিংবা ব্লাড ব্যাংকের সঠিক তথ্য প্রদান করে আপনার এলাকার মানুষের চিকিৎসা সহায়তায় পাশে দাঁড়ান।
+                </p>
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-[11px] text-emerald-300 font-medium mt-4">
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-check-circle text-emerald-400"></i> শতভাগ বিনামূল্যে তালিকাভুক্ত
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-check-circle text-emerald-400"></i> প্রশাসন ও মডারেটর যাচাইকৃত
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-check-circle text-emerald-400"></i> ২৪ ঘণ্টার মধ্যে অনুমোদন
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+                <Link
+                  href="/contribute"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg text-center transition flex items-center justify-center gap-2 group cursor-pointer"
+                >
+                  <i className="fa-solid fa-plus-circle text-slate-950 group-hover:rotate-90 transition-transform"></i>
+                  <span>স্বাস্থ্য তথ্য অবদান রাখুন</span>
+                </Link>
+                <Link
+                  href="/community"
+                  className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 text-center transition flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <i className="fa-solid fa-droplet text-rose-400"></i>
+                  <span>রক্তদাতা নেটওয়ার্ক</span>
+                </Link>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
 
@@ -502,11 +619,13 @@ export default function HealthcarePage() {
 function FacilityCard({
   facility,
   isSelected,
-  onSelect
+  onSelect,
+  onCopyPhone,
 }: {
   facility: HealthcareFacility;
   isSelected: boolean;
   onSelect: () => void;
+  onCopyPhone?: (phone: string) => void;
 }) {
   const isEmergency =
     facility.category === 'Ambulance Services' ||
@@ -592,14 +711,30 @@ function FacilityCard({
       {/* Card Actions Footer */}
       <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 mt-auto">
         {facility.phone && facility.phone.length > 0 ? (
-          <a
-            href={`tel:${facility.phone[0]}`}
-            onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-800 hover:bg-emerald-900 px-3 py-1.5 rounded-xl shadow-sm transition"
-          >
-            <i className="fa-solid fa-phone text-[10px]"></i>
-            <span>{facility.phone[0]}</span>
-          </a>
+          <div className="flex items-center gap-1.5">
+            <a
+              href={`tel:${facility.phone[0]}`}
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-800 hover:bg-emerald-900 px-3 py-1.5 rounded-xl shadow-sm transition"
+              title="সরাসরি কল করুন"
+            >
+              <i className="fa-solid fa-phone text-[10px]"></i>
+              <span>{facility.phone[0]}</span>
+            </a>
+            {onCopyPhone && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onCopyPhone(facility.phone![0]);
+                }}
+                className="p-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs transition cursor-pointer"
+                title="নম্বর কপি করুন"
+              >
+                <i className="fa-regular fa-copy"></i>
+              </button>
+            )}
+          </div>
         ) : (
           <span className="text-xs text-slate-400 font-medium">হটলাইন নেই</span>
         )}

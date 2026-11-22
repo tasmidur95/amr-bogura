@@ -143,6 +143,56 @@ export default function CommunityPage() {
           onOpenModal={() => setIsModalOpen(true)}
           isHome={false}
         />
+
+        {/* CRO Bottom Civic Conversion Closer Funnel */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8">
+          <section className="rounded-3xl bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-900 text-white p-6 sm:p-10 border border-emerald-800 shadow-xl relative overflow-hidden">
+            <div className="absolute right-0 top-0 w-80 h-80 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+              <div className="max-w-2xl text-center lg:text-left">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-bold border border-rose-400/30 mb-3">
+                  <i className="fa-solid fa-heart-pulse"></i>
+                  <span>জীবন বাঁচাতে রক্তদান</span>
+                </span>
+                <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+                  আপনি কি রক্তদান করতে প্রস্তুত অথবা নাগরিক তথ্য শেয়ার করতে চান?
+                </h2>
+                <p className="text-xs sm:text-sm text-emerald-100/90 mt-2 leading-relaxed">
+                  আপনার এক ব্যাগ রক্ত বগুড়ায় একজন মুমূর্ষু রোগীর প্রাণ বাঁচাতে পারে। অমর বগুড়া রক্তদাতা নেটওয়ার্কে নম্বর সুরক্ষিত থাকে এবং অযাচিত কল রোধে ক্লিক-টু-রিভিল প্রযুক্তি কার্যকর রয়েছে।
+                </p>
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-[11px] text-emerald-300 font-medium mt-4">
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-shield-halved text-rose-400"></i> রক্তদাতার ফোন নম্বর সুরক্ষা ফিল্টার
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-circle-check text-emerald-400"></i> ১০০% সেবামূলক ও অবাণিজ্যিক উদ্যোগ
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-circle-check text-emerald-400"></i> তাৎক্ষণিক অনুমোদন ও প্রদর্শন
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg text-center transition flex items-center justify-center gap-2 group cursor-pointer"
+                >
+                  <i className="fa-solid fa-plus-circle text-slate-950 group-hover:rotate-90 transition-transform"></i>
+                  <span>রক্তদাতা হিসেবে নিবন্ধন করুন</span>
+                </button>
+                <Link
+                  href="/healthcare"
+                  className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 text-center transition flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <i className="fa-solid fa-hospital text-emerald-300"></i>
+                  <span>জরুরি স্বাস্থ্য সেবা</span>
+                </Link>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
 
       {/* Footer & Navigation */}

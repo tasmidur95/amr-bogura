@@ -251,9 +251,55 @@ export default function ExploreIndexPage() {
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 placeholder="মহাস্থানগড়, খেরুয়া মসজিদ, যমুনা ঘাট..."
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B4635]"
+                className="w-full pl-9 pr-8 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B4635]"
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
+                >
+                  <i className="fa-solid fa-xmark"></i>
+                </button>
+              )}
             </div>
+          </div>
+
+          {/* CRO Quick-Search Intent Chips */}
+          <div className="mb-6 -mt-3 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+            <span className="text-[11px] font-bold text-slate-400 shrink-0 mr-1 flex items-center gap-1">
+              <i className="fa-solid fa-compass text-[#C85A28]"></i>জনপ্রিয় পর্যটন স্থান:
+            </span>
+            {[
+              { label: 'মহাস্থানগড়', q: 'মহাস্থানগড়' },
+              { label: 'ভাসু বিহার', q: 'ভাসু বিহার' },
+              { label: 'খেরুয়া মসজিদ', q: 'খেরুয়া' },
+              { label: 'গোকুল মেধ', q: 'গোকুল মেধ' },
+              { label: 'বেহুলার বাসর ঘর', q: 'বাসর ঘর' },
+              { label: 'যমুনা স্পার বাঁধ', q: 'যমুনা' },
+              { label: 'ভবানীপুর শক্তিপীঠ', q: 'ভবানীপুর' },
+            ].map(chip => (
+              <button
+                key={chip.label}
+                type="button"
+                onClick={() => setSearchQuery(chip.q)}
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition shrink-0 cursor-pointer ${
+                  searchQuery === chip.q
+                    ? 'bg-[#0B4635] text-white font-bold'
+                    : 'bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200/80'
+                }`}
+              >
+                {chip.label}
+              </button>
+            ))}
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="px-2 py-1 rounded-lg text-[11px] font-bold text-rose-600 hover:bg-rose-50 transition shrink-0 cursor-pointer"
+              >
+                <i className="fa-solid fa-rotate-left mr-1"></i>রিসেট
+              </button>
+            )}
           </div>
 
           {/* Pending Submissions Alert Banner if active */}
@@ -386,6 +432,54 @@ export default function ExploreIndexPage() {
               ))
             )}
           </div>
+
+          {/* CRO Bottom Civic Conversion Closer Funnel */}
+          <section className="mt-14 rounded-3xl bg-gradient-to-r from-[#0B4635] via-emerald-950 to-slate-900 text-white p-6 sm:p-10 border border-emerald-800 shadow-xl relative overflow-hidden">
+            <div className="absolute right-0 top-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+              <div className="max-w-2xl text-center lg:text-left">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold border border-amber-400/30 mb-3">
+                  <i className="fa-solid fa-camera-retro"></i>
+                  <span>নাগরিক ঐতিহ্য সংরক্ষণ</span>
+                </span>
+                <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+                  বগুড়ার কোন ঐতিহাসিক স্থান বা নদী পর্যটন স্পট বাদ পড়েছে?
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
+                  আপনার এলাকার প্রাচীন ঢিবি, টেরাকোটা মন্দির, জমিদার বাড়ি কিংবা মনকাড়া নদী পর্যটনের তথ্য ও ছবি জমা দিয়ে পুণ্ড্রবর্ধনের ইতিহাসকে ডিজিটাল আর্কাইভে অমর করে রাখুন।
+                </p>
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-[11px] text-amber-200 font-medium mt-4">
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-circle-check text-amber-400"></i> অবদানকারীর নাম ও নাগরিক স্বীকৃতি
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-circle-check text-amber-400"></i> সারা দেশের পর্যটকদের নির্ভরযোগ্য গাইড
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-circle-check text-amber-400"></i> পর্যটন পুলিশ ও জেলা প্রশাসন তথ্য
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg text-center transition flex items-center justify-center gap-2 group cursor-pointer"
+                >
+                  <i className="fa-solid fa-plus-circle text-slate-950 group-hover:rotate-90 transition-transform"></i>
+                  <span>নতুন দর্শনীয় স্থান যোগ করুন</span>
+                </button>
+                <Link
+                  href="/hospitality"
+                  className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 text-center transition flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <i className="fa-solid fa-hotel text-amber-300"></i>
+                  <span>হোটেল ও রেস্তোরাঁ</span>
+                </Link>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
 

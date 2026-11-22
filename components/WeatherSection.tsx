@@ -77,9 +77,22 @@ export default function WeatherSection() {
   if (loading && !weather) {
     return (
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-2xs text-center">
-          <i className="fa-solid fa-cloud-sun text-4xl text-amber-500 fa-bounce mb-3"></i>
-          <p className="text-slate-600 text-sm font-semibold">বগুড়ার রিয়েলটাইম আবহাওয়া লোড হচ্ছে...</p>
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-5 sm:p-8 min-h-[380px] space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-100">
+            <div className="space-y-2">
+              <div className="h-5 w-48 rounded-md skeleton-shimmer" />
+              <div className="h-7 w-64 rounded-md skeleton-shimmer" />
+            </div>
+            <div className="h-8 w-28 rounded-xl skeleton-shimmer" />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div className="lg:col-span-4 h-52 rounded-3xl skeleton-shimmer" />
+            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="h-24 rounded-2xl skeleton-shimmer" />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     );

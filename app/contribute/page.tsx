@@ -401,11 +401,51 @@ export default function ContributePage() {
         </div>
       </div>
 
+      {/* CRO Trust Proof & Reassurance Ribbon */}
+      <div className="bg-emerald-900/10 border-b border-emerald-900/20 py-3.5 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs font-semibold text-emerald-950">
+          <div className="flex items-center gap-2">
+            <i className="fa-solid fa-circle-check text-emerald-700"></i>
+            <span>১০০% নাগরিক উদ্যোগ ও উন্মুক্ত পোর্টাল</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <i className="fa-solid fa-shield-halved text-emerald-700"></i>
+            <span>রক্তদাতা ও অবদানকারীর তথ্য সম্পূর্ণ সুরক্ষিত</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <i className="fa-solid fa-bolt text-amber-600"></i>
+            <span>২ থেকে ১২ ঘণ্টার মধ্যে দ্রুত যাচাই ও লাইভ</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <i className="fa-solid fa-award text-emerald-700"></i>
+            <span>নাগরিক সম্মাননা ও কন্ট্রিবিউটর ক্রেডিট</span>
+          </div>
+        </div>
+      </div>
+
       {/* Main Work Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Form & Category Tabs */}
           <div className="lg:col-span-8 bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
+            {/* Visual Step Progress Indicator */}
+            <div className="mb-8 pb-5 border-b border-slate-100 flex items-center justify-between text-xs font-bold text-slate-500">
+              <div className="flex items-center gap-2 text-emerald-800">
+                <span className="w-6 h-6 rounded-full bg-emerald-800 text-white flex items-center justify-center text-xs">১</span>
+                <span>তথ্যের ধরণ</span>
+              </div>
+              <div className="h-0.5 flex-1 bg-emerald-200 mx-2"></div>
+              <div className="flex items-center gap-2 text-emerald-800">
+                <span className="w-6 h-6 rounded-full bg-emerald-800 text-white flex items-center justify-center text-xs">২</span>
+                <span>তথ্য ও বিবরণ</span>
+              </div>
+              <div className="h-0.5 flex-1 bg-slate-200 mx-2"></div>
+              <div className="flex items-center gap-2 text-slate-400">
+                <span className="w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs">৩</span>
+                <span>লাইভ ট্র্যাকিং</span>
+              </div>
+            </div>
+
             {/* Category Selector Tabs */}
             <div className="mb-8">
               <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
@@ -906,6 +946,14 @@ export default function ContributePage() {
                   <i className="fa-solid fa-shield-check text-emerald-600 mr-1"></i>
                   প্রতিটি অবদান অ্যাডমিন মডারেশনের মাধ্যমে যাচাই হয়ে ওয়েবসাইটে লাইভ প্রকাশিত হবে।
                 </p>
+
+                {/* CRO Friction Reduction Box */}
+                <div className="mt-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 text-xs text-slate-600 flex items-start gap-2.5">
+                  <i className="fa-solid fa-circle-info text-emerald-700 mt-0.5 shrink-0 text-sm"></i>
+                  <div className="leading-relaxed">
+                    <span className="font-bold text-slate-800">জমা দেওয়ার পর কি হবে?</span> আপনার তথ্যটি সরাসরি ট্র্যাকিং আইডিসহ মডারেশন কিউতে সংরক্ষিত হবে। আপনি নিচে আপনার মোবাইল নম্বর লিখে যেকোনো সময় স্ট্যাটাস ট্র্যাক করতে পারবেন।
+                  </div>
+                </div>
               </div>
             </form>
           </div>

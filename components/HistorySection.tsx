@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { SiteContent } from '@/lib/data/district-data';
 
@@ -208,6 +209,32 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Bottom Conversion Closer: Civic Contribution Banner */}
+      <div className="mt-12 bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden border border-emerald-800">
+        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-400/30 mb-2">
+              <i className="fa-solid fa-heart-circle-plus text-rose-400"></i>
+              <span>নাগরিক সম্পৃক্ততা ও অবদান</span>
+            </span>
+            <h3 className="text-xl sm:text-3xl font-black tracking-tight leading-snug">
+              আপনি কি বগুড়ার কোনো নির্ভরযোগ্য তথ্য জানেন?
+            </h3>
+            <p className="text-emerald-100/90 text-xs sm:text-sm mt-2 leading-relaxed">
+              আপনার এলাকার নতুন চিকিৎসাকেন্দ্র, রক্তদাতা নিবন্ধন, দর্শনীয় স্থান, হোটেল বা শিক্ষাপ্রতিষ্ঠানের তথ্য দিয়ে আমার বগুড়া প্ল্যাটফর্মকে সমৃদ্ধ করুন।
+            </p>
+          </div>
+          <Link
+            href="/contribute"
+            className="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 shrink-0"
+          >
+            <i className="fa-solid fa-plus text-slate-900"></i>
+            <span>নাগরিক তথ্য অবদান রাখুন</span>
+            <i className="fa-solid fa-arrow-right text-[10px]"></i>
+          </Link>
         </div>
       </div>
     </section>

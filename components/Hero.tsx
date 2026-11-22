@@ -9,9 +9,10 @@ import { SiteContent } from '@/lib/data/district-data';
 interface HeroProps {
   onNavigate: (view: string, anchor?: string) => void;
   siteContent?: SiteContent;
+  onOpenSearch?: () => void;
 }
 
-export default function Hero({ onNavigate, siteContent }: HeroProps) {
+export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProps) {
   const { t } = useLanguage();
   const [isCoverModalOpen, setIsCoverModalOpen] = useState(false);
   const coverImg = siteContent?.coverImageUrl || '/images/amar-bogura-cover.jpg';
@@ -80,43 +81,88 @@ export default function Hero({ onNavigate, siteContent }: HeroProps) {
               </div>
 
               {/* Subtitle */}
-              <p className="text-base sm:text-lg text-emerald-100/90 leading-relaxed mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg text-emerald-100/90 leading-relaxed mb-6 max-w-2xl">
                 {siteContent?.heroSubtitle || 'পুণ্ড্রবর্ধন মহাস্থানগড়, সাতমাথা জিরো পয়েন্ট, জিআই স্বীকৃত বগুড়ার দই, ১২টি উপজেলা এবং ২,৬৯২টি গ্রামের সমন্বয়ে উত্তরবঙ্গের প্রবেশদ্বারের আধুনিক তথ্য ও কমিউনিটি প্ল্যাটফর্ম।'}
               </p>
 
-              {/* Primary CTAs */}
-              <div className="flex flex-wrap items-center gap-3.5">
+              {/* CRO Low-Friction Instant Search Bar */}
+              <div className="mb-6 max-w-xl">
+                <div
+                  onClick={onOpenSearch}
+                  className="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl p-2 sm:p-2.5 flex items-center justify-between gap-3 shadow-lg transition cursor-pointer group"
+                >
+                  <div className="flex items-center gap-3 pl-2 sm:pl-3 text-slate-200">
+                    <i className="fa-solid fa-magnifying-glass text-amber-400 group-hover:scale-110 transition"></i>
+                    <span className="text-xs sm:text-sm text-slate-300 group-hover:text-white">
+                      হাসপাতাল, রক্তদাতা, বাস কাউন্টার বা উপজেলা খুঁজুন...
+                    </span>
+                  </div>
+                  <span className="px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs shrink-0 shadow-xs group-hover:bg-amber-400 transition">
+                    অনুসন্ধান
+                  </span>
+                </div>
+
+                {/* Quick Trending Intent Tags */}
+                <div className="flex flex-wrap items-center gap-1.5 mt-2.5 text-[11px] text-emerald-200">
+                  <span className="text-amber-400/90 font-semibold mr-1">জনপ্রিয়:</span>
+                  <button
+                    onClick={() => onNavigate('home', 'community')}
+                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
+                  >
+                    জরুরি রক্তদাতা
+                  </button>
+                  <button
+                    onClick={() => onNavigate('home', 'healthcare')}
+                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
+                  >
+                    শজিমেক হাসপাতাল
+                  </button>
+                  <Link
+                    href="/transport"
+                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
+                  >
+                    চারমাথা বাস টার্মিনাল
+                  </Link>
+                  <Link
+                    href="/education"
+                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
+                  >
+                    আজিজুল হক কলেজ
+                  </Link>
+                  <Link
+                    href="/explore"
+                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
+                  >
+                    মহাস্থানগড়
+                  </Link>
+                </div>
+              </div>
+
+              {/* Focused High-Contrast Primary CTAs (Avoiding Decision Paralysis) */}
+              <div className="flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => onNavigate('home', 'healthcare')}
-                  className="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold text-sm sm:text-base shadow-lg shadow-amber-950/25 flex items-center gap-2.5 transition transform hover:-translate-y-0.5 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm sm:text-base shadow-lg shadow-amber-950/30 flex items-center gap-2.5 transition transform hover:-translate-y-0.5 cursor-pointer ring-2 ring-amber-400/50"
                 >
-                  <i className="fa-solid fa-hospital"></i>
-                  <span>{t('ctaHospitals')}</span>
-                </button>
-
-                <button
-                  onClick={() => onNavigate('upazilas')}
-                  className="px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-bold text-sm sm:text-base flex items-center gap-2.5 transition cursor-pointer"
-                >
-                  <i className="fa-solid fa-map-location-dot text-amber-300"></i>
-                  <span>১২টি উপজেলা ও মানচিত্র</span>
+                  <i className="fa-solid fa-hospital-user text-slate-950"></i>
+                  <span>হাসপাতাল ও চিকিৎসাকেন্দ্র</span>
                 </button>
 
                 <button
                   onClick={() => onNavigate('home', 'community')}
-                  className="px-5 py-3.5 rounded-xl bg-emerald-950/60 hover:bg-emerald-950/80 text-emerald-100 border border-emerald-700/60 font-semibold text-sm flex items-center gap-2 transition cursor-pointer"
+                  className="px-5 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-bold text-sm sm:text-base flex items-center gap-2 transition cursor-pointer"
                 >
                   <i className="fa-solid fa-droplet text-rose-400"></i>
-                  <span>{t('ctaBlood')}</span>
+                  <span>রক্তদাতা নেটওয়ার্ক</span>
                 </button>
 
-                <Link
-                  href="/contribute"
-                  className="px-5 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm flex items-center gap-2 shadow-lg transition cursor-pointer"
+                <button
+                  onClick={() => onNavigate('upazilas')}
+                  className="px-5 py-3.5 rounded-xl bg-emerald-950/60 hover:bg-emerald-950/80 text-emerald-100 border border-emerald-700/60 font-semibold text-sm flex items-center gap-2 transition cursor-pointer"
                 >
-                  <i className="fa-solid fa-heart-circle-plus text-slate-950"></i>
-                  <span>অবদান রাখুন</span>
-                </Link>
+                  <i className="fa-solid fa-map-location-dot text-amber-300"></i>
+                  <span>১২টি উপজেলা ও ম্যাপ</span>
+                </button>
               </div>
             </div>
 
@@ -186,80 +232,57 @@ export default function Hero({ onNavigate, siteContent }: HeroProps) {
         </div>
       </section>
 
-      {/* Quick-Link Cards Overlapping Hero Bottom */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
-          {/* Card 1: Hospitals */}
-          <button
-            onClick={() => onNavigate('home', 'healthcare')}
-            className="text-left bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md card-hover flex items-start gap-3.5 cursor-pointer"
-          >
-            <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 text-lg border border-emerald-100">
-              <i className="fa-solid fa-bed-pulse"></i>
-            </div>
-            <div>
-              <h3 className="font-bold text-slate-900 text-base sm:text-lg leading-snug">
-                {t('qlHospitalTitle')}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                {t('qlHospitalDesc')}
-              </p>
-            </div>
-          </button>
+      {/* CRO Trust & Credibility Bar (Social proof & quick emergency access) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-20">
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs text-slate-600 font-semibold">
+            <span className="flex items-center gap-1.5 text-emerald-800">
+              <i className="fa-solid fa-circle-check text-emerald-600"></i>
+              <span>জাতীয় বাতায়ন নির্দেশিকা</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <i className="fa-solid fa-notes-medical text-emerald-600"></i>
+              <span><strong>৩৫২+</strong> স্বাস্থ্যকেন্দ্র</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <i className="fa-solid fa-shield-halved text-rose-500"></i>
+              <span><strong>৩৬+</strong> নিরাপদ রক্তদাতা</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <i className="fa-solid fa-graduation-cap text-indigo-600"></i>
+              <span><strong>১,৫৭০+</strong> শিক্ষাপ্রতিষ্ঠান</span>
+            </span>
+          </div>
 
-          {/* Card 2: Emergency */}
-          <button
-            onClick={() => onNavigate('home', 'emergency')}
-            className="text-left bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md card-hover flex items-start gap-3.5 cursor-pointer"
-          >
-            <div className="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 text-lg border border-rose-100">
-              <i className="fa-solid fa-phone-volume"></i>
-            </div>
-            <div>
-              <h3 className="font-bold text-slate-900 text-base sm:text-lg leading-snug">
-                {t('qlEmergencyTitle')}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                {t('qlEmergencyDesc')}
-              </p>
-            </div>
-          </button>
-
-          {/* Card 3: 12 Upazilas & Real Map */}
-          <button
-            onClick={() => onNavigate('upazilas')}
-            className="text-left bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md card-hover flex items-start gap-3.5 cursor-pointer"
-          >
-            <div className="w-11 h-11 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 text-lg border border-amber-100">
-              <i className="fa-solid fa-sitemap"></i>
-            </div>
-            <div>
-              <h3 className="font-bold text-slate-900 text-base sm:text-lg leading-snug">
-                {t('qlUpazilaTitle')}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                ১২ উপজেলা ও মানচিত্র
-              </p>
-            </div>
-          </button>
-
-          {/* Card 4: Explore Heritage Spots */}
-          <button
-            onClick={() => onNavigate('home', 'explore')}
-            className="text-left bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md card-hover flex items-start gap-3.5 cursor-pointer"
-          >
-            <div className="w-11 h-11 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 text-lg border border-teal-100">
-              <i className="fa-solid fa-gopuram"></i>
-            </div>
-            <div>
-              <h3 className="font-bold text-slate-900 text-base sm:text-lg leading-snug">
-                {t('qlExploreTitle')}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                {t('qlExploreDesc')}
-              </p>
-            </div>
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden lg:inline">
+              জরুরি হেল্পলাইন:
+            </span>
+            <a
+              href="tel:999"
+              className="px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold flex items-center gap-1.5 transition"
+              title="জাতীয় জরুরি সেবা"
+            >
+              <i className="fa-solid fa-phone"></i>
+              <span>৯৯৯</span>
+            </a>
+            <a
+              href="tel:109"
+              className="px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold flex items-center gap-1.5 transition"
+              title="নারী ও শিশু হেল্পলাইন"
+            >
+              <i className="fa-solid fa-phone"></i>
+              <span>১০৯</span>
+            </a>
+            <a
+              href="tel:333"
+              className="px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold flex items-center gap-1.5 transition"
+              title="জাতীয় তথ্য ও সেবা"
+            >
+              <i className="fa-solid fa-phone"></i>
+              <span>৩৩৩</span>
+            </a>
+          </div>
         </div>
       </section>
 

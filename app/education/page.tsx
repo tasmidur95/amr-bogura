@@ -203,6 +203,35 @@ export default function EducationPage() {
                   </button>
                 )}
               </div>
+
+              {/* CRO Quick Intent Search Chips */}
+              <div className="mt-3 flex items-center justify-center gap-1.5 flex-wrap text-xs">
+                <span className="text-[11px] font-bold text-emerald-300 mr-1 flex items-center gap-1">
+                  <i className="fa-solid fa-bolt text-amber-400"></i>জনপ্রিয় অনুসন্ধান:
+                </span>
+                {[
+                  { label: 'আজিজুল হক কলেজ', q: 'আজিজুল হক' },
+                  { label: 'বগুড়া জিলা স্কুল', q: 'জিলা স্কুল' },
+                  { label: 'ভি এম বালিকা', q: 'ভি এম' },
+                  { label: 'পলিটেকনিক ইনস্টিটিউট', q: 'পলিটেকনিক' },
+                  { label: 'ক্যান্টনমেন্ট পাবলিক', q: 'ক্যান্টনমেন্ট' },
+                  { label: 'করতোয়া মাল্টিমিডিয়া', q: 'করতোয়া' },
+                  { label: 'মুজিবার রহমান মহিলা কলেজ', q: 'মহিলা কলেজ' },
+                ].map(chip => (
+                  <button
+                    key={chip.label}
+                    type="button"
+                    onClick={() => handleSearchChange(chip.q)}
+                    className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition cursor-pointer ${
+                      searchQuery === chip.q
+                        ? 'bg-amber-400 text-slate-950 font-bold'
+                        : 'bg-white/10 hover:bg-white/20 text-emerald-100 border border-white/15'
+                    }`}
+                  >
+                    {chip.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -493,6 +522,53 @@ export default function EducationPage() {
             </button>
           </div>
         )}
+
+        {/* CRO Bottom Civic Conversion Closer Funnel */}
+        <section className="rounded-3xl bg-gradient-to-r from-slate-900 via-emerald-950 to-teal-950 text-white p-6 sm:p-10 border border-emerald-800 shadow-xl relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+            <div className="max-w-2xl text-center lg:text-left">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-400/30 mb-3">
+                <i className="fa-solid fa-graduation-cap"></i>
+                <span>শিক্ষা তথ্য সংরক্ষণ নেটওয়ার্ক</span>
+              </span>
+              <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+                আপনার বিদ্যালয়, কলেজ বা মাদ্রাসা কি তালিকায় বাদ পড়েছে?
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                বগুড়ার ভবিষ্যৎ প্রজন্মের শিক্ষার জন্য নির্ভুল তথ্যভাণ্ডার গড়ে তুলতে আপনার শিক্ষা প্রতিষ্ঠানের EIIN কোড, সুযোগ-সুবিধা ও পরিচিতি নাগরিক পোর্টালে যুক্ত করুন।
+              </p>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-[11px] text-emerald-300 font-medium mt-4">
+                <span className="flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-emerald-400"></i> ব্যানবেইস ও শিক্ষা বোর্ড ডাটা সিঙ্ক
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-emerald-400"></i> শিক্ষক ও শিক্ষার্থীদের জন্য উন্মুক্ত
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-emerald-400"></i> বিনামূল্যে লাইভ ভেরিফিকেশন
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+              <Link
+                href="/contribute"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg text-center transition flex items-center justify-center gap-2 group cursor-pointer"
+              >
+                <i className="fa-solid fa-plus-circle text-slate-950 group-hover:rotate-90 transition-transform"></i>
+                <span>শিক্ষা প্রতিষ্ঠান যুক্ত করুন</span>
+              </Link>
+              <Link
+                href="/community"
+                className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 text-center transition flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <i className="fa-solid fa-users text-teal-300"></i>
+                <span>শিক্ষক ও টিউশন সেবা</span>
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Quick Interactive Profile Modal */}

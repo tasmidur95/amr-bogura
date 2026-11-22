@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { Upazila } from '@/lib/data/district-data';
 import RealMap from '@/components/RealMap';
@@ -301,9 +302,56 @@ export default function UpazilasPageView({
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   placeholder="উপজেলা, ইউনিয়ন বা নদীর নাম..."
-                  className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-[#0B4635]"
+                  className="w-full pl-9 pr-8 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-[#0B4635]"
                 />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
+                  >
+                    <i className="fa-solid fa-xmark"></i>
+                  </button>
+                )}
               </div>
+            </div>
+
+            {/* CRO Quick-Intent Upazila Chips */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs -mt-4">
+              <span className="text-[11px] font-bold text-slate-400 shrink-0 mr-1 flex items-center gap-1">
+                <i className="fa-solid fa-bolt text-amber-500"></i>দ্রুত বাছাই:
+              </span>
+              {[
+                { label: 'বগুড়া সদর', q: 'সদর' },
+                { label: 'শিবগঞ্জ', q: 'শিবগঞ্জ' },
+                { label: 'শেরপুর', q: 'শেরপুর' },
+                { label: 'সারিয়াকান্দি (যমুনা)', q: 'সারিয়াকান্দি' },
+                { label: 'দুপচাঁচিয়া', q: 'দুপচাঁচিয়া' },
+                { label: 'কাহালু', q: 'কাহালু' },
+                { label: 'গাবতলী', q: 'গাবতলী' },
+                { label: 'ধুনট', q: 'ধুনট' },
+              ].map(chip => (
+                <button
+                  key={chip.label}
+                  type="button"
+                  onClick={() => setSearchQuery(chip.q)}
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition shrink-0 cursor-pointer ${
+                    searchQuery === chip.q
+                      ? 'bg-[#0B4635] text-white font-bold'
+                      : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80'
+                  }`}
+                >
+                  {chip.label}
+                </button>
+              ))}
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="px-2 py-1 rounded-lg text-[11px] font-bold text-rose-600 hover:bg-rose-50 transition shrink-0 cursor-pointer"
+                >
+                  <i className="fa-solid fa-rotate-left mr-1"></i>রিসেট
+                </button>
+              )}
             </div>
 
             {/* Cards Grid */}
@@ -422,6 +470,53 @@ export default function UpazilasPageView({
             </div>
           </div>
         )}
+
+        {/* CRO Bottom Civic Conversion Closer Funnel */}
+        <div className="mt-14 rounded-3xl bg-gradient-to-r from-[#0B4635] via-emerald-950 to-slate-900 text-white p-6 sm:p-10 border border-emerald-800 shadow-xl relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+            <div className="max-w-2xl text-center lg:text-left">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold border border-amber-400/30 mb-3">
+                <i className="fa-solid fa-map-location"></i>
+                <span>ইউনিয়ন ও গ্রাম হালনাগাদ নেটওয়ার্ক</span>
+              </span>
+              <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+                আপনার ইউনিয়ন বা গ্রামের তথ্য কি অসম্পূর্ণ?
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
+                বগুড়ার ১০৮টি ইউনিয়ন ও ২,৫০০+ গ্রামের পূর্ণাঙ্গ ডাটাবেজ সমৃদ্ধ করতে আপনার এলাকার ইতিহাস, দর্শনীয় স্থান, নদী কিংবা স্থানীয় সেবা নাগরিক তথ্যভাণ্ডারে যুক্ত করুন।
+              </p>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-[11px] text-amber-200 font-medium mt-4">
+                <span className="flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-amber-400"></i> জেলা প্রশাসন ও জাতীয় তথ্য বাতায়ন স্বীকৃত
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-amber-400"></i> নাগরিক অবদানকারী হিসেবে প্রোফাইল
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-amber-400"></i> ওপেন জিওগ্রাফিক ডাটাবেজ
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+              <Link
+                href="/contribute"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg text-center transition flex items-center justify-center gap-2 group cursor-pointer"
+              >
+                <i className="fa-solid fa-plus-circle text-slate-950 group-hover:rotate-90 transition-transform"></i>
+                <span>ইউনিয়ন/গ্রাম তথ্য যুক্ত করুন</span>
+              </Link>
+              <Link
+                href="/healthcare"
+                className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 text-center transition flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <i className="fa-solid fa-hospital text-emerald-300"></i>
+                <span>উপজেলা হাসপাতাল তালিকা</span>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

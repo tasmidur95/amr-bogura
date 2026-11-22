@@ -3,12 +3,31 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
     background-color: #f8fafc;
     color: #0f172a;
     -webkit-tap-highlight-color: transparent;
   }
+}
+
+/* Skeleton Shimmer Loading - Zero Layout Shift */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
 
 .terracotta-pattern {
@@ -26,6 +45,10 @@
 .card-hover:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 24px -8px rgba(6, 95, 70, 0.14);
+}
+
+.smooth-transition {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -50,4 +73,20 @@
 .animate-fade-in {
   animation: fadeSlideUp 0.28s ease-out forwards;
 }
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 
