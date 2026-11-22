@@ -138,30 +138,22 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
                 </div>
               </div>
 
-              {/* Focused High-Contrast Primary CTAs (Avoiding Decision Paralysis) */}
-              <div className="flex flex-wrap items-center gap-3">
+              {/* Focused High-Contrast Primary CTAs (Compact & Sleek) */}
+              <div className="flex flex-wrap items-center gap-2.5">
                 <button
                   onClick={() => onNavigate('home', 'healthcare')}
-                  className="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm sm:text-base shadow-lg shadow-amber-950/30 flex items-center gap-2.5 transition transform hover:-translate-y-0.5 cursor-pointer ring-2 ring-amber-400/50"
+                  className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md flex items-center gap-2 transition transform hover:-translate-y-0.5 cursor-pointer ring-1 ring-amber-400/50"
                 >
-                  <i className="fa-solid fa-hospital-user text-slate-950"></i>
+                  <i className="fa-solid fa-hospital-user text-slate-950 text-xs sm:text-sm"></i>
                   <span>হাসপাতাল ও চিকিৎসাকেন্দ্র</span>
                 </button>
 
                 <button
                   onClick={() => onNavigate('home', 'community')}
-                  className="px-5 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-bold text-sm sm:text-base flex items-center gap-2 transition cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-bold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer"
                 >
-                  <i className="fa-solid fa-droplet text-rose-400"></i>
+                  <i className="fa-solid fa-droplet text-rose-400 text-xs sm:text-sm"></i>
                   <span>রক্তদাতা নেটওয়ার্ক</span>
-                </button>
-
-                <button
-                  onClick={() => onNavigate('upazilas')}
-                  className="px-5 py-3.5 rounded-xl bg-emerald-950/60 hover:bg-emerald-950/80 text-emerald-100 border border-emerald-700/60 font-semibold text-sm flex items-center gap-2 transition cursor-pointer"
-                >
-                  <i className="fa-solid fa-map-location-dot text-amber-300"></i>
-                  <span>১২টি উপজেলা ও ম্যাপ</span>
                 </button>
               </div>
             </div>
