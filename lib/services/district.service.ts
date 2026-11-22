@@ -2018,6 +2018,38 @@ export class DistrictService {
   }
 
   /**
+   * Hospitality (Hotels, Resorts, Restaurants, Bogura Doi)
+   */
+  static getHospitalityData() {
+    try {
+      const p = path.join(process.cwd(), 'amr-bogura-data', 'hospitality', 'hotels-and-restaurants.json');
+      if (fs.existsSync(p)) {
+        const raw = fs.readFileSync(p, 'utf-8');
+        return JSON.parse(raw);
+      }
+    } catch (e) {
+      console.warn('Failed to load hospitality data:', e);
+    }
+    return { hotels_and_resorts: [], restaurants_and_doi: [] };
+  }
+
+  /**
+   * Transport (Hubs, Terminals, Train Stations, Bus Services, Rentals)
+   */
+  static getTransportData() {
+    try {
+      const p = path.join(process.cwd(), 'amr-bogura-data', 'transport', 'transport.json');
+      if (fs.existsSync(p)) {
+        const raw = fs.readFileSync(p, 'utf-8');
+        return JSON.parse(raw);
+      }
+    } catch (e) {
+      console.warn('Failed to load transport data:', e);
+    }
+    return { transport_hubs: [], transport_services: [] };
+  }
+
+  /**
    * Full database JSON dump for 1-click backup
    */
   static async getFullBackupData() {

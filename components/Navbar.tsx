@@ -78,7 +78,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
 
       {/* Sticky Main Header & Navigation */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           {/* Brand Identity with Cover-Photo inspired Logo */}
           <Link
             href="/"
@@ -92,8 +92,8 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             <Link
               href="/"
               className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'home'
-                  ? 'font-semibold text-emerald-900 bg-white shadow-sm'
-                  : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
               {t('navHome')}
@@ -107,8 +107,8 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             <Link
               href="/upazilas"
               className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'upazilas'
-                  ? 'font-semibold text-emerald-900 bg-white shadow-sm'
-                  : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
               {t('navUpazilas')}
@@ -116,8 +116,8 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             <Link
               href="/healthcare"
               className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'healthcare'
-                  ? 'font-semibold text-emerald-900 bg-white shadow-sm'
-                  : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
               {t('navHealthcare')}
@@ -125,8 +125,8 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             <Link
               href="/education"
               className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'education'
-                  ? 'font-semibold text-emerald-900 bg-white shadow-sm'
-                  : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
               {language === 'bn' ? 'শিক্ষাপ্রতিষ্ঠান' : 'Education'}
@@ -134,11 +134,29 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             <Link
               href="/explore"
               className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'explore'
-                  ? 'font-semibold text-emerald-900 bg-white shadow-sm'
-                  : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
               {t('navExplore')}
+            </Link>
+            <Link
+              href="/transport"
+              className={`px-3 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'transport'
+                ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                }`}
+            >
+              {language === 'bn' ? 'পরিবহন' : 'Transport'}
+            </Link>
+            <Link
+              href="/hospitality"
+              className={`px-3 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'hospitality'
+                ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                }`}
+            >
+              {language === 'bn' ? 'হোটেল-রেস্তোরাঁ' : 'Hospitality'}
             </Link>
             <button
               onClick={() => handleNavClick('home', 'history')}
@@ -146,17 +164,20 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             >
               {t('navHistory')}
             </button>
-            <button
-              onClick={() => handleNavClick('home', 'community')}
-              className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition cursor-pointer"
+            <Link
+              href="/community"
+              className={`px-3.5 py-1.5 rounded-lg text-sm transition cursor-pointer ${currentView === 'community'
+                ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                }`}
             >
               {t('navCommunity')}
-            </button>
+            </Link>
             <Link
               href="/contribute"
               className={`px-3 py-1.5 rounded-lg text-sm transition cursor-pointer flex items-center gap-1.5 ${currentView === 'contribute'
-                  ? 'font-bold text-emerald-950 bg-emerald-100 shadow-sm border border-emerald-300'
-                  : 'font-semibold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200'
+                ? 'font-bold text-emerald-950 bg-emerald-100 shadow-sm border border-emerald-300'
+                : 'font-semibold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200'
                 }`}
             >
               <i className="fa-solid fa-heart-circle-plus text-rose-500"></i>

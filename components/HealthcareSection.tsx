@@ -11,6 +11,7 @@ interface HealthcareSectionProps {
   emergencyContacts: EmergencyContact[];
   currentFilter?: string;
   onFilterChange?: (filter: string) => void;
+  isHome?: boolean;
 }
 
 export default function HealthcareSection({
@@ -18,6 +19,7 @@ export default function HealthcareSection({
   emergencyContacts,
   currentFilter = 'all',
   onFilterChange,
+  isHome = false,
 }: HealthcareSectionProps) {
   const { t } = useLanguage();
   const { showToast } = useToast();
@@ -52,6 +54,8 @@ export default function HealthcareSection({
     return matchesType && matchesQuery;
   });
 
+  const displayedHospitals = isHome ? filtered.slice(0, 6) : filtered;
+
   return (
     <section id="healthcare" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
@@ -67,8 +71,17 @@ export default function HealthcareSection({
           </p>
         </div>
 
-        {/* Filter Pills */}
+        {/* Filter Pills & Directory CTA */}
         <div className="flex flex-wrap items-center gap-2">
+          {isHome && (
+            <Link
+              href="/healthcare"
+              className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-800 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-xs transition cursor-pointer"
+            >
+              <span>সকল ৩৫২টি কেন্দ্র</span>
+              <i className="fa-solid fa-arrow-right text-[10px]"></i>
+            </Link>
+          )}
           <button
             onClick={() => setFilter('all')}
             className={`px-3.5 py-2 rounded-xl text-xs transition cursor-pointer ${
@@ -127,13 +140,13 @@ export default function HealthcareSection({
       </div>
 
       {/* Hospitals Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-        {filtered.length === 0 ? (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        {displayedHospitals.length === 0 ? (
           <div className="col-span-full text-center py-10 bg-white rounded-2xl border border-slate-200 text-slate-500 text-sm">
             কোনো হাসপাতাল বা ডায়াগনস্টিক সেন্টার খুঁজে পাওয়া যায়নি।
           </div>
         ) : (
-          filtered.map(h => {
+          displayedHospitals.map(h => {
             const badgeColor =
               h.type === 'govt'
                 ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
@@ -188,6 +201,35 @@ export default function HealthcareSection({
           })
         )}
       </div>
+
+      {/* Short List Callout when on Home */}
+      {isHome && (
+        <div className="mb-10 p-5 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50/70 to-slate-50 border border-emerald-200/90 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-2xs">
+          <div>
+            <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                শীর্ষ ৬টি স্বাস্থ্যকেন্দ্র প্রদর্শিত
+              </span>
+              <span className="text-xs text-slate-500 font-medium">
+                বগুড়ায় মোট ৩৫২টি চিকিৎসাকেন্দ্র নিবন্ধিত
+              </span>
+            </div>
+            <h4 className="font-bold text-slate-900 text-base sm:text-lg">
+              বগুড়া জেলার সম্পূর্ণ স্বাস্থ্যসেবা ডিরেক্টরি ও ম্যাপ দেখুন
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+              ১২টি উপজেলার সকল সরকারি-বেসরকারি হাসপাতাল, উপজেলা হেলথ কমপ্লেক্স, ইউনিয়ন স্বাস্থ্যকেন্দ্র ও অ্যাম্বুলেন্স তালিকা।
+            </p>
+          </div>
+          <Link
+            href="/healthcare"
+            className="px-5 py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm flex items-center gap-2 shrink-0 transition"
+          >
+            <span>সকল ৩৫২টি কেন্দ্র দেখুন</span>
+            <i className="fa-solid fa-arrow-right"></i>
+          </Link>
+        </div>
+      )}
 
       {/* Emergency Numbers Strip */}
       <div id="emergency" className="bg-gradient-to-br from-rose-950 via-rose-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-lg">

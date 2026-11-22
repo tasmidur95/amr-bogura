@@ -109,6 +109,28 @@ export default function ExploreSection({ exploreSpots }: ExploreSectionProps = {
           </article>
         ))}
       </div>
+
+      {/* Explore All Spots Bottom Callout */}
+      <div className="mt-8 p-5 rounded-2xl bg-gradient-to-r from-teal-50 via-slate-50 to-emerald-50 border border-teal-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xs">
+        <div>
+          <span className="text-[11px] font-bold text-teal-800 bg-teal-100/90 px-2.5 py-0.5 rounded-md">
+            ঐতিহ্য ও প্রত্নতত্ত্ব
+          </span>
+          <h4 className="font-bold text-slate-900 text-base sm:text-lg mt-1">
+            বগুড়ার সকল ঐতিহাসিক ও দর্শনীয় স্থান অন্বেষণ করুন
+          </h4>
+          <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+            মহাস্থানগড়, ভাসু বিহার, খেরুয়া মসজিদ, গোকুল মেধসহ জেলার সকল দর্শনীয় স্থানের সময়সূচি, টিকেট ও গাইড।
+          </p>
+        </div>
+        <Link
+          href="/explore"
+          className="px-5 py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-bold text-xs sm:text-sm shadow-xs flex items-center gap-2 shrink-0 transition"
+        >
+          <span>সকল দর্শনীয় স্থান দেখুন ({list.length})</span>
+          <i className="fa-solid fa-arrow-right"></i>
+        </Link>
+      </div>
     </section>
   );
 }

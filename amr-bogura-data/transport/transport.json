@@ -1,0 +1,922 @@
+{
+  "district": "Bogura",
+  "meta": {
+    "title": "Bogura Transport Hubs & Services Directory",
+    "title_bn": "বগুড়া জেলার যোগাযোগ হাব ও পরিবহন সেবা",
+    "description": "Comprehensive directory of bus terminals, railway stations, intercity coach operators, express train schedules, and rent-a-car services across Bogura district.",
+    "gateway_title": "উত্তরবঙ্গের প্রবেশদ্বার (Gateway to North Bengal)"
+  },
+  "transport_hubs": [
+    {
+      "id": "charmatha-central-bus-terminal",
+      "name": "Charmatha Central Bus Terminal",
+      "name_bn": "চারমাথা কেন্দ্রীয় বাস টার্মিনাল",
+      "category": "central_bus_terminal",
+      "category_bn": "প্রধান আন্তঃজেলা বাস টার্মিনাল",
+      "location": "Charmatha, Santahar Road, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "description": "The largest and busiest road transport hub in Bogura district and North Bengal. Connects inter-district routes to Rangpur, Dinajpur, Rajshahi, Naogaon, Joypurhat, and Natore with 24/7 departures.",
+      "connected_routes": [
+        "Bogura – Dhaka (via Bangabandhu Bridge)",
+        "Bogura – Rangpur – Dinajpur",
+        "Bogura – Rajshahi – Chapainawabganj",
+        "Bogura – Naogaon – Joypurhat",
+        "Bogura – Pabna – Kushtia – Khulna"
+      ],
+      "facilities": [
+        "24-hour bus departure & arrival bays",
+        "Multiple operator ticket booking counters",
+        "Passenger waiting lounge & washrooms",
+        "Highway police outpost & security check",
+        "Mosque & prayer area",
+        "On-site hotels, motels & 24/7 food restaurants",
+        "CNG auto-rickshaw & electric rickshaw stands"
+      ],
+      "operating_hours": "24/7 (round the clock)",
+      "phone_number": "+880 1733-041720",
+      "phone_numbers": [
+        "+880 1733-041720",
+        "+880 1819-934372",
+        "+880 1938-805345",
+        "+880 51-66087"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "thanthania-bus-terminal",
+      "name": "Thanthania Bus Terminal",
+      "name_bn": "ঠনঠনিয়া বাস টার্মিনাল / স্ট্যান্ড",
+      "category": "bus_terminal",
+      "category_bn": "ভিআইপি ও দূরপাল্লার কোচ টার্মিনাল",
+      "location": "Thanthania, Sherpur Road, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "description": "Bogura's primary terminal for premium AC and non-AC intercity luxury coaches heading towards Dhaka, Chattogram, Sylhet, and Cox's Bazar. Flagship counters of Shah Fateh Ali, Shyamoli, Hanif, SR Travels, and TR Travels operate here.",
+      "connected_routes": [
+        "Bogura – Dhaka (Mohakhali, Gabtoli, Abdullahpur, Sayedabad)",
+        "Bogura – Chattogram – Cox's Bazar",
+        "Bogura – Sylhet – Moulvibazar",
+        "Bogura – Cumilla – Feni – Noakhali"
+      ],
+      "facilities": [
+        "Air-conditioned VIP passenger waiting rooms",
+        "Online ticket print & digital booking desks",
+        "Luggage storage & parcel delivery services",
+        "Snack stalls, tea stalls & pharmacy",
+        "Dedicated taxi & auto pickup points"
+      ],
+      "operating_hours": "24/7 (first morning departure 5:30 AM – late night sleeper coaches)",
+      "phone_number": "+880 1938-896457",
+      "phone_numbers": [
+        "+880 1938-896457",
+        "+880 1711-020626",
+        "+880 1773-333766",
+        "+880 51-67111",
+        "+880 51-64455"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "bogura-railway-station",
+      "name": "Bogura Railway Station",
+      "name_bn": "বগুড়া রেলওয়ে স্টেশন",
+      "category": "railway_station",
+      "category_bn": "রেলওয়ে স্টেশন",
+      "location": "Station Road, Satmatha (Near Fateh Ali Bazar), Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "description": "Historic central railway station serving Bogura city. Connects Dhaka via Jamuna Bridge Link, and links northern destinations including Rangpur, Lalmonirhat, Kurigram, and Burimari via Santahar junction.",
+      "connected_routes": [
+        "Bogura – Dhaka (Kamalapur / Airport)",
+        "Bogura – Santahar Junction",
+        "Bogura – Gaibandha – Rangpur",
+        "Bogura – Lalmonirhat – Burimari",
+        "Bogura – Kurigram"
+      ],
+      "facilities": [
+        "Ticket reservation counters (standard & online Shohoz validation)",
+        "1st class & general passenger waiting rooms",
+        "Railway police (GRP) station",
+        "Parcel & freight cargo booking office",
+        "Tea & food stalls, book stalls",
+        "Covered platform footbridge"
+      ],
+      "operating_hours": "Open 24 hours (aligned with scheduled train arrivals)",
+      "phone_number": "+880 51-65042",
+      "phone_numbers": [
+        "+880 51-65042",
+        "+880 51-75042",
+        "+880 51-65082",
+        "131"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "santahar-railway-junction",
+      "name": "Santahar Railway Junction",
+      "name_bn": "সান্তাহার রেলওয়ে জংশন",
+      "category": "railway_junction",
+      "category_bn": "প্রধান রেলওয়ে জংশন",
+      "location": "Santahar Pouroshava, Adamdighi Upazila, Bogura 5850",
+      "upazila": "আদমদীঘি",
+      "description": "One of the most historic and largest dual-gauge railway junctions in Bangladesh. Situated in Bogura district, Santahar connects the broad-gauge western line (Khulna–Rajshahi–Parbatipur–Chilahati) with the eastern meter/dual gauge line leading to Bogura Sadar and Dhaka.",
+      "connected_routes": [
+        "Santahar – Bogura – Dhaka",
+        "Santahar – Parbatipur – Chilahati – Panchagarh",
+        "Santahar – Natore – Ishwardi – Khulna",
+        "Santahar – Rajshahi",
+        "Santahar – Lalmonirhat – Burimari"
+      ],
+      "facilities": [
+        "5 large covered railway platforms with dual-gauge track",
+        "Multiple computerized ticket booking & e-ticket counters",
+        "Railway Hospital & medical emergency unit",
+        "Running staff rest house & VIP retiring rooms",
+        "Railway Police (GRP) station & security camp",
+        "Major locomotive fueling & maintenance yard",
+        "24/7 canteens, tea stalls & market"
+      ],
+      "operating_hours": "Open 24 hours (trains operating day and night)",
+      "phone_number": "+880 1737-580578",
+      "phone_numbers": [
+        "+880 1737-580578",
+        "+880 741-62222",
+        "+880 741-62233",
+        "131"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1541427468627-a89a96e5ca1d?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "banani-highway-junction",
+      "name": "Banani Highway Junction & Stand",
+      "name_bn": "বনানী মোড় ও হাইওয়ে বাস স্ট্যান্ড",
+      "category": "highway_junction",
+      "category_bn": "মহাসড়ক জংশন ও বাস স্ট্যান্ড",
+      "location": "Banani, Dhaka–Bogura Highway & Bypass Intersection, Bogura 5800",
+      "upazila": "বগুড়া সদর / শাজাহানপুর",
+      "description": "The southern gateway to Bogura city where the Dhaka–Rangpur national highway intersects the Bogura town bypass. High-frequency stop for all passing intercity coaches, highway motels, and local transport.",
+      "connected_routes": [
+        "Bogura City – Dhaka Highway",
+        "Bogura Bypass – Rangpur Road",
+        "Bogura – Natore – Pabna",
+        "Bogura – Sirajganj"
+      ],
+      "facilities": [
+        "Highway coach passenger pickup counters",
+        "SR Travels, TR Travels, Agomony Express counters",
+        "Highway filling stations & EV fast chargers",
+        "Ambulance & 24/7 vehicle breakdown towing support",
+        "Hotel Siesta & Parjatan Motel proximity"
+      ],
+      "operating_hours": "24/7",
+      "phone_number": "+880 1726-557929",
+      "phone_numbers": [
+        "+880 1726-557929",
+        "+880 1991-177432",
+        "+880 51-65333",
+        "+880 51-51262"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "matidali-biman-mor",
+      "name": "Matidali Biman Mor & Bus Stand",
+      "name_bn": "মাটিডালী বিমান মোড় ও বাস স্ট্যান্ড",
+      "category": "highway_junction",
+      "category_bn": "উত্তর প্রবেশদ্বার ও হাইওয়ে টার্মিনাল",
+      "location": "Matidali, Rangpur Road, Northern Entrance of Bogura City, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "description": "The landmark northern crossroads of Bogura, featuring the iconic fighter aircraft sculpture. All northbound buses heading to Rangpur, Dinajpur, Gaibandha, and tourist spots like Mahasthangarh pass through here.",
+      "connected_routes": [
+        "Bogura – Mahasthangarh – Shibganj",
+        "Bogura – Gobindaganj – Rangpur – Dinajpur",
+        "Bogura – Sonatola – Gaibandha",
+        "Bogra City Bypass Northern Junction"
+      ],
+      "facilities": [
+        "Northbound bus passenger shelters",
+        "Mahasthangarh & tourist transit CNG stand",
+        "Highway petrol pumps & workshops",
+        "Local fruit and sweet markets",
+        "Motel Castle MH proximity"
+      ],
+      "operating_hours": "24/7",
+      "phone_number": "+880 1829-440044",
+      "phone_numbers": [
+        "+880 1829-440044",
+        "+880 1715-176912",
+        "+880 1712-503068"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "satmatha-zero-point",
+      "name": "Satmatha Zero Point Transit Hub",
+      "name_bn": "সাতমাথা জিরো পয়েন্ট",
+      "category": "highway_junction",
+      "category_bn": "শহরের প্রাণকেন্দ্র ও লোকাল ট্রান্সপোর্ট হাব",
+      "location": "Satmatha, Bogura City Centre, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "description": "The pulsating geographical heart of Bogura where seven arterial roads converge. Houses major bus ticket booking corporate offices, auto-rickshaws, bike rentals, and direct access to government offices and market hubs.",
+      "connected_routes": [
+        "Sherpur Road (to Thanthania, Banani, Dhaka)",
+        "Rangpur Road (to Matidali, Mahasthangarh)",
+        "Santahar Road (to Charmatha, Rail Station)",
+        "Nawabbari Road (to Runner Plaza, Karatoa river)",
+        "Park Road (to Pouro Park, Judge Court)"
+      ],
+      "facilities": [
+        "Head booking offices of major luxury bus lines",
+        "Town easybike and auto-rickshaw central stands",
+        "Traffic police headquarters and help desk",
+        "ATM booths, exchange & top retail centers",
+        "Bogura Doi, sweetmeat and dining hubs"
+      ],
+      "operating_hours": "24/7 (peak activity 6:00 AM – 11:30 PM)",
+      "phone_number": "+880 1938-896456",
+      "phone_numbers": [
+        "+880 1938-896456",
+        "+880 1712-900117",
+        "+880 1971-184895",
+        "+880 51-61222",
+        "+880 51-64920"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "mokamtola-bus-stand",
+      "name": "Mokamtola Bus Stand",
+      "name_bn": "মোকামতলা হাইওয়ে বাস স্ট্যান্ড",
+      "category": "bus_terminal",
+      "category_bn": "মহাসড়ক ট্রানজিট স্ট্যান্ড",
+      "location": "Mokamtola, Dhaka–Rangpur Highway, Shibganj, Bogura 5810",
+      "upazila": "শিবগঞ্জ",
+      "description": "A vital transit junction located on the Dhaka–Rangpur highway in northern Bogura. Serves as the gateway for travelers to Sonatola, Joypurhat, and northern border corridors.",
+      "connected_routes": [
+        "Dhaka–Bogura–Rangpur 4-Lane Highway",
+        "Mokamtola – Sonatola",
+        "Mokamtola – Shibganj – Joypurhat"
+      ],
+      "facilities": [
+        "Intercity bus highway stops",
+        "SR Travels, Shyamoli, Hanif highway ticket counters",
+        "Highway fruit stalls & food centers",
+        "Local auto & CNG terminal"
+      ],
+      "operating_hours": "24/7",
+      "phone_number": "+880 1991-177435",
+      "phone_numbers": [
+        "+880 1991-177435",
+        "+880 1711-394800",
+        "+880 1938-896483"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "sherpur-bus-stand",
+      "name": "Sherpur Bus Stand",
+      "name_bn": "শেরপুর বাস স্ট্যান্ড",
+      "category": "bus_terminal",
+      "category_bn": "উপজেলা বাস টার্মিনাল",
+      "location": "Sherpur Town, Dhaka–Bogura Highway, Sherpur, Bogura 5840",
+      "upazila": "শেরপুর",
+      "description": "Southern sub-district transit hub on the main Dhaka–Bogura highway. Major halt point for buses and travelers commuting between Bogura, Sirajganj, and Dhaka.",
+      "connected_routes": [
+        "Bogura – Sherpur – Dhaka Highway",
+        "Sherpur – Dhunat Road",
+        "Sherpur – Chandaikona (Sirajganj)"
+      ],
+      "facilities": [
+        "Bus ticket counters for all major Dhaka-bound fleets",
+        "Food Village Ltd. highway mega rest stop nearby",
+        "Local transport & auto stand to Dhunat and rural unions",
+        "Emergency ambulance and repair services"
+      ],
+      "operating_hours": "24/7",
+      "phone_number": "+880 1938-896474",
+      "phone_numbers": [
+        "+880 1938-896474",
+        "+880 1712-568356",
+        "+880 1761-545967",
+        "+880 51-88055"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "dupchanchia-bus-stand",
+      "name": "Dupchanchia Bus Stand",
+      "name_bn": "দুপচাঁচিয়া বাস স্ট্যান্ড",
+      "category": "bus_terminal",
+      "category_bn": "উপজেলা বাস টার্মিনাল",
+      "location": "Bogura–Naogaon Highway, Dupchanchia, Bogura 5880",
+      "upazila": "দুপচাঁচিয়া",
+      "description": "Key western transit terminal connecting Bogura Sadar with Naogaon district and Joypurhat. Facilitates seamless agricultural and passenger traffic between western upazilas and the district headquarters.",
+      "connected_routes": [
+        "Bogura – Dupchanchia – Naogaon",
+        "Dupchanchia – Akkelpur – Joypurhat",
+        "Dupchanchia – Talora Railway Station"
+      ],
+      "facilities": [
+        "Direct bus counters for Dhaka and Naogaon routes",
+        "Local electric three-wheeler and microbus stand",
+        "Market and commercial shopping centers"
+      ],
+      "operating_hours": "5:30 AM – 10:30 PM",
+      "phone_number": "+880 1938-896472",
+      "phone_numbers": [
+        "+880 1938-896472",
+        "+880 1711-411355",
+        "+880 1718-071455"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=80"
+    }
+  ],
+  "transport_services": [
+    {
+      "id": "shah-fateh-ali-paribahan",
+      "operator_name": "Shah Fateh Ali Paribahan",
+      "operator_name_bn": "শাহ ফতেহ আলী পরিবহন",
+      "service_type": "intercity_bus",
+      "service_type_bn": "আন্তঃজেলা বিলাসবহুল এসি ও নন-এসি বাস",
+      "headquarters_or_main_depot": "Thanthania Bus Stand, Bogura",
+      "online_booking_url": "https://www.shohoz.com/bus-tickets",
+      "description": "Bogura's most iconic and reliable premium bus service, specializing in rapid and comfortable trips between Bogura and Dhaka. Offers Hyundai & Hino 1J AC coaches, sleeper services, and executive non-AC buses with departures every 20-30 minutes.",
+      "facilities": [
+        "Hyundai Universe & Hino 1J Air-Conditioned coaches",
+        "Comfortable reclining seats with generous legroom",
+        "Complimentary drinking water & mobile charging ports",
+        "Dedicated VIP waiting lounges at Thanthania and Satmatha",
+        "GPS tracking & emergency highway breakdown support",
+        "Online ticket booking via Shohoz & bKash"
+      ],
+      "major_routes": [
+        "Bogura – Dhaka (Mohakhali / Gabtoli / Abdullahpur / Panthapath)",
+        "Bogura – Chattogram",
+        "Bogura – Cox's Bazar",
+        "Bogura – Sylhet"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Thanthania Main Counter",
+          "location": "Thanthania Bus Stand, Sherpur Road, Bogura",
+          "phone_numbers": [
+            "01938-896457",
+            "01711-020626",
+            "051-67111"
+          ]
+        },
+        {
+          "counter_name": "Satmatha City Counter",
+          "location": "Opposite Pouro Park / Satmatha, Bogura",
+          "phone_numbers": [
+            "01938-896456",
+            "051-61222"
+          ]
+        },
+        {
+          "counter_name": "Charmatha Terminal Counter",
+          "location": "Charmatha Central Bus Terminal, Bogura",
+          "phone_numbers": [
+            "01938-896458"
+          ]
+        },
+        {
+          "counter_name": "Sherpur Upazila Counter",
+          "location": "Sherpur Bus Stand, Bogura",
+          "phone_numbers": [
+            "01938-896474"
+          ]
+        },
+        {
+          "counter_name": "Dupchanchia Counter",
+          "location": "Dupchanchia Bus Stand, Bogura",
+          "phone_numbers": [
+            "01938-896472"
+          ]
+        },
+        {
+          "counter_name": "Mahasthangarh Counter",
+          "location": "Mahasthangarh Bus Stand, Shibganj, Bogura",
+          "phone_numbers": [
+            "01938-896483"
+          ]
+        }
+      ],
+      "phone_number": "+880 1938-896457",
+      "phone_numbers": [
+        "+880 1938-896457",
+        "+880 1711-020626",
+        "+880 1938-896456",
+        "+880 51-67111",
+        "+880 51-61222"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "sr-travels",
+      "operator_name": "SR Travels (SR Group)",
+      "operator_name_bn": "এস আর ট্রাভেলস",
+      "service_type": "intercity_bus",
+      "service_type_bn": "প্রিমিয়াম আন্তঃজেলা বাস সার্ভিস",
+      "headquarters_or_main_depot": "Sherpur Road / Banani, Bogura",
+      "online_booking_url": "https://srtravels-bd.com/",
+      "description": "Headquartered in Bogura, SR Travels (part of SR Group) is a pioneer in North Bengal long-route transport. Known for Scania Multi-Axle, Volvo, and Hino RM2 luxury coaches connecting Bogura with Dhaka, Chattogram, Benapole, and Rangpur.",
+      "facilities": [
+        "Scania Multi-Axle & Volvo B9R/B11R luxury sleeper & seating coaches",
+        "Central AC with individual ventilation nozzles & reading lights",
+        "On-board CCTV, GPS safety and emergency assistance",
+        "Own highway food complex at Food Village Ltd. (Sherpur)",
+        "Spacious luggage holds & parcel booking facilities"
+      ],
+      "major_routes": [
+        "Bogura – Dhaka (Gabtoli / Mohakhali / Uttara / Kalyanpur)",
+        "Bogura – Chattogram",
+        "Bogura – Benapole (Land Port)",
+        "Bogura – Rangpur – Dinajpur – Panchagarh"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Banani Main Counter",
+          "location": "Banani, Dhaka–Bogura Highway, Bogura",
+          "phone_numbers": [
+            "01991-177432",
+            "051-65333"
+          ]
+        },
+        {
+          "counter_name": "Satmatha Counter",
+          "location": "TMSS Mohila Market, Satmatha, Bogura",
+          "phone_numbers": [
+            "01405-575252",
+            "01711-394802"
+          ]
+        },
+        {
+          "counter_name": "Sherpur Bus Stand Counter",
+          "location": "Sherpur, Bogura",
+          "phone_numbers": [
+            "01712-568356",
+            "051-88055"
+          ]
+        },
+        {
+          "counter_name": "Mokamtola Counter",
+          "location": "Mokamtola, Shibganj, Bogura",
+          "phone_numbers": [
+            "01991-177435"
+          ]
+        }
+      ],
+      "phone_number": "+880 1991-177432",
+      "phone_numbers": [
+        "+880 1991-177432",
+        "+880 1405-575252",
+        "+880 1711-394802",
+        "+880 51-65333",
+        "+880 51-88055"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "shyamoli-paribahan",
+      "operator_name": "Shyamoli Paribahan (NR Travels)",
+      "operator_name_bn": "শ্যামলী পরিবহন",
+      "service_type": "intercity_bus",
+      "service_type_bn": "দেশব্যাপী আন্তঃজেলা ও আন্তর্জাতিক বাস সার্ভিস",
+      "headquarters_or_main_depot": "Dhaka / Thanthania, Bogura",
+      "online_booking_url": "https://shyamoliparibahan.com.bd/",
+      "description": "One of Bangladesh's premier transport brands with extensive nationwide coverage. Operates frequent Volvo, Scania, and Hyundai AC coach trips from Bogura to Dhaka, Sylhet, Chittagong, and Cox's Bazar.",
+      "facilities": [
+        "Volvo & Scania multi-axle Air Conditioned fleet",
+        "Air-suspension smooth highway ride",
+        "Mineral water, blanket (night trip), entertainment system",
+        "Direct connecting service to international land borders (Benapole, Burimari)"
+      ],
+      "major_routes": [
+        "Bogura – Dhaka (Mohakhali / Sayedabad / Arambagh)",
+        "Bogura – Chattogram – Cox's Bazar",
+        "Bogura – Sylhet",
+        "Bogura – Khulna – Benapole"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Satmatha Bus Counter",
+          "location": "Satmatha, Bogura",
+          "phone_numbers": [
+            "01712-900117",
+            "051-64920"
+          ]
+        },
+        {
+          "counter_name": "Thanthania Bus Counter",
+          "location": "Thanthania Bus Stand, Bogura",
+          "phone_numbers": [
+            "01712-292660",
+            "051-64455"
+          ]
+        }
+      ],
+      "phone_number": "+880 1712-900117",
+      "phone_numbers": [
+        "+880 1712-900117",
+        "+880 1712-292660",
+        "+880 51-64920",
+        "+880 51-64455"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "hanif-enterprise",
+      "operator_name": "Hanif Enterprise",
+      "operator_name_bn": "হানিফ এন্টারপ্রাইজ",
+      "service_type": "intercity_bus",
+      "service_type_bn": "জাতীয় আন্তঃজেলা বাস সার্ভিস",
+      "headquarters_or_main_depot": "Dhaka / Satmatha, Bogura",
+      "online_booking_url": "https://www.shohoz.com/bus-tickets",
+      "description": "The largest fleet operator in Bangladesh. Connects Bogura with almost every divisional city and district headquarters across the country with round-the-clock departures.",
+      "facilities": [
+        "Both luxury 1x2 AC and budget-friendly 2x2 executive Non-AC buses",
+        "24/7 continuous departures",
+        "Extensive counter network across all major Bogura intersections",
+        "Luggage carriage & parcel express network"
+      ],
+      "major_routes": [
+        "Bogura – Dhaka (Gabtoli / Mohakhali)",
+        "Bogura – Chattogram",
+        "Bogura – Cox's Bazar",
+        "Bogura – Sylhet – Barishal"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Satmatha Counter",
+          "location": "Satani Mega Center, Sherpur Road, Satmatha, Bogura",
+          "phone_numbers": [
+            "01932-657916"
+          ]
+        },
+        {
+          "counter_name": "Charmatha Counter",
+          "location": "Charmatha Central Bus Terminal, Bogura",
+          "phone_numbers": [
+            "01713-402650"
+          ]
+        }
+      ],
+      "phone_number": "+880 1932-657916",
+      "phone_numbers": [
+        "+880 1932-657916",
+        "+880 1713-402650",
+        "+880 1713-402655"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "ekota-paribahan",
+      "operator_name": "Ekota Paribahan",
+      "operator_name_bn": "একতা পরিবহন",
+      "service_type": "intercity_bus",
+      "service_type_bn": "আন্তঃজেলা এক্সপ্রেস বাস সার্ভিস",
+      "headquarters_or_main_depot": "Thanthania / Satmatha, Bogura",
+      "online_booking_url": "https://www.shohoz.com/bus-tickets",
+      "description": "Popular North Bengal intercity operator famous for punctual Bogura–Dhaka and North Bengal highway services with both AC business class and non-AC coaches.",
+      "facilities": [
+        "Comfortable ergonomic seats",
+        "Experienced highway drivers & speed monitored fleet",
+        "Direct point-to-point departures without unauthorized halts"
+      ],
+      "major_routes": [
+        "Bogura – Dhaka (Mohakhali / Gabtoli)",
+        "Bogura – Rangpur – Kurigram",
+        "Bogura – Dinajpur"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Satmatha Counter",
+          "location": "Satmatha, Bogura",
+          "phone_numbers": [
+            "01971-184895",
+            "01951-144017"
+          ]
+        },
+        {
+          "counter_name": "Thanthania Bus Stand Counter",
+          "location": "Thanthania, Bogura",
+          "phone_numbers": [
+            "01977-136862",
+            "01951-144080"
+          ]
+        },
+        {
+          "counter_name": "Sherpur Counter",
+          "location": "Sherpur Bus Stand, Bogura",
+          "phone_numbers": [
+            "01711-411355"
+          ]
+        }
+      ],
+      "phone_number": "+880 1971-184895",
+      "phone_numbers": [
+        "+880 1971-184895",
+        "+880 1977-136862",
+        "+880 1951-144017",
+        "+880 1951-144080",
+        "+880 1711-411355"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "tr-travels",
+      "operator_name": "TR Travels (Manik Express)",
+      "operator_name_bn": "টি আর ট্রাভেলস",
+      "service_type": "intercity_bus",
+      "service_type_bn": "প্রিমিয়াম এসি ও স্লিপার কোচ",
+      "headquarters_or_main_depot": "Thanthania, Bogura",
+      "online_booking_url": "https://www.shohoz.com/bus-tickets",
+      "description": "Renowned for its double-decker and multi-axle luxury sleeper & executive coaches connecting Bogura with Dhaka, Chattogram, and Cox's Bazar.",
+      "facilities": [
+        "First-class luxury sleeper berths & executive club seating",
+        "Individual LED entertainment screens on select coaches",
+        "Snack packets & mineral water included",
+        "Silent ride with high-performance air suspension"
+      ],
+      "major_routes": [
+        "Bogura – Dhaka (Mohakhali / Panthapath / Arambagh)",
+        "Bogura – Chattogram – Cox's Bazar"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Thanthania Main Counter",
+          "location": "Thanthania Bus Stand, Sherpur Road, Bogura",
+          "phone_numbers": [
+            "01773-333766",
+            "051-51241",
+            "01191-494862"
+          ]
+        },
+        {
+          "counter_name": "Satmatha Counter",
+          "location": "Satmatha, Bogura",
+          "phone_numbers": [
+            "051-51240",
+            "01191-494861"
+          ]
+        },
+        {
+          "counter_name": "Banani Counter",
+          "location": "Banani, Bogura",
+          "phone_numbers": [
+            "051-51262",
+            "01195-116222"
+          ]
+        }
+      ],
+      "phone_number": "+880 1773-333766",
+      "phone_numbers": [
+        "+880 1773-333766",
+        "+880 51-51241",
+        "+880 51-51240",
+        "+880 51-51262"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "nabil-paribahan",
+      "operator_name": "Nabil Paribahan",
+      "operator_name_bn": "নাবিল পরিবহন",
+      "service_type": "intercity_bus",
+      "service_type_bn": "আন্তঃজেলা এক্সপ্রেস বাস",
+      "headquarters_or_main_depot": "Bogura / Dinajpur",
+      "online_booking_url": "https://nabilparibahan.com/",
+      "description": "High-standard fleet operating across North Bengal with extensive routes to Dhaka, Dinajpur, Panchagarh, and Thakurgaon.",
+      "facilities": [
+        "AC and Non-AC coaches",
+        "Hotline ticketing service (16374)",
+        "Luggage assistance & security surveillance"
+      ],
+      "major_routes": [
+        "Bogura – Dhaka",
+        "Bogura – Dinajpur – Panchagarh",
+        "Bogura – Chattogram"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Bogura Main Counter",
+          "location": "Bogura City",
+          "phone_numbers": [
+            "01774-976078"
+          ]
+        },
+        {
+          "counter_name": "Sherpur Counter",
+          "location": "Sherpur Bus Stand, Bogura",
+          "phone_numbers": [
+            "01761-545967"
+          ]
+        }
+      ],
+      "phone_number": "16374",
+      "phone_numbers": [
+        "16374",
+        "+880 1774-976078",
+        "+880 1761-545967",
+        "+880 9613-655555"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "agomony-express",
+      "operator_name": "Agomony Express",
+      "operator_name_bn": "আগমনী এক্সপ্রেস",
+      "service_type": "intercity_bus",
+      "service_type_bn": "প্রিমিয়াম এসি বাস সার্ভিস",
+      "headquarters_or_main_depot": "Banani / Dhaka",
+      "online_booking_url": "https://www.shohoz.com/bus-tickets",
+      "description": "Known for business-class Hyundai and MAN luxury coach trips between Bogura, Dhaka, and North Bengal.",
+      "facilities": [
+        "Business class reclining seats",
+        "High-efficiency air conditioning",
+        "Express non-stop highway running"
+      ],
+      "major_routes": [
+        "Bogura – Dhaka",
+        "Bogura – Rangpur"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Banani Counter",
+          "location": "Banani Bus Stop, Bogura",
+          "phone_numbers": [
+            "01726-557929"
+          ]
+        }
+      ],
+      "phone_number": "+880 1726-557929",
+      "phone_numbers": [
+        "+880 1726-557929",
+        "+880 1711-394800"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "lalmoni-express",
+      "operator_name": "Lalmoni Express (Train 751 / 752)",
+      "operator_name_bn": "লালমনি এক্সপ্রেস (৭৫১ / ৭৫২)",
+      "service_type": "intercity_train",
+      "service_type_bn": "আন্তঃনগর এক্সপ্রেস ট্রেন (বাংলাদেশ রেলওয়ে)",
+      "headquarters_or_main_depot": "Bangladesh Railway (West Zone)",
+      "online_booking_url": "https://eticket.railway.gov.bd/",
+      "description": "Premier broad-gauge/dual-gauge intercity train connecting Dhaka Kamalapur with Lalmonirhat through Bogura Railway Station. Offers Snigdha (AC Chair), Shovon Chair, and AC Berth travel options.",
+      "facilities": [
+        "Snigdha Air-Conditioned chair coach",
+        "Shovon Chair (non-AC ergonomic seating)",
+        "Onboard dining car & pantry service",
+        "Clean bio-toilets & prayer compartment",
+        "Shohoz online e-ticket booking with seat selection"
+      ],
+      "major_routes": [
+        "Dhaka Kamalapur – Airport – Bangabandhu Bridge – Bogura – Gaibandha – Kaunia – Lalmonirhat"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Bogura Railway Station Booking Office",
+          "location": "Station Road, Bogura",
+          "phone_numbers": [
+            "051-65042",
+            "131"
+          ]
+        }
+      ],
+      "phone_number": "131",
+      "phone_numbers": [
+        "131",
+        "+880 51-65042",
+        "+880 1737-580578"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "rangpur-express",
+      "operator_name": "Rangpur Express (Train 771 / 772)",
+      "operator_name_bn": "রংপুর এক্সপ্রেস (৭৭১ / ৭৭২)",
+      "service_type": "intercity_train",
+      "service_type_bn": "আন্তঃনগর এক্সপ্রেস ট্রেন (বাংলাদেশ রেলওয়ে)",
+      "headquarters_or_main_depot": "Bangladesh Railway (West Zone)",
+      "online_booking_url": "https://eticket.railway.gov.bd/",
+      "description": "Daily intercity express train connecting Rangpur divisional city with the capital Dhaka, with scheduled stops at Bogura Railway Station and Santahar Junction.",
+      "facilities": [
+        "AC Cabin / Berths (first class)",
+        "Snigdha AC Chair coaches",
+        "Shovon Chair coaches",
+        "Catering service & security patrol"
+      ],
+      "major_routes": [
+        "Dhaka – Airport – Bogura – Gaibandha – Pirgachha – Kaunia – Rangpur"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Bogura Railway Station",
+          "location": "Bogura Station Road",
+          "phone_numbers": [
+            "051-65042"
+          ]
+        },
+        {
+          "counter_name": "Santahar Junction",
+          "location": "Adamdighi, Bogura",
+          "phone_numbers": [
+            "01737-580578"
+          ]
+        }
+      ],
+      "phone_number": "131",
+      "phone_numbers": [
+        "131",
+        "+880 51-65042",
+        "+880 1737-580578"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1541427468627-a89a96e5ca1d?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "karatoa-express",
+      "operator_name": "Karatoa Express (Train 713 / 714)",
+      "operator_name_bn": "করতোয়া এক্সপ্রেস (৭১৩ / ৭১৪)",
+      "service_type": "intercity_train",
+      "service_type_bn": "আঞ্চলিক আন্তঃনগর এক্সপ্রেস ট্রেন",
+      "headquarters_or_main_depot": "Bangladesh Railway (West Zone)",
+      "online_booking_url": "https://eticket.railway.gov.bd/",
+      "description": "Dedicated regional express connecting Santahar Junction and Bogura with Burimari border station. Named after Bogura's historic Karatoa river, it is a vital lifeline for daily commuters and travelers in northern Bogura.",
+      "facilities": [
+        "Shovon Chair & Shovon coaches",
+        "Morning departure from Santahar & Bogura",
+        "Affordable civic rail travel linking northern sub-districts"
+      ],
+      "major_routes": [
+        "Santahar – Bogura – Sonatola – Bonarpara – Gaibandha – Kaunia – Lalmonirhat – Burimari"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Bogura Station Master Office",
+          "location": "Bogura",
+          "phone_numbers": [
+            "051-65042"
+          ]
+        }
+      ],
+      "phone_number": "+880 51-65042",
+      "phone_numbers": [
+        "+880 51-65042",
+        "+880 1737-580578",
+        "131"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "bogura-rent-a-car-services",
+      "operator_name": "Bogura Rent-A-Car & Microbus Association",
+      "operator_name_bn": "বগুড়া রেন্ট-এ-কার ও মাইক্রোবাস সার্ভিস",
+      "service_type": "rent_a_car",
+      "service_type_bn": "প্রাইভেট কার, মাইক্রোবাস ও পর্যটন বাহন ভাড়া",
+      "headquarters_or_main_depot": "Thanthania Bus Stand / Charmatha / Satmatha, Bogura",
+      "online_booking_url": "https://rentacarbogurabangladesh.com/",
+      "description": "Comprehensive fleet of air-conditioned private sedans (Noah, HiAce, Axio, Allion, Premio), wedding luxury cars, and 24/7 tourist vehicles for sightseeing trips across Bogura (Mahasthangarh, Behula Bashorghar, Kherua Mosque) and all over Bangladesh.",
+      "facilities": [
+        "Toyota HiAce, Noah & Voxie microbuses (7–14 seaters)",
+        "Executive sedans (Axio, Premio, Allion) with professional chauffeurs",
+        "24-hour on-call airport pickup & drop (Bogura to Dhaka Airport)",
+        "Daily, weekly, and monthly corporate vehicle rental contracts",
+        "Archaeological sightseeing day-tour packages across Bogura district"
+      ],
+      "major_routes": [
+        "Bogura City – Mahasthangarh – Shibganj Heritage Tour",
+        "Bogura – Dhaka Airport (Direct VIP drop)",
+        "Bogura – Rajshahi / Rangpur / Dinajpur",
+        "Local inter-upazila visits across all 12 upazilas of Bogura"
+      ],
+      "counters_in_bogura": [
+        {
+          "counter_name": "Thanthania Stand Counter",
+          "location": "Opposite Thanthania Bus Terminal, Sherpur Road, Bogura",
+          "phone_numbers": [
+            "01725-141408",
+            "01935-660304"
+          ]
+        },
+        {
+          "counter_name": "Charmatha Stand Counter",
+          "location": "Near Central Bus Terminal, Charmatha, Bogura",
+          "phone_numbers": [
+            "01727-965752",
+            "01712-503068"
+          ]
+        }
+      ],
+      "phone_number": "+880 1725-141408",
+      "phone_numbers": [
+        "+880 1725-141408",
+        "+880 1935-660304",
+        "+880 1727-965752",
+        "+880 1712-503068"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=1200&q=80"
+    }
+  ]
+}
+

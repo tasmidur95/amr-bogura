@@ -1,0 +1,782 @@
+{
+  "district": "Bogura",
+  "meta": {
+    "title": "Bogura District Banks & 24/7 ATM Directory",
+    "title_bn": "বগুড়া জেলার ব্যাংক শাখা ও এটিএম বুথ নির্দেশিকা",
+    "description": "Comprehensive verified directory of central, state-owned, private commercial, specialized agricultural, and Islamic banks with branch locations, routing numbers, contact hotlines, multiple phone numbers, and 24/7 ATM/CRM booths across Bogura district.",
+    "banking_hours": "Sunday to Thursday: 10:00 AM – 4:00 PM (Transaction hours; offices open till 5:00 PM / 6:00 PM). Closed on Fridays, Saturdays & National Holidays.",
+    "atm_availability": "24/7 round the clock cash withdrawal, balance inquiry & CRM instant cash deposit services."
+  },
+  "central_and_regulatory": [
+    {
+      "id": "bangladesh-bank-bogura",
+      "bank_name": "Bangladesh Bank (Bogura Office)",
+      "bank_name_bn": "বাংলাদেশ ব্যাংক (বগুড়া অফিস)",
+      "type": "central_bank",
+      "type_bn": "কেন্দ্রীয় ব্যাংক ও মুদ্রা কর্তৃপক্ষ",
+      "branch_name": "Bogura Office",
+      "branch_name_bn": "বগুড়া কার্যালয়",
+      "location": "Sherpur Road, Sutrapur, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "010100018",
+      "swift_code": "BBINBDDHBOG",
+      "facilities": [
+        "Currency chest & new bank note exchange counters",
+        "Clearing house & RTGS/BEFTN district settlement hub",
+        "Banking inspection & non-bank financial institutions regulation",
+        "Financial inclusion & agricultural credit monitoring",
+        "Public treasury & prize bond sale/encashment desk"
+      ],
+      "has_atm": false,
+      "has_crm": false,
+      "operating_hours": "Sunday to Thursday: 10:00 AM – 5:00 PM",
+      "hotline": "16236",
+      "phone_number": "+880 51-51617",
+      "phone_numbers": [
+        "+880 51-51617",
+        "+880 51-51170",
+        "+880 51-51190",
+        "16236"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&fit=crop&w=1200&q=80"
+    }
+  ],
+  "banks": [
+    {
+      "id": "sonali-bank-bogura-corporate",
+      "bank_name": "Sonali Bank PLC",
+      "bank_name_bn": "সোনালী ব্যাংক পিএলসি",
+      "type": "state_owned_commercial",
+      "type_bn": "রাষ্ট্রায়ত্ত বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Principal / Corporate Branch, Bogura",
+      "branch_name": "Bogura Corporate Branch",
+      "branch_name_bn": "বগুড়া কর্পোরেট শাখা",
+      "location": "Satmatha, Kazi Nazrul Islam Road, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "200100236",
+      "swift_code": "BSONBDDH200",
+      "facilities": [
+        "Government revenue, treasury & e-challan services",
+        "SME, commercial & foreign trade loans",
+        "Foreign remittance spot payment",
+        "L/C opening & export/import finance",
+        "Sonali e-Sheba digital kiosk & 24/7 ATM booth"
+      ],
+      "has_atm": true,
+      "has_crm": true,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16639",
+      "phone_number": "+880 251-66070",
+      "phone_numbers": [
+        "+880 251-66070",
+        "+880 251-63568",
+        "+880 1716-961400",
+        "+880 1755-594104",
+        "16639"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "janata-bank-bogura-corporate",
+      "bank_name": "Janata Bank PLC",
+      "bank_name_bn": "জনতা ব্যাংক পিএলসি",
+      "type": "state_owned_commercial",
+      "type_bn": "রাষ্ট্রায়ত্ত বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Divisional / Corporate Office, Bogura",
+      "branch_name": "Bogura Corporate Branch",
+      "branch_name_bn": "বগুড়া কর্পোরেট শাখা",
+      "location": "Jhao Tola, Sherpur Road, Satmatha, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "135100067",
+      "swift_code": "JANBBDDH001",
+      "facilities": [
+        "Industrial credit & working capital financing",
+        "Government pension & treasury payment desks",
+        "Foreign remittance & Western Union payout",
+        "L/C and import-export finance",
+        "Janata e-wallet & 24/7 ATM booth"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16834",
+      "phone_number": "+880 25-89902795",
+      "phone_numbers": [
+        "+880 25-89902795",
+        "+880 25-89902796",
+        "+880 1719-812034",
+        "16834"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "agrani-bank-bogura-circle",
+      "bank_name": "Agrani Bank PLC",
+      "bank_name_bn": "অগ্রণী ব্যাংক পিএলসি",
+      "type": "state_owned_commercial",
+      "type_bn": "রাষ্ট্রায়ত্ত বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Circle Office & Principal Branch, Bogura",
+      "branch_name": "Bogura Principal Branch",
+      "branch_name_bn": "বগুড়া প্রধান শাখা",
+      "location": "Satmatha, Kazi Nazrul Islam Road, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "025100234",
+      "swift_code": "AGBKBDDH025",
+      "facilities": [
+        "Circle administration & district branch monitoring",
+        "Wholesale & retail commercial credit",
+        "Foreign remittance & government utility payments",
+        "Agrani Smart App digital banking & 24/7 ATM"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16920",
+      "phone_number": "+880 51-66020",
+      "phone_numbers": [
+        "+880 51-66020",
+        "+880 51-66021",
+        "+880 1711-385036",
+        "16920"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "rupali-bank-bogura-corporate",
+      "bank_name": "Rupali Bank PLC",
+      "bank_name_bn": "রূপালী ব্যাংক পিএলসি",
+      "type": "state_owned_commercial",
+      "type_bn": "রাষ্ট্রায়ত্ত বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Zonal Office, Bogura",
+      "branch_name": "Bogura Corporate Branch",
+      "branch_name_bn": "বগুড়া কর্পোরেট শাখা",
+      "location": "Baragola, Rangpur Road, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "185100140",
+      "swift_code": "RUPBBDDH185",
+      "facilities": [
+        "Commercial and industrial SME credit",
+        "Foreign exchange & L/C facilities",
+        "Government revenue payments & treasury receipts",
+        "SureCash & digital banking services"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16495",
+      "phone_number": "+880 51-66040",
+      "phone_numbers": [
+        "+880 51-66040",
+        "+880 1713-255800",
+        "16495"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "rakub-bogura-branch",
+      "bank_name": "Rajshahi Krishi Unnayan Bank (RAKUB)",
+      "bank_name_bn": "রাজশাহী কৃষি উন্নয়ন ব্যাংক (রাকাব)",
+      "type": "specialized_agricultural",
+      "type_bn": "রাষ্ট্রায়ত্ত বিশেষায়িত কৃষি ব্যাংক",
+      "head_office_or_zonal_office": "Bogra (North) Zonal Office",
+      "branch_name": "Bogura Branch",
+      "branch_name_bn": "বগুড়া প্রধান শাখা",
+      "location": "Sharifuddin Super Market, Satmatha, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "190100173",
+      "swift_code": "RKUBBDDH",
+      "facilities": [
+        "Agricultural crop, dairy, fishery & poultry loans",
+        "Farm mechanization & agro-processing industrial credit",
+        "Rural women entrepreneur empowerment financing",
+        "Poverty alleviation & rural savings schemes",
+        "RAKUB e-Banking & 24/7 ATM booth"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "09613-200200",
+      "phone_number": "+880 51-66287",
+      "phone_numbers": [
+        "+880 51-66287",
+        "+880 1708-806189",
+        "+880 1715-205262",
+        "09613-200200"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "islami-bank-bogura-branch",
+      "bank_name": "Islami Bank Bangladesh PLC",
+      "bank_name_bn": "ইসলামী ব্যাংক বাংলাদেশ পিএলসি",
+      "type": "islamic_commercial",
+      "type_bn": "পূর্ণাঙ্গ শরী‘আহ্ ভিত্তিক বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Bogura Zone Headquarters",
+      "branch_name": "Bogura Branch & Baragola Branch",
+      "branch_name_bn": "বগুড়া শাখা ও বড়গোলা শাখা",
+      "location": "801 Thana Road / Bogra Trade Centre, Rangpur Road, Baragola, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "125100236",
+      "swift_code": "IBBLBDDH025",
+      "facilities": [
+        "Shari'ah-compliant Bai-Murabaha, Bai-Muajjal & Mudaraba accounts",
+        "Pioneer foreign remittance handling in North Bengal",
+        "Industrial, SME, import/export trade & agri financing",
+        "Multiple Cash Recycling Machines (CRM - Instant Deposit & Withdraw)",
+        "CellFin digital wallet, iBanking & Visa/Mastercard debit/credit cards"
+      ],
+      "has_atm": true,
+      "has_crm": true,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16259",
+      "phone_number": "+880 51-66450",
+      "phone_numbers": [
+        "+880 51-66450",
+        "+880 51-73320",
+        "+880 51-65494",
+        "+880 51-66795",
+        "16259"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "dutch-bangla-bank-bogura",
+      "bank_name": "Dutch-Bangla Bank PLC",
+      "bank_name_bn": "ডাচ্-বাংলা ব্যাংক পিএলসি",
+      "type": "private_commercial",
+      "type_bn": "বেসরকারি বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Bogura Regional Branch",
+      "branch_name": "Bogura Branch & Fast Track",
+      "branch_name_bn": "বগুড়া শাখা ও ফাস্ট ট্র্যাক",
+      "location": "Madhu-Metro Tower (2nd & 3rd Floor), Holding No. 56/64, Kazi Nazrul Islam Road, Satmatha, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "090100140",
+      "swift_code": "DBBLBDDH090",
+      "facilities": [
+        "Largest 24/7 ATM & CRM Cash Recycler network in Bogura",
+        "Rocket mobile banking & NexusPay integration",
+        "Agent banking outlets across all 12 upazilas",
+        "Foreign trade, corporate finance & consumer credit",
+        "VIP customer lounge & dedicated Fast Track kiosks"
+      ],
+      "has_atm": true,
+      "has_crm": true,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu; Fast Track 24/7)",
+      "hotline": "16216",
+      "phone_number": "+880 96783-22125",
+      "phone_numbers": [
+        "+880 96783-22125",
+        "+880 1713-201690",
+        "+880 51-69830",
+        "16216"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "brac-bank-bogura",
+      "bank_name": "BRAC Bank PLC",
+      "bank_name_bn": "ব্র্যাক ব্যাংক পিএলসি",
+      "type": "private_commercial",
+      "type_bn": "বেসরকারি বাণিজ্যিক ব্যাংক (এসএমই ফোকাসড)",
+      "head_office_or_zonal_office": "Bogura Main Branch & Jaleshwaritola Branch",
+      "branch_name": "Bogura Branch",
+      "branch_name_bn": "বগুড়া শাখা",
+      "location": "Sheikh Mansion, Rangpur Road, Baragola / Jaleshwaritola, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "060100130",
+      "swift_code": "BRAKBDDH060",
+      "facilities": [
+        "Leader in SME & small business entrepreneur financing",
+        "Astha mobile banking app & digital onboarding",
+        "Retail consumer loans (home loan, auto loan, personal loan)",
+        "24/7 high-speed ATM & instant cash deposit machine (CRM)",
+        "Premium banking lounge for corporate clients"
+      ],
+      "has_atm": true,
+      "has_crm": true,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16221",
+      "phone_number": "+880 96-77557181",
+      "phone_numbers": [
+        "+880 96-77557181",
+        "+880 9611-223344",
+        "+880 1713-000000",
+        "16221"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "city-bank-bogura",
+      "bank_name": "The City Bank PLC",
+      "bank_name_bn": "দি সিটি ব্যাংক পিএলসি",
+      "type": "private_commercial",
+      "type_bn": "বেসরকারি বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Bogura Branch",
+      "branch_name": "Bogura Branch",
+      "branch_name_bn": "বগুড়া শাখা",
+      "location": "Masuma Plaza, Holding No. 766, Rangpur Road, Baragola, Dutta Bari, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "225100067",
+      "swift_code": "CIBLBDDH225",
+      "facilities": [
+        "Exclusive American Express (Amex) card & lounge privileges",
+        "Citytouch digital banking with biometrics",
+        "Priority banking lounge & private wealth management",
+        "Islamic banking window (City Islamic)",
+        "24/7 multi-currency ATM & Cash Deposit Machine (CDM)"
+      ],
+      "has_atm": true,
+      "has_crm": true,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16234",
+      "phone_number": "+880 1347-536301",
+      "phone_numbers": [
+        "+880 1347-536301",
+        "+880 1711-404137",
+        "+880 2-8331040",
+        "16234"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "eastern-bank-ebl-bogura",
+      "bank_name": "Eastern Bank PLC (EBL)",
+      "bank_name_bn": "ইস্টার্ন ব্যাংক পিএলসি (ইবিএল)",
+      "type": "private_commercial",
+      "type_bn": "বেসরকারি বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Bogura Branch",
+      "branch_name": "Bogura Branch",
+      "branch_name_bn": "বগুড়া শাখা",
+      "location": "Satani Mega Centre, Holding No. 1020/1092, Sherpur Road, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "095100140",
+      "swift_code": "EBLBBDDH095",
+      "facilities": [
+        "EBL Skybanking app & digital self-service desk",
+        "Premium credit card services & overseas payment clearance",
+        "Corporate syndicated financing & industrial credit",
+        "24/7 on-site ATM booth and quick check drop box"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16230",
+      "phone_number": "+880 2-589903931",
+      "phone_numbers": [
+        "+880 2-589903931",
+        "+880 2-589903932",
+        "+880 96-66777325",
+        "16230"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "ucb-bogura-branch",
+      "bank_name": "United Commercial Bank PLC (UCB)",
+      "bank_name_bn": "ইউনাইটেড কমার্শিয়াল ব্যাংক পিএলসি",
+      "type": "private_commercial",
+      "type_bn": "বেসরকারি বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Bogura Main Branch",
+      "branch_name": "Bogura Branch",
+      "branch_name_bn": "বগুড়া শাখা",
+      "location": "Pashari Mansion, 221 Jhawtola / Rangpur Road, Baragola, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "245100078",
+      "swift_code": "UCBLBDDH245",
+      "facilities": [
+        "Upay digital wallet integration",
+        "Agricultural & agro-industrial supply chain financing",
+        "Corporate trade services & L/C settlement",
+        "24/7 ATM and electronic cash deposit facility"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16419",
+      "phone_number": "+880 51-65467",
+      "phone_numbers": [
+        "+880 51-65467",
+        "+880 51-63630",
+        "+880 51-69527",
+        "+880 1711-881066",
+        "16419"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "pubali-bank-bogura",
+      "bank_name": "Pubali Bank PLC",
+      "bank_name_bn": "পূবালী ব্যাংক পিএলসি",
+      "type": "private_commercial",
+      "type_bn": "বেসরকারি বাণিজ্যিক ব্যাংক (প্রাচীনতম)",
+      "head_office_or_zonal_office": "Regional Office & Main Branch, Bogura",
+      "branch_name": "Bogura Main Branch",
+      "branch_name_bn": "বগুড়া প্রধান শাখা",
+      "location": "Kazi Nazrul Islam Road, Baragola, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "175100140",
+      "swift_code": "PUBLBDDH175",
+      "facilities": [
+        "One of the oldest private commercial banks in Bogura",
+        "Wholesale grain, cold storage & agricultural trade financing",
+        "PI Banking app & digital remittance payout",
+        "24/7 ATM booth at Baragola and Satmatha"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16281",
+      "phone_number": "+880 1711-404350",
+      "phone_numbers": [
+        "+880 1711-404350",
+        "+880 51-66010",
+        "+880 51-66011",
+        "16281"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "trust-bank-bogura-cantonment",
+      "bank_name": "Trust Bank Limited",
+      "bank_name_bn": "ট্রাস্ট ব্যাংক লিমিটেড",
+      "type": "private_commercial",
+      "type_bn": "বেসরকারি বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Bogura Cantonment & Town Branch",
+      "branch_name": "Bogura Cantonment Branch",
+      "branch_name_bn": "বগুড়া সেনানিবাস শাখা",
+      "location": "Cantonment Commercial Complex, Majhira, Bogura Cantonment, Bogura 5801",
+      "upazila": "শাজাহানপুর",
+      "routing_number": "240100067",
+      "swift_code": "TRBLBDDH240",
+      "facilities": [
+        "Defense personnel salary, pension & welfare banking",
+        "Corporate and SME loan facilities",
+        "Trust Money digital mobile banking",
+        "24/7 dedicated high-security ATM booth within Cantonment & Town"
+      ],
+      "has_atm": true,
+      "has_crm": true,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16201",
+      "phone_number": "+880 2-589113178",
+      "phone_numbers": [
+        "+880 2-589113178",
+        "+880 2-589113179",
+        "+880 1708-140987",
+        "+880 1730-376195",
+        "16201"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "mutual-trust-bank-bogura",
+      "bank_name": "Mutual Trust Bank PLC (MTB)",
+      "bank_name_bn": "মিউচুয়াল ট্রাস্ট ব্যাংক পিএলসি",
+      "type": "private_commercial",
+      "type_bn": "বেসরকারি বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Bogura Branch",
+      "branch_name": "Bogura Branch",
+      "branch_name_bn": "বগুড়া শাখা",
+      "location": "A. Rahman Chamber, 126/127 Rangpur Road, Baragola / Jaleshwaritola, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "145100078",
+      "swift_code": "MTBLBDDH145",
+      "facilities": [
+        "MTB Smart Banking & corporate solutions",
+        "High-volume commercial trade & export financing",
+        "Dedicated SME entrepreneur lending desk",
+        "24/7 on-site ATM booth"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16219",
+      "phone_number": "+880 51-78108",
+      "phone_numbers": [
+        "+880 51-78108",
+        "+880 51-78109",
+        "+880 9666-016219",
+        "16219"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "prime-bank-bogura",
+      "bank_name": "Prime Bank PLC",
+      "bank_name_bn": "প্রাইম ব্যাংক পিএলসি",
+      "type": "private_commercial",
+      "type_bn": "বেসরকারি বাণিজ্যিক ব্যাংক",
+      "head_office_or_zonal_office": "Bogura Branch",
+      "branch_name": "Bogura Branch",
+      "branch_name_bn": "বগুড়া শাখা",
+      "location": "Holding No. 128, Rangpur Road, Baragola, Bogura Sadar, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "170100140",
+      "swift_code": "PRBLBDDH170",
+      "facilities": [
+        "Prime Digit app & electronic bill pay",
+        "Structured corporate credit & trade facilitation",
+        "Retail consumer deposits and savings schemes",
+        "24/7 ATM booth"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16218",
+      "phone_number": "+880 51-69446",
+      "phone_numbers": [
+        "+880 51-69446",
+        "+880 51-69447",
+        "+880 1713-040000",
+        "16218"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "al-arafah-islami-bank-bogura",
+      "bank_name": "Al-Arafah Islami Bank PLC",
+      "bank_name_bn": "আল-আরাফাহ্ ইসলামী ব্যাংক পিএলসি",
+      "type": "islamic_commercial",
+      "type_bn": "পূর্ণাঙ্গ শরী‘আহ্ ভিত্তিক ব্যাংক",
+      "head_office_or_zonal_office": "Bogura Branch",
+      "branch_name": "Bogura Branch",
+      "branch_name_bn": "বগুড়া শাখা",
+      "location": "Nawab Mansion, Rangpur Road, Baragola, Bogura 5800",
+      "upazila": "বগুড়া সদর",
+      "routing_number": "015100067",
+      "swift_code": "AIBLBDDH015",
+      "facilities": [
+        "100% Shari'ah-supervised banking & interest-free investments",
+        "Hajj savings accounts & foreign inward remittance payout",
+        "AIBL i-Banking & D-Money support",
+        "24/7 ATM booth"
+      ],
+      "has_atm": true,
+      "has_crm": false,
+      "operating_hours": "10:00 AM – 4:00 PM (Sun–Thu)",
+      "hotline": "16434",
+      "phone_number": "+880 51-66522",
+      "phone_numbers": [
+        "+880 51-66522",
+        "+880 1711-404130",
+        "+880 1713-009988",
+        "16434"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&fit=crop&w=1200&q=80"
+    }
+  ],
+  "atm_and_fast_track_booths": [
+    {
+      "id": "atm-dbbl-satmatha",
+      "booth_name": "Dutch-Bangla Bank Satmatha Fast Track & ATM",
+      "bank_name": "Dutch-Bangla Bank PLC",
+      "location": "Madhu-Metro Tower, Kazi Nazrul Islam Road, Satmatha, Bogura",
+      "upazila": "বগুড়া সদর",
+      "cards_accepted": [
+        "Nexus Debit Card",
+        "Visa",
+        "Mastercard",
+        "UnionPay",
+        "NPSB Network Cards"
+      ],
+      "services": [
+        "24/7 Cash withdrawal",
+        "Instant Cash Deposit (CRM)",
+        "Balance inquiry & mini-statement",
+        "Pin change & mobile recharge"
+      ],
+      "operating_hours": "24/7 (365 days)",
+      "hotline": "16216",
+      "banner_image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "atm-dbbl-jaleshwaritola",
+      "booth_name": "Dutch-Bangla Bank Jaleshwaritola ATM",
+      "bank_name": "Dutch-Bangla Bank PLC",
+      "location": "Near Altafunnessa Ground, Jaleshwaritola, Bogura",
+      "upazila": "বগুড়া সদর",
+      "cards_accepted": [
+        "Nexus",
+        "Visa",
+        "Mastercard",
+        "NPSB"
+      ],
+      "services": [
+        "24/7 Cash withdrawal",
+        "Balance inquiry",
+        "Fast fund transfer"
+      ],
+      "operating_hours": "24/7",
+      "hotline": "16216",
+      "banner_image": "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "atm-dbbl-medical",
+      "booth_name": "DBBL Shahid Ziaur Rahman Medical College ATM",
+      "bank_name": "Dutch-Bangla Bank PLC",
+      "location": "SZMC Hospital Gate / Medical Bypass Road, Silimpur, Bogura",
+      "upazila": "বগুড়া সদর",
+      "cards_accepted": [
+        "Nexus",
+        "Visa",
+        "Mastercard",
+        "NPSB"
+      ],
+      "services": [
+        "24/7 Cash withdrawal for patients & medical emergency",
+        "Bill payment & balance inquiry"
+      ],
+      "operating_hours": "24/7",
+      "hotline": "16216",
+      "banner_image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "atm-dbbl-charmatha",
+      "booth_name": "DBBL Charmatha Central Bus Terminal ATM",
+      "bank_name": "Dutch-Bangla Bank PLC",
+      "location": "Charmatha Central Bus Terminal, Bogura",
+      "upazila": "বগুড়া সদর",
+      "cards_accepted": [
+        "Nexus",
+        "Visa",
+        "Mastercard",
+        "Q-Cash",
+        "NPSB"
+      ],
+      "services": [
+        "24/7 Highway traveler cash dispensing",
+        "Balance inquiry"
+      ],
+      "operating_hours": "24/7",
+      "hotline": "16216",
+      "banner_image": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "atm-brac-baragola",
+      "booth_name": "BRAC Bank 24/7 ATM & CRM",
+      "bank_name": "BRAC Bank PLC",
+      "location": "Sheikh Mansion, Rangpur Road, Baragola, Bogura",
+      "upazila": "বগুড়া সদর",
+      "cards_accepted": [
+        "BRAC Bank Debit/Credit",
+        "Visa",
+        "Mastercard",
+        "NPSB Cards"
+      ],
+      "services": [
+        "24/7 Cash withdrawal",
+        "Real-time cash deposit (CRM)",
+        "PIN change & mini-statement"
+      ],
+      "operating_hours": "24/7",
+      "hotline": "16221",
+      "banner_image": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "atm-city-baragola",
+      "booth_name": "City Bank American Express ATM Lounge",
+      "bank_name": "The City Bank PLC",
+      "location": "Masuma Plaza, Rangpur Road, Baragola, Bogura",
+      "upazila": "বগুড়া সদর",
+      "cards_accepted": [
+        "American Express (Amex)",
+        "Visa",
+        "Mastercard",
+        "UnionPay",
+        "NPSB"
+      ],
+      "services": [
+        "Amex & Visa cash dispensing",
+        "Card payment & balance inquiry",
+        "Air-conditioned VIP booth"
+      ],
+      "operating_hours": "24/7",
+      "hotline": "16234",
+      "banner_image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "atm-ibbl-thana-road",
+      "booth_name": "Islami Bank CRM & ATM Booth",
+      "bank_name": "Islami Bank Bangladesh PLC",
+      "location": "Thana Road / Bogra Trade Centre, Baragola, Bogura",
+      "upazila": "বগুড়া সদর",
+      "cards_accepted": [
+        "Khidmah Credit Card",
+        "IBBL Debit Card",
+        "Visa",
+        "Mastercard",
+        "NPSB"
+      ],
+      "services": [
+        "Instant cash deposit without slip (CRM)",
+        "24/7 cash withdrawal",
+        "CellFin wallet cash out & deposit"
+      ],
+      "operating_hours": "24/7",
+      "hotline": "16259",
+      "banner_image": "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "atm-ibbl-thanthania",
+      "booth_name": "Islami Bank Thanthania Bus Terminal ATM",
+      "bank_name": "Islami Bank Bangladesh PLC",
+      "location": "Thanthania Bus Stand, Sherpur Road, Bogura",
+      "upazila": "বগুড়া সদর",
+      "cards_accepted": [
+        "IBBL Cards",
+        "Visa",
+        "Mastercard",
+        "NPSB"
+      ],
+      "services": [
+        "24/7 Long-route passenger cash dispensing",
+        "Balance inquiry"
+      ],
+      "operating_hours": "24/7",
+      "hotline": "16259",
+      "banner_image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "atm-sonali-satmatha",
+      "booth_name": "Sonali Bank e-Sheba & ATM Booth",
+      "bank_name": "Sonali Bank PLC",
+      "location": "Corporate Branch Building, Satmatha, Bogura",
+      "upazila": "বগুড়া সদর",
+      "cards_accepted": [
+        "Sonali Bank Debit Card",
+        "Q-Cash",
+        "Visa",
+        "NPSB"
+      ],
+      "services": [
+        "Government pension / allowance withdrawal",
+        "Standard cash withdrawal",
+        "Balance inquiry"
+      ],
+      "operating_hours": "24/7",
+      "hotline": "16639",
+      "banner_image": "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "atm-trust-cantonment",
+      "booth_name": "Trust Bank Cantonment 24/7 ATM & CRM",
+      "bank_name": "Trust Bank Limited",
+      "location": "Cantonment Commercial Gate, Majhira, Bogura Cantonment",
+      "upazila": "শাজাহানপুর",
+      "cards_accepted": [
+        "Trust Bank Cards",
+        "Visa",
+        "Mastercard",
+        "NPSB"
+      ],
+      "services": [
+        "High-security 24/7 cash withdrawal",
+        "Instant cash recycling deposit (CRM)"
+      ],
+      "operating_hours": "24/7",
+      "hotline": "16201",
+      "banner_image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+    }
+  ]
+}
+

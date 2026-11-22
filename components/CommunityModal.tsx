@@ -246,6 +246,12 @@ export default function CommunityModal({
               placeholder="০১৭XX-XXXXXX"
               className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"
             />
+            {category === 'blood' && (
+              <p className="text-[11px] text-slate-500 mt-1.5 flex items-center gap-1.5 bg-emerald-50 text-emerald-800 p-2 rounded-lg border border-emerald-200">
+                <i className="fa-solid fa-user-shield text-emerald-600"></i>
+                <span>প্রাইভেসী সুরক্ষা: নম্বরটি স্বয়ংক্রিয় বট ও স্ক্র্যাপার থেকে ডিফল্টভাবে আড়াল রাখা হবে।</span>
+              </p>
+            )}
           </div>
 
           <button

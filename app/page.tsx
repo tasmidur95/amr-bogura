@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import WeatherSection from '@/components/WeatherSection';
+import DistrictOverviewSection from '@/components/DistrictOverviewSection';
 import ServicesGrid from '@/components/ServicesGrid';
 import CommunitySection from '@/components/CommunitySection';
 import UpazilaSection from '@/components/UpazilaSection';
@@ -137,6 +139,8 @@ export default function HomePage() {
         {currentView === 'home' && (
           <div className="animate-fade-in">
             <Hero onNavigate={handleNavigate} siteContent={siteContent} />
+            <WeatherSection />
+            <DistrictOverviewSection />
             <ServicesGrid
               onNavigate={handleNavigate}
               onFilterHospital={setHospitalFilter}
@@ -147,17 +151,20 @@ export default function HomePage() {
               onTabChange={setActiveCommunityTab}
               communityData={communityData}
               onOpenModal={() => setIsCommunityModalOpen(true)}
+              isHome={true}
             />
             <UpazilaSection
               upazilas={upazilas}
               onNavigate={handleNavigate}
               onOpenDetail={handleOpenUpazilaDetail}
+              isHome={true}
             />
             <HealthcareSection
               hospitals={hospitals}
               emergencyContacts={emergencyContacts}
               currentFilter={hospitalFilter}
               onFilterChange={setHospitalFilter}
+              isHome={true}
             />
             <ExploreSection exploreSpots={exploreSpots} />
             <HistorySection siteContent={siteContent} />

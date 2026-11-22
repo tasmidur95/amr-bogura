@@ -85,12 +85,28 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('home', 'healthcare')}
-                  className="hover:text-amber-300 transition text-left cursor-pointer"
+                <Link
+                  href="/healthcare"
+                  className="hover:text-amber-300 transition text-left cursor-pointer block"
                 >
                   হাসপাতাল ও ডায়াগনস্টিক
-                </button>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/transport"
+                  className="hover:text-amber-300 transition text-left cursor-pointer block"
+                >
+                  যোগাযোগ হাব ও পরিবহন
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/hospitality"
+                  className="hover:text-amber-300 transition text-left cursor-pointer block"
+                >
+                  হোটেল, রিসোর্ট ও রেস্তোরাঁ
+                </Link>
               </li>
               <li>
                 <Link

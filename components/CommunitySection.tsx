@@ -11,6 +11,7 @@ interface CommunitySectionProps {
   onTabChange: (tab: string) => void;
   communityData: Record<string, CommunityPost[]>;
   onOpenModal: () => void;
+  isHome?: boolean;
 }
 
 export default function CommunitySection({
@@ -18,12 +19,24 @@ export default function CommunitySection({
   onTabChange,
   communityData,
   onOpenModal,
+  isHome = false,
 }: CommunitySectionProps) {
   const { t } = useLanguage();
   const { showToast } = useToast();
 
   const [selectedUpazila, setSelectedUpazila] = useState('ALL');
   const [selectedBloodGroup, setSelectedBloodGroup] = useState('ALL');
+  const [revealedPhones, setRevealedPhones] = useState<Record<string, boolean>>({});
+  const [showBloodBanks, setShowBloodBanks] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+
+  const emergencyBloodBanks = [
+    { name: 'সন্ধানী (শজিমেক ইউনিট)', phone: '051-60862', mobile: '01712-252525', location: 'শহীদ জিয়াউর রহমান মেডিকেল কলেজ' },
+    { name: 'রেড ক্রিসেন্ট রক্ত কেন্দ্র', phone: '051-66543', mobile: '01711-385036', location: 'সূত্রাপুর, বগুড়া সদর' },
+    { name: 'বাঁধন (আজিজুল হক কলেজ)', phone: '01719-334455', mobile: '01724-889900', location: 'সরকারি আজিজুল হক কলেজ ক্যাম্পাস' },
+    { name: 'টিএমএসএস ব্লাড ব্যাংক', phone: '051-65555', mobile: '01713-377000', location: 'নওদাপাড়া, রংপুর রোড' },
+    { name: 'মোহাম্মদ আলী হাসপাতাল ব্লাড ব্যাংক', phone: '051-66020', mobile: '01711-020626', location: 'হাসপাতাল রোড, বগুড়া' },
+  ];
 
   const upazilaOptions = [
     'ALL',
@@ -42,6 +55,27 @@ export default function CommunitySection({
   ];
 
   const bloodGroups = ['ALL', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+
+  const maskPhoneNumber = (phone: string) => {
+    if (!phone) return '';
+    const clean = phone.replace(/[\s-]/g, '');
+    if (clean.length >= 10) {
+      const prefix = clean.slice(0, 5);
+      const suffix = clean.slice(-3);
+      return `${prefix}-•••${suffix}`;
+    }
+    return '••••••••••';
+  };
+
+  const toggleRevealPhone = (id: string, name: string) => {
+    setRevealedPhones(prev => {
+      const isCurrentlyRevealed = !!prev[id];
+      if (!isCurrentlyRevealed) {
+        showToast(`${name}-এর যোগাযোগ নম্বর প্রদর্শিত হচ্ছে`);
+      }
+      return { ...prev, [id]: !isCurrentlyRevealed };
+    });
+  };
 
   const handleCopy = (text: string, label: string) => {
     if (navigator.clipboard) {
@@ -62,6 +96,8 @@ export default function CommunitySection({
       item.group === selectedBloodGroup;
     return matchUpazila && matchBlood;
   });
+
+  const displayedItems = (isHome && !showAll) ? filteredItems.slice(0, 6) : filteredItems;
 
   return (
     <section id="community" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -203,37 +239,134 @@ export default function CommunitySection({
 
           {/* Blood group pills if blood tab is active */}
           {activeTab === 'blood' && (
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-              <span className="text-xs font-bold text-slate-500 mr-1">গ্রুপ:</span>
-              {bloodGroups.map(g => (
-                <button
-                  key={g}
-                  onClick={() => setSelectedBloodGroup(g)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold transition cursor-pointer ${
-                    selectedBloodGroup === g
-                      ? 'bg-rose-600 text-white shadow-xs'
-                      : 'bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200'
-                  }`}
-                >
-                  {g === 'ALL' ? 'সব' : g}
-                </button>
-              ))}
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+              <span className="text-xs font-bold text-slate-500 mr-1 shrink-0">গ্রুপ:</span>
+              <div className="flex items-center gap-1.5 shrink-0">
+                {bloodGroups.map(g => (
+                  <button
+                    key={g}
+                    onClick={() => setSelectedBloodGroup(g)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition cursor-pointer ${
+                      selectedBloodGroup === g
+                        ? 'bg-rose-600 text-white shadow-xs'
+                        : 'bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200'
+                    }`}
+                  >
+                    {g === 'ALL' ? 'সব' : g}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setShowBloodBanks(!showBloodBanks)}
+                className={`ml-2 px-3 py-1 rounded-lg text-xs font-bold shrink-0 transition flex items-center gap-1.5 cursor-pointer ${
+                  showBloodBanks
+                    ? 'bg-emerald-800 text-white shadow-xs'
+                    : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200'
+                }`}
+              >
+                <i className="fa-solid fa-hospital"></i>
+                <span>জরুরি ব্লাড ব্যাংক ({emergencyBloodBanks.length})</span>
+                <i className={`fa-solid fa-chevron-${showBloodBanks ? 'up' : 'down'} text-[10px]`}></i>
+              </button>
             </div>
           )}
         </div>
 
+        {/* Blood Donor Privacy Shield Alert Banner */}
+        {activeTab === 'blood' && (
+          <div className="mt-4 mb-3 p-4 rounded-2xl bg-gradient-to-r from-rose-50/90 via-amber-50/70 to-emerald-50/80 border border-rose-200/80 shadow-2xs">
+            <div className="flex items-start gap-3">
+              <div className="w-9 h-9 rounded-xl bg-rose-600 text-white flex items-center justify-center shrink-0 text-sm shadow-xs">
+                <i className="fa-solid fa-user-shield"></i>
+              </div>
+              <div className="flex-1 text-xs sm:text-sm">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                    <span>রক্তদাতা প্রাইভেসী ও সুরক্ষা গার্ড</span>
+                    <span className="text-[10px] bg-emerald-100 text-emerald-800 font-extrabold px-2 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
+                      <i className="fa-solid fa-shield-halved text-emerald-700"></i> সুরক্ষিত
+                    </span>
+                  </h4>
+                  <span className="text-[11px] text-slate-500 font-medium">
+                    <i className="fa-solid fa-lock text-rose-500 mr-1"></i> স্ক্র্যাপার ও স্প্যাম সুরক্ষিত
+                  </span>
+                </div>
+                <p className="text-slate-600 mt-1 leading-relaxed text-xs">
+                  রক্তদাতাদের ব্যক্তিগত গোপনীয়তা রক্ষায় যোগাযোগের নম্বরগুলো ডিফল্টভাবে সুরক্ষিত রাখা হয়েছে। রোগীর <strong>জরুরি রক্তের প্রয়োজনে</strong> সংশ্লিষ্ট ডোনার কার্ডের <em>"নম্বর দেখুন ও কল করুন"</em> বাটনে ক্লিক করুন। অনুগ্রহ করে অযাচিত বা অ-জরুরি উদ্দেশ্যে কল করা থেকে বিরত থাকুন।
+                </p>
+                <div className="mt-2.5 flex flex-wrap items-center gap-3 text-slate-500 text-[11px] font-medium pt-2 border-t border-rose-200/60">
+                  <span className="inline-flex items-center gap-1 text-emerald-700 font-semibold">
+                    <i className="fa-solid fa-circle-check"></i> সম্পূর্ণ বিনামূল্যে রক্তদান
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-rose-700 font-semibold">
+                    <i className="fa-solid fa-ban"></i> কোনো আর্থিক লেনদেন নয়
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-slate-600">
+                    <i className="fa-solid fa-phone-volume"></i> ২৪/৭ সন্ধানী শজিমেক: <strong>051-60862</strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Emergency Blood Banks Quick Drawer (when active) */}
+        {activeTab === 'blood' && showBloodBanks && (
+          <div className="mb-6 p-4 rounded-2xl bg-white border border-emerald-200 shadow-sm animate-fade-in">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+              <h4 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                <i className="fa-solid fa-hospital-user text-emerald-700"></i>
+                <span>বগুড়া জেলার প্রাতিষ্ঠানিক ব্লাড ব্যাংক ও হটলাইন</span>
+              </h4>
+              <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                ২৪/৭ প্রস্তুত
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {emergencyBloodBanks.map((bb, idx) => (
+                <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                  <div>
+                    <h5 className="font-bold text-slate-900 text-xs sm:text-sm">{bb.name}</h5>
+                    <p className="text-[11px] text-slate-500 mt-0.5">
+                      <i className="fa-solid fa-location-dot text-rose-500 mr-1"></i>{bb.location}
+                    </p>
+                  </div>
+                  <div className="mt-3 flex items-center gap-2 pt-2 border-t border-slate-200/60">
+                    <a
+                      href={`tel:${bb.mobile || bb.phone}`}
+                      className="flex-1 py-1.5 px-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition"
+                    >
+                      <i className="fa-solid fa-phone"></i> <span>{bb.mobile || bb.phone}</span>
+                    </a>
+                    {bb.phone && bb.mobile && (
+                      <a
+                        href={`tel:${bb.phone}`}
+                        className="py-1.5 px-2.5 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold"
+                        title="টিঅ্যান্ডটি ফোন"
+                      >
+                        <i className="fa-solid fa-phone-flip text-[10px]"></i>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Dynamic Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-3 animate-fade-in">
-          {filteredItems.length === 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-1 animate-fade-in">
+          {displayedItems.length === 0 ? (
             <div className="col-span-full text-center py-10 bg-slate-50 rounded-2xl border border-slate-200/70">
               <p className="text-sm text-slate-500">
                 নির্বাচিত ফিল্টারে কোনো তথ্য পাওয়া যায়নি। নতুন তথ্য যুক্ত করতে উপরের বাটনে ক্লিক করুন।
               </p>
             </div>
           ) : (
-            filteredItems.map(item => {
+            displayedItems.map(item => {
               if (activeTab === 'blood') {
-                const isUrgent = item.role === 'জরুরি প্রয়োজন';
+                const isUrgent = item.role === 'জরুরি প্রয়োজন' || item.role === 'জরুরি রক্তদাতা';
+                const isRevealed = !!revealedPhones[item.id];
                 return (
                   <div
                     key={item.id}
@@ -254,36 +387,73 @@ export default function CommunitySection({
                         >
                           {item.group}
                         </span>
-                        <span
-                          className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${
-                            isUrgent
-                              ? 'bg-rose-600 text-white animate-pulse'
-                              : 'bg-emerald-100 text-emerald-800'
-                          }`}
-                        >
-                          {item.role}
+                        <div className="flex items-center gap-1.5">
+                          <span
+                            className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${
+                              isUrgent
+                                ? 'bg-rose-600 text-white animate-pulse'
+                                : 'bg-emerald-100 text-emerald-800'
+                            }`}
+                          >
+                            {item.role || 'রক্তদাতা'}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between gap-2">
+                        <h3 className="font-bold text-slate-900 text-base">{item.name}</h3>
+                        <span className="text-[10px] text-slate-400 flex items-center gap-1" title="ব্যক্তিগত গোপনীয়তা সক্রিয়">
+                          <i className={`fa-solid ${isRevealed ? 'fa-lock-open text-emerald-600' : 'fa-shield text-slate-400'}`}></i>
+                          <span>{isRevealed ? 'উন্মুক্ত' : 'সুরক্ষিত'}</span>
                         </span>
                       </div>
-                      <h3 className="font-bold text-slate-900 text-base">{item.name}</h3>
                       <p className="text-xs font-semibold text-emerald-800 mt-1">
                         <i className="fa-solid fa-location-dot mr-1"></i> {item.upazila}
                       </p>
-                      <p className="text-xs text-slate-600 mt-1.5">{item.detail}</p>
+                      <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{item.detail}</p>
                     </div>
-                    <div className="mt-4 pt-3 border-t border-slate-200/70 flex items-center gap-2">
-                      <a
-                        href={`tel:${item.phone}`}
-                        className="flex-1 py-2 px-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition"
-                      >
-                        <i className="fa-solid fa-phone"></i> <span>{item.phone}</span>
-                      </a>
-                      <button
-                        onClick={() => handleCopy(item.phone, item.name)}
-                        className="py-2 px-3 rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold cursor-pointer"
-                        title="কপি করুন"
-                      >
-                        <i className="fa-regular fa-copy"></i>
-                      </button>
+
+                    {/* Privacy-Preserved Contact Action Bar */}
+                    <div className="mt-4 pt-3 border-t border-slate-200/70">
+                      {!isRevealed ? (
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => toggleRevealPhone(item.id, item.name)}
+                            className="flex-1 py-2 px-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition cursor-pointer shadow-xs active:scale-[0.98]"
+                          >
+                            <i className="fa-solid fa-phone-volume"></i>
+                            <span>নম্বর দেখুন ও কল করুন</span>
+                          </button>
+                          <span
+                            className="text-xs font-mono font-semibold text-slate-400 bg-white px-2.5 py-2 rounded-xl border border-slate-200"
+                            title="গোপনীয়তার স্বার্থে নম্বরটি আড়াল করা আছে"
+                          >
+                            {maskPhoneNumber(item.phone)}
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 animate-fade-in">
+                          <a
+                            href={`tel:${item.phone}`}
+                            className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition"
+                          >
+                            <i className="fa-solid fa-phone"></i> <span>{item.phone}</span>
+                          </a>
+                          <button
+                            onClick={() => handleCopy(item.phone, item.name)}
+                            className="py-2 px-3 rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold cursor-pointer"
+                            title="কপি করুন"
+                          >
+                            <i className="fa-regular fa-copy"></i>
+                          </button>
+                          <button
+                            onClick={() => toggleRevealPhone(item.id, item.name)}
+                            className="py-2 px-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 text-xs cursor-pointer"
+                            title="নম্বর আড়াল করুন"
+                          >
+                            <i className="fa-solid fa-eye-slash"></i>
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
@@ -333,6 +503,34 @@ export default function CommunitySection({
             })
           )}
         </div>
+
+        {/* Short list expander & details page link when on Home */}
+        {isHome && filteredItems.length > 6 && (
+          <div className="mt-8 pt-5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-xs text-slate-500">
+              <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+              <span>
+                মোট <strong>{filteredItems.length}</strong>টি তথ্যের মধ্যে শীর্ষ <strong>{displayedItems.length}</strong>টি প্রদর্শিত হচ্ছে
+              </span>
+            </div>
+            <div className="flex items-center gap-2.5 w-full sm:w-auto">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer"
+              >
+                <i className={`fa-solid ${showAll ? 'fa-compress' : 'fa-expand'}`}></i>
+                <span>{showAll ? 'সংক্ষিপ্ত করুন' : `আরও ${filteredItems.length - 6}টি দেখুন`}</span>
+              </button>
+              <Link
+                href="/community"
+                className="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xs transition"
+              >
+                <span>সকল রক্তদাতা ও পোস্ট দেখুন</span>
+                <i className="fa-solid fa-arrow-right"></i>
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

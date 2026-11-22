@@ -8,12 +8,14 @@ interface UpazilaSectionProps {
   upazilas: Upazila[];
   onNavigate: (view: string) => void;
   onOpenDetail: (index: number) => void;
+  isHome?: boolean;
 }
 
 export default function UpazilaSection({
   upazilas,
   onNavigate,
   onOpenDetail,
+  isHome = false,
 }: UpazilaSectionProps) {
   const { language, t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
@@ -26,6 +28,8 @@ export default function UpazilaSection({
       u.landmark.toLowerCase().includes(q)
     );
   });
+
+  const displayedUpazilas = isHome && !searchQuery ? filtered.slice(0, 6) : filtered;
 
   return (
     <section id="upazilas" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -64,7 +68,7 @@ export default function UpazilaSection({
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filtered.map((u, idx) => {
+        {displayedUpazilas.map((u, idx) => {
           const originalIdx = upazilas.indexOf(u);
           const serial = language === 'bn' ? u.serialBn : u.serialEn;
           const name = language === 'bn' ? u.name : u.enName;
@@ -100,6 +104,34 @@ export default function UpazilaSection({
             </button>
           );
         })}
+
+        {isHome && !searchQuery && (
+          <div className="col-span-full mt-2 p-5 rounded-2xl bg-gradient-to-r from-amber-50/80 via-slate-50 to-emerald-50/80 border border-amber-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xs">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200">
+                  শীর্ষ ৬টি উপজেলা প্রদর্শিত
+                </span>
+                <span className="text-xs text-slate-500 font-medium">
+                  বগুড়া জেলায় মোট ১২টি উপজেলা ও ১০৮টি ইউনিয়ন
+                </span>
+              </div>
+              <h4 className="font-bold text-slate-900 text-base sm:text-lg">
+                বগুড়ার সকল ১২টি উপজেলার বিস্তারিত প্রোফাইল ও মানচিত্র
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+                শেরপুর, শিবগঞ্জ, শাজাহানপুর, দুপচাঁচিয়া, সারিয়াকান্দিসহ সকল উপজেলার জনসংখ্যা, ঐতিহাসিক স্থান ও ইউনিয়ন তালিকা।
+              </p>
+            </div>
+            <button
+              onClick={() => onNavigate('upazilas')}
+              className="px-5 py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-xs flex items-center gap-2 shrink-0 transition cursor-pointer"
+            >
+              <span>সকল ১২টি উপজেলা দেখুন</span>
+              <i className="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

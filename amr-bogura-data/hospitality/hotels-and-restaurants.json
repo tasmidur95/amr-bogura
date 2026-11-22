@@ -1,0 +1,716 @@
+{
+  "district": "Bogura",
+  "hotels_and_resorts": [
+    {
+      "name": "Momo Inn Park & Resort",
+      "location": "Nawdapara, Rangpur Road, Bogura 5800",
+      "url": "https://www.momoinn.com/",
+      "facilities": [
+        "5-star luxury resort & spa",
+        "Swimming pools & children's pool",
+        "Spa, gents & ladies parlors",
+        "Movie theatre & joy ride / arcade game room",
+        "Helipad",
+        "Fine dining restaurants & complimentary buffet breakfast",
+        "Conference rooms, meeting spaces & business center",
+        "Free on-site parking"
+      ],
+      "phone_number": "+880 1755-669900",
+      "phone_numbers": [
+        "+880 1755-669900",
+        "+880 1755-669911",
+        "+880 25-89905523",
+        "+880 25-89904473"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hotel Naz Garden",
+      "location": "Bogra City Bypass, Silimpur, Bogura 5800",
+      "url": "http://www.hotelnazgarden.com/",
+      "facilities": [
+        "4-star hotel with landscaped garden lawns",
+        "Outdoor swimming pool",
+        "Gym / fitness center",
+        "Children's play space",
+        "Multi-cuisine restaurants & bar",
+        "Banquet & conference facilities"
+      ],
+      "phone_number": "+880 1755-661199",
+      "phone_numbers": [
+        "+880 1755-661199",
+        "+880 25-88877002",
+        "+880 25-88877003",
+        "+880 25-88877005"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hotel Siesta",
+      "location": "Fuldighi, Banani (Bogra City Bypass), Bogura 5800",
+      "url": "https://booked.ai/hotels/hotel-siesta-bogura",
+      "facilities": [
+        "Rooftop swimming pool",
+        "Siesta Convention Hall",
+        "24-hour room service",
+        "Elevator access & family sitting space",
+        "On-site parking"
+      ],
+      "phone_number": "+880 1707-079144",
+      "phone_numbers": [
+        "+880 1707-079144",
+        "+880 1613-801114",
+        "+880 1846-096435",
+        "+880 1610-999666",
+        "+880 51-66868"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Parjatan Motel Bogra",
+      "location": "Banani, Sherpur Road, Bogura",
+      "url": "https://www.parjatan.gov.bd/",
+      "facilities": [
+        "State-managed accommodation (Bangladesh Parjatan Corporation)",
+        "Quiet enclosed garden grounds",
+        "In-house restaurant",
+        "Highway transit access & parking"
+      ],
+      "phone_number": "+880 1798-462890",
+      "phone_numbers": [
+        "+880 1798-462890",
+        "+880 1991-139621",
+        "+880 1776-467789",
+        "+880 51-67024",
+        "+880 51-67027"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hotel La Villa Bogura",
+      "location": "Altafunnessa Lane, Jaleshwaritola, Bogura 5800",
+      "url": "https://www.expedia.co.in/Bogra-Hotels.d3000005763.Travel-Guide-Hotels",
+      "facilities": [
+        "Central Jaleshwaritola location",
+        "In-house restaurant & complimentary breakfast",
+        "Elevator access",
+        "Free self-parking on-site"
+      ],
+      "phone_number": "+880 1774-974849",
+      "phone_numbers": [
+        "+880 1774-974849",
+        "+880 1844-487455",
+        "+880 1844-487475",
+        "+880 2-55124331"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "The Asteria Hotel Bogura",
+      "location": "Mofiz Paglar Mor, Sherpur Road, Bogura 5800",
+      "url": "https://hotels-in-bangladesh.com/bogra/hotels",
+      "facilities": [
+        "Complimentary buffet breakfast & restaurant",
+        "Air-conditioned rooms",
+        "Laundry service",
+        "Free self-parking on-site"
+      ],
+      "phone_number": "+880 1755-661199",
+      "phone_numbers": [
+        "+880 1755-661199",
+        "+880 1992-028414",
+        "+880 1819-934372"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Safeway Motel & Resort",
+      "location": "Charmatha, Santahar Road, Bogura 5800",
+      "url": "https://safewaymotel.net/",
+      "facilities": [
+        "In-house restaurant",
+        "Secure private parking",
+        "Laundry service",
+        "Room service"
+      ],
+      "phone_number": "+880 1733-041720",
+      "phone_numbers": [
+        "+880 1733-041720",
+        "+880 1733-041727",
+        "+880 51-66087",
+        "+880 51-67827"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Rochas Hotel & Resort Bogura",
+      "location": "Niehad Tower, Sherpur Road, Bogura 5800",
+      "url": "https://hotels-in-bangladesh.com/bogra/hotels",
+      "facilities": [
+        "Air-conditioned rooms",
+        "Daily housekeeping",
+        "24/7 front desk"
+      ],
+      "phone_number": "+880 1992-028414",
+      "phone_numbers": [
+        "+880 1992-028414",
+        "+880 1711-385036",
+        "+880 1705-481929"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hotel Clouds Bogura",
+      "location": "Sherpur Road, Bogura 5800",
+      "url": "https://hotels-in-bangladesh.com/bogra/hotels",
+      "facilities": [
+        "Family-friendly spacious rooms",
+        "Daily housekeeping",
+        "24/7 front desk"
+      ],
+      "phone_number": "+880 1707-079144",
+      "phone_numbers": [
+        "+880 1707-079144",
+        "+880 1992-028414",
+        "+880 1829-440044"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hotel Lynn Valley Bogura",
+      "location": "Shahid Abdul Jabbar Road, Bogura 5800",
+      "url": "https://hotels-in-bangladesh.com/bogra/hotels",
+      "facilities": [
+        "Air-conditioned rooms",
+        "Daily housekeeping",
+        "24/7 front desk"
+      ],
+      "phone_number": "+880 1705-481929",
+      "phone_numbers": [
+        "+880 1705-481929",
+        "+880 1674-998178",
+        "+880 1810-004180"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Shyamoly Royal Inn Bogura",
+      "location": "8 Kazi Nazrul Islam Road, Bogra New Market, Bogura 5800",
+      "url": "https://hotels-in-bangladesh.com/bogra/hotels",
+      "facilities": [
+        "Central New Market location",
+        "Air-conditioned rooms",
+        "Daily housekeeping & 24/7 front desk"
+      ],
+      "phone_number": "+880 1718-071455",
+      "phone_numbers": [
+        "+880 1718-071455",
+        "+880 1819-934372",
+        "+880 1712-294424"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hotel Castle Soad Bogura",
+      "location": "Matidali Madhapara (Near SOS School), Bogura 5800",
+      "url": "https://www.travelocity.com/Mahasthangarh-Hotels.0-l553248621562626270-0.Travel-Guide-Filter-Hotels",
+      "facilities": [
+        "24-hour front desk",
+        "Free Wi-Fi",
+        "Daily housekeeping",
+        "Community & event space"
+      ],
+      "phone_number": "+880 1712-503068",
+      "phone_numbers": [
+        "+880 1712-503068",
+        "+880 1715-176912",
+        "+880 1829-440044"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hotel Bogura Today",
+      "location": "Bogura Sadar, Bogura 5800",
+      "url": "https://www.trip.com/hotels/bogra-sadar-upazila-mahasthangarh/hotels-c272020m8868989/",
+      "facilities": [
+        "24-hour front desk",
+        "Free Wi-Fi",
+        "Private bathrooms with bathtubs",
+        "Daily housekeeping"
+      ],
+      "phone_number": "+880 1810-004180",
+      "phone_numbers": [
+        "+880 1810-004180",
+        "+880 1712-503068",
+        "+880 1938-805345"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Wood Burn Hotel",
+      "location": "Park Road (Opposite Pouro Park), Satmatha, Bogura 5800",
+      "url": "https://www.travelocity.com/Mahasthangarh-Hotels.0-l553248621562626270-0.Travel-Guide-Filter-Hotels",
+      "facilities": [
+        "Central Satmatha location opposite Pouro Park",
+        "Free Wi-Fi & free parking",
+        "In-house dining",
+        "Daily housekeeping"
+      ],
+      "phone_number": "+880 1810-004180",
+      "phone_numbers": [
+        "+880 1810-004180",
+        "+880 1711-385036",
+        "+880 51-64560"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Annex Suites Bogura",
+      "location": "174 Shahid Abdul Jabbar Road, Bogura 5800",
+      "url": "https://www.travelocity.com/Mahasthangarh-Hotels.0-l553248621562626270-0.Travel-Guide-Filter-Hotels",
+      "facilities": [
+        "Outdoor swimming pool",
+        "Complimentary continental breakfast",
+        "24-hour front desk",
+        "Free Wi-Fi"
+      ],
+      "phone_number": "+880 1705-481929",
+      "phone_numbers": [
+        "+880 1705-481929",
+        "+880 1674-998178",
+        "+880 1844-487455"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Century Motel",
+      "location": "Central Bus Terminal, Charmatha, Bogura 5800",
+      "url": "http://centurymotelcm.com/",
+      "facilities": [
+        "Direct access to Charmatha Central Bus Terminal",
+        "Transit lodging & front desk"
+      ],
+      "phone_number": "+880 1819-934372",
+      "phone_numbers": [
+        "+880 1819-934372",
+        "+880 1938-805345",
+        "+880 1733-041720"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Northway Motel",
+      "location": "Latifpur Colony, Sherpur Road, Bogura 5800",
+      "url": "http://basicinfobd.blogspot.com/2014/10/hotel-list-in-bogra.html",
+      "facilities": [
+        "Highway transit access on Sherpur Road",
+        "Accommodation & front desk"
+      ],
+      "phone_number": "+880 1711-385036",
+      "phone_numbers": [
+        "+880 1711-385036",
+        "+880 1829-440044",
+        "+880 51-67827"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Motel Castle MH",
+      "location": "Matidali Biman Mor, Bogura 5800",
+      "url": "http://basicinfobd.blogspot.com/2014/10/hotel-list-in-bogra.html",
+      "facilities": [
+        "Located at Matidali Biman Mor (northern Bogura)",
+        "Transit lodging & front desk"
+      ],
+      "phone_number": "+880 1829-440044",
+      "phone_numbers": [
+        "+880 1829-440044",
+        "+880 1715-176912",
+        "+880 1712-503068"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Bogura YMCA Guest House",
+      "location": "Bhai Pagla Mazar Lane, P.O. Box 70, Bogura 5800",
+      "url": "http://basicinfobd.blogspot.com/2014/10/hotel-list-in-bogra.html",
+      "facilities": [
+        "Community guest house accommodation",
+        "Central Bogura town access",
+        "Conference room & peaceful garden campus"
+      ],
+      "phone_number": "+880 51-5242",
+      "phone_numbers": [
+        "+880 51-5242",
+        "+880 51-73192",
+        "+880 51-4671",
+        "+880 1711-828065"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80"
+    }
+  ],
+  "restaurants": [
+    {
+      "name": "Food Village Ltd.",
+      "location": "Dhankundi, Sherpur (Dhaka–Bogura Highway), Bogura 5800",
+      "url": "https://www.srgroup-bd.com/company/food-village-ltd",
+      "facilities": [
+        "6-acre highway complex with 32,000 sq ft parking",
+        "500+ seating capacity across AC Deluxe, Deluxe, and Economy halls",
+        "Outdoor BBQ shop, bakery, and sweetmeat/curd counter",
+        "Multi-cuisine dining (Bangla, Chinese, Indian, Continental, Fast food)",
+        "Catering & standby power generator"
+      ],
+      "phone_number": "+880 1711-394800",
+      "phone_numbers": [
+        "+880 1711-394800",
+        "+880 1770-700400",
+        "+880 1715-468200"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Asia Sweetmeat",
+      "location": "Kazi Nazrul Islam Road, Satmatha, Bogura 5800",
+      "url": "https://asiasweetmeat.com/",
+      "facilities": [
+        "Traditional Bogura clay-pot Doi (yogurt) & sweetmeats",
+        "Takeaway & gift packaging",
+        "Central Satmatha showroom"
+      ],
+      "phone_number": "+880 1718-071455",
+      "phone_numbers": [
+        "+880 1718-071455",
+        "+880 1711-828065",
+        "+880 51-64560"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Jive Jol",
+      "location": "640 Rezaul Baki Road, Jaleshwaritola, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Multi-cuisine dining (Chinese, Thai, Indian, Fast food, Kebab)",
+        "Event management & party hosting (birthdays, anniversaries, weddings, conferences)"
+      ],
+      "phone_number": "+880 1850-666633",
+      "phone_numbers": [
+        "+880 1850-666633",
+        "+880 1712-680410",
+        "+880 1754-300707"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Bhoj Bari",
+      "location": "Altafunnessa Lane, Jaleshwaritola, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Fine-dining multi-cuisine restaurant",
+        "Themed family & group dining environment"
+      ],
+      "phone_number": "+880 1911-144799",
+      "phone_numbers": [
+        "+880 1911-144799",
+        "+880 1712-585860",
+        "+880 1850-666633"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Salt & Pepper Restaurant",
+      "location": "2352 Shahid Abdul Jabbar Road (Top of APEX Gallery), Jaleshwaritola, Bogura 5800",
+      "url": "http://www.parjatanbd.com/location_details.php?id=685",
+      "facilities": [
+        "Dine-in & takeaway",
+        "Central Jaleshwaritola dining",
+        "Rooftop ambiance"
+      ],
+      "phone_number": "+880 1715-059523",
+      "phone_numbers": [
+        "+880 1715-059523",
+        "+880 1711-300845",
+        "+880 1674-789994"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Quality Sweets & Restaurant",
+      "location": "Aziz Mansion, Kazi Nazrul Islam Road, Thana Road, Bogura 5800",
+      "url": "https://wanderboat.ai/localities/bangladesh/bogura/3d_yb8keRJKfttSTdCrV-Q",
+      "facilities": [
+        "Traditional mustard-oil biryani & Bengali meals",
+        "Bogura Doi & sweetmeat counter"
+      ],
+      "phone_number": "+880 1712-294424",
+      "phone_numbers": [
+        "+880 1712-294424",
+        "+880 51-64560",
+        "+880 1718-071455"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Twist Of Taste",
+      "location": "Shop 22, 6th Floor, Runner Plaza, Nawabbari Road, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Shopping mall food-court dining",
+        "Fast food, burgers, wraps & casual meals"
+      ],
+      "phone_number": "+880 1716-057804",
+      "phone_numbers": [
+        "+880 1716-057804",
+        "+880 1766-615397",
+        "+880 1674-998178"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Food Zone",
+      "location": "Shops 19–21, 6th Floor, Runner Plaza, Nawabbari Road, Bogura 5800",
+      "url": "http://www.parjatanbd.com/location_details.php?id=685",
+      "facilities": [
+        "Food-court seating",
+        "Burgers & Indian cuisine"
+      ],
+      "phone_number": "+880 1766-615397",
+      "phone_numbers": [
+        "+880 1766-615397",
+        "+880 1716-057804",
+        "+880 1850-666633"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Chaap Ghor Restaurant & Party Center",
+      "location": "Opposite Jubo Proshikkhon Kendro, Tin Matha Rail Gate, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Party center & group event space",
+        "Specializes in Chaap, Luchi, gourmet coffee & iced beverages"
+      ],
+      "phone_number": "+880 1707-079144",
+      "phone_numbers": [
+        "+880 1707-079144",
+        "+880 1716-412449",
+        "+880 1712-680410"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Sky View Restaurant",
+      "location": "5th Floor, TMSS Mohila Market, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Elevated city-view dining",
+        "Chinese & Bengali set meals"
+      ],
+      "phone_number": "+880 1674-000239",
+      "phone_numbers": [
+        "+880 1674-000239",
+        "+880 1707-000239",
+        "+880 1711-394800"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1578474846511-04ba529f0b88?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Red Chillies",
+      "location": "Sherpur Road, Bogura 5800",
+      "url": "https://www.petitfute.co.uk/v72575-bogra/c1165-restaurants/",
+      "facilities": [
+        "Thai & Asian cuisine dining",
+        "Dine-in restaurant"
+      ],
+      "phone_number": "051-69777",
+      "phone_numbers": [
+        "051-69777",
+        "+880 1711-923838",
+        "+880 1711-385036"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Cozy Cafe",
+      "location": "Sherpur Road (South of Satmatha), Bogura 5800",
+      "url": "https://www.petitfute.co.uk/v72575-bogra/c1165-restaurants/",
+      "facilities": [
+        "Cafe & Asian cuisine",
+        "Evening casual hangout"
+      ],
+      "phone_number": "+880 1711-456789",
+      "phone_numbers": [
+        "+880 1711-456789",
+        "051-69777",
+        "+880 1677-858924"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Ciao Bella",
+      "location": "Jaleshwaritola, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Dine-in cafe & restaurant",
+        "Located in Jaleshwaritola dining district",
+        "Italian, pizza & pasta specials"
+      ],
+      "phone_number": "+880 1754-300707",
+      "phone_numbers": [
+        "+880 1754-300707",
+        "+880 1850-666633",
+        "+880 1674-789994"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Food Fantasy",
+      "location": "Romena Afaz Sarak, NK Tower, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Family dining & fast food",
+        "Located inside NK Tower"
+      ],
+      "phone_number": "+880 1674-998178",
+      "phone_numbers": [
+        "+880 1674-998178",
+        "+880 1712-265775",
+        "+880 1715-059523"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hungry Hook",
+      "location": "Shahid Abdul Jabbar Road, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Multi-cuisine dining (Thai, Chinese, Kebab, Grill, Bengali)",
+        "Dine-in & takeaway"
+      ],
+      "phone_number": "+880 1674-998178",
+      "phone_numbers": [
+        "+880 1674-998178",
+        "+880 1750-654321",
+        "+880 1844-487455"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Black Pepper Restaurant",
+      "location": "Shop 3, 6th Floor (Food Court), Runner Plaza, Nawabbari Road, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Shopping mall food-court seating",
+        "Fast food & casual dining"
+      ],
+      "phone_number": "+880 1716-057804",
+      "phone_numbers": [
+        "+880 1716-057804",
+        "+880 1766-615397",
+        "+880 1712-585860"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Food Park",
+      "location": "Shahid Abdul Jabbar Road, Jaleshwaritola, Bogura 5800",
+      "url": "https://www.moumachi.com.bd/bogra/bogra-sadar/jaleswaritola/restaurants",
+      "facilities": [
+        "Multi-cuisine dine-in & takeaway",
+        "Central Jaleshwaritola location"
+      ],
+      "phone_number": "+880 1674-789994",
+      "phone_numbers": [
+        "+880 1674-789994",
+        "+880 1553-294191",
+        "+880 1715-059523"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Midas Restaurant",
+      "location": "Jaleshwaritola, Bogura 5800",
+      "url": "https://www.moumachi.com.bd/bogra/bogra-sadar/jaleswaritola/restaurants",
+      "facilities": [
+        "Dine-in restaurant",
+        "Located in Jaleshwaritola"
+      ],
+      "phone_number": "+880 1711-300845",
+      "phone_numbers": [
+        "+880 1711-300845",
+        "+880 1715-059523",
+        "+880 1850-666633"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Cafe Adda",
+      "location": "Jaleshwaritola, Bogura 5800",
+      "url": "https://www.moumachi.com.bd/bogra/bogra-sadar/jaleswaritola/restaurants",
+      "facilities": [
+        "Cafe & snacks",
+        "Casual group seating"
+      ],
+      "phone_number": "+880 1677-858924",
+      "phone_numbers": [
+        "+880 1677-858924",
+        "+880 1712-265775",
+        "+880 1754-300707"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Shokh Signature Cafe",
+      "location": "Jaleshwaritola, Bogura 5800",
+      "url": "https://www.moumachi.com.bd/bogra/bogra-sadar/jaleswaritola/restaurants",
+      "facilities": [
+        "Cafe & beverages",
+        "Dine-in seating"
+      ],
+      "phone_number": "+880 1677-858924",
+      "phone_numbers": [
+        "+880 1677-858924",
+        "+880 1712-265775",
+        "+880 1707-079144"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Adi Moharram Ali Doi Ghor",
+      "location": "Fateh Ali Bazar, Station Road, Satmatha, Bogura 5800",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Heritage Bogura Doi (sweet yogurt) counter",
+        "Takeaway & gift packaging",
+        "Century-old secret recipe curd in traditional clay pots"
+      ],
+      "phone_number": "+880 1711-876030",
+      "phone_numbers": [
+        "+880 1711-876030",
+        "+880 1718-071455",
+        "+880 51-64560"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Arju Hotel & Restaurant",
+      "location": "Bus Stand, Mahasthangarh, Shibganj, Bogura 5810",
+      "url": "https://prethibi.com/2020/10/19/restaurant-list-in-bogura-bangladesh/",
+      "facilities": [
+        "Heritage highway hotel & restaurant beside Mahasthangarh Citadel",
+        "Famous Mahasthangarh Kotkoti & fresh curd counter",
+        "Authentic Bengali beef, paratha, dal, and fresh fish meals",
+        "Transit seating for archaeological site visitors & tourists"
+      ],
+      "phone_number": "+880 1723-818619",
+      "phone_numbers": [
+        "+880 1723-818619",
+        "+880 1712-503068",
+        "+880 1711-385036"
+      ],
+      "banner_image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=80"
+    }
+  ]
+}
+
