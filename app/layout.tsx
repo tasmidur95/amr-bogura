@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { LanguageProvider } from '@/lib/context/LanguageContext';
 import { ToastProvider } from '@/lib/context/ToastContext';
+import { CommunityAuthProvider } from '@/lib/context/CommunityAuthContext';
+import CommunityAuthModal from '@/components/CommunityAuthModal';
 import RouteTransitionBar from '@/components/RouteTransitionBar';
 
 export const metadata: Metadata = {
@@ -65,7 +67,10 @@ export default function RootLayout({
         </Suspense>
         <LanguageProvider>
           <ToastProvider>
-            {children}
+            <CommunityAuthProvider>
+              {children}
+              <CommunityAuthModal />
+            </CommunityAuthProvider>
           </ToastProvider>
         </LanguageProvider>
       </body>

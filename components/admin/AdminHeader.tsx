@@ -25,6 +25,7 @@ export default function AdminHeader() {
     isLoading,
     triggerRefresh,
     handleLogout,
+    adminUser,
   } = useAdmin();
 
   const currentMeta = navMeta[currentNav] || navMeta.overview;
@@ -91,11 +92,14 @@ export default function AdminHeader() {
 
         {/* Super Admin Pill & Logout */}
         <div className="flex items-center gap-2 pl-2 border-l border-slate-800">
-          <div className="hidden sm:flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-800/60 text-xs text-slate-300">
+          <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300">
             <span className="w-6 h-6 rounded-md bg-emerald-600 text-white font-bold flex items-center justify-center text-[11px]">
-              ব
+              <i className="fa-solid fa-user-shield text-[10px]"></i>
             </span>
-            <span className="font-semibold text-slate-200 text-xs">অ্যাডমিন</span>
+            <div className="flex flex-col text-left leading-tight">
+              <span className="font-bold text-slate-200 text-xs">{adminUser?.username || 'admin'}</span>
+              <span className="text-[9px] text-emerald-400 font-medium">সুপারঅ্যাডমিন</span>
+            </div>
           </div>
 
           <button

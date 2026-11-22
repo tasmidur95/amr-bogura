@@ -43,7 +43,9 @@
         "rating": 5,
         "comment": "বাংলার আড়াই হাজার বছরের জীবন্ত ইতিহাস। জাদুঘরটি অত্যন্ত সমৃদ্ধ এবং গোবিন্দ ভিটার পাশের নদীর দৃশ্য মন জুড়িয়ে দেয়।",
         "date": "২০২৬-০২-১০",
-        "location": "ঢাকা"
+        "location": "ঢাকা",
+        "isApproved": true,
+        "status": "approved"
       },
       {
         "id": "rev-2",
@@ -51,7 +53,9 @@
         "rating": 5,
         "comment": "পারিবারিক ভ্রমণের জন্য দারুণ জায়গা। মহাস্থানের বিখ্যাত কটকটি মিস করবেন না!",
         "date": "২০২৬-০১-২৮",
-        "location": "রাজশাহী"
+        "location": "রাজশাহী",
+        "isApproved": true,
+        "status": "approved"
       }
     ],
     "status": "approved"
@@ -97,7 +101,9 @@
         "rating": 5,
         "comment": "ইটের সূক্ষ্ম গাঁথুনি এবং ধাপে ধাপে ওপরে ওঠা স্থাপত্য চোখ জুড়িয়ে দেয়। বিকেলের আলোয় ছবি তোলার দারুণ স্পট।",
         "date": "২০২৬-০২-০৪",
-        "location": "বগুড়া"
+        "location": "বগুড়া",
+        "isApproved": true,
+        "status": "approved"
       }
     ],
     "status": "approved"
@@ -144,7 +150,9 @@
         "rating": 5,
         "comment": "পাহাড়পুরের মতোই অপূর্ব অনুভূতি দেয়। কোলাহলমুক্ত নিস্তব্ধ এক প্রাচীন পরিবেশ।",
         "date": "২০২৬-০২-১২",
-        "location": "সিলেট"
+        "location": "সিলেট",
+        "isApproved": true,
+        "status": "approved"
       }
     ],
     "status": "approved"
@@ -190,7 +198,9 @@
         "rating": 5,
         "comment": "লাল ইটের এমন পরিচ্ছন্ন ও টেকসই প্রাচীন মসজিদ বাংলাদেশে বিরল। শেরপুরের দই খাবার পর এখানে কাটানো সময় চিরস্মরণীয়।",
         "date": "২০২৬-০২-০২",
-        "location": "ঢাকা"
+        "location": "ঢাকা",
+        "isApproved": true,
+        "status": "approved"
       }
     ],
     "status": "approved"
@@ -237,7 +247,9 @@
         "rating": 5,
         "comment": "যমুনার বাতাসে বুক ভরে নিঃশ্বাস নেওয়ার সেরা জায়গা। বিকেলে নৌকা ভ্রমণের অভিজ্ঞতা অসাধারণ।",
         "date": "২০২৬-০২-১৫",
-        "location": "বগুড়া"
+        "location": "বগুড়া",
+        "isApproved": true,
+        "status": "approved"
       }
     ],
     "status": "approved"
@@ -284,7 +296,9 @@
         "rating": 5,
         "comment": "বগুড়ায় এসে সাতমাথায় নবাব প্যালেস দেখে সরা দই না খেলে বগুড়া সফর অপূর্ণ থেকে যায়!",
         "date": "২০২৬-০২-০৮",
-        "location": "চট্টগ্রাম"
+        "location": "চট্টগ্রাম",
+        "isApproved": true,
+        "status": "approved"
       }
     ],
     "status": "approved"
@@ -329,7 +343,9 @@
         "rating": 5,
         "comment": "প্রকৃতির মাঝে এত চমৎকার ঐতিহাসিক মন্দির কমপ্লেক্স দেখে মন ভরে গেল। শান্তিপ্রিয় পর্যটকদের অবশ্যই আসা উচিত।",
         "date": "২০২৬-০২-১১",
-        "location": "খুলনা"
+        "location": "খুলনা",
+        "isApproved": true,
+        "status": "approved"
       }
     ],
     "status": "approved"
@@ -374,7 +390,9 @@
         "rating": 5,
         "comment": "অত্যন্ত শান্ত, পবিত্র ও ভক্তিময় পরিবেশ। নাটোরের রানী ভবানীর ইতিহাসের স্মৃতিচিহ্ন আজও জীবন্ত।",
         "date": "২০২৬-০১-৩০",
-        "location": "ঢাকা"
+        "location": "ঢাকা",
+        "isApproved": true,
+        "status": "approved"
       }
     ],
     "status": "approved"

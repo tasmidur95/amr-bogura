@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 
 interface ServicesGridProps {
@@ -227,6 +228,29 @@ export default function ServicesGrid({
             </p>
           </div>
         </button>
+
+        {/* Service 9: Banks & 24/7 ATM Booths */}
+        <Link
+          href="/banking"
+          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-800 group-hover:bg-emerald-800 group-hover:text-white transition-colors flex items-center justify-center text-xl">
+              <i className="fa-solid fa-building-columns"></i>
+            </div>
+            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+              ২৪/৭ এটিএম
+            </span>
+          </div>
+          <div>
+            <h3 className="font-bold text-slate-900 text-lg group-hover:text-emerald-800 transition-colors">
+              ব্যাংক ও এটিএম বুথ
+            </h3>
+            <p className="text-xs text-slate-500 mt-1">
+              রাউটিং নম্বর, সুইফট কোড ও সিআরএম নগদ জমা
+            </p>
+          </div>
+        </Link>
       </div>
     </section>
   );

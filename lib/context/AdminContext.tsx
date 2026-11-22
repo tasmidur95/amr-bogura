@@ -26,6 +26,14 @@ export interface AdminBadgeCounts {
   reviews: number;
 }
 
+export interface AdminUser {
+  username: string;
+  role: string;
+  district?: string;
+  division?: string;
+  authorizedAt?: string;
+}
+
 export interface SystemDiagnostics {
   environment: {
     nodeVersion: string;
@@ -72,8 +80,13 @@ interface AdminContextType {
   isCheckingAuth: boolean;
   isAuthenticated: boolean;
   setIsAuthenticated: (val: boolean) => void;
+  adminUsernameInput: string;
+  setAdminUsernameInput: (val: string) => void;
+  adminPasswordInput: string;
+  setAdminPasswordInput: (val: string) => void;
   passkeyInput: string;
   setPasskeyInput: (val: string) => void;
+  adminUser: AdminUser | null;
   isAuthLoading: boolean;
   authError: string;
   setAuthError: (val: string) => void;
@@ -123,7 +136,10 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   // Authentication & Guard State
   const [isCheckingAuth, setIsCheckingAuth] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [passkeyInput, setPasskeyInput] = useState<string>('');
+  const [adminUsernameInput, setAdminUsernameInput] = useState<string>('admin');
+  const [adminPasswordInput, setAdminPasswordInput] = useState<string>('');
+  const [passkeyInput, setPasskeyInputState] = useState<string>('');
+  const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [isAuthLoading, setIsAuthLoading] = useState<boolean>(false);
   const [authError, setAuthError] = useState<string>('');
 
@@ -143,12 +159,21 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const [activeTabLoading, setActiveTabLoading] = useState<boolean>(false);
   const [refreshKey, setRefreshKey] = useState<number>(0);
 
+  const setPasskeyInput = (val: string) => {
+    setPasskeyInputState(val);
+    setAdminPasswordInput(val);
+  };
+
   // Restore saved session & sidebar preferences on mount (Auth Guard)
   useEffect(() => {
     try {
       const savedToken = sessionStorage.getItem('amar_bogura_admin_token');
+      const savedUser = sessionStorage.getItem('amar_bogura_admin_user');
       if (savedToken) {
         setIsAuthenticated(true);
+        if (savedUser) {
+          setAdminUser(JSON.parse(savedUser));
+        }
       } else {
         setIsAuthenticated(false);
       }
@@ -211,7 +236,14 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!passkeyInput.trim()) return;
+    const effectiveUser = adminUsernameInput.trim();
+    const effectivePass = (adminPasswordInput || passkeyInput).trim();
+
+    if (!effectiveUser || !effectivePass) {
+      setAuthError('ইউজারনেম এবং পাসওয়ার্ড উভয়ই প্রদান করুন।');
+      return;
+    }
+
     setIsAuthLoading(true);
     setAuthError('');
 
@@ -219,17 +251,25 @@ export function AdminProvider({ children }: { children: ReactNode }) {
       const res = await fetch('/api/admin/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ passkey: passkeyInput.trim() }),
+        body: JSON.stringify({
+          username: effectiveUser,
+          password: effectivePass,
+          passkey: effectivePass,
+        }),
       });
       const data = await res.json();
 
       if (data.success && data.token) {
         sessionStorage.setItem('amar_bogura_admin_token', data.token);
+        if (data.user) {
+          sessionStorage.setItem('amar_bogura_admin_user', JSON.stringify(data.user));
+          setAdminUser(data.user);
+        }
         setIsAuthenticated(true);
         showToast('সিস্টেম অ্যাডমিন প্যানেলে স্বাগতম!');
         triggerRefresh();
       } else {
-        setAuthError(data.error || 'ভুল পাসকি! সঠিক কোড দিন (ডিফল্ট: bogura2026)');
+        setAuthError(data.error || 'ভুল ইউজারনেম বা পাসওয়ার্ড! (ডিফল্ট: admin / bogura2026)');
       }
     } catch (err: any) {
       setAuthError('অথেনটিকেশন ব্যর্থ হয়েছে');
@@ -240,9 +280,12 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
   const handleLogout = () => {
     sessionStorage.removeItem('amar_bogura_admin_token');
+    sessionStorage.removeItem('amar_bogura_admin_user');
     setIsAuthenticated(false);
-    setPasskeyInput('');
-    showToast('সফলভাবে লগআউট সম্পন্ন হয়েছে');
+    setAdminUser(null);
+    setAdminPasswordInput('');
+    setPasskeyInputState('');
+    showToast('সফলভাবে অ্যাডমিন লগআউট সম্পন্ন হয়েছে');
   };
 
   return (
@@ -251,8 +294,13 @@ export function AdminProvider({ children }: { children: ReactNode }) {
         isCheckingAuth,
         isAuthenticated,
         setIsAuthenticated,
+        adminUsernameInput,
+        setAdminUsernameInput,
+        adminPasswordInput,
+        setAdminPasswordInput,
         passkeyInput,
         setPasskeyInput,
+        adminUser,
         isAuthLoading,
         authError,
         setAuthError,
@@ -288,4 +336,3 @@ export function useAdmin() {
   }
   return context;
 }
-

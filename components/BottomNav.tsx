@@ -63,6 +63,13 @@ export default function BottomNav({ currentView, onNavigate }: BottomNavProps) {
       accentColor: 'text-amber-600',
     },
     {
+      id: 'banking',
+      label: 'ব্যাংক-এটিএম',
+      href: '/banking',
+      icon: 'fa-solid fa-building-columns',
+      accentColor: 'text-emerald-700',
+    },
+    {
       id: 'community',
       label: 'কমিউনিটি',
       href: '/community',

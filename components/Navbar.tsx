@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import BrandLogo from '@/components/BrandLogo';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
+import { useCommunityAuth } from '@/lib/context/CommunityAuthContext';
 import { SiteContent } from '@/lib/data/district-data';
 
 interface NavbarProps {
@@ -19,6 +20,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
   const router = useRouter();
   const { language, toggleLanguage, t } = useLanguage();
   const { showToast } = useToast();
+  const { user, isLoggedIn, openAuthModal } = useCommunityAuth();
   const [activeContent, setActiveContent] = useState<SiteContent | undefined>(siteContent);
 
   const handleNavClick = (view: string, anchor?: string) => {
@@ -158,6 +160,15 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             >
               {language === 'bn' ? 'হোটেল-রেস্তোরাঁ' : 'Hospitality'}
             </Link>
+            <Link
+              href="/banking"
+              className={`px-3 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'banking'
+                ? 'font-semibold text-emerald-900 bg-white shadow-sm'
+                : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
+                }`}
+            >
+              {language === 'bn' ? 'ব্যাংক ও এটিএম' : 'Banking & ATM'}
+            </Link>
             <button
               onClick={() => handleNavClick('home', 'history')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition-all duration-200 ease-out active:scale-95 cursor-pointer"
@@ -185,8 +196,23 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             </Link>
           </nav>
 
-          {/* Right Action Controls: Search, Admin & Language Toggle */}
+          {/* Right Action Controls: Search, Community Auth, Admin & Language Toggle */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Community User Status / Auth Button */}
+            <button
+              onClick={() => openAuthModal('login')}
+              className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center justify-center text-sm cursor-pointer"
+              title={isLoggedIn ? `কমিউনিটি সদস্য: ${user?.name} (@${user?.username})` : 'কমিউনিটি সদস্য লগইন / নিবন্ধন'}
+            >
+              {isLoggedIn && user ? (
+                <span className="w-5 h-5 rounded-full bg-emerald-700 text-white font-bold text-[10px] flex items-center justify-center shadow-2xs">
+                  {user.name.slice(0, 1)}
+                </span>
+              ) : (
+                <i className="fa-solid fa-user-circle text-emerald-700"></i>
+              )}
+            </button>
+
             <Link
               href="/admin"
               className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center justify-center text-sm cursor-pointer"

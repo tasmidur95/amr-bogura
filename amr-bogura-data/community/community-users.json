@@ -1,0 +1,39 @@
+[
+  {
+    "id": "usr-1795341305959",
+    "name": "পরীক্ষা ইউজার",
+    "username": "testuser",
+    "phone": "01899112233",
+    "upazila": "বগুড়া সদর",
+    "role": "নাগরিক সদস্য",
+    "isVerified": true,
+    "createdAt": "2026-11-22T09:55:05.959Z",
+    "lastLoginAt": "2026-11-22T09:55:05.962Z",
+    "passwordHash": "YW1hcl9ib2d1cmFfc2FsdF8yMDI2OnRlc3RwYXNz"
+  },
+  {
+    "id": "usr-1",
+    "name": "মোঃ তানভীর হাসান",
+    "username": "bogura_citizen",
+    "phone": "01712-345678",
+    "upazila": "বগুড়া সদর",
+    "bloodGroup": "B+",
+    "role": "নাগরিক সদস্য",
+    "isVerified": true,
+    "createdAt": "2026-01-15T10:00:00.000Z",
+    "passwordHash": "YW1hcl9ib2d1cmFfc2FsdF8yMDI2OnVzZXIxMjM=",
+    "lastLoginAt": "2026-11-22T09:58:45.206Z"
+  },
+  {
+    "id": "usr-2",
+    "name": "আব্দুল করিম",
+    "username": "donor_karim",
+    "phone": "01711-223344",
+    "upazila": "শেরপুর",
+    "bloodGroup": "O+",
+    "role": "নিয়মিত রক্তদাতা",
+    "isVerified": true,
+    "createdAt": "2026-02-01T12:00:00.000Z",
+    "passwordHash": "YW1hcl9ib2d1cmFfc2FsdF8yMDI2OnVzZXIxMjM="
+  }
+]

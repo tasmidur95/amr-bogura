@@ -13,8 +13,10 @@ function AdminShell({ children }: { children: React.ReactNode }) {
     isCheckingAuth,
     isAuthenticated,
     isSidebarExpanded,
-    passkeyInput,
-    setPasskeyInput,
+    adminUsernameInput,
+    setAdminUsernameInput,
+    adminPasswordInput,
+    setAdminPasswordInput,
     isAuthLoading,
     authError,
     handleLogin,
@@ -33,7 +35,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-4 -mb-20 md:mb-0">
-        <div className="w-full max-w-md bg-slate-900 rounded-3xl border border-slate-800 p-8 shadow-2xl text-center">
+        <div className="w-full max-w-md bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl text-center">
           <div className="flex justify-center mb-6">
             <BrandLogo variant="full" size="lg" theme="dark" />
           </div>
@@ -47,22 +49,44 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             অ্যাডমিন প্রবেশাধিকার
           </h2>
           <p className="text-xs text-slate-400 mb-6 leading-relaxed">
-            ওয়েবসাইটের সকল কন্টেন্ট (ব্যানার, উপজেলা, ইউনিয়ন, দর্শনীয় স্থান, হাসপাতাল, রক্তদাতা ও জরুরি হটলাইন) সম্পাদনা ও নিয়ন্ত্রণের জন্য মাস্টার পাসকি দিন।
+            ওয়েবসাইটের সকল কন্টেন্ট (ব্যানার, উপজেলা, ইউনিয়ন, দর্শনীয় স্থান, হাসপাতাল, রক্তদাতা ও জরুরি হটলাইন) সম্পাদনা ও নিয়ন্ত্রণের জন্য ইউজারনেম ও পাসওয়ার্ড দিন।
           </p>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
+              <label className="block text-xs font-bold text-slate-300 text-left mb-1.5">
+                অ্যাডমিন ইউজারনেম (Username)
+              </label>
               <div className="relative">
                 <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
-                  <i className="fa-solid fa-key text-emerald-400"></i>
+                  <i className="fa-solid fa-user-shield text-emerald-400"></i>
+                </span>
+                <input
+                  type="text"
+                  required
+                  value={adminUsernameInput}
+                  onChange={e => setAdminUsernameInput(e.target.value)}
+                  placeholder="ইউজারনেম দিন (যেমন: admin)"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 font-sans"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-300 text-left mb-1.5">
+                অ্যাডমিন পাসওয়ার্ড (Password)
+              </label>
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                  <i className="fa-solid fa-lock text-emerald-400"></i>
                 </span>
                 <input
                   type="password"
                   required
-                  value={passkeyInput}
-                  onChange={e => setPasskeyInput(e.target.value)}
-                  placeholder="অ্যাডমিন পাসকি দিন (যেমন: bogura2026)"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 font-mono tracking-wider"
+                  value={adminPasswordInput}
+                  onChange={e => setAdminPasswordInput(e.target.value)}
+                  placeholder="পাসওয়ার্ড দিন (যেমন: bogura2026)"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 font-sans tracking-wide"
                 />
               </div>
               {authError && (
@@ -92,9 +116,9 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             </button>
           </form>
 
-          <div className="mt-6 pt-6 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+          <div className="mt-6 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
             <span className="text-[11px] bg-slate-800 px-2.5 py-1 rounded-md text-amber-300 font-mono">
-              ডিফল্ট পাসকি: bogura2026
+              ডিফল্ট: admin / bogura2026
             </span>
             <Link
               href="/"
@@ -110,7 +134,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
   }
 
   // ==========================================
-  // 2. AUTHENTICATED ADMIN DASHBOARD LAYOUT
+  // 3. AUTHENTICATED ADMIN DASHBOARD LAYOUT
   // ==========================================
   return (
     <div className="admin-console-root min-h-screen w-full bg-slate-100 text-slate-800 flex flex-col">
@@ -157,4 +181,3 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
     </AdminProvider>
   );
 }
-

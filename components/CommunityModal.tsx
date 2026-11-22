@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useToast } from '@/lib/context/ToastContext';
 import { CommunityPost } from '@/lib/data/district-data';
+import { useCommunityAuth } from '@/lib/context/CommunityAuthContext';
 
 interface CommunityModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ export default function CommunityModal({
   onPostCreated,
 }: CommunityModalProps) {
   const { showToast } = useToast();
+  const { user, isLoggedIn, openAuthModal } = useCommunityAuth();
 
   const [category, setCategory] = useState(defaultCategory);
   const [name, setName] = useState('');
@@ -31,8 +33,14 @@ export default function CommunityModal({
   useEffect(() => {
     if (isOpen) {
       setCategory(defaultCategory);
+      if (user) {
+        setName(user.name || '');
+        setPhone(user.phone || '');
+        setUpazila(user.upazila || 'বগুড়া সদর');
+        if (user.bloodGroup) setBloodGroup(user.bloodGroup);
+      }
     }
-  }, [isOpen, defaultCategory]);
+  }, [isOpen, defaultCategory, user]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -64,10 +72,12 @@ export default function CommunityModal({
       name,
       group: category === 'blood' ? bloodGroup : undefined,
       role: category === 'blood' ? bloodRole : undefined,
-      badge: category !== 'blood' ? badgeMap[category] || 'নতুন তথ্য' : undefined,
+      badge: user ? 'ভেরিফায়েড নাগরিক' : (category !== 'blood' ? badgeMap[category] || 'নতুন তথ্য' : undefined),
       upazila,
       detail,
       phone,
+      contributorName: user ? user.name : name,
+      contributorPhone: user ? user.phone : phone,
     };
 
     try {
@@ -89,9 +99,11 @@ export default function CommunityModal({
       }
 
       showToast('আপনার তথ্য সফলভাবে বগুড়া কমিউনিটি বোর্ডে যুক্ত হয়েছে!');
-      setName('');
+      if (!user) {
+        setName('');
+        setPhone('');
+      }
       setDetail('');
-      setPhone('');
       onClose();
     } catch (err) {
       // Local fallback on network error
@@ -108,10 +120,11 @@ export default function CommunityModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4 animate-fade-in">
-      <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-7 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
           className="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center absolute right-5 top-5 cursor-pointer"
+          aria-label="বন্ধ করুন"
         >
           <i className="fa-solid fa-xmark"></i>
         </button>
@@ -119,12 +132,46 @@ export default function CommunityModal({
         <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
           কমিউনিটি অবদান
         </span>
-        <h3 className="text-xl font-bold text-slate-900 mt-2">
+        <h3 className="text-lg sm:text-xl font-bold text-slate-900 mt-2">
           নতুন তথ্য বা জরুরি অনুরোধ যুক্ত করুন
         </h3>
-        <p className="text-xs text-slate-500 mt-1 mb-5">
+        <p className="text-xs text-slate-500 mt-1 mb-4">
           আপনার তথ্য সরাসরি বগুড়া কমিউনিটি বোর্ডে যুক্ত হবে।
         </p>
+
+        {/* Member Status Notice */}
+        {isLoggedIn && user ? (
+          <div className="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="w-7 h-7 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-xs shrink-0">
+                <i className="fa-solid fa-check"></i>
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="font-bold truncate">{user.name} হিসেবে পোস্ট করছেন (@{user.username})</p>
+                <p className="text-[10px] text-emerald-700">আপনার পোস্টটি ভেরিফায়েড নাগরিক ব্যাজসহ সরাসরি প্রকাশিত হবে।</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="mb-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <i className="fa-solid fa-shield-halved text-amber-600 text-base shrink-0"></i>
+              <p className="leading-tight text-[11px] sm:text-xs">
+                ভেরিফায়েড নাগরিক ব্যাজ পেতে <strong>লগইন বা নিবন্ধন</strong> করতে পারেন।
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                onClose();
+                openAuthModal('login');
+              }}
+              className="px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-[11px] shrink-0 transition cursor-pointer"
+            >
+              লগইন / নিবন্ধন
+            </button>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -134,7 +181,7 @@ export default function CommunityModal({
             <select
               value={category}
               onChange={e => setCategory(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-600"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-600 cursor-pointer"
             >
               <option value="blood">রক্তদাতা নিবন্ধন / জরুরি রক্তের অনুরোধ</option>
               <option value="tuition">টিউশন (শিক্ষক / শিক্ষার্থী প্রয়োজন)</option>
@@ -165,7 +212,7 @@ export default function CommunityModal({
               <select
                 value={upazila}
                 onChange={e => setUpazila(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 cursor-pointer"
               >
                 <option value="বগুড়া সদর">বগুড়া সদর</option>
                 <option value="শেরপুর">শেরপুর</option>
@@ -193,7 +240,7 @@ export default function CommunityModal({
                 <select
                   value={bloodGroup}
                   onChange={e => setBloodGroup(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-rose-700 focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-rose-700 focus:outline-none focus:ring-2 focus:ring-emerald-600 cursor-pointer"
                 >
                   <option value="A+">A+ (এ পজিটিভ)</option>
                   <option value="A-">A- (এ নেগেটিভ)</option>
@@ -210,7 +257,7 @@ export default function CommunityModal({
                 <select
                   value={bloodRole}
                   onChange={e => setBloodRole(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 cursor-pointer"
                 >
                   <option value="রক্তদাতা">স্বেচ্ছায় রক্তদাতা</option>
                   <option value="জরুরি প্রয়োজন">জরুরি রক্ত প্রয়োজন</option>
@@ -243,7 +290,7 @@ export default function CommunityModal({
               required
               value={phone}
               onChange={e => setPhone(e.target.value)}
-              placeholder="০১৭XX-XXXXXX"
+              placeholder="০১XXXXXXXXX"
               className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"
             />
             {category === 'blood' && (
@@ -257,13 +304,22 @@ export default function CommunityModal({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 disabled:opacity-60 text-white font-bold text-sm shadow-md transition cursor-pointer"
+            className="w-full py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 disabled:opacity-60 text-white font-bold text-sm shadow-md transition cursor-pointer flex items-center justify-center gap-2"
           >
-            {isSubmitting ? 'সংরক্ষণ করা হচ্ছে...' : 'তথ্য প্রকাশ করুন'}
+            {isSubmitting ? (
+              <>
+                <i className="fa-solid fa-circle-notch fa-spin"></i>
+                <span>সংরক্ষণ করা হচ্ছে...</span>
+              </>
+            ) : (
+              <>
+                <i className="fa-solid fa-paper-plane"></i>
+                <span>তথ্য প্রকাশ করুন</span>
+              </>
+            )}
           </button>
         </form>
       </div>
     </div>
   );
 }
-

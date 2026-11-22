@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
 import { CommunityPost } from '@/lib/data/district-data';
+import { useCommunityAuth } from '@/lib/context/CommunityAuthContext';
 
 interface CommunitySectionProps {
   activeTab: string;
@@ -23,6 +24,7 @@ export default function CommunitySection({
 }: CommunitySectionProps) {
   const { t } = useLanguage();
   const { showToast } = useToast();
+  const { user, isLoggedIn, openAuthModal } = useCommunityAuth();
 
   const [selectedUpazila, setSelectedUpazila] = useState('ALL');
   const [selectedBloodGroup, setSelectedBloodGroup] = useState('ALL');
@@ -219,6 +221,35 @@ export default function CommunitySection({
           </button>
         </div>
 
+        {/* Community Platform Citizen Banner */}
+        {!isLoggedIn && (
+          <div className="mt-4 p-3 sm:p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-slate-50 border border-emerald-200/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0 text-sm shadow-xs">
+                <i className="fa-solid fa-users-viewfinder"></i>
+              </div>
+              <div className="min-w-0">
+                <h4 className="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5">
+                  <span>বগুড়া কমিউনিটি প্ল্যাটফর্ম সদস্যপদ</span>
+                  <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.2 rounded-full border border-emerald-200">
+                    ফ্রি নিবন্ধন
+                  </span>
+                </h4>
+                <p className="text-[11px] sm:text-xs text-slate-600 mt-0.5">
+                  ভেরিফায়েড নাগরিক হিসেবে রক্তদান, টিউশন, বাসা ভাড়া বা চাকরির তথ্য সরাসরি যুক্ত করতে লগইন বা নতুন অ্যাকাউন্ট নিবন্ধন করুন।
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => openAuthModal('login')}
+              className="w-full sm:w-auto px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
+            >
+              <i className="fa-solid fa-arrow-right-to-bracket text-[11px]"></i>
+              <span>লগইন / নিবন্ধন</span>
+            </button>
+          </div>
+        )}
+
         {/* Dynamic Filters Bar */}
         <div className="pt-5 pb-3 flex flex-wrap items-center gap-3">
           {/* Upazila select */}
@@ -387,7 +418,7 @@ export default function CommunitySection({
                         >
                           {item.group}
                         </span>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1.5 flex-wrap justify-end">
                           <span
                             className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${
                               isUrgent
@@ -397,6 +428,11 @@ export default function CommunitySection({
                           >
                             {item.role || 'রক্তদাতা'}
                           </span>
+                          {(item.badge === 'ভেরিফায়েড নাগরিক' || item.isApproved) && (
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center gap-1">
+                              <i className="fa-solid fa-circle-check text-emerald-600"></i> ভেরিফায়েড
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="flex items-center justify-between gap-2">
@@ -467,9 +503,16 @@ export default function CommunitySection({
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2.5">
-                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
-                        {item.badge}
-                      </span>
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+                          {item.badge}
+                        </span>
+                        {(item.badge === 'ভেরিফায়েড নাগরিক' || item.isApproved) && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center gap-1">
+                            <i className="fa-solid fa-circle-check text-emerald-600"></i> ভেরিফায়েড
+                          </span>
+                        )}
+                      </div>
                       <span className="text-xs font-semibold text-emerald-800">
                         <i className="fa-solid fa-location-dot text-amber-600 mr-0.5"></i>{' '}
                         {item.upazila}
