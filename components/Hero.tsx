@@ -86,18 +86,18 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
               </p>
 
               {/* CRO Low-Friction Instant Search Bar */}
-              <div className="mb-6 max-w-xl">
+              <div className="mb-6 max-w-xl w-full">
                 <div
                   onClick={onOpenSearch}
-                  className="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl p-2 sm:p-2.5 flex items-center justify-between gap-3 shadow-lg transition cursor-pointer group"
+                  className="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl p-2 sm:p-2.5 flex items-center justify-between gap-2.5 shadow-lg transition cursor-pointer group w-full"
                 >
-                  <div className="flex items-center gap-3 pl-2 sm:pl-3 text-slate-200">
-                    <i className="fa-solid fa-magnifying-glass text-amber-400 group-hover:scale-110 transition"></i>
-                    <span className="text-xs sm:text-sm text-slate-300 group-hover:text-white">
+                  <div className="flex items-center gap-2.5 pl-2 sm:pl-3 text-slate-200 min-w-0 flex-1 overflow-hidden">
+                    <i className="fa-solid fa-magnifying-glass text-amber-400 group-hover:scale-110 transition shrink-0 text-xs sm:text-sm"></i>
+                    <span className="text-xs sm:text-sm text-slate-300 group-hover:text-white truncate">
                       হাসপাতাল, রক্তদাতা, বাস কাউন্টার বা উপজেলা খুঁজুন...
                     </span>
                   </div>
-                  <span className="px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs shrink-0 shadow-xs group-hover:bg-amber-400 transition">
+                  <span className="px-3 sm:px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs shrink-0 shadow-xs group-hover:bg-amber-400 transition">
                     অনুসন্ধান
                   </span>
                 </div>
@@ -138,11 +138,11 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
                 </div>
               </div>
 
-              {/* Focused High-Contrast Primary CTAs (Compact & Sleek) */}
-              <div className="flex flex-wrap items-center gap-2.5">
+              {/* Focused High-Contrast Primary CTAs (Mobile Responsive) */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
                 <button
                   onClick={() => onNavigate('home', 'healthcare')}
-                  className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md flex items-center gap-2 transition transform hover:-translate-y-0.5 cursor-pointer ring-1 ring-amber-400/50"
+                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md flex items-center justify-center gap-2 transition transform hover:-translate-y-0.5 cursor-pointer ring-1 ring-amber-400/50"
                 >
                   <i className="fa-solid fa-hospital-user text-slate-950 text-xs sm:text-sm"></i>
                   <span>হাসপাতাল ও চিকিৎসাকেন্দ্র</span>
@@ -150,7 +150,7 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
 
                 <button
                   onClick={() => onNavigate('home', 'community')}
-                  className="px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-bold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer"
+                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer"
                 >
                   <i className="fa-solid fa-droplet text-rose-400 text-xs sm:text-sm"></i>
                   <span>রক্তদাতা নেটওয়ার্ক</span>
@@ -226,7 +226,7 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
 
       {/* CRO Trust & Credibility Bar (Social proof & quick emergency access) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-20">
-        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4 overflow-hidden">
           <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs text-slate-600 font-semibold">
             <span className="flex items-center gap-1.5 text-emerald-800">
               <i className="fa-solid fa-circle-check text-emerald-600"></i>
@@ -246,7 +246,7 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
             </span>
           </div>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden lg:inline">
               জরুরি হেল্পলাইন:
             </span>

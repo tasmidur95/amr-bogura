@@ -247,7 +247,7 @@ export default function BrandLogo({
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 mt-0.5">
+          <div className="hidden sm:flex items-center gap-1.5 mt-0.5">
             <span
               className={`font-bold italic tracking-wide ${theme === 'dark' ? 'text-amber-300' : 'text-[#C85A28]'
                 } ${textSizes[size].sub}`}

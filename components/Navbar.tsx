@@ -78,11 +78,11 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
 
       {/* Sticky Main Header & Navigation */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <div className="max-w-8xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
           {/* Brand Identity with Cover-Photo inspired Logo */}
           <Link
             href="/"
-            className="flex items-center group shrink-0 text-left cursor-pointer"
+            className="flex items-center group shrink-0 text-left cursor-pointer min-w-0"
           >
             <BrandLogo variant="horizontal" size="md" />
           </Link>
@@ -186,10 +186,10 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
           </nav>
 
           {/* Right Action Controls: Search, Admin & Language Toggle */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <Link
               href="/admin"
-              className="p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center justify-center text-sm cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center justify-center text-sm cursor-pointer"
               title="অ্যাডমিন প্যানেল"
             >
               <i className="fa-solid fa-shield-halved text-emerald-700"></i>
@@ -197,7 +197,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
 
             <button
               onClick={() => onOpenSearch ? onOpenSearch() : router.push('/explore')}
-              className="p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center gap-2 text-sm cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center gap-1.5 sm:gap-2 text-sm cursor-pointer"
               title="Search Bogura"
             >
               <i className="fa-solid fa-magnifying-glass text-emerald-700"></i>
@@ -209,10 +209,13 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             {/* Bilingual Toggle Pill */}
             <button
               onClick={handleLangToggle}
-              className="px-3 py-2 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm flex items-center gap-1.5 transition cursor-pointer"
+              className="px-2.5 sm:px-3 py-2 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm flex items-center gap-1 sm:gap-1.5 transition cursor-pointer shrink-0"
             >
               <i className="fa-solid fa-language text-amber-300 text-sm"></i>
-              <span>{language === 'bn' ? 'English' : 'বাংলা'}</span>
+              <span>
+                <span className="sm:hidden">{language === 'bn' ? 'EN' : 'বাং'}</span>
+                <span className="hidden sm:inline">{language === 'bn' ? 'English' : 'বাংলা'}</span>
+              </span>
             </button>
           </div>
         </div>
