@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { hashPassword, verifyPassword, needsRehash } from '@/lib/services/community-password';
+import { isSupabaseConfigured } from '@/lib/supabase';
+import { supabaseWriter } from '@/lib/supabase-admin';
 
 export interface CommunityUser {
   id: string;
@@ -50,6 +52,31 @@ const DEFAULT_USERS: StoredCommunityUser[] = [
     passwordHash: hashPassword('user123'),
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Members live in public.community_users when a database is configured (Supabase or the local
+// dev Postgres); otherwise in the JSON file (demo mode). The password hash is never returned
+// to callers: toPublicUser strips it.
+// ---------------------------------------------------------------------------
+const useDb = () => Boolean(isSupabaseConfigured && supabaseWriter);
+const digits = (p: string) => p.replace(/\D/g, '');
+
+function userFromRow(r: any): StoredCommunityUser {
+  return {
+    id: r.id,
+    name: r.name,
+    username: r.username,
+    phone: r.phone,
+    upazila: r.upazila,
+    bloodGroup: r.blood_group ?? undefined,
+    role: r.role ?? undefined,
+    bio: r.bio ?? undefined,
+    isVerified: !!r.is_verified,
+    createdAt: r.created_at,
+    lastLoginAt: r.last_login_at ?? undefined,
+    passwordHash: r.password_hash,
+  };
+}
 
 export class CommunityAuthService {
   private static loadUsers(): StoredCommunityUser[] {
@@ -120,6 +147,34 @@ export class CommunityAuthService {
       return { success: false, error: 'পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।' };
     }
 
+    if (useDb()) {
+      const db = supabaseWriter!;
+      const byName = await db.from('community_users').select('id').eq('username', username).maybeSingle();
+      if (byName.data) {
+        return { success: false, error: `"${username}" ইউজারনেমটি ইতিমধ্যে ব্যবহৃত। অন্য একটি ইউজারনেম পছন্দ করুন।` };
+      }
+      const byPhone = await db.from('community_users').select('id').eq('phone_digits', digits(phone)).maybeSingle();
+      if (byPhone.data) {
+        return { success: false, error: 'এই মোবাইল নম্বরটি দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট নিবন্ধিত আছে। লগইন করার চেষ্টা করুন।' };
+      }
+      const created = await db.from('community_users').insert([{
+        name,
+        username,
+        phone,
+        upazila,
+        blood_group: data.bloodGroup || null,
+        role: data.role || (data.bloodGroup ? 'রক্তদাতা' : 'নাগরিক সদস্য'),
+        is_verified: true,
+        password_hash: hashPassword(password),
+        last_login_at: new Date().toISOString(),
+      }]).select().single();
+      if (created.error || !created.data) {
+        console.warn('member insert failed:', created.error?.message);
+        return { success: false, error: 'নিবন্ধন সম্পন্ন করা যায়নি। কিছুক্ষণ পর আবার চেষ্টা করুন।' };
+      }
+      return { success: true, user: CommunityAuthService.toPublicUser(userFromRow(created.data)) };
+    }
+
     const users = CommunityAuthService.loadUsers();
 
     // Check duplicate username
@@ -173,6 +228,25 @@ export class CommunityAuthService {
       return { success: false, error: 'ইউজারনেম এবং পাসওয়ার্ড উভয়ই প্রদান করুন।' };
     }
 
+    if (useDb()) {
+      const db = supabaseWriter!;
+      let found = await db.from('community_users').select('*').eq('username', q).maybeSingle();
+      if (!found.data && digits(q).length >= 10) {
+        found = await db.from('community_users').select('*').eq('phone_digits', digits(q)).maybeSingle();
+      }
+      const row = found.data;
+      if (!row) {
+        return { success: false, error: 'ইউজারনেম বা মোবাইল নম্বর খুঁজে পাওয়া যায়নি। সঠিক তথ্য দিন বা নতুন নিবন্ধন করুন।' };
+      }
+      if (!verifyPassword(password, row.password_hash)) {
+        return { success: false, error: 'ভুল পাসওয়ার্ড! আপনার অ্যাকাউন্টের সঠিক পাসওয়ার্ড দিন।' };
+      }
+      const patch: Record<string, any> = { last_login_at: new Date().toISOString() };
+      if (needsRehash(row.password_hash)) patch.password_hash = hashPassword(password); // legacy -> scrypt
+      await db.from('community_users').update(patch).eq('id', row.id);
+      return { success: true, user: CommunityAuthService.toPublicUser(userFromRow({ ...row, ...patch })) };
+    }
+
     const cleanQ = q.toLowerCase();
     const cleanPhone = q.replace(/[\s-]/g, '');
     const users = CommunityAuthService.loadUsers();
@@ -218,8 +292,15 @@ export class CommunityAuthService {
     id: string,
     patch: { name?: string; bio?: string; upazila?: string; bloodGroup?: string }
   ): Promise<{ success: boolean; user?: CommunityUser; error?: string }> {
-    const users = CommunityAuthService.loadUsers();
-    const u = users.find(x => x.id === id);
+    let users: StoredCommunityUser[] = [];
+    let u: StoredCommunityUser | undefined;
+    if (useDb()) {
+      const found = await supabaseWriter!.from('community_users').select('*').eq('id', id).maybeSingle();
+      u = found.data ? userFromRow(found.data) : undefined;
+    } else {
+      users = CommunityAuthService.loadUsers();
+      u = users.find(x => x.id === id);
+    }
     if (!u) return { success: false, error: 'ব্যবহারকারী খুঁজে পাওয়া যায়নি।' };
 
     if (patch.name !== undefined) {
@@ -240,11 +321,25 @@ export class CommunityAuthService {
     if (patch.bloodGroup !== undefined) {
       u.bloodGroup = patch.bloodGroup.trim() || undefined;
     }
+    if (useDb()) {
+      const saved = await supabaseWriter!.from('community_users').update({
+        name: u.name,
+        bio: u.bio ?? null,
+        upazila: u.upazila,
+        blood_group: u.bloodGroup ?? null,
+      }).eq('id', id).select().single();
+      if (saved.error || !saved.data) return { success: false, error: 'প্রোফাইল সংরক্ষণ করা যায়নি।' };
+      return { success: true, user: CommunityAuthService.toPublicUser(userFromRow(saved.data)) };
+    }
     CommunityAuthService.saveUsers(users);
     return { success: true, user: CommunityAuthService.toPublicUser(u) };
   }
 
   static async getUserById(id: string): Promise<CommunityUser | null> {
+    if (useDb()) {
+      const found = await supabaseWriter!.from('community_users').select('*').eq('id', id).maybeSingle();
+      return found.data ? CommunityAuthService.toPublicUser(userFromRow(found.data)) : null;
+    }
     const users = CommunityAuthService.loadUsers();
     const user = users.find(u => u.id === id);
     return user ? CommunityAuthService.toPublicUser(user) : null;

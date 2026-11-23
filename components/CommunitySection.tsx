@@ -31,6 +31,8 @@ export default function CommunitySection({
   const [revealedPhones, setRevealedPhones] = useState<Record<string, boolean>>({});
   const [showBloodBanks, setShowBloodBanks] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  // Blood tab: donors (people who can give) and requests (someone needs blood) are different things
+  const [bloodView, setBloodView] = useState<'all' | 'donor' | 'request'>('all');
 
   const emergencyBloodBanks = [
     { name: 'সন্ধানী (শজিমেক ইউনিট)', phone: '051-60862', mobile: '01712-252525', location: 'শহীদ জিয়াউর রহমান মেডিকেল কলেজ' },
@@ -96,8 +98,16 @@ export default function CommunitySection({
       activeTab !== 'blood' ||
       selectedBloodGroup === 'ALL' ||
       item.group === selectedBloodGroup;
-    return matchUpazila && matchBlood;
+    const matchKind =
+      activeTab !== 'blood' ||
+      bloodView === 'all' ||
+      (bloodView === 'request' ? item.kind === 'blood_request' : item.kind !== 'blood_request');
+    return matchUpazila && matchBlood && matchKind;
   });
+
+  const bloodItems = communityData.blood || [];
+  const requestCount = bloodItems.filter(i => i.kind === 'blood_request').length;
+  const donorCount = bloodItems.length - requestCount;
 
   const displayedItems = (isHome && !showAll) ? filteredItems.slice(0, 6) : filteredItems;
 
@@ -152,7 +162,7 @@ export default function CommunitySection({
             <i className="fa-solid fa-droplet text-rose-400"></i>
             <span>{t('tabBlood')}</span>
             <span className="text-xs px-1.5 py-0.5 rounded-full bg-white/20">
-              {communityData.blood?.length || 0}
+              {(communityData.blood || []).filter(p => p.kind !== 'blood_request').length}
             </span>
           </button>
 
@@ -267,6 +277,28 @@ export default function CommunitySection({
               ))}
             </select>
           </div>
+
+          {/* Donors vs requests */}
+          {activeTab === 'blood' && (
+            <div role="tablist" aria-label="রক্তদাতা ও রক্তের অনুরোধ" className="flex items-center gap-1 p-1 rounded-xl bg-slate-100 w-fit max-w-full overflow-x-auto no-scrollbar">
+              {([
+                ['all', 'সবগুলো', bloodItems.length],
+                ['donor', 'রক্তদাতা', donorCount],
+                ['request', 'রক্ত প্রয়োজন', requestCount],
+              ] as const).map(([key, label, n]) => (
+                <button
+                  key={key}
+                  role="tab"
+                  aria-selected={bloodView === key}
+                  onClick={() => setBloodView(key)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition cursor-pointer flex items-center gap-1.5 ${bloodView === key ? (key === 'request' ? 'bg-rose-600 text-white shadow-xs' : 'bg-white text-emerald-800 shadow-xs') : 'text-slate-600 hover:text-slate-900'}`}
+                >
+                  <span>{label}</span>
+                  <span className="text-[10px] opacity-70">{n}</span>
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Blood group pills if blood tab is active */}
           {activeTab === 'blood' && (

@@ -1,546 +1,211 @@
 /**
- * Amr Bogura (আমার বগুড়া) — Unified Master Seeder Engine (Node.js ESM)
- * Consolidates, verifies, and seeds ALL datasets across every module:
- * 1. Upazilas (12 Upazilas)
- * 2. Unions & Villages (108 Unions across all 12 Upazilas)
- * 3. Tourist & Heritage Spots (8 Spots + 9 Reviews + Multi-image Galleries)
- * 4. Emergency Services & Hotlines (8 Civic contacts)
- * 5. Healthcare Facilities (352 DGHS verified facilities across 10 categories)
- * 6. Hospitals Compatibility Layer (352 records)
- * 7. Educational Institutions (913 High Schools, Madrasahs, Colleges, Tech/Vocational, Kindergartens)
- * 8. Hospitality (41 Hotels, Resorts, and Iconic Restaurants with multiple phone numbers & banners)
- * 9. Transport (22 Records: 10 Major Transport Hubs + 12 Bus/Train/Rent-A-Car Services)
- * 10. Banks & ATMs (27 Records: 1 Central Bank, 16 Bank Branches, 10 24/7 ATM/CRM Fast Tracks)
- * 11. Blood Donors & Blood Banks (42 Records: 37 Donors across all 8 Blood Groups + 5 Institutional Banks)
- * 12. Community Moderation Posts (Approved & Pending Civic Posts)
- * 
- * Generates:
- * - supabase/seed.sql (Full database seed)
- * - supabase/schema.sql (Complete database schema with RLS policies)
+ * Amar Bogura — seed generator
+ *
+ *   npm run seed:all
+ *
+ * Reads the JSON datasets in amr-bogura-data/ and writes DATA-ONLY SQL files to supabase/seed/,
+ * in dependency order, targeting the FINAL schema (after all supabase/migrations/*.sql):
+ *
+ *   supabase/seed/01_healthcare_facilities.sql
+ *   supabase/seed/02_educational_institutes.sql
+ *   supabase/seed/03_hospitality_venues.sql
+ *   supabase/seed/04_transport.sql
+ *   supabase/seed/05_banking.sql
+ *   supabase/seed/06_blood.sql
+ *
+ * Keys
+ *   - every row gets a PRE-GENERATED, DETERMINISTIC uuid:  uuidOf(table, <old readable id>)
+ *     (UUIDv5, see scripts/lib/uuid.mjs). The same data always yields the same ids, and they equal
+ *     what migration 20261123000200 produces for a database that already holds the old text ids.
+ *   - the old readable id is stored in `legacy_id`.
+ *   - rows created later at runtime get random ids from the database (gen_random_uuid()).
+ *
+ * Properties
+ *   - no DDL: the schema lives in supabase/schema.sql + supabase/migrations (never rewritten here)
+ *   - idempotent: every insert is ON CONFLICT (id) DO NOTHING, so re-running never clobbers edits
+ *   - deterministic: same input => byte-identical output (no CURRENT_DATE / random values)
+ *
+ * Apply order for a new database:  schema.sql -> migrations/*.sql -> seed/*.sql
+ * (editorial content, spots and member accounts are loaded by scripts/db-seed-content.mjs)
  */
+import fs from 'node:fs';
+import path from 'node:path';
+import { uuidOf } from './lib/uuid.mjs';
 
-import fs from 'fs';
-import path from 'path';
+const root = process.cwd();
+const dataDir = path.join(root, 'amr-bogura-data');
+const outDir = path.join(root, 'supabase', 'seed');
 
-function sqlEscape(str) {
-  if (str === null || str === undefined) return 'NULL';
-  return `'${String(str).replace(/'/g, "''")}'`;
+// ---------------------------------------------------------------- SQL literal helpers
+const str = v => (v === null || v === undefined || v === '' ? 'NULL' : `'${String(v).replace(/'/g, "''")}'`);
+const strKeep = v => (v === null || v === undefined ? 'NULL' : `'${String(v).replace(/'/g, "''")}'`); // keeps ''
+const json = v => `'${JSON.stringify(v ?? []).replace(/'/g, "''")}'::jsonb`;
+const bool = v => (v ? 'true' : 'false');
+const int = (v, d = 0) => String(Number.isFinite(Number(v)) ? Math.trunc(Number(v)) : d);
+const num = (v, d) => String(Number.isFinite(Number(v)) && Number(v) !== 0 ? Number(v) : d);
+const uuid = (table, legacy) => `'${uuidOf(table, legacy)}'`;
+
+const readJson = rel => {
+  const p = path.join(dataDir, rel);
+  if (!fs.existsSync(p)) { console.warn(`! missing ${rel}`); return null; }
+  return JSON.parse(fs.readFileSync(p, 'utf-8'));
+};
+
+function insert(table, columns, rows, chunk = 100) {
+  if (!rows.length) return `-- (no rows for ${table})\n`;
+  const out = [];
+  for (let i = 0; i < rows.length; i += chunk) {
+    const part = rows.slice(i, i + chunk).map(r => `  (${r.join(', ')})`).join(',\n');
+    out.push(`INSERT INTO public.${table} (${columns.join(', ')}) VALUES\n${part}\nON CONFLICT (id) DO NOTHING;\n`);
+  }
+  return out.join('\n');
 }
 
-function sqlJson(obj) {
-  if (obj === null || obj === undefined) return "'[]'::jsonb";
-  return `'${JSON.stringify(obj).replace(/'/g, "''")}'::jsonb`;
-}
-
-async function run() {
-  console.log('\n================================================================');
-  console.log('   AMR BOGURA (আমার বগুড়া) — UNIFIED MASTER SEEDER ENGINE     ');
-  console.log('================================================================\n');
-
-  const baseDir = process.cwd();
-  const schemaPath = path.join(baseDir, 'supabase', 'schema.sql');
-  const seedSqlPath = path.join(baseDir, 'supabase', 'seed.sql');
-
-  // Paths to JSON datasets
-  const healthcarePath = path.join(baseDir, 'amr-bogura-data', 'healthcare', 'healthcare-all.json');
-  const institutesPath = path.join(baseDir, 'amr-bogura-data', 'education', 'institutes.json');
-  const hospitalityPath = path.join(baseDir, 'amr-bogura-data', 'hospitality', 'hotels-and-restaurants.json');
-  const transportPath = path.join(baseDir, 'amr-bogura-data', 'transport', 'transport.json');
-  const bankingPath = path.join(baseDir, 'amr-bogura-data', 'banking', 'banks-and-atms.json');
-  const bloodPath = path.join(baseDir, 'amr-bogura-data', 'blood', 'blood-donors.json');
-  const exploreSpotsPath = path.join(baseDir, 'amr-bogura-data', 'explore', 'explore-spots.json');
-  const communityPostsPath = path.join(baseDir, 'amr-bogura-data', 'community', 'community-posts.json');
-
-  // 1. Load Healthcare
-  const healthcareData = fs.existsSync(healthcarePath) ? JSON.parse(fs.readFileSync(healthcarePath, 'utf-8')).data : [];
-  console.log(`✓ Loaded Healthcare Facilities: ${healthcareData.length} records`);
-
-  // 2. Load Education
-  const institutesData = fs.existsSync(institutesPath) ? JSON.parse(fs.readFileSync(institutesPath, 'utf-8')) : [];
-  console.log(`✓ Loaded Educational Institutes: ${institutesData.length} records`);
-
-  // 3. Load Hospitality
-  const hospitalityData = fs.existsSync(hospitalityPath) ? JSON.parse(fs.readFileSync(hospitalityPath, 'utf-8')) : { hotels_and_resorts: [], restaurants: [] };
-  const totalHospitality = (hospitalityData.hotels_and_resorts?.length || 0) + (hospitalityData.restaurants?.length || 0);
-  console.log(`✓ Loaded Hospitality Venues: ${totalHospitality} records (${hospitalityData.hotels_and_resorts.length} Hotels/Resorts, ${hospitalityData.restaurants.length} Restaurants)`);
-
-  // 4. Load Transport
-  const transportData = fs.existsSync(transportPath) ? JSON.parse(fs.readFileSync(transportPath, 'utf-8')) : { transport_hubs: [], transport_services: [] };
-  const totalTransport = (transportData.transport_hubs?.length || 0) + (transportData.transport_services?.length || 0);
-  console.log(`✓ Loaded Transport Network: ${totalTransport} records (${transportData.transport_hubs.length} Hubs, ${transportData.transport_services.length} Services)`);
-
-  // 5. Load Banking
-  const bankingData = fs.existsSync(bankingPath) ? JSON.parse(fs.readFileSync(bankingPath, 'utf-8')) : { central_and_regulatory: [], banks: [], atm_and_fast_track_booths: [] };
-  const totalBanking = (bankingData.central_and_regulatory?.length || 0) + (bankingData.banks?.length || 0) + (bankingData.atm_and_fast_track_booths?.length || 0);
-  console.log(`✓ Loaded Banking & ATMs: ${totalBanking} records (${(bankingData.central_and_regulatory?.length || 0) + (bankingData.banks?.length || 0)} Bank Branches, ${bankingData.atm_and_fast_track_booths.length} ATMs/CRMs)`);
-
-  // 6. Load Blood Donors & Banks
-  const bloodData = fs.existsSync(bloodPath) ? JSON.parse(fs.readFileSync(bloodPath, 'utf-8')) : { emergency_blood_banks: [], donors: [] };
-  const totalBlood = (bloodData.emergency_blood_banks?.length || 0) + (bloodData.donors?.length || 0);
-  console.log(`✓ Loaded Blood Donors & Banks: ${totalBlood} records (${bloodData.donors.length} Donors, ${bloodData.emergency_blood_banks.length} 24/7 Blood Banks)`);
-
-  // 7. Load Explore Spots
-  const exploreSpotsData = fs.existsSync(exploreSpotsPath) ? JSON.parse(fs.readFileSync(exploreSpotsPath, 'utf-8')) : [];
-  console.log(`✓ Loaded Tourist & Heritage Spots: ${exploreSpotsData.length} spots`);
-
-  // 8. Load Community Posts
-  const communityPostsData = fs.existsSync(communityPostsPath) ? JSON.parse(fs.readFileSync(communityPostsPath, 'utf-8')) : {};
-  let totalCommunityPosts = 0;
-  Object.values(communityPostsData).forEach(arr => { totalCommunityPosts += (arr?.length || 0); });
-  console.log(`✓ Loaded Community Civic Posts: ${totalCommunityPosts} posts`);
-
-  // Prepare SQL Generation
-  const sqlStatements = [];
-  sqlStatements.push('-- ========================================================');
-  sqlStatements.push('-- AMAR BOGURA (আমার বগুড়া) — COMPREHENSIVE SEED SCRIPT');
-  sqlStatements.push('-- Generated on: ' + new Date().toISOString());
-  sqlStatements.push('-- Total Database Records: 1,800+ Verified Civic Entities');
-  sqlStatements.push('-- ========================================================\n');
-
-  sqlStatements.push('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";\n');
-
-  // Table DDLs
-  const fullSchemaDdl = `
--- 1. Upazilas
-CREATE TABLE IF NOT EXISTS public.upazilas (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-  serial_bn TEXT NOT NULL,
-  serial_en TEXT NOT NULL,
-  name TEXT NOT NULL,
-  en_name TEXT NOT NULL,
-  area TEXT NOT NULL,
-  area_en TEXT,
-  union_count TEXT NOT NULL,
-  union_count_en TEXT,
-  unions TEXT,
-  pourashava TEXT,
-  pourashava_en TEXT,
-  has_pourashava BOOLEAN DEFAULT false,
-  postal_code TEXT,
-  rivers TEXT,
-  health_phone TEXT,
-  landmark TEXT,
-  description TEXT,
-  en_description TEXT,
-  history_note TEXT,
-  union_list JSONB DEFAULT '[]'::jsonb,
-  tags JSONB DEFAULT '[]'::jsonb,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 2. Tourist Spots
-CREATE TABLE IF NOT EXISTS public.tourist_spots (
-  id TEXT PRIMARY KEY,
-  title TEXT NOT NULL,
-  en_title TEXT NOT NULL,
-  category TEXT NOT NULL,
-  category_bn TEXT NOT NULL,
-  location TEXT NOT NULL,
-  upazila TEXT NOT NULL,
-  tag TEXT NOT NULL,
-  cover_image TEXT NOT NULL,
-  gallery JSONB DEFAULT '[]'::jsonb,
-  short_desc TEXT NOT NULL,
-  history TEXT NOT NULL,
-  architecture TEXT NOT NULL,
-  highlights JSONB DEFAULT '[]'::jsonb,
-  timings TEXT NOT NULL,
-  entry_fee TEXT NOT NULL,
-  best_time TEXT NOT NULL,
-  map_coordinates TEXT,
-  map_url TEXT,
-  is_approved BOOLEAN DEFAULT true,
-  contributor JSONB DEFAULT '{}'::jsonb,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 3. Spot Reviews
-CREATE TABLE IF NOT EXISTS public.spot_reviews (
-  id TEXT PRIMARY KEY,
-  spot_id TEXT REFERENCES public.tourist_spots(id) ON DELETE CASCADE,
-  author TEXT NOT NULL,
-  rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
-  comment TEXT NOT NULL,
-  date TEXT NOT NULL,
-  location TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 4. Community Posts
-CREATE TABLE IF NOT EXISTS public.community_posts (
-  id TEXT PRIMARY KEY,
-  category TEXT NOT NULL,
-  name TEXT NOT NULL,
-  role TEXT,
-  "group" TEXT,
-  badge TEXT,
-  upazila TEXT NOT NULL,
-  detail TEXT NOT NULL,
-  phone TEXT NOT NULL,
-  is_approved BOOLEAN DEFAULT true,
-  status TEXT DEFAULT 'approved',
-  contributor_name TEXT,
-  contributor_phone TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 5. Healthcare Facilities
-CREATE TABLE IF NOT EXISTS public.healthcare_facilities (
-  id TEXT PRIMARY KEY,
-  dghs_facility_id TEXT NOT NULL,
-  name TEXT NOT NULL,
-  name_bn TEXT NOT NULL,
-  slug TEXT NOT NULL,
-  category TEXT NOT NULL,
-  facility_type TEXT NOT NULL,
-  original_facility_type TEXT NOT NULL,
-  ownership TEXT NOT NULL,
-  district TEXT NOT NULL,
-  district_bn TEXT NOT NULL,
-  upazila TEXT NOT NULL,
-  upazila_bn TEXT NOT NULL,
-  union_name TEXT,
-  union_bn TEXT,
-  village_or_area TEXT,
-  address TEXT NOT NULL,
-  phone JSONB NOT NULL DEFAULT '[]'::jsonb,
-  email TEXT,
-  website TEXT,
-  latitude DOUBLE PRECISION NOT NULL,
-  longitude DOUBLE PRECISION NOT NULL,
-  google_maps_url TEXT NOT NULL,
-  image_url TEXT,
-  services JSONB NOT NULL DEFAULT '[]'::jsonb,
-  source_urls JSONB NOT NULL DEFAULT '[]'::jsonb,
-  verification_status TEXT NOT NULL DEFAULT 'verified',
-  last_verified DATE NOT NULL DEFAULT CURRENT_DATE,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 6. Educational Institutes (913 Records)
-CREATE TABLE IF NOT EXISTS public.educational_institutes (
-  id TEXT PRIMARY KEY,
-  name TEXT NOT NULL,
-  name_bn TEXT NOT NULL,
-  category TEXT NOT NULL,
-  category_bn TEXT NOT NULL,
-  upazila TEXT NOT NULL,
-  upazila_bn TEXT NOT NULL,
-  eiin TEXT,
-  established TEXT,
-  location TEXT NOT NULL,
-  phone TEXT,
-  phone_numbers JSONB DEFAULT '[]'::jsonb,
-  email TEXT,
-  website TEXT,
-  cover_image TEXT,
-  is_approved BOOLEAN DEFAULT true,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 7. Hospitality Venues (Hotels, Resorts & Restaurants - 41 Records)
-CREATE TABLE IF NOT EXISTS public.hospitality_venues (
-  id TEXT PRIMARY KEY,
-  name TEXT NOT NULL,
-  category TEXT NOT NULL,
-  location TEXT NOT NULL,
-  upazila TEXT DEFAULT 'বগুড়া সদর',
-  url TEXT,
-  facilities JSONB DEFAULT '[]'::jsonb,
-  phone_number TEXT,
-  phone_numbers JSONB DEFAULT '[]'::jsonb,
-  banner_image TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 8. Transport Hubs & Services (22 Records)
-CREATE TABLE IF NOT EXISTS public.transport_hubs (
-  id TEXT PRIMARY KEY,
-  name TEXT NOT NULL,
-  name_bn TEXT NOT NULL,
-  category TEXT NOT NULL,
-  category_bn TEXT NOT NULL,
-  location TEXT NOT NULL,
-  upazila TEXT NOT NULL,
-  description TEXT,
-  connected_routes JSONB DEFAULT '[]'::jsonb,
-  facilities JSONB DEFAULT '[]'::jsonb,
-  operating_hours TEXT,
-  phone_number TEXT,
-  phone_numbers JSONB DEFAULT '[]'::jsonb,
-  banner_image TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS public.transport_services (
-  id TEXT PRIMARY KEY,
-  operator_name TEXT NOT NULL,
-  operator_name_bn TEXT NOT NULL,
-  service_type TEXT NOT NULL,
-  service_type_bn TEXT NOT NULL,
-  headquarters TEXT,
-  online_booking_url TEXT,
-  description TEXT,
-  facilities JSONB DEFAULT '[]'::jsonb,
-  major_routes JSONB DEFAULT '[]'::jsonb,
-  counters JSONB DEFAULT '[]'::jsonb,
-  phone_number TEXT,
-  phone_numbers JSONB DEFAULT '[]'::jsonb,
-  banner_image TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 9. Banks & ATMs (27 Records)
-CREATE TABLE IF NOT EXISTS public.banks (
-  id TEXT PRIMARY KEY,
-  bank_name TEXT NOT NULL,
-  bank_name_bn TEXT NOT NULL,
-  type TEXT NOT NULL,
-  type_bn TEXT NOT NULL,
-  branch_name TEXT NOT NULL,
-  branch_name_bn TEXT NOT NULL,
-  location TEXT NOT NULL,
-  upazila TEXT NOT NULL,
-  routing_number TEXT,
-  swift_code TEXT,
-  facilities JSONB DEFAULT '[]'::jsonb,
-  has_atm BOOLEAN DEFAULT true,
-  has_crm BOOLEAN DEFAULT false,
-  operating_hours TEXT,
-  hotline TEXT,
-  phone_number TEXT,
-  phone_numbers JSONB DEFAULT '[]'::jsonb,
-  banner_image TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS public.atm_booths (
-  id TEXT PRIMARY KEY,
-  booth_name TEXT NOT NULL,
-  bank_name TEXT NOT NULL,
-  location TEXT NOT NULL,
-  upazila TEXT NOT NULL,
-  cards_accepted JSONB DEFAULT '[]'::jsonb,
-  services JSONB DEFAULT '[]'::jsonb,
-  operating_hours TEXT DEFAULT '24/7',
-  hotline TEXT,
-  banner_image TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- 10. Blood Donors & Blood Banks (42 Records)
-CREATE TABLE IF NOT EXISTS public.blood_banks (
-  id TEXT PRIMARY KEY,
-  name TEXT NOT NULL,
-  name_bn TEXT NOT NULL,
-  location TEXT NOT NULL,
-  upazila TEXT NOT NULL,
-  operating_hours TEXT,
-  services JSONB DEFAULT '[]'::jsonb,
-  hotlines JSONB DEFAULT '[]'::jsonb,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS public.blood_donors (
-  id TEXT PRIMARY KEY,
-  name TEXT NOT NULL,
-  blood_group TEXT NOT NULL,
-  phone TEXT NOT NULL,
-  alt_phone TEXT,
-  upazila TEXT NOT NULL,
-  location TEXT NOT NULL,
-  status TEXT NOT NULL,
-  last_donated TEXT,
-  total_donations INTEGER DEFAULT 1,
-  badge TEXT,
-  is_verified BOOLEAN DEFAULT true,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
+const header = (title, count) => `-- ========================================================
+-- SEED: ${title}${count !== undefined ? ` (${count} rows)` : ''}
+-- Generated by scripts/seed-all.mjs. DATA ONLY. Do not edit by hand: change the JSON and re-run.
+-- ids are deterministic UUIDv5; the old readable id is kept in legacy_id.
+-- ========================================================
 `;
 
-  sqlStatements.push(fullSchemaDdl);
+const files = [];
+const add = (name, title, body, count) => files.push({ name, content: header(title, count) + '\n' + body });
 
-  // Write updated supabase/schema.sql
-  fs.writeFileSync(schemaPath, fullSchemaDdl, 'utf-8');
-  console.log('✓ Successfully synchronized database schema at: supabase/schema.sql');
-
-  // Insert Educational Institutes (913 Records)
-  console.log(`Generating SQL seed for ${institutesData.length} Educational Institutes...`);
-  sqlStatements.push('\n-- ========================================================');
-  sqlStatements.push(`-- SEED: EDUCATIONAL INSTITUTES (${institutesData.length} RECORDS)`);
-  sqlStatements.push('-- ========================================================');
-  for (const inst of institutesData) {
-    sqlStatements.push(`
-INSERT INTO public.educational_institutes (id, name, name_bn, category, category_bn, upazila, upazila_bn, eiin, established, location, phone, phone_numbers, email, website, cover_image, is_approved)
-VALUES (
-  ${sqlEscape(inst.id)}, ${sqlEscape(inst.nameEn || inst.name)}, ${sqlEscape(inst.name)},
-  ${sqlEscape(inst.category)}, ${sqlEscape(inst.categoryBn)}, ${sqlEscape(inst.upazilaEn || inst.upazila)},
-  ${sqlEscape(inst.upazila)}, ${sqlEscape(inst.eiin)}, ${sqlEscape(inst.established)},
-  ${sqlEscape(inst.address || inst.location)}, ${sqlEscape(inst.phone)}, ${sqlJson(inst.phone ? [inst.phone] : [])},
-  ${sqlEscape(inst.email)}, ${sqlEscape(inst.website)}, ${sqlEscape(inst.coverImage)}, true
-) ON CONFLICT (id) DO UPDATE SET
-  name = EXCLUDED.name,
-  name_bn = EXCLUDED.name_bn,
-  category = EXCLUDED.category,
-  cover_image = EXCLUDED.cover_image;`);
-  }
-
-  // Insert Hospitality (41 Records)
-  console.log(`Generating SQL seed for ${totalHospitality} Hospitality Venues...`);
-  sqlStatements.push('\n-- ========================================================');
-  sqlStatements.push(`-- SEED: HOSPITALITY VENUES (${totalHospitality} RECORDS)`);
-  sqlStatements.push('-- ========================================================');
-  const allVenues = [
-    ...(hospitalityData.hotels_and_resorts || []).map((h, i) => ({ ...h, id: `hotel-${i + 1}`, category: 'hotel_resort' })),
-    ...(hospitalityData.restaurants || []).map((r, i) => ({ ...r, id: `restaurant-${i + 1}`, category: 'restaurant' }))
-  ];
-  for (const v of allVenues) {
-    sqlStatements.push(`
-INSERT INTO public.hospitality_venues (id, name, category, location, upazila, url, facilities, phone_number, phone_numbers, banner_image)
-VALUES (
-  ${sqlEscape(v.id)}, ${sqlEscape(v.name)}, ${sqlEscape(v.category)}, ${sqlEscape(v.location)},
-  'বগুড়া সদর', ${sqlEscape(v.url)}, ${sqlJson(v.facilities || [])},
-  ${sqlEscape(v.phone_number)}, ${sqlJson(v.phone_numbers || [])}, ${sqlEscape(v.banner_image)}
-) ON CONFLICT (id) DO UPDATE SET
-  phone_numbers = EXCLUDED.phone_numbers,
-  banner_image = EXCLUDED.banner_image;`);
-  }
-
-  // Insert Transport Hubs & Services (22 Records)
-  console.log(`Generating SQL seed for ${totalTransport} Transport Entities...`);
-  sqlStatements.push('\n-- ========================================================');
-  sqlStatements.push(`-- SEED: TRANSPORT HUBS & SERVICES (${totalTransport} RECORDS)`);
-  sqlStatements.push('-- ========================================================');
-  for (const hub of (transportData.transport_hubs || [])) {
-    sqlStatements.push(`
-INSERT INTO public.transport_hubs (id, name, name_bn, category, category_bn, location, upazila, description, connected_routes, facilities, operating_hours, phone_number, phone_numbers, banner_image)
-VALUES (
-  ${sqlEscape(hub.id)}, ${sqlEscape(hub.name)}, ${sqlEscape(hub.name_bn)}, ${sqlEscape(hub.category)},
-  ${sqlEscape(hub.category_bn)}, ${sqlEscape(hub.location)}, ${sqlEscape(hub.upazila)}, ${sqlEscape(hub.description)},
-  ${sqlJson(hub.connected_routes || [])}, ${sqlJson(hub.facilities || [])}, ${sqlEscape(hub.operating_hours)},
-  ${sqlEscape(hub.phone_number)}, ${sqlJson(hub.phone_numbers || [])}, ${sqlEscape(hub.banner_image)}
-) ON CONFLICT (id) DO UPDATE SET
-  phone_numbers = EXCLUDED.phone_numbers,
-  banner_image = EXCLUDED.banner_image;`);
-  }
-
-  for (const srv of (transportData.transport_services || [])) {
-    sqlStatements.push(`
-INSERT INTO public.transport_services (id, operator_name, operator_name_bn, service_type, service_type_bn, headquarters, online_booking_url, description, facilities, major_routes, counters, phone_number, phone_numbers, banner_image)
-VALUES (
-  ${sqlEscape(srv.id)}, ${sqlEscape(srv.operator_name)}, ${sqlEscape(srv.operator_name_bn)}, ${sqlEscape(srv.service_type)},
-  ${sqlEscape(srv.service_type_bn)}, ${sqlEscape(srv.headquarters_or_main_depot)}, ${sqlEscape(srv.online_booking_url)},
-  ${sqlEscape(srv.description)}, ${sqlJson(srv.facilities || [])}, ${sqlJson(srv.major_routes || [])},
-  ${sqlJson(srv.counters_in_bogura || [])}, ${sqlEscape(srv.phone_number)}, ${sqlJson(srv.phone_numbers || [])}, ${sqlEscape(srv.banner_image)}
-) ON CONFLICT (id) DO UPDATE SET
-  phone_numbers = EXCLUDED.phone_numbers,
-  banner_image = EXCLUDED.banner_image;`);
-  }
-
-  // Insert Banks & ATMs (27 Records)
-  console.log(`Generating SQL seed for ${totalBanking} Banking & ATM Entities...`);
-  sqlStatements.push('\n-- ========================================================');
-  sqlStatements.push(`-- SEED: BANKS & ATMS (${totalBanking} RECORDS)`);
-  sqlStatements.push('-- ========================================================');
-  const allBanks = [...(bankingData.central_and_regulatory || []), ...(bankingData.banks || [])];
-  for (const b of allBanks) {
-    sqlStatements.push(`
-INSERT INTO public.banks (id, bank_name, bank_name_bn, type, type_bn, branch_name, branch_name_bn, location, upazila, routing_number, swift_code, facilities, has_atm, has_crm, operating_hours, hotline, phone_number, phone_numbers, banner_image)
-VALUES (
-  ${sqlEscape(b.id)}, ${sqlEscape(b.bank_name)}, ${sqlEscape(b.bank_name_bn)}, ${sqlEscape(b.type)},
-  ${sqlEscape(b.type_bn)}, ${sqlEscape(b.branch_name)}, ${sqlEscape(b.branch_name_bn)}, ${sqlEscape(b.location)},
-  ${sqlEscape(b.upazila)}, ${sqlEscape(b.routing_number)}, ${sqlEscape(b.swift_code)}, ${sqlJson(b.facilities || [])},
-  ${b.has_atm ? 'true' : 'false'}, ${b.has_crm ? 'true' : 'false'}, ${sqlEscape(b.operating_hours)},
-  ${sqlEscape(b.hotline)}, ${sqlEscape(b.phone_number)}, ${sqlJson(b.phone_numbers || [])}, ${sqlEscape(b.banner_image)}
-) ON CONFLICT (id) DO UPDATE SET
-  phone_numbers = EXCLUDED.phone_numbers,
-  banner_image = EXCLUDED.banner_image;`);
-  }
-
-  for (const atm of (bankingData.atm_and_fast_track_booths || [])) {
-    sqlStatements.push(`
-INSERT INTO public.atm_booths (id, booth_name, bank_name, location, upazila, cards_accepted, services, operating_hours, hotline, banner_image)
-VALUES (
-  ${sqlEscape(atm.id)}, ${sqlEscape(atm.booth_name)}, ${sqlEscape(atm.bank_name)}, ${sqlEscape(atm.location)},
-  ${sqlEscape(atm.upazila)}, ${sqlJson(atm.cards_accepted || [])}, ${sqlJson(atm.services || [])},
-  ${sqlEscape(atm.operating_hours)}, ${sqlEscape(atm.hotline)}, ${sqlEscape(atm.banner_image)}
-) ON CONFLICT (id) DO NOTHING;`);
-  }
-
-  // Insert Blood Donors & Banks (42 Records)
-  console.log(`Generating SQL seed for ${totalBlood} Blood Donors & Emergency Blood Banks...`);
-  sqlStatements.push('\n-- ========================================================');
-  sqlStatements.push(`-- SEED: BLOOD DONORS & BANKS (${totalBlood} RECORDS)`);
-  sqlStatements.push('-- ========================================================');
-  for (const bb of (bloodData.emergency_blood_banks || [])) {
-    sqlStatements.push(`
-INSERT INTO public.blood_banks (id, name, name_bn, location, upazila, operating_hours, services, hotlines)
-VALUES (
-  ${sqlEscape(bb.id)}, ${sqlEscape(bb.name)}, ${sqlEscape(bb.name_bn)}, ${sqlEscape(bb.location)},
-  ${sqlEscape(bb.upazila)}, ${sqlEscape(bb.operating_hours)}, ${sqlJson(bb.services || [])}, ${sqlJson(bb.hotlines || [])}
-) ON CONFLICT (id) DO NOTHING;`);
-  }
-
-  for (const donor of (bloodData.donors || [])) {
-    sqlStatements.push(`
-INSERT INTO public.blood_donors (id, name, blood_group, phone, alt_phone, upazila, location, status, last_donated, total_donations, badge, is_verified)
-VALUES (
-  ${sqlEscape(donor.id)}, ${sqlEscape(donor.name)}, ${sqlEscape(donor.blood_group)}, ${sqlEscape(donor.phone)},
-  ${sqlEscape(donor.alt_phone)}, ${sqlEscape(donor.upazila)}, ${sqlEscape(donor.location)}, ${sqlEscape(donor.status)},
-  ${sqlEscape(donor.last_donated)}, ${donor.total_donations || 1}, ${sqlEscape(donor.badge)}, true
-) ON CONFLICT (id) DO UPDATE SET
-  phone = EXCLUDED.phone,
-  status = EXCLUDED.status;`);
-  }
-
-  // Insert Healthcare Facilities (352 Records)
-  console.log(`Generating SQL seed for ${healthcareData.length} Healthcare Facilities...`);
-  sqlStatements.push('\n-- ========================================================');
-  sqlStatements.push(`-- SEED: HEALTHCARE FACILITIES (${healthcareData.length} RECORDS)`);
-  sqlStatements.push('-- ========================================================');
-  for (const f of healthcareData) {
-    sqlStatements.push(`
-INSERT INTO public.healthcare_facilities (
-  id, dghs_facility_id, name, name_bn, slug, category, facility_type, original_facility_type,
-  ownership, district, district_bn, upazila, upazila_bn, union_name, union_bn, village_or_area,
-  address, phone, email, website, latitude, longitude, google_maps_url, image_url, services, source_urls,
-  verification_status, last_verified
-) VALUES (
-  ${sqlEscape(f.id)}, ${sqlEscape(f.dghs_facility_id)}, ${sqlEscape(f.name)}, ${sqlEscape(f.name_bn)},
-  ${sqlEscape(f.slug)}, ${sqlEscape(f.category)}, ${sqlEscape(f.facility_type)}, ${sqlEscape(f.original_facility_type)},
-  ${sqlEscape(f.ownership)}, ${sqlEscape(f.district)}, ${sqlEscape(f.district_bn)}, ${sqlEscape(f.upazila)},
-  ${sqlEscape(f.upazila_bn)}, ${sqlEscape(f.union)}, ${sqlEscape(f.union_bn)}, ${sqlEscape(f.village_or_area)},
-  ${sqlEscape(f.address)}, ${sqlJson(f.phone || [])}, ${sqlEscape(f.email)}, ${sqlEscape(f.website)},
-  ${f.latitude || 24.85}, ${f.longitude || 89.37}, ${sqlEscape(f.google_maps_url || '')}, ${sqlEscape(f.image_url)},
-  ${sqlJson(f.services || [])}, ${sqlJson(f.source_urls || [])}, 'verified', CURRENT_DATE
-) ON CONFLICT (id) DO NOTHING;`);
-  }
-
-  // Write out full supabase/seed.sql
-  const fullSql = sqlStatements.join('\n');
-  fs.writeFileSync(seedSqlPath, fullSql, 'utf-8');
-  console.log(`✓ Master Seed SQL successfully generated at: ${seedSqlPath}`);
-  console.log(`  Total file size: ${(Buffer.byteLength(fullSql) / 1024).toFixed(1)} KB`);
-
-  console.log('\n================================================================');
-  console.log('   ALL DATASETS SEEDED & SYNCHRONIZED ACROSS AMAR BOGURA!      ');
-  console.log('================================================================\n');
-
-  console.table([
-    { Module: '1. Upazilas (উপজেলা)', Records: 12, Source: 'lib/data/district-data.ts' },
-    { Module: '2. Unions & Villages (ইউনিয়ন ও গ্রাম)', Records: '108 Unions', Source: 'lib/data/unions-villages-data.ts' },
-    { Module: '3. Educational Institutes (শিক্ষা প্রতিষ্ঠান)', Records: institutesData.length, Source: 'amr-bogura-data/education/institutes.json' },
-    { Module: '4. Healthcare Facilities (স্বাস্থ্যসেবা)', Records: healthcareData.length, Source: 'amr-bogura-data/healthcare/healthcare-all.json' },
-    { Module: '5. Hotels, Resorts & Food (হোটেল ও রেস্তোরাঁ)', Records: totalHospitality, Source: 'amr-bogura-data/hospitality/hotels-and-restaurants.json' },
-    { Module: '6. Transport Hubs & Services (যোগাযোগ)', Records: totalTransport, Source: 'amr-bogura-data/transport/transport.json' },
-    { Module: '7. Banks & 24/7 ATMs (ব্যাংক ও এটিএম)', Records: totalBanking, Source: 'amr-bogura-data/banking/banks-and-atms.json' },
-    { Module: '8. Blood Donors & Banks (রক্তদাতা ও ব্যাংক)', Records: totalBlood, Source: 'amr-bogura-data/blood/blood-donors.json' },
-    { Module: '9. Tourist & Heritage Spots (দর্শনীয় স্থান)', Records: exploreSpotsData.length, Source: 'amr-bogura-data/explore/explore-spots.json' },
-    { Module: '10. Community & Civic Posts (কমিউনিটি)', Records: totalCommunityPosts, Source: 'amr-bogura-data/community/community-posts.json' }
+// ---------------------------------------------------------------- 01 healthcare
+{
+  const d = readJson('healthcare/healthcare-all.json');
+  const list = d?.data || [];
+  const FALLBACK_VERIFIED = '2026-11-22'; // the dataset snapshot date (deterministic, unlike CURRENT_DATE)
+  const rows = list.map(f => [
+    uuid('healthcare_facilities', f.id), str(f.id), str(f.dghs_facility_id), str(f.name), str(f.name_bn), str(f.slug),
+    str(f.category), str(f.facility_type), str(f.original_facility_type), str(f.ownership),
+    str(f.district), str(f.district_bn), str(f.upazila), str(f.upazila_bn),
+    str(f.union), str(f.union_bn), str(f.village_or_area), strKeep(f.address),
+    json(f.phone || []), str(f.email), str(f.website), num(f.latitude, 24.85), num(f.longitude, 89.37),
+    strKeep(f.google_maps_url || ''), str(f.image_url), json(f.services || []), json(f.source_urls || []),
+    `'${['verified', 'partially_verified', 'unverified'].includes(f.verification_status) ? f.verification_status : 'verified'}'`,
+    `'${/^\d{4}-\d{2}-\d{2}/.test(f.last_verified || '') ? f.last_verified.slice(0, 10) : FALLBACK_VERIFIED}'`,
   ]);
+  add('01_healthcare_facilities.sql', 'HEALTHCARE FACILITIES (DGHS)',
+    insert('healthcare_facilities', [
+      'id', 'legacy_id', 'dghs_facility_id', 'name', 'name_bn', 'slug', 'category', 'facility_type', 'original_facility_type',
+      'ownership', 'district', 'district_bn', 'upazila', 'upazila_bn', 'union_name', 'union_bn', 'village_or_area',
+      'address', 'phone', 'email', 'website', 'latitude', 'longitude', 'google_maps_url', 'image_url', 'services',
+      'source_urls', 'verification_status', 'last_verified',
+    ], rows, 50), list.length);
 }
 
-run().catch(err => {
-  console.error('Master Seeder Failed:', err);
-  process.exit(1);
-});
+// ---------------------------------------------------------------- 02 education
+{
+  const list = readJson('education/institutes.json') || [];
+  const rows = list.map(i => [
+    uuid('educational_institutes', i.id), str(i.id), str(i.nameEn || i.name), str(i.name), str(i.category), str(i.categoryBn),
+    str(i.upazilaEn || i.upazila), str(i.upazila), str(i.eiin), str(i.established), str(i.address || i.location),
+    str(i.phone), json(i.phone ? [i.phone] : []), str(i.email), str(i.website), str(i.coverImage), 'true',
+  ]);
+  add('02_educational_institutes.sql', 'EDUCATIONAL INSTITUTES',
+    insert('educational_institutes', [
+      'id', 'legacy_id', 'name', 'name_bn', 'category', 'category_bn', 'upazila', 'upazila_bn', 'eiin', 'established',
+      'location', 'phone', 'phone_numbers', 'email', 'website', 'cover_image', 'is_approved',
+    ], rows), list.length);
+}
+
+// ---------------------------------------------------------------- 03 hospitality
+// "বগুড়া সদর" with the single-codepoint form of ড় (U+09DC): byte-for-byte what the previous seed stored.
+// Bangla text in the datasets mixes Unicode forms; the canonical key is upazila_slug (NFC-normalised), so
+// never compare raw upazila text across tables.
+const HOSPITALITY_UPAZILA = '\u09ac\u0997\u09c1\u09dc\u09be \u09b8\u09a6\u09b0';
+{
+  const d = readJson('hospitality/hotels-and-restaurants.json') || {};
+  // legacy ids are positional (hotel-1 ..., restaurant-1 ...): keep them so ids stay stable
+  const list = [
+    ...(d.hotels_and_resorts || []).map((h, i) => ({ ...h, id: `hotel-${i + 1}`, category: 'hotel_resort' })),
+    ...(d.restaurants || []).map((r, i) => ({ ...r, id: `restaurant-${i + 1}`, category: 'restaurant' })),
+  ];
+  const rows = list.map(v => [
+    uuid('hospitality_venues', v.id), str(v.id), str(v.name), str(v.category), str(v.location), str(HOSPITALITY_UPAZILA),
+    str(v.url), json(v.facilities || []), str(v.phone_number), json(v.phone_numbers || []), str(v.banner_image),
+  ]);
+  add('03_hospitality_venues.sql', 'HOSPITALITY (hotels, resorts, restaurants)',
+    insert('hospitality_venues', ['id', 'legacy_id', 'name', 'category', 'location', 'upazila', 'url', 'facilities', 'phone_number', 'phone_numbers', 'banner_image'], rows),
+    list.length);
+}
+
+// ---------------------------------------------------------------- 04 transport
+{
+  const d = readJson('transport/transport.json') || {};
+  const hubs = d.transport_hubs || [];
+  const services = d.transport_services || [];
+  const hubRows = hubs.map(h => [
+    uuid('transport_hubs', h.id), str(h.id), str(h.name), str(h.name_bn), str(h.category), str(h.category_bn), str(h.location),
+    str(h.upazila), str(h.description), json(h.connected_routes || []), json(h.facilities || []), str(h.operating_hours),
+    str(h.phone_number), json(h.phone_numbers || []), str(h.banner_image),
+  ]);
+  const svcRows = services.map(s => [
+    uuid('transport_services', s.id), str(s.id), str(s.operator_name), str(s.operator_name_bn), str(s.service_type), str(s.service_type_bn),
+    str(s.headquarters_or_main_depot), str(s.online_booking_url), str(s.description), json(s.facilities || []), json(s.major_routes || []),
+    json(s.counters_in_bogura || []), str(s.phone_number), json(s.phone_numbers || []), str(s.banner_image),
+  ]);
+  add('04_transport.sql', 'TRANSPORT HUBS & SERVICES',
+    insert('transport_hubs', ['id', 'legacy_id', 'name', 'name_bn', 'category', 'category_bn', 'location', 'upazila', 'description', 'connected_routes', 'facilities', 'operating_hours', 'phone_number', 'phone_numbers', 'banner_image'], hubRows) +
+    '\n' +
+    insert('transport_services', ['id', 'legacy_id', 'operator_name', 'operator_name_bn', 'service_type', 'service_type_bn', 'headquarters', 'online_booking_url', 'description', 'facilities', 'major_routes', 'counters', 'phone_number', 'phone_numbers', 'banner_image'], svcRows),
+    hubs.length + services.length);
+}
+
+// ---------------------------------------------------------------- 05 banking
+{
+  const d = readJson('banking/banks-and-atms.json') || {};
+  const banks = [...(d.central_and_regulatory || []), ...(d.banks || [])];
+  const atms = d.atm_and_fast_track_booths || [];
+  const bankRows = banks.map(b => [
+    uuid('banks', b.id), str(b.id), str(b.bank_name), str(b.bank_name_bn), str(b.type), str(b.type_bn), str(b.branch_name), str(b.branch_name_bn),
+    str(b.location), str(b.upazila), str(b.routing_number), str(b.swift_code), json(b.facilities || []), bool(b.has_atm), bool(b.has_crm),
+    str(b.operating_hours), str(b.hotline), str(b.phone_number), json(b.phone_numbers || []), str(b.banner_image),
+  ]);
+  const atmRows = atms.map(a => [
+    uuid('atm_booths', a.id), str(a.id), str(a.booth_name), str(a.bank_name), str(a.location), str(a.upazila),
+    json(a.cards_accepted || []), json(a.services || []), str(a.operating_hours), str(a.hotline), str(a.banner_image),
+  ]);
+  add('05_banking.sql', 'BANKS & ATM BOOTHS',
+    insert('banks', ['id', 'legacy_id', 'bank_name', 'bank_name_bn', 'type', 'type_bn', 'branch_name', 'branch_name_bn', 'location', 'upazila', 'routing_number', 'swift_code', 'facilities', 'has_atm', 'has_crm', 'operating_hours', 'hotline', 'phone_number', 'phone_numbers', 'banner_image'], bankRows) +
+    '\n' +
+    insert('atm_booths', ['id', 'legacy_id', 'booth_name', 'bank_name', 'location', 'upazila', 'cards_accepted', 'services', 'operating_hours', 'hotline', 'banner_image'], atmRows),
+    banks.length + atms.length);
+}
+
+// ---------------------------------------------------------------- 06 blood (registry + institutional banks)
+{
+  const d = readJson('blood/blood-donors.json') || {};
+  const banks = d.emergency_blood_banks || [];
+  const donors = d.donors || [];
+  const bankRows = banks.map(b => [
+    uuid('blood_banks', b.id), str(b.id), str(b.name), str(b.name_bn), str(b.location), str(b.upazila), str(b.operating_hours),
+    json(b.services || []), json(b.hotlines || []),
+  ]);
+  // registry donors are published + verified from the start (moderation columns are set explicitly)
+  const donorRows = donors.map(x => [
+    uuid('blood_donors', x.id), str(x.id), str(x.name), str(x.blood_group), str(x.phone), str(x.alt_phone), str(x.upazila), str(x.location),
+    str(x.status), str(x.last_donated), int(x.total_donations, 1), str(x.badge), 'true', 'true', `'approved'`,
+  ]);
+  add('06_blood.sql', 'BLOOD BANKS & DONOR REGISTRY',
+    insert('blood_banks', ['id', 'legacy_id', 'name', 'name_bn', 'location', 'upazila', 'operating_hours', 'services', 'hotlines'], bankRows) +
+    '\n' +
+    insert('blood_donors', ['id', 'legacy_id', 'name', 'blood_group', 'phone', 'alt_phone', 'upazila', 'location', 'availability', 'last_donated', 'total_donations', 'badge', 'is_verified', 'is_approved', 'status'], donorRows),
+    banks.length + donors.length);
+}
+
+// ---------------------------------------------------------------- write
+fs.mkdirSync(outDir, { recursive: true });
+// remove files this generator produced earlier but no longer produces
+for (const f of fs.readdirSync(outDir)) {
+  if (/^\d\d_.+\.sql$/.test(f) && !files.some(x => x.name === f)) fs.rmSync(path.join(outDir, f));
+}
+let total = 0;
+for (const f of files) {
+  fs.writeFileSync(path.join(outDir, f.name), f.content, 'utf-8');
+  total += Buffer.byteLength(f.content);
+  const n = (f.content.match(/^  \(/gm) || []).length;
+  console.log(`  ${f.name.padEnd(34)} ${String(n).padStart(5)} rows  ${(Buffer.byteLength(f.content) / 1024).toFixed(0).padStart(5)} KB`);
+}
+console.log(`\nwrote ${files.length} files to supabase/seed/ (${(total / 1024).toFixed(0)} KB). schema.sql and migrations are never touched.`);

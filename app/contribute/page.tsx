@@ -49,8 +49,13 @@ function ContributeWorkspace() {
   const [commName, setCommName] = useState('');
   const [commPhone, setCommPhone] = useState('');
   const [commUpazila, setCommUpazila] = useState('বগুড়া সদর');
-  const [commBloodGroup, setCommBloodGroup] = useState('O+');
+  const [commBloodGroup, setCommBloodGroup] = useState(user?.bloodGroup || 'O+'); // default to the member's own group
   const [commRole, setCommRole] = useState('নিয়মিত রক্তদাতা');
+  // Blood: a DONOR (person who can give) and a REQUEST (someone needs blood) are different records
+  const [bloodMode, setBloodMode] = useState<'donor' | 'request'>('donor');
+  const [reqUnits, setReqUnits] = useState(1);
+  const [reqHospital, setReqHospital] = useState('');
+  const [reqNeededBy, setReqNeededBy] = useState('');
   const [commBadge, setCommBadge] = useState('উপলব্ধ');
   const [commDetail, setCommDetail] = useState('');
 
@@ -230,20 +235,27 @@ function ContributeWorkspace() {
         }
       } else {
         // Community submission
-        if (!commName.trim() || !commPhone.trim() || !commDetail.trim()) {
-          showToast('নাম/শিরোনাম, ফোন নম্বর ও বিস্তারিত বিবরণ আবশ্যক', 'error');
+        const invalid =
+          activeType === 'blood'
+            ? !commDetail.trim() || (bloodMode === 'request' && !commPhone.trim())
+            : !commName.trim() || !commPhone.trim() || !commDetail.trim();
+        if (invalid) {
+          showToast(
+            activeType === 'blood'
+              ? bloodMode === 'request' ? 'যোগাযোগের ফোন নম্বর ও বিস্তারিত বিবরণ আবশ্যক' : 'এলাকা / বিবরণ আবশ্যক'
+              : 'নাম/শিরোনাম, ফোন নম্বর ও বিস্তারিত বিবরণ আবশ্যক',
+            'error'
+          );
           setIsSubmitting(false);
           return;
         }
 
-        const payload = {
+        const communityPayload = {
           type: 'community',
           data: {
-            category: activeType === 'blood' ? 'blood' : activeType,
+            category: activeType,
             name: commName,
-            group: activeType === 'blood' ? commBloodGroup : undefined,
-            role: activeType === 'blood' ? commRole : undefined,
-            badge: activeType !== 'blood' ? commBadge : undefined,
+            badge: commBadge,
             upazila: commUpazila,
             detail: commDetail,
             phone: commPhone,
@@ -251,6 +263,25 @@ function ContributeWorkspace() {
             contributorPhone
           }
         };
+
+        // Blood is not a community post any more: donor registry vs. blood request are separate records.
+        const payload =
+          activeType !== 'blood'
+            ? communityPayload
+            : bloodMode === 'donor'
+              ? { type: 'blood_donor', data: { bloodGroup: commBloodGroup, location: commDetail } }
+              : {
+                  type: 'blood_request',
+                  data: {
+                    bloodGroup: commBloodGroup,
+                    units: reqUnits,
+                    hospital: reqHospital,
+                    upazila: commUpazila,
+                    neededBy: reqNeededBy || undefined,
+                    detail: commDetail,
+                    contactPhone: commPhone,
+                  },
+                };
 
         const res = await fetch('/api/contribute', {
           method: 'POST',
@@ -264,16 +295,19 @@ function ContributeWorkspace() {
             id: json.data.id,
             type: 'community',
             title: json.data.name,
-            category: activeType === 'blood' ? `রক্তদাতা (${commBloodGroup})` : activeType,
+            category: activeType === 'blood' ? (bloodMode === 'request' ? `রক্তের অনুরোধ (${commBloodGroup})` : `রক্তদাতা (${commBloodGroup})`) : activeType,
             upazila: json.data.upazila,
             date: 'আজ',
             status: 'pending'
           });
 
-          showToast('আপনার তথ্যটি জমা হয়েছে! মডারেশন শেষে তা কমিউনিটিতে যুক্ত হবে।');
+          showToast(json.message || 'আপনার তথ্যটি জমা হয়েছে! মডারেশন শেষে তা কমিউনিটিতে যুক্ত হবে।');
           setCommName('');
           setCommPhone('');
           setCommDetail('');
+          setReqHospital('');
+          setReqNeededBy('');
+          setReqUnits(1);
         } else {
           showToast(json.error || 'জমা দিতে সমস্যা হয়েছে', 'error');
         }
@@ -703,10 +737,90 @@ function ContributeWorkspace() {
               ) : (
                 <>
                   {/* Community / Blood Fields */}
+                  {activeType === 'blood' ? (
+                    <div className="space-y-4">
+                      <div role="tablist" aria-label="রক্তদাতা অথবা অনুরোধ" className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-slate-100">
+                        {([
+                          ['donor', 'fa-hand-holding-droplet', 'আমি রক্তদাতা হতে চাই'],
+                          ['request', 'fa-truck-medical', 'কারও জন্য রক্ত প্রয়োজন'],
+                        ] as const).map(([key, icon, label]) => (
+                          <button
+                            key={key}
+                            type="button"
+                            role="tab"
+                            aria-selected={bloodMode === key}
+                            onClick={() => setBloodMode(key)}
+                            className={`py-2.5 px-2 rounded-lg text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer ${
+                              bloodMode === key
+                                ? key === 'request' ? 'bg-rose-600 text-white shadow-sm' : 'bg-white text-emerald-800 shadow-sm'
+                                : 'text-slate-600 hover:text-slate-900'
+                            }`}
+                          >
+                            <i className={`fa-solid ${icon}`}></i>
+                            <span>{label}</span>
+                          </button>
+                        ))}
+                      </div>
+
+                      {bloodMode === 'donor' ? (
+                        <p className="text-xs text-emerald-900 bg-emerald-50 border border-emerald-200 rounded-xl p-3 leading-relaxed">
+                          <i className="fa-solid fa-user-shield mr-1.5 text-emerald-700"></i>
+                          আপনার <strong>প্রোফাইলের নাম ও মোবাইল নম্বরই</strong> রক্তদাতা তালিকায় যাবে (আলাদা করে লিখতে হবে না)। প্রতিজন রক্তদাতা তালিকায় একবারই থাকতে পারেন।
+                        </p>
+                      ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-xl bg-rose-50/60 border border-rose-200">
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-700 mb-1">
+                              যোগাযোগের মোবাইল নম্বর <span className="text-rose-500">*</span>
+                            </label>
+                            <input
+                              type="tel"
+                              required
+                              value={commPhone}
+                              onChange={e => setCommPhone(e.target.value)}
+                              placeholder="017XX-XXXXXX"
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/30 focus:border-rose-500"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-700 mb-1">কত ব্যাগ প্রয়োজন <span className="text-rose-500">*</span></label>
+                            <input
+                              type="number"
+                              min={1}
+                              max={20}
+                              value={reqUnits}
+                              onChange={e => setReqUnits(Math.max(1, Math.min(20, Number(e.target.value) || 1)))}
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/30 focus:border-rose-500"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-700 mb-1">হাসপাতাল / স্থান</label>
+                            <input
+                              type="text"
+                              value={reqHospital}
+                              onChange={e => setReqHospital(e.target.value)}
+                              placeholder="উদা: শজিমেক হাসপাতাল, ওয়ার্ড ৫"
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/30 focus:border-rose-500"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-700 mb-1">কবের মধ্যে প্রয়োজন</label>
+                            <input
+                              type="date"
+                              min={new Date().toISOString().slice(0, 10)}
+                              value={reqNeededBy}
+                              onChange={e => setReqNeededBy(e.target.value)}
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/30 focus:border-rose-500"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-slate-700 mb-1">
-                        {activeType === 'blood' ? 'রক্তদাতার পুরো নাম' : 'পোস্টের শিরোনাম / প্রার্থীর নাম'}{' '}
+                        পোস্টের শিরোনাম / প্রার্থীর নাম{' '}
                         <span className="text-rose-500">*</span>
                       </label>
                       <input
@@ -714,7 +828,7 @@ function ContributeWorkspace() {
                         required
                         value={commName}
                         onChange={e => setCommName(e.target.value)}
-                        placeholder={activeType === 'blood' ? 'উদা: মোঃ আরিফুল ইসলাম' : 'উদা: জলেশ্বরীতলা ৩ রুমের বাসা ভাড়া'}
+                        placeholder="উদা: জলেশ্বরীতলা ৩ রুমের বাসা ভাড়া"
                         className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-700/30 focus:border-emerald-700"
                       />
                     </div>
@@ -732,24 +846,28 @@ function ContributeWorkspace() {
                       />
                     </div>
                   </div>
+                  )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1">
-                        উপজেলা <span className="text-rose-500">*</span>
-                      </label>
-                      <select
-                        value={commUpazila}
-                        onChange={e => setCommUpazila(e.target.value)}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-700/30 focus:border-emerald-700"
-                      >
-                        {upazilaList.map(u => (
-                          <option key={u} value={u}>
-                            {u}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                    {/* a donor's upazila comes from their profile, so the field is only needed for everything else */}
+                    {!(activeType === 'blood' && bloodMode === 'donor') && (
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">
+                          উপজেলা <span className="text-rose-500">*</span>
+                        </label>
+                        <select
+                          value={commUpazila}
+                          onChange={e => setCommUpazila(e.target.value)}
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-700/30 focus:border-emerald-700"
+                        >
+                          {upazilaList.map(u => (
+                            <option key={u} value={u}>
+                              {u}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
 
                     {activeType === 'blood' ? (
                       <div>

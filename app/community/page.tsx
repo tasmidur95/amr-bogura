@@ -137,7 +137,7 @@ export default function CommunityPage() {
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 mt-8 pt-6 border-t border-emerald-800/60 text-center w-full">
             <div className="p-2.5 sm:p-3 rounded-xl bg-white/10 backdrop-blur-xs border border-white/15 min-w-0">
               <p className="text-xl sm:text-2xl font-black text-rose-400">
-                {communityData.blood?.length || 0}
+                {(communityData.blood || []).filter(p => p.kind !== 'blood_request').length}
               </p>
               <p className="text-[11px] sm:text-xs text-emerald-200 mt-0.5 truncate">নিবন্ধিত রক্তদাতা</p>
             </div>

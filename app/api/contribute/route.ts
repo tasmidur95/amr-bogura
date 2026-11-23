@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DistrictService } from '@/lib/services/district.service';
 import { getSessionUser } from '@/lib/services/community-session';
+import { BloodService, donorToPost, requestToPost } from '@/lib/services/blood.service';
 
 const UNAUTH = { success: false, error: 'অবদান রাখতে অনুগ্রহ করে লগইন করুন।' };
 
@@ -11,7 +12,18 @@ export async function GET(req: NextRequest) {
     if (!user) return NextResponse.json(UNAUTH, { status: 401 });
 
     const result = await DistrictService.getContributorSubmissions(user.phone);
-    return NextResponse.json({ success: true, data: result });
+    const blood = await BloodService.forContributor(user);
+    return NextResponse.json({
+      success: true,
+      data: {
+        ...result,
+        community: [
+          ...blood.requests.map(requestToPost),
+          ...blood.donors.map(donorToPost),
+          ...result.community,
+        ],
+      },
+    });
   } catch (err: any) {
     return NextResponse.json(
       { success: false, error: err.message || 'অবদান তথ্য লোড ব্যর্থ হয়েছে' },
@@ -113,7 +125,31 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    if (type === 'community' || type === 'blood') {
+    if (type === 'blood_donor' || type === 'blood_request') {
+      const result = type === 'blood_donor'
+        ? await BloodService.createDonor(user, data)
+        : await BloodService.createRequest(user, data);
+      if (!result.success) {
+        const status = result.code === 'duplicate' ? 409 : result.code === 'limit' ? 429 : result.code === 'invalid' ? 400 : 500;
+        return NextResponse.json({ success: false, error: result.error }, { status });
+      }
+      return NextResponse.json({
+        success: true,
+        message: type === 'blood_donor'
+          ? 'আপনার রক্তদাতা তথ্য জমা হয়েছে। মডারেটরের অনুমোদনের পর তালিকায় প্রকাশিত হবে।'
+          : 'আপনার রক্তের অনুরোধ জমা হয়েছে। দ্রুত যাচাই শেষে প্রকাশিত হবে।',
+        data: type === 'blood_donor' ? donorToPost(result.data as any) : requestToPost(result.data as any),
+      });
+    }
+
+    if (type === 'blood' || (type === 'community' && data?.category === 'blood')) {
+      return NextResponse.json(
+        { success: false, error: 'রক্তদাতা ও রক্তের অনুরোধ এখন আলাদা: type হবে "blood_donor" অথবা "blood_request"।' },
+        { status: 400 }
+      );
+    }
+
+    if (type === 'community') {
       const {
         category,
         name,

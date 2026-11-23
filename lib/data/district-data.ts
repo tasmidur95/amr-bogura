@@ -65,6 +65,14 @@ export interface CommunityPost {
   contributorName?: string;
   contributorPhone?: string;
   rejectReason?: string;
+  // Blood module (blood_donors / blood_requests are separate records; the feed merges them for display)
+  kind?: 'blood_donor' | 'blood_request';
+  hospital?: string;
+  units?: number;
+  neededBy?: string;
+  urgency?: 'normal' | 'urgent' | 'critical';
+  fulfilment?: 'open' | 'fulfilled' | 'cancelled';
+  lastDonated?: string;
 }
 
 export interface SiteContent {

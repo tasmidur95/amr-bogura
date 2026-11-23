@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createLocalClient, isLocalDbConfigured } from '@/lib/local-db';
 
 const supabaseUrl =
   process.env.NEXT_PUBLIC_SUPABASE_URL ||
@@ -12,7 +13,11 @@ const supabaseAnonKey =
   process.env.SUPABASE_ANON_KEY ||
   '';
 
-export const isSupabaseConfigured = Boolean(
+// Development: LOCAL_DATABASE_URL points the app at a local PostgreSQL (see scripts/db-setup.mjs).
+// The adapter mimics the supabase-js subset the services use and runs queries as the `anon` role.
+const localAnon = createLocalClient('anon') as unknown as SupabaseClient | null;
+
+export const isSupabaseConfigured = isLocalDbConfigured || Boolean(
   supabaseUrl &&
   supabaseAnonKey &&
   supabaseUrl !== 'https://your-project.supabase.co'
@@ -44,4 +49,4 @@ if (isSupabaseConfigured) {
   }
 }
 
-export const supabase = supabaseInstance;
+export const supabase: SupabaseClient | null = localAnon ?? supabaseInstance;

@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { supabaseWriter } from '@/lib/supabase-admin';
+import { BloodService, donorToPost, requestToPost } from '@/lib/services/blood.service';
 import {
   upazilasData,
   hospitalsData,
@@ -132,6 +134,12 @@ function getCommunityFilePath(): string {
 }
 
 function loadInitialCommunity(): Record<string, CommunityPost[]> {
+  const state = loadInitialCommunityRaw();
+  delete (state as any).blood; // blood donors / requests are handled by BloodService
+  return state;
+}
+
+function loadInitialCommunityRaw(): Record<string, CommunityPost[]> {
   try {
     const p = getCommunityFilePath();
     if (fs.existsSync(p)) {
@@ -383,7 +391,7 @@ export class DistrictService {
   ): Promise<DetailedExploreSpot[]> {
     if (isSupabaseConfigured && supabase) {
       try {
-        let queryBuilder = supabase
+        let queryBuilder = (includePending ? supabaseWriter! : supabase)
           .from('tourist_spots')
           .select('*')
           .order('created_at', { ascending: false });
@@ -616,7 +624,7 @@ export class DistrictService {
     // 2. Insert into Supabase if configured
     if (isSupabaseConfigured && supabase) {
       try {
-        const { error } = await supabase
+        const { error } = await supabaseWriter!
           .from('tourist_spots')
           .insert([
             {
@@ -688,7 +696,7 @@ export class DistrictService {
 
     if (isSupabaseConfigured && supabase) {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseWriter!
           .from('spot_reviews')
           .insert([
             {
@@ -732,9 +740,13 @@ export class DistrictService {
     bloodGroup?: string,
     includePending = false
   ): Promise<CommunityPost[]> {
+    if (category === 'blood') {
+      return BloodService.feed({ upazila, bloodGroup });
+    }
+
     if (isSupabaseConfigured && supabase) {
       try {
-        let queryBuilder = supabase
+        let queryBuilder = (includePending ? supabaseWriter! : supabase)
           .from('community_posts')
           .select('*')
           .order('created_at', { ascending: false });
@@ -748,9 +760,6 @@ export class DistrictService {
         if (upazila && upazila !== 'ALL') {
           queryBuilder = queryBuilder.eq('upazila', upazila);
         }
-        if (bloodGroup && bloodGroup !== 'ALL') {
-          queryBuilder = queryBuilder.eq('blood_group', bloodGroup);
-        }
 
         const { data, error } = await queryBuilder;
         if (!error && data && data.length > 0) {
@@ -758,8 +767,7 @@ export class DistrictService {
             id: item.id,
             category: item.category,
             name: item.name,
-            group: item.blood_group,
-            role: item.blood_role,
+            role: item.role,
             badge: item.badge,
             upazila: item.upazila,
             detail: item.detail,
@@ -796,19 +804,20 @@ export class DistrictService {
   static async createCommunityPost(
     post: Omit<CommunityPost, 'id'> & { autoApprove?: boolean }
   ): Promise<CommunityPost> {
+    if ((post.category as string) === 'blood') {
+      throw new Error('Blood donors and requests are separate records: use BloodService.createDonor / createRequest.');
+    }
     const autoApprove = post.autoApprove ?? false; // Default pending for moderator queue!
     const status = autoApprove ? 'approved' : 'pending';
 
     if (isSupabaseConfigured && supabase) {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseWriter!
           .from('community_posts')
           .insert([
             {
               category: post.category,
               name: post.name,
-              blood_group: post.group || null,
-              blood_role: post.role || null,
               badge: post.badge || null,
               upazila: post.upazila,
               detail: post.detail,
@@ -824,8 +833,7 @@ export class DistrictService {
             id: data.id,
             category: data.category,
             name: data.name,
-            group: data.blood_group,
-            role: data.blood_role,
+            role: data.role,
             badge: data.badge,
             upazila: data.upazila,
             detail: data.detail,
@@ -887,6 +895,9 @@ export class DistrictService {
     Object.keys(memoryCommunityState).forEach(cat => {
       community.push(...memoryCommunityState[cat]);
     });
+
+    const blood = await BloodService.adminList();
+    community.push(...blood.requests.map(requestToPost), ...blood.donors.map(donorToPost));
 
     // 3. Gather Reviews
     let reviews: SpotReview[] = [...memorySpotReviews];
@@ -989,6 +1000,9 @@ export class DistrictService {
       return 'spot';
     }
 
+    // 2a. Blood donors / requests (moderated via the 'community' column of the admin UI)
+    if (await BloodService.findKind(id)) return 'community';
+
     // 2. Check community (memory + disk)
     for (const cat of Object.keys(memoryCommunityState)) {
       if (memoryCommunityState[cat].some(c => c.id === id)) return 'community';
@@ -1024,6 +1038,9 @@ export class DistrictService {
   static async approveSubmission(type: 'spot' | 'community' | 'review' | 'education' | string, id: string): Promise<boolean> {
     if (!id) return false;
 
+    // Blood donors / requests have their own tables and workflow
+    if ((type === 'community' || type === 'blood') && (await BloodService.findKind(id))) return BloodService.approve(id);
+
     // 1. Primary check based on requested type
     if (type === 'spot') {
       let spot = memoryExploreSpots.find(s => s.id === id);
@@ -1043,7 +1060,7 @@ export class DistrictService {
 
         if (isSupabaseConfigured && supabase) {
           try {
-            await supabase.from('tourist_spots').update({ is_approved: true }).eq('id', id);
+            await supabaseWriter!.from('tourist_spots').update({ is_approved: true }).eq('id', id);
           } catch (err) {
             console.warn('Supabase spot approve fallback:', err);
           }
@@ -1081,7 +1098,7 @@ export class DistrictService {
 
         if (isSupabaseConfigured && supabase) {
           try {
-            await supabase.from('community_posts').update({ is_approved: true }).eq('id', id);
+            await supabaseWriter!.from('community_posts').update({ is_approved: true }).eq('id', id);
           } catch (err) {
             console.warn('Supabase community approve fallback:', err);
           }
@@ -1202,6 +1219,8 @@ export class DistrictService {
   ): Promise<boolean> {
     const feedback = reason || 'তথ্য যাচাই বা সংশোধন প্রয়োজন';
 
+    if ((type === 'community' || type === 'blood') && (await BloodService.findKind(id))) return BloodService.reject(id, feedback);
+
     if (type === 'spot') {
       let spot = memoryExploreSpots.find(s => s.id === id);
       if (!spot) {
@@ -1220,7 +1239,7 @@ export class DistrictService {
 
         if (isSupabaseConfigured && supabase) {
           try {
-            await supabase.from('tourist_spots').update({ is_approved: false }).eq('id', id);
+            await supabaseWriter!.from('tourist_spots').update({ status: 'rejected', reject_reason: feedback || null }).eq('id', id);
           } catch (err) {
             console.warn('Supabase spot reject fallback:', err);
           }
@@ -1238,7 +1257,7 @@ export class DistrictService {
 
           if (isSupabaseConfigured && supabase) {
             try {
-              await supabase.from('community_posts').update({ is_approved: false }).eq('id', id);
+              await supabaseWriter!.from('community_posts').update({ status: 'rejected', reject_reason: feedback || null }).eq('id', id);
             } catch (err) {
               console.warn('Supabase community reject fallback:', err);
             }
@@ -1307,6 +1326,8 @@ export class DistrictService {
    * Delete any submission permanently
    */
   static async deleteSubmission(type: 'spot' | 'community' | 'review' | 'education' | string, id: string): Promise<boolean> {
+    if ((type === 'community' || type === 'blood') && (await BloodService.findKind(id))) return BloodService.remove(id);
+
     if (type === 'spot') {
       const idx = memoryExploreSpots.findIndex(s => s.id === id);
       if (idx !== -1) {
@@ -1315,7 +1336,7 @@ export class DistrictService {
 
         if (isSupabaseConfigured && supabase) {
           try {
-            await supabase.from('tourist_spots').delete().eq('id', id);
+            await supabaseWriter!.from('tourist_spots').delete().eq('id', id);
           } catch (err) {
             console.warn('Supabase spot delete fallback:', err);
           }
@@ -1331,7 +1352,7 @@ export class DistrictService {
 
           if (isSupabaseConfigured && supabase) {
             try {
-              await supabase.from('community_posts').delete().eq('id', id);
+              await supabaseWriter!.from('community_posts').delete().eq('id', id);
             } catch (err) {
               console.warn('Supabase community delete fallback:', err);
             }
@@ -1477,7 +1498,7 @@ export class DistrictService {
 
     if (isSupabaseConfigured && supabase) {
       try {
-        await supabase.from('hospitals').insert([
+        await supabaseWriter!.from('hospitals').insert([
           {
             name: item.name,
             en_name: item.enName || item.name,
@@ -1687,7 +1708,7 @@ export class DistrictService {
 
       if (isSupabaseConfigured && supabase) {
         try {
-          await supabase.from('tourist_spots').update({
+          await supabaseWriter!.from('tourist_spots').update({
             title: spot.title,
             en_title: spot.enTitle,
             location: spot.location,

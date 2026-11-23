@@ -10,7 +10,10 @@
     "lint": "next lint",
     "clean": "node -e \"const fs = require('fs'); fs.rmSync('.next', { recursive: true, force: true }); console.log('✓ Cleaned .next build and cache');\"",
     "seed:healthcare": "node scripts/seed-healthcare.mjs",
-    "seed:all": "node scripts/seed-all.mjs"
+    "seed:all": "node scripts/seed-all.mjs",
+    "db:setup": "node scripts/db-setup.mjs",
+    "db:reset": "node scripts/db-setup.mjs --reset",
+    "db:seed-content": "node scripts/db-seed-content.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.6",
@@ -19,12 +22,14 @@
     "leaflet": "^1.9.4",
     "lucide-react": "^0.453.0",
     "next": "^14.2.15",
+    "pg": "^8.23.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
     "@types/node": "^20.17.0",
+    "@types/pg": "^8.23.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",

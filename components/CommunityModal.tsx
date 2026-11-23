@@ -26,6 +26,10 @@ export default function CommunityModal({
   const [upazila, setUpazila] = useState('বগুড়া সদর');
   const [bloodGroup, setBloodGroup] = useState('A+');
   const [bloodRole, setBloodRole] = useState('রক্তদাতা');
+  // blood REQUEST only (someone needs blood)
+  const [units, setUnits] = useState(1);
+  const [hospital, setHospital] = useState('');
+  const [neededBy, setNeededBy] = useState('');
   const [detail, setDetail] = useState('');
   const [phone, setPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,6 +61,45 @@ export default function CommunityModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !upazila || !detail || !phone) return;
+
+    // ---- Blood: donors and requests are separate records with their own endpoints.
+    if (category === 'blood') {
+      if (!isLoggedIn) {
+        showToast('রক্তদাতা বা অনুরোধ জমা দিতে লগইন করুন।', 'error');
+        return;
+      }
+      setIsSubmitting(true);
+      try {
+        const isRequest = bloodRole === 'জরুরি প্রয়োজন';
+        const res = await fetch(isRequest ? '/api/blood/requests' : '/api/blood/donors', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify(
+            isRequest
+              ? { bloodGroup, units, hospital, upazila, neededBy: neededBy || undefined, detail, contactPhone: phone }
+              : { bloodGroup, location: detail }
+          ),
+        });
+        const json = await res.json();
+        if (json.success) {
+          // Not added to the public list: it is pending until a moderator publishes it.
+          showToast(json.message || 'জমা হয়েছে। যাচাইয়ের পর প্রকাশিত হবে।');
+          setDetail('');
+          setHospital('');
+          setNeededBy('');
+          setUnits(1);
+          onClose();
+        } else {
+          showToast(json.error || 'জমা দেওয়া যায়নি।', 'error');
+        }
+      } catch {
+        showToast('নেটওয়ার্ক সমস্যা: জমা দেওয়া যায়নি। আবার চেষ্টা করুন।', 'error');
+      } finally {
+        setIsSubmitting(false);
+      }
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -266,6 +309,57 @@ export default function CommunityModal({
             </div>
           )}
 
+          {category === 'blood' && bloodRole === 'জরুরি প্রয়োজন' && (
+            <div className="grid grid-cols-2 gap-3.5 p-3 rounded-xl bg-rose-50/70 border border-rose-200">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">কত ব্যাগ প্রয়োজন *</label>
+                <input
+                  type="number"
+                  min={1}
+                  max={20}
+                  value={units}
+                  onChange={e => setUnits(Math.max(1, Math.min(20, Number(e.target.value) || 1)))}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">কবের মধ্যে প্রয়োজন</label>
+                <input
+                  type="date"
+                  min={new Date().toISOString().slice(0, 10)}
+                  value={neededBy}
+                  onChange={e => setNeededBy(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
+                />
+              </div>
+              <div className="col-span-2">
+                <label className="block text-xs font-bold text-slate-700 mb-1">হাসপাতাল / স্থান</label>
+                <input
+                  type="text"
+                  value={hospital}
+                  onChange={e => setHospital(e.target.value)}
+                  placeholder="যেমন: শজিমেক হাসপাতাল, ওয়ার্ড ৫"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
+                />
+              </div>
+            </div>
+          )}
+
+          {category === 'blood' && !isLoggedIn && (
+            <div className="p-3 rounded-xl bg-amber-50 border border-amber-300 text-xs text-amber-900 flex items-center justify-between gap-3">
+              <span className="leading-snug">
+                ভুয়া তথ্য ও স্প্যাম ঠেকাতে রক্তদাতা নিবন্ধন ও রক্তের অনুরোধের জন্য <strong>লগইন আবশ্যক</strong>।
+              </span>
+              <button
+                type="button"
+                onClick={() => { onClose(); openAuthPage('login'); }}
+                className="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold shrink-0 cursor-pointer"
+              >
+                লগইন করুন
+              </button>
+            </div>
+          )}
+
           {/* General Detail Field */}
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-1">
@@ -303,7 +397,7 @@ export default function CommunityModal({
 
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || (category === 'blood' && !isLoggedIn)}
             className="w-full py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 disabled:opacity-60 text-white font-bold text-sm shadow-md transition cursor-pointer flex items-center justify-center gap-2"
           >
             {isSubmitting ? (

@@ -196,3 +196,19 @@ amr-bogura/
 
 #   a m r - b o g u r a  
  
+
+## Local PostgreSQL (development)
+
+Develop against a local database first, then point the same schema at Supabase.
+
+1. Put this in `.env.local` (git-ignored; adjust user/password):
+   `LOCAL_DATABASE_URL=postgresql://postgres:postgres@localhost:5432/amar_bogura`
+2. `npm run db:setup` creates the database and applies, in order: `supabase/schema.sql`,
+   `supabase/seed.sql`, `supabase/migrations/*.sql`, then loads the sample community posts and
+   explore spots from `amr-bogura-data/`. It is idempotent; `npm run db:reset` rebuilds from scratch.
+3. `npm run dev` - the app now uses local Postgres (it ignores the Supabase keys while
+   `LOCAL_DATABASE_URL` is set). Public reads run as the `anon` role and writes/moderation as
+   `service_role`, so Row Level Security behaves like production.
+
+The setup script refuses to run against any non-local host, and local mode is disabled when
+`NODE_ENV=production`.

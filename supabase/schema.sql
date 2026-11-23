@@ -1,3 +1,9 @@
+-- ========================================================
+-- AMAR BOGURA — BASELINE SCHEMA
+-- Apply order: schema.sql -> seed.sql (optional) -> migrations/*.sql (in filename order).
+-- The migrations fix drift, add keys / indexes / constraints and enable Row Level Security.
+-- ========================================================
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- 1. Upazilas
 CREATE TABLE IF NOT EXISTS public.upazilas (
