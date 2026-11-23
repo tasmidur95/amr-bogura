@@ -169,12 +169,12 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             >
               {language === 'bn' ? 'ব্যাংক ও এটিএম' : 'Banking & ATM'}
             </Link>
-            <button
+            {/* <button
               onClick={() => handleNavClick('home', 'history')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition-all duration-200 ease-out active:scale-95 cursor-pointer"
             >
               {t('navHistory')}
-            </button>
+            </button> */}
             <Link
               href="/community"
               className={`px-3.5 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer ${currentView === 'community'
@@ -184,16 +184,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             >
               {t('navCommunity')}
             </Link>
-            <Link
-              href="/contribute"
-              className={`px-3 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer flex items-center gap-1.5 ${currentView === 'contribute'
-                ? 'font-bold text-emerald-950 bg-emerald-100 shadow-sm border border-emerald-300'
-                : 'font-semibold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200'
-                }`}
-            >
-              <i className="fa-solid fa-heart-circle-plus text-rose-500"></i>
-              <span>{language === 'bn' ? 'অবদান রাখুন' : 'Contribute'}</span>
-            </Link>
+
           </nav>
 
           {/* Right Action Controls: Search, Community Auth, Admin & Language Toggle */}
@@ -220,19 +211,16 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 <span className="hidden sm:inline">{language === 'bn' ? 'English' : 'বাংলা'}</span>
               </span>
             </button>
-            {/* <button
-              onClick={() => openAuthPage('login')}
-              className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center justify-center text-sm cursor-pointer"
-              title={isLoggedIn ? `কমিউনিটি সদস্য: ${user?.name} (@${user?.username})` : 'কমিউনিটি সদস্য লগইন / নিবন্ধন'}
+            <Link
+              href="/contribute"
+              className={`px-3 py-1.5 rounded-lg text-sm transition-all duration-200 ease-out active:scale-95 cursor-pointer flex items-center gap-1.5 ${currentView === 'contribute'
+                ? 'font-bold text-emerald-950 bg-emerald-100 shadow-sm border border-emerald-300'
+                : 'font-semibold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200'
+                }`}
             >
-              {isLoggedIn && user ? (
-                <span className="w-5 h-5 rounded-full bg-emerald-700 text-white font-bold text-[10px] flex items-center justify-center shadow-2xs">
-                  {user.name.slice(0, 1)}
-                </span>
-              ) : (
-                <i className="fa-solid fa-user-circle text-emerald-700"></i>
-              )}
-            </button> */}
+              <i className="fa-solid fa-heart-circle-plus text-rose-500"></i>
+              <span>{language === 'bn' ? 'অবদান রাখুন' : 'Contribute'}</span>
+            </Link>
           </div>
         </div>
       </header>
