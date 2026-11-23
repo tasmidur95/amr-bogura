@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
-import BrandLogo from '@/components/BrandLogo';
 import { SiteContent } from '@/lib/data/district-data';
 
 interface HeroProps {
@@ -14,7 +13,6 @@ interface HeroProps {
 
 export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProps) {
   const { t } = useLanguage();
-  const [isCoverModalOpen, setIsCoverModalOpen] = useState(false);
   const coverImg = siteContent?.coverImageUrl || '/images/amar-bogura-cover.jpg';
 
   return (
