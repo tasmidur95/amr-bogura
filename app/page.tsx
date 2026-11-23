@@ -14,6 +14,7 @@ import UpazilaDetailView from '@/components/UpazilaDetailView';
 import HealthcareSection from '@/components/HealthcareSection';
 import ExploreSection from '@/components/ExploreSection';
 import HistorySection from '@/components/HistorySection';
+import HomeFaq, { HOME_FAQS } from '@/components/HomeFaq';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import SearchModal from '@/components/SearchModal';
@@ -125,8 +126,46 @@ export default function HomePage() {
     setActiveCommunityTab(newPost.category);
   };
 
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://amar-bogura.vercel.app').replace(/\/$/, '');
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${siteUrl}/#website`,
+        url: siteUrl,
+        name: 'আমার বগুড়া | Amar Bogura',
+        inLanguage: 'bn-BD',
+        description: 'বগুড়া জেলা পোর্টাল: ১২টি উপজেলা, স্বাস্থ্যসেবা, জরুরি যোগাযোগ, রক্তদাতা নেটওয়ার্ক ও দর্শনীয় স্থান।',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        '@id': `${siteUrl}/#bogura`,
+        name: 'বগুড়া জেলা',
+        alternateName: 'Bogura District',
+        containedInPlace: { '@type': 'Country', name: 'Bangladesh' },
+        geo: { '@type': 'GeoCoordinates', latitude: 24.8465, longitude: 89.3732 },
+        url: siteUrl,
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: HOME_FAQS.map(f => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
+      {currentView === 'home' && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       {/* Sticky Navbar */}
       <Navbar
         currentView={currentView}
@@ -139,24 +178,23 @@ export default function HomePage() {
       <main className="flex-1">
         {currentView === 'home' && (
           <div className="animate-fade-in">
-            {/* 1. Value Proposition, Instant Search, High-Contrast CTAs & Trust Proofs */}
+            {/* CRO order: intent capture → quick gateways → urgent help → high-intent network → discovery → trust & info → answers */}
+
+            {/* 1. Value proposition, instant search & primary CTAs */}
             <Hero
               onNavigate={handleNavigate}
               siteContent={siteContent}
               onOpenSearch={() => setIsSearchOpen(true)}
             />
 
-            {/* 2. Immediate Action Gateways (8 Core Services — Low Friction Navigation) */}
+            {/* 2. Quick gateways: 8 core services, one tap */}
             <ServicesGrid
               onNavigate={handleNavigate}
               onFilterHospital={setHospitalFilter}
               onSwitchCommunityTab={setActiveCommunityTab}
             />
 
-            {/* 3. Realtime Live Context: Weather & Civic Advisory */}
-            <WeatherSection />
-
-            {/* 4. Highest Urgency Civic Conversion: Healthcare & 24/7 Emergency */}
+            {/* 3. Highest urgency: emergency numbers first, then hospital directory */}
             <HealthcareSection
               hospitals={hospitals}
               emergencyContacts={emergencyContacts}
@@ -165,7 +203,7 @@ export default function HomePage() {
               isHome={true}
             />
 
-            {/* 5. High-Intent Civic Network: Blood Donors & Community Support */}
+            {/* 4. High-intent civic network: blood donors & community */}
             <CommunitySection
               activeTab={activeCommunityTab}
               onTabChange={setActiveCommunityTab}
@@ -174,10 +212,7 @@ export default function HomePage() {
               isHome={true}
             />
 
-            {/* 6. Authority, Scale & Trust: District Master Overview (6 Pillars) */}
-            <DistrictOverviewSection />
-
-            {/* 7. Administrative Discovery: Upazilas & Unions */}
+            {/* 5. Administrative discovery: upazila summary map */}
             <UpazilaSection
               upazilas={upazilas}
               onNavigate={handleNavigate}
@@ -185,10 +220,19 @@ export default function HomePage() {
               isHome={true}
             />
 
-            {/* 8. Culture & Heritage Engagement: Explore Bogura */}
+            {/* 6. Explore: heritage & tourism */}
             <ExploreSection exploreSpots={exploreSpots} />
 
-            {/* 9. Civic Contribution Closer & Historical Roots */}
+            {/* 7. Authority & trust: district at a glance */}
+            <DistrictOverviewSection />
+
+            {/* 8. Live context: weather */}
+            <WeatherSection />
+
+            {/* 9. Information: FAQ (also exposed as FAQPage structured data) */}
+            <HomeFaq />
+
+            {/* 10. Roots, district facts & contribution closer */}
             <HistorySection siteContent={siteContent} />
           </div>
         )}

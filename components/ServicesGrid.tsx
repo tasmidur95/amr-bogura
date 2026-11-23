@@ -10,249 +10,81 @@ interface ServicesGridProps {
   onSwitchCommunityTab: (tab: string) => void;
 }
 
-export default function ServicesGrid({
-  onNavigate,
-  onFilterHospital,
-  onSwitchCommunityTab,
-}: ServicesGridProps) {
+interface Service {
+  key: string;
+  title: string;
+  sub: string;
+  badge: string;
+  icon: string;
+  tone: string; // tailwind classes for icon bubble
+  href?: string;
+  onClick?: () => void;
+}
+
+export default function ServicesGrid({ onNavigate, onFilterHospital, onSwitchCommunityTab }: ServicesGridProps) {
   const { t } = useLanguage();
 
+  const services: Service[] = [
+    { key: 'hospital', title: t('srvHospital'), sub: t('srvHospitalSub'), badge: '১৮+ কেন্দ্র', icon: 'fa-hospital-user', tone: 'bg-emerald-50 text-emerald-700', href: '/healthcare' },
+    { key: 'diagnostic', title: t('srvDiagnostic'), sub: t('srvDiagnosticSub'), badge: '২৫+ ল্যাব', icon: 'fa-microscope', tone: 'bg-cyan-50 text-cyan-700', onClick: () => { onFilterHospital('diagnostic'); onNavigate('home', 'healthcare'); } },
+    { key: 'emergency', title: t('srvEmergency'), sub: t('srvEmergencySub'), badge: '২৪/৭', icon: 'fa-truck-medical', tone: 'bg-rose-50 text-rose-600', onClick: () => onNavigate('home', 'emergency') },
+    { key: 'upazila', title: t('srvUpazila'), sub: t('srvUpazilaSub'), badge: '১২ উপজেলা', icon: 'fa-building-flag', tone: 'bg-amber-50 text-amber-700', href: '/upazilas' },
+    { key: 'explore', title: t('srvExplore'), sub: t('srvExploreSub'), badge: '১০+ স্থান', icon: 'fa-gopuram', tone: 'bg-teal-50 text-teal-700', href: '/explore' },
+    { key: 'banking', title: 'ব্যাংক ও এটিএম', sub: 'রাউটিং নম্বর, সুইফট কোড ও এটিএম বুথ', badge: '২৪/৭ এটিএম', icon: 'fa-building-columns', tone: 'bg-emerald-50 text-emerald-800', href: '/banking' },
+    { key: 'doi', title: t('srvDoi'), sub: t('srvDoiSub'), badge: 'GI পণ্য', icon: 'fa-bowl-food', tone: 'bg-yellow-50 text-yellow-700', onClick: () => { onSwitchCommunityTab('business'); onNavigate('home', 'community'); } },
+    { key: 'history', title: t('srvHistory'), sub: t('srvHistorySub'), badge: '১৮২১ সাল', icon: 'fa-scroll', tone: 'bg-orange-50 text-orange-700', onClick: () => onNavigate('home', 'history') },
+  ];
+
+  const cardClass =
+    'group text-left bg-white rounded-2xl p-3 sm:p-4 border border-slate-200/90 card-hover flex flex-col items-center sm:items-stretch text-center sm:text-left gap-2 cursor-pointer min-w-0';
+
+  const inner = (s: Service) => (
+    <>
+      <div className="flex items-center justify-center sm:justify-between w-full">
+        <span className={`w-11 h-11 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-lg ${s.tone} group-hover:scale-105 transition`}>
+          <i className={`fa-solid ${s.icon}`}></i>
+        </span>
+        <span className="hidden sm:inline text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-50 text-slate-600 border border-slate-200">
+          {s.badge}
+        </span>
+      </div>
+      <div className="min-w-0">
+        <h3 className="font-bold text-slate-900 text-[13px] sm:text-base leading-tight group-hover:text-emerald-800 transition-colors">
+          {s.title}
+        </h3>
+        <p className="hidden sm:block text-xs text-slate-500 mt-1 line-clamp-2">{s.sub}</p>
+      </div>
+    </>
+  );
+
   return (
-    <section id="services" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+    <section id="services" aria-labelledby="services-title" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-4 sm:pb-6">
+      <div className="flex items-end justify-between gap-3 mb-3 sm:mb-5">
         <div>
-          <span className="text-xs font-bold tracking-wider uppercase text-amber-700 bg-amber-100/80 px-2.5 py-1 rounded-md border border-amber-200">
-            {t('sec01Badge')}
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
+          <h2 id="services-title" className="text-xl sm:text-2xl font-bold text-slate-900">
             {t('sec01Title')}
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-1">
-            {t('sec01Subtitle')}
-          </p>
+          <p className="text-slate-600 text-xs sm:text-sm mt-0.5 hidden sm:block">{t('sec01Subtitle')}</p>
         </div>
-        <div className="text-xs text-slate-500 bg-white px-3.5 py-2 rounded-xl border border-slate-200 flex items-center gap-2 self-start sm:self-auto shadow-2xs">
+        <span className="text-[11px] text-slate-500 bg-white px-2.5 py-1 rounded-lg border border-slate-200 flex items-center gap-1.5 shrink-0">
           <i className="fa-solid fa-circle-check text-emerald-600"></i>
           <span>{t('verifiedBadge')}</span>
-        </div>
+        </span>
       </div>
 
-      {/* 8-Card Directory Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {/* Service 1: Hospitals */}
-        <button
-          onClick={() => onNavigate('home', 'healthcare')}
-          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
-              <i className="fa-solid fa-hospital-user"></i>
-            </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
-              ১৮+ কেন্দ্র
-            </span>
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 text-lg group-hover:text-emerald-800 transition-colors">
-              {t('srvHospital')}
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              {t('srvHospitalSub')}
-            </p>
-          </div>
-        </button>
-
-        {/* Service 2: Diagnostic */}
-        <button
-          onClick={() => {
-            onFilterHospital('diagnostic');
-            onNavigate('home', 'healthcare');
-          }}
-          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-700 group-hover:bg-cyan-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
-              <i className="fa-solid fa-microscope"></i>
-            </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-50 text-cyan-800 border border-cyan-200">
-              ২৫+ ল্যাব
-            </span>
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 text-lg group-hover:text-cyan-800 transition-colors">
-              {t('srvDiagnostic')}
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              {t('srvDiagnosticSub')}
-            </p>
-          </div>
-        </button>
-
-        {/* Service 3: Emergency */}
-        <button
-          onClick={() => onNavigate('home', 'emergency')}
-          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white transition-colors flex items-center justify-center text-xl">
-              <i className="fa-solid fa-truck-medical"></i>
-            </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200">
-              ২৪/৭ সেবা
-            </span>
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 text-lg group-hover:text-rose-700 transition-colors">
-              {t('srvEmergency')}
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              {t('srvEmergencySub')}
-            </p>
-          </div>
-        </button>
-
-        {/* Service 4: Upazilas & Pourashavas */}
-        <button
-          onClick={() => onNavigate('upazilas')}
-          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors flex items-center justify-center text-xl">
-              <i className="fa-solid fa-building-flag"></i>
-            </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
-              ১২ উপজেলা
-            </span>
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 text-lg group-hover:text-amber-800 transition-colors">
-              {t('srvUpazila')}
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              {t('srvUpazilaSub')}
-            </p>
-          </div>
-        </button>
-
-        {/* Service 5: Tourist Spots */}
-        <button
-          onClick={() => onNavigate('home', 'explore')}
-          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 group-hover:bg-teal-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
-              <i className="fa-solid fa-gopuram"></i>
-            </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200">
-              ১০+ স্থান
-            </span>
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 text-lg group-hover:text-teal-800 transition-colors">
-              {t('srvExplore')}
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              {t('srvExploreSub')}
-            </p>
-          </div>
-        </button>
-
-        {/* Service 6: History */}
-        <button
-          onClick={() => onNavigate('home', 'history')}
-          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-orange-50 text-orange-700 group-hover:bg-orange-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
-              <i className="fa-solid fa-scroll"></i>
-            </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-orange-50 text-orange-800 border border-orange-200">
-              ১৮২১ সাল
-            </span>
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 text-lg group-hover:text-orange-800 transition-colors">
-              {t('srvHistory')}
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              {t('srvHistorySub')}
-            </p>
-          </div>
-        </button>
-
-        {/* Service 7: District Map & Stats */}
-        <button
-          onClick={() => onNavigate('home', 'stats')}
-          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-700 group-hover:bg-indigo-700 group-hover:text-white transition-colors flex items-center justify-center text-xl">
-              <i className="fa-solid fa-chart-pie"></i>
-            </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-800 border border-indigo-200">
-              ২,৮৯৮ কিমি²
-            </span>
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 text-lg group-hover:text-indigo-800 transition-colors">
-              {t('srvStats')}
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              {t('srvStatsSub')}
-            </p>
-          </div>
-        </button>
-
-        {/* Service 8: Bogura Doi & Local Heritage */}
-        <button
-          onClick={() => {
-            onSwitchCommunityTab('business');
-            onNavigate('home', 'community');
-          }}
-          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-yellow-50 text-yellow-700 group-hover:bg-yellow-600 group-hover:text-white transition-colors flex items-center justify-center text-xl">
-              <i className="fa-solid fa-bowl-food"></i>
-            </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-yellow-50 text-yellow-800 border border-yellow-200">
-              GI পণ্য
-            </span>
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 text-lg group-hover:text-yellow-800 transition-colors">
-              {t('srvDoi')}
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              {t('srvDoiSub')}
-            </p>
-          </div>
-        </button>
-
-        {/* Service 9: Banks & 24/7 ATM Booths */}
-        <Link
-          href="/banking"
-          className="text-left group bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between cursor-pointer"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-800 group-hover:bg-emerald-800 group-hover:text-white transition-colors flex items-center justify-center text-xl">
-              <i className="fa-solid fa-building-columns"></i>
-            </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
-              ২৪/৭ এটিএম
-            </span>
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 text-lg group-hover:text-emerald-800 transition-colors">
-              ব্যাংক ও এটিএম বুথ
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              রাউটিং নম্বর, সুইফট কোড ও সিআরএম নগদ জমা
-            </p>
-          </div>
-        </Link>
+      <div className="grid grid-cols-4 gap-2 sm:gap-4">
+        {services.map(s =>
+          s.href ? (
+            <Link key={s.key} href={s.href} className={cardClass}>
+              {inner(s)}
+            </Link>
+          ) : (
+            <button key={s.key} onClick={s.onClick} className={cardClass}>
+              {inner(s)}
+            </button>
+          )
+        )}
       </div>
     </section>
   );
 }
-

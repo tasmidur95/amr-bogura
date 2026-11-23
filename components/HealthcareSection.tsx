@@ -14,6 +14,13 @@ interface HealthcareSectionProps {
   isHome?: boolean;
 }
 
+const FILTERS: [string, string][] = [
+  ['all', 'সবগুলো'],
+  ['govt', 'সরকারি'],
+  ['private', 'বেসরকারি'],
+  ['diagnostic', 'ডায়াগনস্টিক'],
+];
+
 export default function HealthcareSection({
   hospitals,
   emergencyContacts,
@@ -27,13 +34,7 @@ export default function HealthcareSection({
   const [searchQuery, setSearchQuery] = useState('');
 
   const activeFilter = onFilterChange ? currentFilter : internalFilter;
-  const setFilter = (type: string) => {
-    if (onFilterChange) {
-      onFilterChange(type);
-    } else {
-      setInternalFilter(type);
-    }
-  };
+  const setFilter = (type: string) => (onFilterChange ? onFilterChange(type) : setInternalFilter(type));
 
   const handleCopy = (text: string, label: string) => {
     if (navigator.clipboard) {
@@ -47,236 +48,42 @@ export default function HealthcareSection({
   const filtered = hospitals.filter(h => {
     const matchesType = activeFilter === 'all' || h.type === activeFilter;
     const q = searchQuery.toLowerCase();
-    const matchesQuery =
-      h.name.toLowerCase().includes(q) ||
-      h.enName.toLowerCase().includes(q) ||
-      h.address.toLowerCase().includes(q);
-    return matchesType && matchesQuery;
+    return matchesType && (h.name.toLowerCase().includes(q) || h.enName.toLowerCase().includes(q) || h.address.toLowerCase().includes(q));
   });
-
   const displayedHospitals = isHome ? filtered.slice(0, 6) : filtered;
 
   return (
-    <section id="healthcare" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
-        <div>
-          <span className="text-xs font-bold tracking-wider uppercase text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-md border border-emerald-200">
-            {t('sec03Badge')}
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
-            {t('sec03Title')}
-          </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-1">
-            {t('sec03Subtitle')}
-          </p>
-        </div>
-
-        {/* Filter Pills & Directory CTA */}
-        <div className="flex flex-wrap items-center gap-2">
-          {isHome && (
-            <Link
-              href="/healthcare"
-              className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-800 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-xs transition cursor-pointer"
-            >
-              <span>সকল ৩৫২টি কেন্দ্র</span>
-              <i className="fa-solid fa-arrow-right text-[10px]"></i>
-            </Link>
-          )}
-          <button
-            onClick={() => setFilter('all')}
-            className={`px-3.5 py-2 rounded-xl text-xs transition cursor-pointer ${
-              activeFilter === 'all'
-                ? 'font-bold bg-emerald-800 text-white'
-                : 'font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-            }`}
-          >
-            সবগুলো
-          </button>
-          <button
-            onClick={() => setFilter('govt')}
-            className={`px-3.5 py-2 rounded-xl text-xs transition cursor-pointer ${
-              activeFilter === 'govt'
-                ? 'font-bold bg-emerald-800 text-white'
-                : 'font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-            }`}
-          >
-            সরকারি হাসপাতাল
-          </button>
-          <button
-            onClick={() => setFilter('private')}
-            className={`px-3.5 py-2 rounded-xl text-xs transition cursor-pointer ${
-              activeFilter === 'private'
-                ? 'font-bold bg-emerald-800 text-white'
-                : 'font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-            }`}
-          >
-            বেসরকারি
-          </button>
-          <button
-            onClick={() => setFilter('diagnostic')}
-            className={`px-3.5 py-2 rounded-xl text-xs transition cursor-pointer ${
-              activeFilter === 'diagnostic'
-                ? 'font-bold bg-emerald-800 text-white'
-                : 'font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-            }`}
-          >
-            ডায়াগনস্টিক
-          </button>
-        </div>
-      </div>
-
-      {/* Search bar */}
-      <div className="mb-6">
-        <div className="relative max-w-md">
-          <i className="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            placeholder="হাসপাতাল বা এলাকার নাম লিখুন (যেমন: শজিমেক, শেরপুর রোড)..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"
-          />
-        </div>
-      </div>
-
-      {/* Hospitals Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        {displayedHospitals.length === 0 ? (
-          <div className="col-span-full text-center py-10 bg-white rounded-2xl border border-slate-200 text-slate-500 text-sm">
-            কোনো হাসপাতাল বা ডায়াগনস্টিক সেন্টার খুঁজে পাওয়া যায়নি।
-          </div>
-        ) : (
-          displayedHospitals.map(h => {
-            const badgeColor =
-              h.type === 'govt'
-                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                : h.type === 'private'
-                ? 'bg-amber-50 text-amber-800 border-amber-200'
-                : 'bg-cyan-50 text-cyan-800 border-cyan-200';
-
-            return (
-              <div
-                key={h.name}
-                className="bg-white rounded-2xl p-5 border border-slate-200/90 card-hover flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full border ${badgeColor}`}>
-                      {h.typeLabel}
-                    </span>
-                    <span className="text-xs text-emerald-700 font-semibold">
-                      <i className="fa-solid fa-circle-check"></i> সচল
-                    </span>
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-base sm:text-lg leading-snug">{h.name}</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">{h.enName}</p>
-                  <p className="text-xs text-slate-600 mt-3 flex items-start gap-1.5">
-                    <i className="fa-solid fa-location-dot text-emerald-700 mt-0.5"></i>
-                    <span>{h.address}</span>
-                  </p>
-                  <p className="text-xs text-slate-500 mt-1.5 flex items-start gap-1.5">
-                    <i className="fa-solid fa-notes-medical text-amber-600 mt-0.5"></i>
-                    <span>{h.emergency}</span>
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center gap-2">
-                  <a
-                    href={`tel:${h.phone}`}
-                    className="flex-1 py-2 px-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition"
-                  >
-                    <i className="fa-solid fa-phone"></i>
-                    <span>{h.phone}</span>
-                  </a>
-                  <button
-                    onClick={() => handleCopy(h.phone, h.name)}
-                    className="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition cursor-pointer"
-                    title="নম্বর কপি করুন"
-                  >
-                    <i className="fa-regular fa-copy"></i>
-                  </button>
-                </div>
-              </div>
-            );
-          })
-        )}
-      </div>
-
-      {/* Short List Callout when on Home */}
-      {isHome && (
-        <div className="mb-10 p-5 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50/70 to-slate-50 border border-emerald-200/90 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-2xs">
+    <section id="healthcare" aria-labelledby="healthcare-title" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+      {/* 1. Emergency first: highest urgency, one-tap calls */}
+      <div id="emergency" className="bg-gradient-to-br from-rose-950 via-rose-900 to-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-white shadow-lg scroll-mt-20">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 sm:mb-4">
           <div>
-            <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
-                শীর্ষ ৬টি স্বাস্থ্যকেন্দ্র প্রদর্শিত
-              </span>
-              <span className="text-xs text-slate-500 font-medium">
-                বগুড়ায় মোট ৩৫২টি চিকিৎসাকেন্দ্র নিবন্ধিত
-              </span>
-            </div>
-            <h4 className="font-bold text-slate-900 text-base sm:text-lg">
-              বগুড়া জেলার সম্পূর্ণ স্বাস্থ্যসেবা ডিরেক্টরি ও ম্যাপ দেখুন
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-              ১২টি উপজেলার সকল সরকারি-বেসরকারি হাসপাতাল, উপজেলা হেলথ কমপ্লেক্স, ইউনিয়ন স্বাস্থ্যকেন্দ্র ও অ্যাম্বুলেন্স তালিকা।
-            </p>
-          </div>
-          <Link
-            href="/healthcare"
-            className="px-5 py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm flex items-center gap-2 shrink-0 transition"
-          >
-            <span>সকল ৩৫২টি কেন্দ্র দেখুন</span>
-            <i className="fa-solid fa-arrow-right"></i>
-          </Link>
-        </div>
-      )}
-
-      {/* Emergency Numbers Strip */}
-      <div id="emergency" className="bg-gradient-to-br from-rose-950 via-rose-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-lg">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <div>
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-200 border border-rose-400/30">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-rose-500/20 text-rose-200 border border-rose-400/30">
               <i className="fa-solid fa-bell"></i> <span>{t('emgBadge')}</span>
             </span>
-            <h3 className="text-xl sm:text-2xl font-bold mt-2">{t('emgTitle')}</h3>
+            <h2 className="text-lg sm:text-2xl font-bold mt-1.5 leading-snug">{t('emgTitle')}</h2>
           </div>
           <a
             href="tel:999"
-            className="px-5 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md transition self-start sm:self-auto"
+            className="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md transition sm:self-auto"
           >
             <i className="fa-solid fa-phone"></i>
             <span>জাতীয় জরুরি সেবা: ৯৯৯</span>
           </a>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
           {emergencyContacts.map(item => (
-            <div
-              key={item.title}
-              className="bg-white/10 backdrop-blur-xs border border-white/15 rounded-2xl p-4 flex items-center justify-between gap-3"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-rose-500/25 text-rose-200 flex items-center justify-center shrink-0">
-                  <i className="fa-solid fa-shield-halved"></i>
-                </div>
-                <div className="min-w-0">
-                  <p className="text-xs text-rose-100/90 font-medium truncate">{item.title}</p>
-                  <p className="text-base font-bold text-white tracking-wide mt-0.5">{item.number}</p>
-                </div>
+            <div key={item.title} className="bg-white/10 border border-white/15 rounded-xl px-3 py-2.5 flex items-center justify-between gap-2">
+              <div className="min-w-0">
+                <p className="text-[11px] text-rose-100/90 font-medium truncate">{item.title}</p>
+                <p className="text-sm sm:text-base font-bold text-white tracking-wide">{item.number}</p>
               </div>
               <div className="flex items-center gap-1.5 shrink-0">
-                <a
-                  href={`tel:${item.number}`}
-                  className="w-9 h-9 rounded-xl bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center transition"
-                  title="কল করুন"
-                >
+                <a href={`tel:${item.number}`} className="w-9 h-9 rounded-lg bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center transition" aria-label={`${item.title} — কল করুন`}>
                   <i className="fa-solid fa-phone text-xs"></i>
                 </a>
-                <button
-                  onClick={() => handleCopy(item.number, item.title)}
-                  className="w-9 h-9 rounded-xl bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition cursor-pointer"
-                  title="কপি করুন"
-                >
+                <button onClick={() => handleCopy(item.number, item.title)} className="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition cursor-pointer" aria-label="কপি করুন">
                   <i className="fa-regular fa-copy text-xs"></i>
                 </button>
               </div>
@@ -285,28 +92,115 @@ export default function HealthcareSection({
         </div>
       </div>
 
-      {/* Link to Full Directory & Map */}
-      <div className="mt-8 bg-gradient-to-r from-emerald-800 to-teal-800 rounded-2xl p-5 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
-        <div>
-          <span className="text-xs bg-amber-400 text-slate-900 font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-            নতুন ডাটাবেজ
-          </span>
-          <h3 className="text-lg sm:text-xl font-bold mt-1.5">
-            বগুড়ার ১২টি উপজেলার ৩৫২টি স্বাস্থ্যসেবা প্রতিষ্ঠান ম্যাপে দেখুন
-          </h3>
-          <p className="text-xs sm:text-sm text-emerald-100 mt-0.5">
-            সরকারি হাসপাতাল, ইউনিয়ন সাব-সেন্টার, কমিউনিটি ক্লিনিক, ডায়াগনস্টিক, ব্লাড ব্যাংক ও অ্যাম্বুলেন্স তালিকা।
-          </p>
+      {/* 2. Hospital directory preview */}
+      <div className="mt-6 sm:mt-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-3">
+          <div>
+            <h2 id="healthcare-title" className="text-xl sm:text-2xl font-bold text-slate-900">
+              {t('sec03Title')}
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm mt-0.5">{t('sec03Subtitle')}</p>
+          </div>
+          {isHome && (
+            <Link href="/healthcare" className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-800 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-xs transition self-start sm:self-auto shrink-0">
+              <span>সকল ৩৫২টি কেন্দ্র ও ম্যাপ</span>
+              <i className="fa-solid fa-arrow-right text-[10px]"></i>
+            </Link>
+          )}
         </div>
-        <Link
-          href="/healthcare"
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-900 rounded-xl text-sm font-bold shadow transition shrink-0"
-        >
-          <span>পূর্ণ ডিরেক্টরি ও ম্যাপ খুলুন</span>
-          <i className="fa-solid fa-arrow-right text-xs"></i>
-        </Link>
+
+        {/* Filters + search on one compact row */}
+        <div className="flex flex-col sm:flex-row gap-2 mb-3">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+            {FILTERS.map(([key, label]) => (
+              <button
+                key={key}
+                onClick={() => setFilter(key)}
+                className={`px-3 py-1.5 rounded-lg text-xs whitespace-nowrap shrink-0 transition cursor-pointer ${
+                  activeFilter === key ? 'font-bold bg-emerald-800 text-white' : 'font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <div className="relative sm:ml-auto sm:w-64">
+            <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              placeholder="হাসপাতাল বা এলাকা খুঁজুন..."
+              aria-label="হাসপাতাল খুঁজুন"
+              className="w-full pl-8 pr-3 py-2 rounded-lg bg-white border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600"
+            />
+          </div>
+        </div>
+
+        {/* Swipeable row on mobile, grid from md */}
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 pb-1">
+          {displayedHospitals.length === 0 ? (
+            <div className="col-span-full w-full text-center py-8 bg-white rounded-2xl border border-slate-200 text-slate-500 text-sm">
+              কোনো হাসপাতাল বা ডায়াগনস্টিক সেন্টার খুঁজে পাওয়া যায়নি।
+            </div>
+          ) : (
+            displayedHospitals.map(h => {
+              const badgeColor =
+                h.type === 'govt'
+                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                  : h.type === 'private'
+                  ? 'bg-amber-50 text-amber-800 border-amber-200'
+                  : 'bg-cyan-50 text-cyan-800 border-cyan-200';
+              return (
+                <article key={h.name} className="snap-start shrink-0 w-[78%] min-[480px]:w-[55%] md:w-auto bg-white rounded-2xl p-4 border border-slate-200/90 card-hover flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeColor}`}>{h.typeLabel}</span>
+                      <span className="text-[11px] text-emerald-700 font-semibold">
+                        <i className="fa-solid fa-circle-check"></i> সচল
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-slate-900 text-sm sm:text-base leading-snug">{h.name}</h3>
+                    <p className="text-[11px] text-slate-400">{h.enName}</p>
+                    <p className="text-xs text-slate-600 mt-2 flex items-start gap-1.5 line-clamp-2">
+                      <i className="fa-solid fa-location-dot text-emerald-700 mt-0.5"></i>
+                      <span>{h.address}</span>
+                    </p>
+                    <p className="text-[11px] text-slate-500 mt-1 flex items-start gap-1.5 line-clamp-1">
+                      <i className="fa-solid fa-notes-medical text-amber-600 mt-0.5"></i>
+                      <span>{h.emergency}</span>
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2">
+                    <a href={`tel:${h.phone}`} className="flex-1 py-2 px-3 rounded-lg bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition">
+                      <i className="fa-solid fa-phone"></i>
+                      <span>{h.phone}</span>
+                    </a>
+                    <button onClick={() => handleCopy(h.phone, h.name)} className="py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs transition cursor-pointer" aria-label="নম্বর কপি করুন">
+                      <i className="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </article>
+              );
+            })
+          )}
+        </div>
+
+        {/* Single slim CTA (replaces two overlapping banners) */}
+        {isHome && (
+          <Link
+            href="/healthcare"
+            className="mt-3 flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-emerald-800 to-teal-800 text-white shadow-md hover:from-emerald-700 hover:to-teal-700 transition"
+          >
+            <span className="text-xs sm:text-sm font-bold leading-snug">
+              ১২টি উপজেলার ৩৫২টি স্বাস্থ্যকেন্দ্র, ব্লাড ব্যাংক ও অ্যাম্বুলেন্স — ম্যাপে দেখুন
+            </span>
+            <span className="shrink-0 px-3 py-1.5 rounded-lg bg-amber-400 text-slate-900 text-xs font-bold flex items-center gap-1.5">
+              খুলুন <i className="fa-solid fa-arrow-right text-[10px]"></i>
+            </span>
+          </Link>
+        )}
       </div>
     </section>
   );
 }
-

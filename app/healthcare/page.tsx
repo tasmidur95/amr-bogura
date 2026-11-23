@@ -458,6 +458,9 @@ export default function HealthcarePage() {
                     facilities={filteredFacilities}
                     selectedFacility={selectedFacility}
                     onSelectFacility={(fac) => setSelectedFacility(fac)}
+                    allFacilities={facilities}
+                    selectedUpazila={selectedUpazila}
+                    onSelectUpazila={setSelectedUpazila}
                     heightClass="h-[750px]"
                   />
                 </div>
@@ -472,6 +475,9 @@ export default function HealthcarePage() {
                       facilities={filteredFacilities}
                       selectedFacility={selectedFacility}
                       onSelectFacility={(fac) => setSelectedFacility(fac)}
+                    allFacilities={facilities}
+                    selectedUpazila={selectedUpazila}
+                    onSelectUpazila={setSelectedUpazila}
                       heightClass="h-[360px] sm:h-[460px] lg:h-[calc(100vh-8rem)] lg:min-h-[520px]"
                     />
                   </div>

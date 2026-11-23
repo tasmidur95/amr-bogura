@@ -1,23 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DistrictService } from '@/lib/services/district.service';
+import { getSessionUser } from '@/lib/services/community-session';
+
+const UNAUTH = { success: false, error: 'অবদান রাখতে অনুগ্রহ করে লগইন করুন।' };
 
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const identifier = searchParams.get('q') || searchParams.get('phone') || searchParams.get('email') || '';
+    // Only a logged-in member can list contributions, and only their own.
+    const user = await getSessionUser(req);
+    if (!user) return NextResponse.json(UNAUTH, { status: 401 });
 
-    if (!identifier) {
-      return NextResponse.json({
-        success: true,
-        data: { spots: [], community: [] }
-      });
-    }
-
-    const result = await DistrictService.getContributorSubmissions(identifier);
-    return NextResponse.json({
-      success: true,
-      data: result
-    });
+    const result = await DistrictService.getContributorSubmissions(user.phone);
+    return NextResponse.json({ success: true, data: result });
   } catch (err: any) {
     return NextResponse.json(
       { success: false, error: err.message || 'অবদান তথ্য লোড ব্যর্থ হয়েছে' },
@@ -28,6 +22,9 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    const user = await getSessionUser(req);
+    if (!user) return NextResponse.json(UNAUTH, { status: 401 });
+
     const body = await req.json();
     const { type, data } = body;
 
@@ -36,6 +33,12 @@ export async function POST(req: NextRequest) {
         { success: false, error: 'type এবং data আবশ্যক' },
         { status: 400 }
       );
+    }
+
+    // Contributor identity always comes from the logged-in account, never from the request body.
+    if (data && typeof data === 'object') {
+      data.contributorName = user.name;
+      data.contributorPhone = user.phone;
     }
 
     if (type === 'spot') {

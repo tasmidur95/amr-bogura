@@ -103,121 +103,81 @@ export default function DistrictOverviewSection() {
     },
   ];
 
-  return (
-    <section id="district-overview" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
-      {/* Section Header */}
-      <div className="bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden mb-10 border border-emerald-900">
-        {/* Background Decorative Rings */}
-        <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-emerald-700/20 blur-2xl pointer-events-none"></div>
-        <div className="absolute -left-16 -bottom-16 w-64 h-64 rounded-full bg-amber-500/15 blur-2xl pointer-events-none"></div>
+  const stats = [
+    { v: '১২টি', l: 'উপজেলা ও পৌরসভা', c: 'text-amber-400' },
+    { v: '৩৫২+', l: 'স্বাস্থ্যসেবা প্রতিষ্ঠান', c: 'text-emerald-300' },
+    { v: '১,৫৭০+', l: 'শিক্ষাপ্রতিষ্ঠান', c: 'text-teal-300' },
+    { v: '১০টি', l: 'যোগাযোগ হাব ও জংশন', c: 'text-blue-300' },
+    { v: '৪১+', l: 'হোটেল ও রেস্তোরাঁ', c: 'text-rose-300' },
+    { v: 'GI', l: 'স্বীকৃত বগুড়ার দই', c: 'text-yellow-300' },
+  ];
 
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+  return (
+    <section id="district-overview" aria-labelledby="overview-title" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+      {/* Summary + key figures */}
+      <div className="bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-white shadow-xl relative overflow-hidden mb-4 sm:mb-6 border border-emerald-900">
+        <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-emerald-700/20 blur-2xl pointer-events-none"></div>
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs font-bold mb-3 shadow-xs">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 text-amber-300 text-[11px] font-bold mb-2">
               <i className="fa-solid fa-chart-pie text-amber-400"></i>
-              <span>বগুড়া জেলা এক নজরে • District Master Overview</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight leading-snug">
+              <span>বগুড়া জেলা এক নজরে</span>
+            </span>
+            <h2 id="overview-title" className="text-lg sm:text-3xl font-black tracking-tight leading-snug">
               ঐতিহাসিক পুণ্ড্রবর্ধন থেকে আধুনিক উত্তরবঙ্গের অর্থনৈতিক প্রাণকেন্দ্র
             </h2>
-            <p className="text-emerald-100/90 text-sm sm:text-base mt-2.5 leading-relaxed">
-              করতোয়া নদীর তীরের আড়াই হাজার বছরের মহাস্থানগড়, সমৃদ্ধ কৃষি ও শিল্প, ১২টি উপজেলা, ৩৫২+ চিকিৎসাকেন্দ্র এবং আন্তঃজেলা যোগাযোগ ব্যবস্থার সমন্বয়ে বগুড়া জেলার একটি পূর্ণাঙ্গ তথ্যচিত্র।
+            <p className="text-emerald-100/90 text-xs sm:text-sm mt-2 leading-relaxed">
+              করতোয়ার তীরের আড়াই হাজার বছরের মহাস্থানগড়, ১২টি উপজেলা, ৩৫২+ চিকিৎসাকেন্দ্র ও আন্তঃজেলা যোগাযোগ ব্যবস্থার সমন্বয়ে বগুড়া জেলার পূর্ণাঙ্গ তথ্যচিত্র।
             </p>
           </div>
-
-          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 shrink-0">
-            <Link
-              href="/explore"
-              className="px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2"
-            >
-              <i className="fa-solid fa-landmark text-slate-900"></i>
-              <span>দর্শনীয় স্থান ও ঐতিহ্য</span>
+          <div className="flex items-center gap-2 shrink-0">
+            <Link href="/explore" className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-md transition flex items-center gap-2">
+              <i className="fa-solid fa-landmark"></i>
+              <span>দর্শনীয় স্থান</span>
             </Link>
-            <Link
-              href="/contribute"
-              className="px-5 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm border border-white/25 backdrop-blur-md transition flex items-center gap-2"
-            >
+            <Link href="/contribute" className="px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs border border-white/25 transition flex items-center gap-2">
               <i className="fa-solid fa-plus text-amber-300"></i>
               <span>তথ্য যুক্ত করুন</span>
             </Link>
           </div>
         </div>
 
-        {/* Quick Highlights Counters Strip */}
-        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-8 mt-8 border-t border-emerald-800/80 text-center">
-          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-            <p className="text-2xl sm:text-3xl font-black text-amber-400">১২টি</p>
-            <p className="text-[11px] text-emerald-200 mt-1 font-semibold">উপজেলা ও পৌরসভা</p>
-          </div>
-          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-            <p className="text-2xl sm:text-3xl font-black text-emerald-300">৩৫২+</p>
-            <p className="text-[11px] text-emerald-200 mt-1 font-semibold">স্বাস্থ্যসেবা প্রতিষ্ঠান</p>
-          </div>
-          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-            <p className="text-2xl sm:text-3xl font-black text-teal-300">১,৫৭০+</p>
-            <p className="text-[11px] text-emerald-200 mt-1 font-semibold">শিক্ষাপ্রতিষ্ঠান</p>
-          </div>
-          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-            <p className="text-2xl sm:text-3xl font-black text-blue-300">১০টি</p>
-            <p className="text-[11px] text-emerald-200 mt-1 font-semibold">যোগাযোগ হাব ও জংশন</p>
-          </div>
-          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-            <p className="text-2xl sm:text-3xl font-black text-rose-300">৪১+</p>
-            <p className="text-[11px] text-emerald-200 mt-1 font-semibold">হোটেল ও রেস্তোরাঁ</p>
-          </div>
-          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-            <p className="text-2xl sm:text-3xl font-black text-yellow-300">GI</p>
-            <p className="text-[11px] text-emerald-200 mt-1 font-semibold">স্বীকৃত বগুড়ার দই</p>
-          </div>
-        </div>
+        <dl className="relative z-10 grid grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 pt-4 mt-4 border-t border-emerald-800/80 text-center">
+          {stats.map(s => (
+            <div key={s.l} className="p-2 sm:p-3 rounded-xl bg-white/5 border border-white/10">
+              <dd className={`text-lg sm:text-2xl font-black leading-none ${s.c}`}>{s.v}</dd>
+              <dt className="text-[10px] sm:text-[11px] text-emerald-200 mt-1 font-semibold leading-tight">{s.l}</dt>
+            </div>
+          ))}
+        </dl>
       </div>
 
-      {/* 6 Key Pillar Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {/* Pillars: compact tappable rows on mobile, richer cards from md */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
         {pillars.map(pillar => (
-          <div
+          <Link
             key={pillar.id}
-            className={`bg-white rounded-3xl p-6 border ${pillar.borderColor} shadow-2xs hover:shadow-md transition duration-300 flex flex-col justify-between group`}
+            href={pillar.href}
+            className={`bg-white rounded-2xl p-3.5 sm:p-5 border ${pillar.borderColor} shadow-2xs hover:shadow-md transition flex items-start gap-3 group`}
           >
-            <div>
-              <div className="flex items-center justify-between gap-3 mb-4">
-                <div
-                  className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${pillar.bgGrad} flex items-center justify-center text-xl ${pillar.textColor} border ${pillar.borderColor} group-hover:scale-110 transition duration-300`}
-                >
-                  <i className={`fa-solid ${pillar.icon}`}></i>
-                </div>
-                <span className={`text-[11px] font-extrabold px-3 py-1 rounded-full ${pillar.badgeBg} border`}>
-                  {pillar.metric}
-                </span>
-              </div>
-
-              <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-800 transition">
-                {pillar.title}
-              </h3>
-              <p className="text-xs text-slate-500 font-medium mt-1">
-                {pillar.subtitle}
-              </p>
-              <p className="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-                {pillar.desc}
-              </p>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-[11px] text-slate-400 font-medium">
-                {pillar.metricLabel}
+            <span className={`w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-xl bg-gradient-to-br ${pillar.bgGrad} flex items-center justify-center text-lg ${pillar.textColor} border ${pillar.borderColor}`}>
+              <i className={`fa-solid ${pillar.icon}`}></i>
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-center justify-between gap-2">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-emerald-800 transition leading-snug">{pillar.title}</h3>
+                <span className={`hidden min-[420px]:inline-block text-[10px] font-extrabold px-2 py-0.5 rounded-full ${pillar.badgeBg} whitespace-nowrap`}>{pillar.metric}</span>
               </span>
-              <Link
-                href={pillar.href}
-                className={`text-xs font-bold ${pillar.textColor} hover:underline flex items-center gap-1.5 transition`}
-              >
-                <span>{pillar.linkText}</span>
+              <span className="block text-[11px] text-slate-500 mt-0.5 line-clamp-1">{pillar.subtitle}</span>
+              <span className="hidden sm:block text-xs text-slate-600 mt-2 leading-relaxed line-clamp-3">{pillar.desc}</span>
+              <span className={`mt-1.5 sm:mt-3 inline-flex items-center gap-1.5 text-xs font-bold ${pillar.textColor}`}>
+                {pillar.linkText}
                 <i className="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-0.5 transition"></i>
-              </Link>
-            </div>
-          </div>
+              </span>
+            </span>
+          </Link>
         ))}
       </div>
     </section>
   );
 }
-

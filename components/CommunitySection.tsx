@@ -24,7 +24,7 @@ export default function CommunitySection({
 }: CommunitySectionProps) {
   const { t } = useLanguage();
   const { showToast } = useToast();
-  const { user, isLoggedIn, openAuthModal } = useCommunityAuth();
+  const { user, isLoggedIn, openAuthPage } = useCommunityAuth();
 
   const [selectedUpazila, setSelectedUpazila] = useState('ALL');
   const [selectedBloodGroup, setSelectedBloodGroup] = useState('ALL');
@@ -102,15 +102,15 @@ export default function CommunitySection({
   const displayedItems = (isHome && !showAll) ? filteredItems.slice(0, 6) : filteredItems;
 
   return (
-    <section id="community" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-5 sm:p-8">
+    <section id="community" aria-labelledby="community-title" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-sm p-3.5 sm:p-8">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-4 border-b border-slate-100">
           <div>
             <span className="text-xs font-bold tracking-wider uppercase text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
               {t('sec02Badge')}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
+            <h2 id="community-title" className="text-xl sm:text-3xl font-bold text-slate-900 mt-2">
               {t('sec02Title')}
             </h2>
             <p className="text-slate-600 text-sm sm:text-base mt-1">
@@ -241,7 +241,7 @@ export default function CommunitySection({
               </div>
             </div>
             <button
-              onClick={() => openAuthModal('login')}
+              onClick={() => openAuthPage('login')}
               className="w-full sm:w-auto px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
             >
               <i className="fa-solid fa-arrow-right-to-bracket text-[11px]"></i>
@@ -386,7 +386,7 @@ export default function CommunitySection({
         )}
 
         {/* Dynamic Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-1 animate-fade-in">
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 pt-1 animate-fade-in overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar -mx-3.5 px-3.5 md:mx-0 md:px-0 [&>*]:snap-start [&>*]:shrink-0 [&>*]:w-[82%] min-[480px]:[&>*]:w-[55%] md:[&>*]:w-auto">
           {displayedItems.length === 0 ? (
             <div className="col-span-full text-center py-10 bg-slate-50 rounded-2xl border border-slate-200/70">
               <p className="text-sm text-slate-500">

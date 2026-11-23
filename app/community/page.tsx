@@ -11,7 +11,7 @@ import { initialCommunityState, CommunityPost } from '@/lib/data/district-data';
 import { useCommunityAuth } from '@/lib/context/CommunityAuthContext';
 
 export default function CommunityPage() {
-  const { user, isLoggedIn, logout, openAuthModal } = useCommunityAuth();
+  const { user, isLoggedIn, logout, openAuthPage } = useCommunityAuth();
   const [activeTab, setActiveTab] = useState<string>('blood');
   const [communityData, setCommunityData] = useState<Record<string, CommunityPost[]>>(initialCommunityState);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -115,7 +115,7 @@ export default function CommunityPage() {
                 </div>
               ) : (
                 <button
-                  onClick={() => openAuthModal('login')}
+                  onClick={() => openAuthPage('login')}
                   className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm border border-white/25 backdrop-blur-md flex items-center justify-center gap-2 transition cursor-pointer text-center"
                 >
                   <i className="fa-solid fa-user-check text-emerald-300"></i>

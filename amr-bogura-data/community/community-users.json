@@ -21,8 +21,8 @@
     "role": "নাগরিক সদস্য",
     "isVerified": true,
     "createdAt": "2026-01-15T10:00:00.000Z",
-    "passwordHash": "YW1hcl9ib2d1cmFfc2FsdF8yMDI2OnVzZXIxMjM=",
-    "lastLoginAt": "2026-11-22T09:58:45.206Z"
+    "passwordHash": "scrypt$de83dc22c10b65b3039ecd50234dac76$97ec89498326c388f46a3d6f47887dd2024bcd2258bb647b4f94d723bc49c3283eae8a32dc4404e956f8283e701522998415c6bc19827c0aa737108f1d2084f6",
+    "lastLoginAt": "2026-11-23T10:17:51.574Z"
   },
   {
     "id": "usr-2",

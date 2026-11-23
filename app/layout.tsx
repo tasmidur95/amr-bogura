@@ -4,7 +4,6 @@ import './globals.css';
 import { LanguageProvider } from '@/lib/context/LanguageContext';
 import { ToastProvider } from '@/lib/context/ToastContext';
 import { CommunityAuthProvider } from '@/lib/context/CommunityAuthContext';
-import CommunityAuthModal from '@/components/CommunityAuthModal';
 import RouteTransitionBar from '@/components/RouteTransitionBar';
 
 export const metadata: Metadata = {
@@ -13,6 +12,9 @@ export const metadata: Metadata = {
   description: 'করতোয়ার তীরে প্রাচীন পুণ্ড্রবর্ধনের ঐতিহ্যবাহী জনপদ। ১২টি উপজেলা, স্বাস্থ্যসেবা, জরুরি যোগাযোগ, রক্তদাতা নেটওয়ার্ক ও নাগরিক সেবার আধুনিক ডিজিটাল প্ল্যাটফর্ম।',
   keywords: ['Bogura', 'Amar Bogura', 'বগুড়া', 'আমার বগুড়া', 'District Portal', 'Pundravardhana', 'Mahasthangarh', 'Bogura Doi'],
   authors: [{ name: 'Amar Bogura Civic Initiative' }],
+  alternates: { canonical: '/' },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large' } },
+  formatDetection: { telephone: false },
   icons: {
     icon: '/icon.svg',
     shortcut: '/icon.svg',
@@ -22,6 +24,8 @@ export const metadata: Metadata = {
     title: 'আমার বগুড়া | Amar Bogura',
     description: 'বগুড়া জেলা পোর্টাল ও কমিউনিটি প্ল্যাটফর্ম — পুণ্ড্রনগর, মহাস্থানগড়, ১২টি উপজেলা ও ঐতিহ্যবাহী বগুড়ার দই',
     type: 'website',
+    siteName: 'আমার বগুড়া',
+    url: '/',
     locale: 'bn_BD',
     images: [
       {
@@ -69,7 +73,6 @@ export default function RootLayout({
           <ToastProvider>
             <CommunityAuthProvider>
               {children}
-              <CommunityAuthModal />
             </CommunityAuthProvider>
           </ToastProvider>
         </LanguageProvider>

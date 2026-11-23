@@ -55,13 +55,13 @@ export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: U
   const maxVal = Math.max(...rows.map(r => (sortKey === 'area' ? r.d.areaSqKm : r.d.populationCount)));
 
   return (
-    <section id="upazilas" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section id="upazilas" aria-labelledby="upazilas-title" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
           <span className="text-xs font-bold tracking-wider uppercase text-amber-700 bg-amber-100/80 px-2.5 py-1 rounded-md border border-amber-200">
             {t('upzBadge')}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">{t('upzTitle')}</h2>
+          <h2 id="upazilas-title" className="text-xl sm:text-3xl font-bold text-slate-900 mt-2">{t('upzTitle')}</h2>
           <p className="text-slate-600 text-sm sm:text-base mt-1">
             মানচিত্রে বা তালিকায় যেকোনো উপজেলায় ক্লিক করে ইউনিয়ন, গ্রাম ও জনসংখ্যার বিস্তারিত দেখুন
           </p>
@@ -77,7 +77,7 @@ export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: U
       </div>
 
       {/* District totals strip */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-4">
         {[
           { label: 'মোট জনসংখ্যা', value: fmtBn(totals.population), tone: 'text-[#0B4635]' },
           { label: 'মোট আয়তন', value: `${fmtBn(Math.round(totals.area))} বর্গ কিমি`, tone: 'text-slate-900' },
@@ -127,7 +127,7 @@ export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: U
             </div>
           </div>
 
-          <ul className="flex-1 min-h-0 overflow-y-auto divide-y divide-slate-100">
+          <ul className="flex-1 min-h-0 max-h-[340px] lg:max-h-none overflow-y-auto divide-y divide-slate-100">
             {sorted.map(({ d, index }) => {
               const val = sortKey === 'area' ? d.areaSqKm : d.populationCount;
               const pct = Math.max(6, (val / maxVal) * 100);

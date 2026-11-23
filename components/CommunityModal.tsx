@@ -19,7 +19,7 @@ export default function CommunityModal({
   onPostCreated,
 }: CommunityModalProps) {
   const { showToast } = useToast();
-  const { user, isLoggedIn, openAuthModal } = useCommunityAuth();
+  const { user, isLoggedIn, openAuthPage } = useCommunityAuth();
 
   const [category, setCategory] = useState(defaultCategory);
   const [name, setName] = useState('');
@@ -164,7 +164,7 @@ export default function CommunityModal({
               type="button"
               onClick={() => {
                 onClose();
-                openAuthModal('login');
+                openAuthPage('login');
               }}
               className="px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-[11px] shrink-0 transition cursor-pointer"
             >

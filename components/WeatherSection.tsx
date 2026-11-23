@@ -101,8 +101,8 @@ export default function WeatherSection() {
   if (!weather) return null;
 
   return (
-    <section id="weather" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-5 sm:p-8 overflow-hidden relative">
+    <section id="weather" aria-label="বগুড়ার লাইভ আবহাওয়া" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-sm p-3.5 sm:p-8 overflow-hidden relative">
         {/* Top Header Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-100">
           <div>
@@ -137,9 +137,9 @@ export default function WeatherSection() {
         </div>
 
         {/* Current Weather Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 pt-4 sm:pt-6">
           {/* Main Hero Weather Card (5 cols) */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-900 rounded-3xl p-6 sm:p-7 text-white shadow-lg relative overflow-hidden flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-7 text-white shadow-lg relative overflow-hidden flex flex-col justify-between">
             {/* Ambient Background Glow */}
             <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-amber-500/20 blur-2xl pointer-events-none"></div>
 
@@ -154,7 +154,7 @@ export default function WeatherSection() {
               </div>
 
               {/* Big Temp and Icon */}
-              <div className="flex items-center justify-between mt-5">
+              <div className="flex items-center justify-between mt-3 sm:mt-5">
                 <div>
                   <div className="text-5xl sm:text-6xl font-black tracking-tight leading-none text-white">
                     {toBnNumber(weather.current.temp)}°<span className="text-2xl font-bold text-amber-300">সে.</span>
@@ -197,15 +197,15 @@ export default function WeatherSection() {
           </div>
 
           {/* Detailed Metric Cards (7 cols) */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3.5">
+          <div className="lg:col-span-7 grid grid-cols-3 gap-2 sm:gap-3.5">
             {/* Metric 1: Humidity */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
               <div className="flex items-center justify-between text-cyan-600 mb-2">
                 <span className="text-xs font-bold text-slate-500">বাতাসের আর্দ্রতা</span>
                 <i className="fa-solid fa-droplet text-lg"></i>
               </div>
               <div>
-                <p className="text-2xl font-black text-slate-900">
+                <p className="text-lg sm:text-2xl font-black text-slate-900">
                   {toBnNumber(weather.current.humidity)}<span className="text-sm font-bold text-slate-500">%</span>
                 </p>
                 <p className="text-[11px] text-slate-500 mt-0.5">
@@ -215,13 +215,13 @@ export default function WeatherSection() {
             </div>
 
             {/* Metric 2: Wind Speed */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
               <div className="flex items-center justify-between text-blue-600 mb-2">
                 <span className="text-xs font-bold text-slate-500">বাতাসের গতি</span>
                 <i className="fa-solid fa-wind text-lg"></i>
               </div>
               <div>
-                <p className="text-2xl font-black text-slate-900">
+                <p className="text-lg sm:text-2xl font-black text-slate-900">
                   {toBnNumber(weather.current.wind_speed)}{' '}
                   <span className="text-xs font-bold text-slate-500">কিমি/ঘণ্টা</span>
                 </p>
@@ -230,13 +230,13 @@ export default function WeatherSection() {
             </div>
 
             {/* Metric 3: Air Pressure */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
               <div className="flex items-center justify-between text-emerald-600 mb-2">
                 <span className="text-xs font-bold text-slate-500">বায়ুমণ্ডলীয় চাপ</span>
                 <i className="fa-solid fa-gauge-high text-lg"></i>
               </div>
               <div>
-                <p className="text-2xl font-black text-slate-900">
+                <p className="text-lg sm:text-2xl font-black text-slate-900">
                   {toBnNumber(weather.current.pressure)}{' '}
                   <span className="text-xs font-bold text-slate-500">hPa</span>
                 </p>
@@ -245,13 +245,13 @@ export default function WeatherSection() {
             </div>
 
             {/* Metric 4: UV Index */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
               <div className="flex items-center justify-between text-amber-600 mb-2">
                 <span className="text-xs font-bold text-slate-500">ইউভি সূচক (UV)</span>
                 <i className="fa-solid fa-shield-virus text-lg"></i>
               </div>
               <div>
-                <p className="text-2xl font-black text-slate-900">
+                <p className="text-lg sm:text-2xl font-black text-slate-900">
                   {toBnNumber(weather.current.uv_index)}
                 </p>
                 <p className="text-[11px] text-slate-500 mt-0.5">
@@ -265,13 +265,13 @@ export default function WeatherSection() {
             </div>
 
             {/* Metric 5: Daily High */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
               <div className="flex items-center justify-between text-rose-600 mb-2">
                 <span className="text-xs font-bold text-slate-500">সর্বোচ্চ তাপমাত্রা</span>
                 <i className="fa-solid fa-temperature-arrow-up text-lg"></i>
               </div>
               <div>
-                <p className="text-2xl font-black text-slate-900">
+                <p className="text-lg sm:text-2xl font-black text-slate-900">
                   {toBnNumber(weather.today.max_temp)}°<span className="text-xs font-bold text-slate-500">সে.</span>
                 </p>
                 <p className="text-[11px] text-slate-500 mt-0.5">আজকের সর্বোচ্চ</p>
@@ -279,13 +279,13 @@ export default function WeatherSection() {
             </div>
 
             {/* Metric 6: Daily Low */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
               <div className="flex items-center justify-between text-teal-600 mb-2">
                 <span className="text-xs font-bold text-slate-500">সর্বনিম্ন তাপমাত্রা</span>
                 <i className="fa-solid fa-temperature-arrow-down text-lg"></i>
               </div>
               <div>
-                <p className="text-2xl font-black text-slate-900">
+                <p className="text-lg sm:text-2xl font-black text-slate-900">
                   {toBnNumber(weather.today.min_temp)}°<span className="text-xs font-bold text-slate-500">সে.</span>
                 </p>
                 <p className="text-[11px] text-slate-500 mt-0.5">ভোর ও রাতের তাপমাত্রা</p>
@@ -296,17 +296,17 @@ export default function WeatherSection() {
 
         {/* 5-Day Forecast Row */}
         {weather.forecast && weather.forecast.length > 0 && (
-          <div className="mt-6 pt-5 border-t border-slate-100">
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-100">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-1.5">
               <i className="fa-solid fa-calendar-days text-teal-700"></i>
               <span>আগামী ৫ দিনের আবহাওয়া পূর্বাভাস</span>
             </h4>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            <div className="flex md:grid md:grid-cols-5 gap-2 sm:gap-3 overflow-x-auto md:overflow-visible no-scrollbar">
               {weather.forecast.map((f, fIdx) => (
                 <div
                   key={fIdx}
-                  className={`p-3 rounded-2xl border text-center transition flex flex-col justify-between ${
+                  className={`shrink-0 w-24 md:w-auto p-2.5 sm:p-3 rounded-2xl border text-center transition flex flex-col justify-between ${
                     fIdx === 0
                       ? 'bg-emerald-50/80 border-emerald-200'
                       : 'bg-slate-50 border-slate-200/80 hover:bg-white'
@@ -329,7 +329,7 @@ export default function WeatherSection() {
         )}
 
         {/* Agricultural & Civic Advisory Banner */}
-        <div className="mt-5 p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-amber-50 border border-emerald-200 flex items-start gap-3">
+        <div className="mt-4 p-3 sm:p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-amber-50 border border-emerald-200 flex items-start gap-3">
           <div className="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0 text-sm shadow-xs mt-0.5">
             <i className="fa-solid fa-seedling"></i>
           </div>

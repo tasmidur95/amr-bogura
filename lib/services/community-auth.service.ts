@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { hashPassword, verifyPassword, needsRehash } from '@/lib/services/community-password';
 
 export interface CommunityUser {
   id: string;
@@ -9,6 +10,7 @@ export interface CommunityUser {
   upazila: string;
   bloodGroup?: string;
   role?: string;
+  bio?: string;
   isVerified: boolean;
   createdAt: string;
   lastLoginAt?: string;
@@ -20,16 +22,6 @@ export interface StoredCommunityUser extends CommunityUser {
 
 function getUsersFilePath(): string {
   return path.join(process.cwd(), 'amr-bogura-data', 'community', 'community-users.json');
-}
-
-// Simple base64/salt hash helper for persistent demo/app storage
-function hashPassword(password: string): string {
-  const salt = 'amar_bogura_salt_2026';
-  return Buffer.from(`${salt}:${password}`).toString('base64');
-}
-
-function verifyPassword(password: string, hash: string): boolean {
-  return hashPassword(password) === hash;
 }
 
 const DEFAULT_USERS: StoredCommunityUser[] = [
@@ -105,12 +97,12 @@ export class CommunityAuthService {
     password: string;
     bloodGroup?: string;
     role?: string;
-  }): Promise<{ success: boolean; user?: CommunityUser; token?: string; error?: string }> {
+  }): Promise<{ success: boolean; user?: CommunityUser; error?: string }> {
     const name = data.name.trim();
     const username = data.username.toLowerCase().trim().replace(/[^a-z0-9_]/g, '');
     const phone = data.phone.trim();
     const upazila = data.upazila.trim();
-    const password = data.password.trim();
+    const password = data.password;
 
     if (!name || name.length < 2) {
       return { success: false, error: 'অনুগ্রহ করে আপনার সঠিক পূর্ণ নাম প্রদান করুন।' };
@@ -124,8 +116,8 @@ export class CommunityAuthService {
     if (!upazila) {
       return { success: false, error: 'অনুগ্রহ করে আপনার উপজেলা নির্বাচন করুন।' };
     }
-    if (!password || password.length < 4) {
-      return { success: false, error: 'পাসওয়ার্ড কমপক্ষে ৪ অক্ষরের হতে হবে।' };
+    if (!password || password.length < 8) {
+      return { success: false, error: 'পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।' };
     }
 
     const users = CommunityAuthService.loadUsers();
@@ -165,19 +157,17 @@ export class CommunityAuthService {
     CommunityAuthService.saveUsers(users);
 
     const publicUser = CommunityAuthService.toPublicUser(newUser);
-    const token = `bogura_community_token_${newUser.id}_${Date.now()}`;
 
     return {
       success: true,
       user: publicUser,
-      token,
     };
   }
 
   static async login(
     usernameOrPhone: string,
     password: string
-  ): Promise<{ success: boolean; user?: CommunityUser; token?: string; error?: string }> {
+  ): Promise<{ success: boolean; user?: CommunityUser; error?: string }> {
     const q = usernameOrPhone.trim();
     if (!q || !password) {
       return { success: false, error: 'ইউজারনেম এবং পাসওয়ার্ড উভয়ই প্রদান করুন।' };
@@ -207,18 +197,51 @@ export class CommunityAuthService {
       };
     }
 
+    // Upgrade legacy (base64) hashes to scrypt on successful login
+    if (needsRehash(matched.passwordHash)) {
+      matched.passwordHash = hashPassword(password);
+    }
+
     // Update last login
     matched.lastLoginAt = new Date().toISOString();
     CommunityAuthService.saveUsers(users);
 
     const publicUser = CommunityAuthService.toPublicUser(matched);
-    const token = `bogura_community_token_${matched.id}_${Date.now()}`;
 
     return {
       success: true,
       user: publicUser,
-      token,
     };
+  }
+
+  static async updateProfile(
+    id: string,
+    patch: { name?: string; bio?: string; upazila?: string; bloodGroup?: string }
+  ): Promise<{ success: boolean; user?: CommunityUser; error?: string }> {
+    const users = CommunityAuthService.loadUsers();
+    const u = users.find(x => x.id === id);
+    if (!u) return { success: false, error: 'ব্যবহারকারী খুঁজে পাওয়া যায়নি।' };
+
+    if (patch.name !== undefined) {
+      const name = patch.name.trim();
+      if (name.length < 2 || name.length > 80) return { success: false, error: 'নাম ২–৮০ অক্ষরের হতে হবে।' };
+      u.name = name;
+    }
+    if (patch.bio !== undefined) {
+      const bio = patch.bio.trim();
+      if (bio.length > 300) return { success: false, error: 'পরিচিতি সর্বোচ্চ ৩০০ অক্ষরের হতে পারবে।' };
+      u.bio = bio || undefined;
+    }
+    if (patch.upazila !== undefined) {
+      const upazila = patch.upazila.trim();
+      if (!upazila) return { success: false, error: 'উপজেলা নির্বাচন করুন।' };
+      u.upazila = upazila;
+    }
+    if (patch.bloodGroup !== undefined) {
+      u.bloodGroup = patch.bloodGroup.trim() || undefined;
+    }
+    CommunityAuthService.saveUsers(users);
+    return { success: true, user: CommunityAuthService.toPublicUser(u) };
   }
 
   static async getUserById(id: string): Promise<CommunityUser | null> {

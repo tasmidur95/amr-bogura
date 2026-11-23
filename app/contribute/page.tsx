@@ -7,6 +7,8 @@ import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import SearchModal from '@/components/SearchModal';
 import { useToast } from '@/lib/context/ToastContext';
+import { useCommunityAuth } from '@/lib/context/CommunityAuthContext';
+import ContributorProfileCard from '@/components/ContributorProfileCard';
 
 interface SavedContribution {
   id: string;
@@ -20,8 +22,9 @@ interface SavedContribution {
   coverImage?: string;
 }
 
-export default function ContributePage() {
+function ContributeWorkspace() {
   const { showToast } = useToast();
+  const { user, refresh } = useCommunityAuth();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeType, setActiveType] = useState<'spot' | 'blood' | 'tuition' | 'rent' | 'jobs'>('spot');
 
@@ -52,15 +55,13 @@ export default function ContributePage() {
   const [commDetail, setCommDetail] = useState('');
 
   // Contributor Info
-  const [contributorName, setContributorName] = useState('');
-  const [contributorPhone, setContributorPhone] = useState('');
+  const [contributorName] = useState(user?.name || '');
+  const [contributorPhone] = useState(user?.phone || '');
   const [contributorEmail, setContributorEmail] = useState('');
   const [contributorNote, setContributorNote] = useState('');
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [myContributions, setMyContributions] = useState<SavedContribution[]>([]);
-  const [searchPhoneQuery, setSearchPhoneQuery] = useState('');
-  const [isSearchingTracker, setIsSearchingTracker] = useState(false);
 
   // 12 Upazilas
   const upazilaList = [
@@ -87,131 +88,56 @@ export default function ContributePage() {
     { label: 'ঐতিহাসিক মন্দির / আশ্রম', url: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80' }
   ];
 
-  // Load user saved contributions from localStorage on mount
-  useEffect(() => {
+  // Load this member's own contributions from the server (requires login)
+  const loadMyContributions = async (quiet = true) => {
     try {
-      const saved = localStorage.getItem('amar_bogura_my_contributions');
-      if (saved) {
-        setMyContributions(JSON.parse(saved));
-      } else {
-        // Sample starter contribution for immediate tracker demonstration
-        const initial = [
-          {
-            id: 'suka-shakuni-mound',
-            type: 'spot' as const,
-            title: 'সুকা শকুনী প্রাচীন প্রত্নতাত্ত্বিক ঢিবি',
-            category: 'প্রত্নতাত্ত্বিক নিদর্শন',
-            upazila: 'কাহালু',
-            date: '২০২৬-০৩-১৯',
-            status: 'pending' as const,
-            coverImage: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&w=1200&q=80'
-          }
-        ];
-        setMyContributions(initial);
-        localStorage.setItem('amar_bogura_my_contributions', JSON.stringify(initial));
-      }
-    } catch (e) {
-      console.warn('LocalStorage load error', e);
+      const res = await fetch('/api/contribute', { credentials: 'same-origin', cache: 'no-store' });
+      const json = await res.json();
+      if (!json.success || !json.data) return;
+      const { spots, community } = json.data;
+      const items: SavedContribution[] = [
+        ...(spots || []).map((s: any) => ({
+          id: s.id,
+          type: 'spot' as const,
+          title: s.title,
+          category: s.categoryBn,
+          upazila: s.upazila,
+          date: s.contributor?.date || '',
+          status: s.status || (s.isApproved ? 'approved' : 'pending'),
+          rejectReason: s.rejectReason,
+          coverImage: s.coverImage,
+        })),
+        ...(community || []).map((c: any) => ({
+          id: c.id,
+          type: 'community' as const,
+          title: c.name,
+          category: c.category,
+          upazila: c.upazila,
+          date: c.created_at || '',
+          status: c.status || (c.isApproved ? 'approved' : 'pending'),
+          rejectReason: c.rejectReason,
+        })),
+      ];
+      setMyContributions(items);
+      refresh(); // update the profile counters
+      if (!quiet) showToast('অবদানের স্ট্যাটাস হালনাগাদ হয়েছে!');
+    } catch (err) {
+      console.warn('Load contributions error', err);
     }
+  };
+
+  useEffect(() => {
+    loadMyContributions(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Save to localStorage
+  // After a successful submit: show it immediately, then re-sync from the server
   const saveContributionToLocal = (item: SavedContribution) => {
-    setMyContributions(prev => {
-      const updated = [item, ...prev.filter(i => i.id !== item.id)];
-      try {
-        localStorage.setItem('amar_bogura_my_contributions', JSON.stringify(updated));
-      } catch (err) {
-        console.warn(err);
-      }
-      return updated;
-    });
+    setMyContributions(prev => [item, ...prev.filter(i => i.id !== item.id)]);
+    loadMyContributions(true);
   };
 
-  // Sync / Refresh statuses from backend
-  const refreshStatuses = async () => {
-    if (myContributions.length === 0) return;
-    try {
-      const res = await fetch('/api/admin/submissions?status=all');
-      const json = await res.json();
-      if (json.success && json.data) {
-        const { spots, community } = json.data;
-        const allItems = [
-          ...(spots || []).map((s: any) => ({ id: s.id, status: s.status, rejectReason: s.rejectReason })),
-          ...(community || []).map((c: any) => ({ id: c.id, status: c.status, rejectReason: c.rejectReason }))
-        ];
-
-        setMyContributions(prev => {
-          const synced = prev.map(item => {
-            const match = allItems.find(ai => ai.id === item.id);
-            if (match) {
-              return {
-                ...item,
-                status: match.status || item.status,
-                rejectReason: match.rejectReason
-              };
-            }
-            return item;
-          });
-          try {
-            localStorage.setItem('amar_bogura_my_contributions', JSON.stringify(synced));
-          } catch (e) {}
-          return synced;
-        });
-        showToast('অবদানের স্ট্যাটাস সফলভাবে রিফ্রেশ করা হয়েছে!');
-      }
-    } catch (err) {
-      console.warn('Refresh error', err);
-    }
-  };
-
-  // Search contributions by phone
-  const handleSearchTracker = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchPhoneQuery.trim()) return;
-    setIsSearchingTracker(true);
-    try {
-      const res = await fetch(`/api/contribute?phone=${encodeURIComponent(searchPhoneQuery.trim())}`);
-      const json = await res.json();
-      if (json.success && json.data) {
-        const { spots, community } = json.data;
-        const found: SavedContribution[] = [
-          ...(spots || []).map((s: any) => ({
-            id: s.id,
-            type: 'spot' as const,
-            title: s.title,
-            category: s.categoryBn,
-            upazila: s.upazila,
-            date: s.contributor?.date || '২০২৬',
-            status: s.status || (s.isApproved ? 'approved' : 'pending'),
-            rejectReason: s.rejectReason,
-            coverImage: s.coverImage
-          })),
-          ...(community || []).map((c: any) => ({
-            id: c.id,
-            type: 'community' as const,
-            title: c.name,
-            category: c.category,
-            upazila: c.upazila,
-            date: c.created_at || '২০২৬',
-            status: c.status || (c.isApproved ? 'approved' : 'pending'),
-            rejectReason: c.rejectReason
-          }))
-        ];
-
-        if (found.length > 0) {
-          found.forEach(item => saveContributionToLocal(item));
-          showToast(`${found.length}টি অবদান পাওয়া গেছে!`);
-        } else {
-          showToast('এই নম্বরে কোনো অবদান রেকর্ড পাওয়া যায়নি', 'error');
-        }
-      }
-    } catch (err) {
-      showToast('অনুসন্ধান ব্যর্থ হয়েছে', 'error');
-    } finally {
-      setIsSearchingTracker(false);
-    }
-  };
+  const refreshStatuses = () => loadMyContributions(false);
 
   // Handle Form Submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -425,6 +351,8 @@ export default function ContributePage() {
 
       {/* Main Work Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full">
+        <ContributorProfileCard />
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Form & Category Tabs */}
           <div className="lg:col-span-8 bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
@@ -891,9 +819,9 @@ export default function ContributePage() {
                       type="text"
                       required
                       value={contributorName}
-                      onChange={e => setContributorName(e.target.value)}
-                      placeholder="উদা: তানজিল আহমেদ"
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700/30 focus:border-emerald-700"
+                      readOnly
+                      title="আপনার প্রোফাইল থেকে নেওয়া হয়েছে"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-100 text-slate-600 text-xs cursor-not-allowed"
                     />
                   </div>
                   <div>
@@ -903,9 +831,9 @@ export default function ContributePage() {
                     <input
                       type="tel"
                       value={contributorPhone}
-                      onChange={e => setContributorPhone(e.target.value)}
-                      placeholder="017XX-XXXXXX"
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700/30 focus:border-emerald-700"
+                      readOnly
+                      title="আপনার প্রোফাইল থেকে নেওয়া হয়েছে"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-100 text-slate-600 text-xs cursor-not-allowed"
                     />
                   </div>
                   <div>
@@ -1097,31 +1025,6 @@ export default function ContributePage() {
             </div>
           </div>
 
-          {/* Search by phone box for cross-device retrieval */}
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-6">
-            <form onSubmit={handleSearchTracker} className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="text"
-                value={searchPhoneQuery}
-                onChange={e => setSearchPhoneQuery(e.target.value)}
-                placeholder="পূর্ববর্তী অবদানের মোবাইল নম্বর বা নাম লিখে খুঁজুন..."
-                className="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-700/30"
-              />
-              <button
-                type="submit"
-                disabled={isSearchingTracker}
-                className="px-5 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm shadow-sm transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-              >
-                {isSearchingTracker ? (
-                  <i className="fa-solid fa-circle-notch fa-spin"></i>
-                ) : (
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                )}
-                <span>খুঁজুন</span>
-              </button>
-            </form>
-          </div>
-
           {/* List of User's Contributions */}
           {myContributions.length === 0 ? (
             <div className="bg-white rounded-3xl border border-slate-200 p-10 text-center">
@@ -1213,3 +1116,68 @@ export default function ContributePage() {
   );
 }
 
+
+function ContributeGate() {
+  const { isReady, isLoggedIn, openAuthPage } = useCommunityAuth();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  if (isReady && isLoggedIn) return <ContributeWorkspace />;
+
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800">
+      <Navbar currentView="contribute" onOpenSearch={() => setIsSearchOpen(true)} />
+
+      <main className="flex-1 bg-gradient-to-br from-emerald-950 via-emerald-900 to-amber-950 px-4 py-12 sm:py-20 flex items-center">
+        <div className="max-w-xl mx-auto w-full">
+          {!isReady ? (
+            <div className="bg-white rounded-3xl p-10 text-center shadow-2xl" aria-busy="true">
+              <i className="fa-solid fa-circle-notch fa-spin text-2xl text-emerald-700"></i>
+              <p className="text-sm text-slate-500 mt-3">যাচাই করা হচ্ছে...</p>
+            </div>
+          ) : (
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-14 h-14 mx-auto rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl mb-4">
+                  <i className="fa-solid fa-lock"></i>
+                </div>
+                <h1 className="text-2xl font-extrabold text-slate-900">অবদান রাখতে লগইন করুন</h1>
+                <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                  দর্শনীয় স্থান, রক্তদাতা বা কমিউনিটি তথ্য জমা দিতে ইউজারনেম ও পাসওয়ার্ড দিয়ে লগইন করুন। নতুন হলে বিনামূল্যে নিবন্ধন করে অবদানকারী প্রোফাইল তৈরি করুন।
+                </p>
+
+                <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                  <button
+                    onClick={() => openAuthPage('login')}
+                    className="flex-1 py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-sm shadow transition cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <i className="fa-solid fa-right-to-bracket"></i> লগইন করুন
+                  </button>
+                  <button
+                    onClick={() => openAuthPage('register')}
+                    className="flex-1 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow transition cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <i className="fa-solid fa-user-plus"></i> নতুন প্রোফাইল তৈরি
+                  </button>
+                </div>
+              </div>
+
+              <ul className="bg-slate-50 border-t border-slate-100 px-6 sm:px-8 py-5 grid gap-2.5 text-xs text-slate-700">
+                <li className="flex items-center gap-2.5"><i className="fa-solid fa-id-card text-emerald-700 w-4"></i> অবদানকারী প্রোফাইল ও সম্মাননা স্তর</li>
+                <li className="flex items-center gap-2.5"><i className="fa-solid fa-clock-rotate-left text-emerald-700 w-4"></i> আপনার সব অবদানের অনুমোদন-অবস্থা এক জায়গায়</li>
+                <li className="flex items-center gap-2.5"><i className="fa-solid fa-shield-halved text-emerald-700 w-4"></i> ভেরিফায়েড সদস্যের তথ্য — স্প্যাম ও ভুয়া তথ্য প্রতিরোধ</li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </main>
+
+      <Footer />
+      <BottomNav currentView="contribute" />
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} onNavigate={() => {}} />
+    </div>
+  );
+}
+
+export default function ContributePage() {
+  return <ContributeGate />;
+}

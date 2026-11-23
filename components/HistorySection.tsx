@@ -13,10 +13,10 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
   const { t } = useLanguage();
 
   return (
-    <section id="history" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section id="history" aria-labelledby="history-title" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* History Timeline Card (7 cols) */}
-        <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
+        <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200/90 shadow-sm">
           <div className="flex flex-wrap items-center gap-2 mb-2">
             <span className="text-xs font-bold tracking-wider uppercase text-amber-800 bg-amber-100 px-2.5 py-1 rounded-md border border-amber-200">
               {siteContent?.historyBadge || t('hisBadge')}
@@ -28,7 +28,7 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
               </span>
             )}
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 mb-3">
+          <h2 id="history-title" className="text-xl sm:text-3xl font-bold text-slate-900 mt-2 mb-3">
             {siteContent?.historyTitle || t('hisTitle')}
           </h2>
 
@@ -38,15 +38,15 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
             </div>
           )}
 
-          <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-emerald-200">
+          <div className="space-y-4 sm:space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-emerald-200">
             {/* Milestone 1 */}
             <div className="relative pl-10">
               <span className="w-7 h-7 rounded-full bg-emerald-800 text-white text-xs font-bold flex items-center justify-center absolute left-0 top-0.5 shadow">
                 ১
               </span>
               <span className="text-xs font-bold text-amber-700">খ্রিস্টপূর্ব ৩য় শতাব্দী · মৌর্য যুগ</span>
-              <h3 className="font-bold text-slate-900 text-lg mt-0.5">প্রাচীন রাজধানী পুণ্ড্রনগর (মহাস্থানগড়)</h3>
-              <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+              <h3 className="font-bold text-slate-900 text-base sm:text-lg mt-0.5">প্রাচীন রাজধানী পুণ্ড্রনগর (মহাস্থানগড়)</h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                 করতোয়া নদীর পশ্চিম তীরে অবস্থিত মহাস্থানগড় ছিল প্রাচীন পুণ্ড্রবর্ধন রাজ্যের রাজধানী। এখান থেকে প্রাপ্ত ব্রাহ্মী শিলালিপি বাংলা অঞ্চলের প্রাচীনতম লিখিত নিদর্শন।
               </p>
             </div>
@@ -57,8 +57,8 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
                 ২
               </span>
               <span className="text-xs font-bold text-amber-700">পাল ও সুলতানি আমল · অষ্টম–ষোড়শ শতাব্দী</span>
-              <h3 className="font-bold text-slate-900 text-lg mt-0.5">বৌদ্ধ বিহার ও সুলতানি স্থাপত্যের বিকাশ</h3>
-              <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+              <h3 className="font-bold text-slate-900 text-base sm:text-lg mt-0.5">বৌদ্ধ বিহার ও সুলতানি স্থাপত্যের বিকাশ</h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                 পাল আমলে ভাসু বিহার ও বিহার ধাপ জ্ঞানচর্চার কেন্দ্রে পরিণত হয়। পরবর্তীতে ১৫৮২ সালে শেরপুরে নির্মিত ঐতিহাসিক খেরুয়া মসজিদ সুলতানি ও মুঘল স্থাপত্যের অপূর্ব নিদর্শন বহন করে।
               </p>
             </div>
@@ -69,8 +69,8 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
                 ৩
               </span>
               <span className="text-xs font-bold text-amber-700">১৮২১ সাল · ব্রিটিশ প্রশাসনিক সংস্কার</span>
-              <h3 className="font-bold text-slate-900 text-lg mt-0.5">স্বতন্ত্র বগুড়া জেলা প্রতিষ্ঠা</h3>
-              <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+              <h3 className="font-bold text-slate-900 text-base sm:text-lg mt-0.5">স্বতন্ত্র বগুড়া জেলা প্রতিষ্ঠা</h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                 রাজশাহী, রংপুর ও দিনাজপুর জেলার অংশবিশেষ নিয়ে ১৮২১ সালের ১৩ এপ্রিল স্বতন্ত্র বগুড়া জেলা গঠিত হয়। সুলতান গিয়াসউদ্দিন বলবনের পুত্র নাসিরউদ্দিন বগরা খানের নামানুসারে 'বগুড়া' নামকরণ হয়।
               </p>
             </div>
@@ -81,8 +81,8 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
                 ৪
               </span>
               <span className="text-xs font-bold text-amber-700">১৯৭১ · মহান মুক্তিযুদ্ধ ও উত্তরবঙ্গের প্রাণকেন্দ্র</span>
-              <h3 className="font-bold text-slate-900 text-lg mt-0.5">মুক্তিযুদ্ধে বীরত্বগাথা ও বর্তমান বগুড়া</h3>
-              <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+              <h3 className="font-bold text-slate-900 text-base sm:text-lg mt-0.5">মুক্তিযুদ্ধে বীরত্বগাথা ও বর্তমান বগুড়া</h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                 ১৯৭১ সালের মুক্তিযুদ্ধে ৭ নম্বর সেক্টরের অধীনে বগুড়ার মুক্তিযোদ্ধারা অসীম সাহসিকতায় যুদ্ধ করেন। বর্তমানে বগুড়া উত্তরবঙ্গের শিক্ষা, চিকিৎসা, কৃষি ও ক্ষুদ্র-মাঝারি শিল্পের প্রধান কেন্দ্র।
               </p>
             </div>
@@ -90,8 +90,8 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
         </div>
 
         {/* District Stats & Map Card (5 cols) */}
-        <div id="stats" className="lg:col-span-5 space-y-6">
-          <div className="bg-emerald-950 text-white rounded-3xl p-6 sm:p-7 shadow-md">
+        <div id="stats" className="lg:col-span-5 space-y-4 sm:space-y-6">
+          <div className="bg-emerald-950 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 shadow-md">
             <div className="flex items-center justify-between mb-5">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-amber-400">এক নজরে বগুড়া</span>
@@ -102,29 +102,29 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3.5">
-              <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
+              <div className="bg-white/10 rounded-xl p-3 sm:p-4 border border-white/10">
                 <p className="text-xs text-emerald-200">উপজেলা ও থানা</p>
                 <p className="text-xl sm:text-2xl font-bold text-white mt-1">
                   {siteContent?.stats?.upazilas ? siteContent.stats.upazilas.replace('টি', '') : '১২'}{' '}
                   <span className="text-xs font-normal text-amber-300">টি উপজেলা</span>
                 </p>
               </div>
-              <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
+              <div className="bg-white/10 rounded-xl p-3 sm:p-4 border border-white/10">
                 <p className="text-xs text-emerald-200">ইউনিয়ন পরিষদ</p>
                 <p className="text-xl sm:text-2xl font-bold text-white mt-1">
                   {siteContent?.stats?.unions ? siteContent.stats.unions.replace('টি', '') : '১০৮'}{' '}
                   <span className="text-xs font-normal text-amber-300">টি ইউনিয়ন</span>
                 </p>
               </div>
-              <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
+              <div className="bg-white/10 rounded-xl p-3 sm:p-4 border border-white/10">
                 <p className="text-xs text-emerald-200">গ্রাম ও মহল্লা</p>
                 <p className="text-xl sm:text-2xl font-bold text-white mt-1">
                   {siteContent?.stats?.villages ? siteContent.stats.villages.replace('টি', '') : '২,৬৯২'}{' '}
                   <span className="text-xs font-normal text-amber-300">টি গ্রাম</span>
                 </p>
               </div>
-              <div className="bg-white/10 rounded-2xl p-4 border border-white/10">
+              <div className="bg-white/10 rounded-xl p-3 sm:p-4 border border-white/10">
                 <p className="text-xs text-emerald-200">আনুমানিক জনসংখ্যা</p>
                 <p className="text-xl sm:text-2xl font-bold text-white mt-1">
                   {siteContent?.stats?.population || '৩৫+ লক্ষ'}
@@ -149,7 +149,7 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
           </div>
 
           {/* Stylized Vector Map Card */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/90 shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <h4 className="font-bold text-slate-900 text-base">ভৌগোলিক অবস্থান ও সীমানা</h4>
               <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
@@ -157,7 +157,7 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
               </span>
             </div>
             <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/70 flex flex-col items-center">
-              <svg className="w-full max-w-[260px] h-48" viewBox="0 0 260 220" fill="none">
+              <svg className="hidden sm:block w-full max-w-[260px] h-48" viewBox="0 0 260 220" fill="none">
                 <path
                   d="M95 20 L145 18 L175 45 L195 95 L182 145 L155 185 L110 198 L72 182 L48 140 L55 88 L72 48 Z"
                   fill="#ecfdf5"
@@ -213,14 +213,14 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
       </div>
 
       {/* Bottom Conversion Closer: Civic Contribution Banner */}
-      <div className="mt-12 bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden border border-emerald-800">
+      <div className="mt-6 sm:mt-10 bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-white shadow-xl relative overflow-hidden border border-emerald-800">
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-400/30 mb-2">
               <i className="fa-solid fa-heart-circle-plus text-rose-400"></i>
               <span>নাগরিক সম্পৃক্ততা ও অবদান</span>
             </span>
-            <h3 className="text-xl sm:text-3xl font-black tracking-tight leading-snug">
+            <h3 className="text-lg sm:text-2xl font-black tracking-tight leading-snug">
               আপনি কি বগুড়ার কোনো নির্ভরযোগ্য তথ্য জানেন?
             </h3>
             <p className="text-emerald-100/90 text-xs sm:text-sm mt-2 leading-relaxed">
