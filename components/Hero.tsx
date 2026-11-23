@@ -44,181 +44,115 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
           </svg>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left 7 Cols: Branding & Hero Action Copy */}
-            <div className="lg:col-span-7">
-              {/* Brand Logo & District Badge */}
-              <div className="flex flex-wrap items-center gap-2.5 mb-5">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs sm:text-sm font-bold shadow-xs">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                  <span>{siteContent?.heroBadge || t('heroBadge')}</span>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <div className="flex flex-col items-center max-w-3xl mx-auto">
+            {/* Brand Logo & District Badge */}
+            <div className="flex flex-wrap items-center justify-center gap-2.5 mb-5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs sm:text-sm font-bold shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                <span>{siteContent?.heroBadge || t('heroBadge')}</span>
+              </div>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/20 text-amber-200 border border-amber-300/30">
+                ঐতিহ্য · কৃষি · সংস্কৃতি
+              </span>
+            </div>
+
+            {/* Sculpted Typography */}
+            <div className="mb-4">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white">
+                {siteContent?.heroTitle ? (
+                  <>
+                    {siteContent.heroTitle}{' '}
+                    <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 bg-clip-text text-transparent">
+                      এক ক্লিকে
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    বগুড়ার ইতিহাস, ঐতিহ্য ও নাগরিক সেবা{' '}
+                    <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 bg-clip-text text-transparent">
+                      এক ক্লিকে
+                    </span>
+                  </>
+                )}
+              </h1>
+            </div>
+
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-emerald-100/90 leading-relaxed mb-6 max-w-2xl mx-auto text-center">
+              {siteContent?.heroSubtitle || 'পুণ্ড্রবর্ধন মহাস্থানগড়, সাতমাথা জিরো পয়েন্ট, জিআই স্বীকৃত বগুড়ার দই, ১২টি উপজেলা এবং ২,৬৯২টি গ্রামের সমন্বয়ে উত্তরবঙ্গের প্রবেশদ্বারের আধুনিক তথ্য ও কমিউনিটি প্ল্যাটফর্ম।'}
+            </p>
+
+            {/* CRO Low-Friction Instant Search Bar */}
+            <div className="mb-6 max-w-xl w-full mx-auto">
+              <div
+                onClick={onOpenSearch}
+                className="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl p-2 sm:p-2.5 flex items-center justify-between gap-2.5 shadow-lg transition cursor-pointer group w-full text-left"
+              >
+                <div className="flex items-center gap-2.5 pl-2 sm:pl-3 text-slate-200 min-w-0 flex-1 overflow-hidden">
+                  <i className="fa-solid fa-magnifying-glass text-amber-400 group-hover:scale-110 transition shrink-0 text-xs sm:text-sm"></i>
+                  <span className="text-xs sm:text-sm text-slate-300 group-hover:text-white truncate">
+                    হাসপাতাল, রক্তদাতা, বাস কাউন্টার বা উপজেলা খুঁজুন...
+                  </span>
                 </div>
-                <span className="text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/20 text-amber-200 border border-amber-300/30">
-                  ঐতিহ্য · কৃষি · সংস্কৃতি
+                <span className="px-3 sm:px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs shrink-0 shadow-xs group-hover:bg-amber-400 transition">
+                  অনুসন্ধান
                 </span>
               </div>
 
-              {/* Sculpted Typography */}
-              <div className="mb-4">
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white">
-                  {siteContent?.heroTitle ? (
-                    <>
-                      {siteContent.heroTitle}{' '}
-                      <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 bg-clip-text text-transparent">
-                        এক ক্লিকে
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      বগুড়ার ইতিহাস, ঐতিহ্য ও নাগরিক সেবা{' '}
-                      <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 bg-clip-text text-transparent">
-                        এক ক্লিকে
-                      </span>
-                    </>
-                  )}
-                </h1>
-              </div>
-
-              {/* Subtitle */}
-              <p className="text-base sm:text-lg text-emerald-100/90 leading-relaxed mb-6 max-w-2xl">
-                {siteContent?.heroSubtitle || 'পুণ্ড্রবর্ধন মহাস্থানগড়, সাতমাথা জিরো পয়েন্ট, জিআই স্বীকৃত বগুড়ার দই, ১২টি উপজেলা এবং ২,৬৯২টি গ্রামের সমন্বয়ে উত্তরবঙ্গের প্রবেশদ্বারের আধুনিক তথ্য ও কমিউনিটি প্ল্যাটফর্ম।'}
-              </p>
-
-              {/* CRO Low-Friction Instant Search Bar */}
-              <div className="mb-6 max-w-xl w-full">
-                <div
-                  onClick={onOpenSearch}
-                  className="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl p-2 sm:p-2.5 flex items-center justify-between gap-2.5 shadow-lg transition cursor-pointer group w-full"
-                >
-                  <div className="flex items-center gap-2.5 pl-2 sm:pl-3 text-slate-200 min-w-0 flex-1 overflow-hidden">
-                    <i className="fa-solid fa-magnifying-glass text-amber-400 group-hover:scale-110 transition shrink-0 text-xs sm:text-sm"></i>
-                    <span className="text-xs sm:text-sm text-slate-300 group-hover:text-white truncate">
-                      হাসপাতাল, রক্তদাতা, বাস কাউন্টার বা উপজেলা খুঁজুন...
-                    </span>
-                  </div>
-                  <span className="px-3 sm:px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs shrink-0 shadow-xs group-hover:bg-amber-400 transition">
-                    অনুসন্ধান
-                  </span>
-                </div>
-
-                {/* Quick Trending Intent Tags */}
-                <div className="flex flex-wrap items-center gap-1.5 mt-2.5 text-[11px] text-emerald-200">
-                  <span className="text-amber-400/90 font-semibold mr-1">জনপ্রিয়:</span>
-                  <button
-                    onClick={() => onNavigate('home', 'community')}
-                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
-                  >
-                    জরুরি রক্তদাতা
-                  </button>
-                  <button
-                    onClick={() => onNavigate('home', 'healthcare')}
-                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
-                  >
-                    শজিমেক হাসপাতাল
-                  </button>
-                  <Link
-                    href="/transport"
-                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
-                  >
-                    চারমাথা বাস টার্মিনাল
-                  </Link>
-                  <Link
-                    href="/education"
-                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
-                  >
-                    আজিজুল হক কলেজ
-                  </Link>
-                  <Link
-                    href="/explore"
-                    className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
-                  >
-                    মহাস্থানগড়
-                  </Link>
-                </div>
-              </div>
-
-              {/* Focused High-Contrast Primary CTAs (Mobile Responsive) */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
-                <button
-                  onClick={() => onNavigate('home', 'healthcare')}
-                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md flex items-center justify-center gap-2 transition transform hover:-translate-y-0.5 cursor-pointer ring-1 ring-amber-400/50"
-                >
-                  <i className="fa-solid fa-hospital-user text-slate-950 text-xs sm:text-sm"></i>
-                  <span>হাসপাতাল ও চিকিৎসাকেন্দ্র</span>
-                </button>
-
+              {/* Quick Trending Intent Tags */}
+              <div className="flex flex-wrap items-center justify-center gap-1.5 mt-2.5 text-[11px] text-emerald-200">
+                <span className="text-amber-400/90 font-semibold mr-1">জনপ্রিয়:</span>
                 <button
                   onClick={() => onNavigate('home', 'community')}
-                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer"
+                  className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
                 >
-                  <i className="fa-solid fa-droplet text-rose-400 text-xs sm:text-sm"></i>
-                  <span>রক্তদাতা নেটওয়ার্ক</span>
+                  জরুরি রক্তদাতা
                 </button>
+                <button
+                  onClick={() => onNavigate('home', 'healthcare')}
+                  className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
+                >
+                  শজিমেক হাসপাতাল
+                </button>
+                <Link
+                  href="/transport"
+                  className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
+                >
+                  চারমাথা বাস টার্মিনাল
+                </Link>
+                <Link
+                  href="/education"
+                  className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
+                >
+                  আজিজুল হক কলেজ
+                </Link>
+                <Link
+                  href="/explore"
+                  className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
+                >
+                  মহাস্থানগড়
+                </Link>
               </div>
             </div>
 
-            {/* Right 5 Cols: Framed Official Cover Photo Showcase */}
-            <div className="lg:col-span-5">
-              <div className="relative group">
-                {/* Glowing border effect */}
-                <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-400/40 via-emerald-500/30 to-orange-500/40 blur-md opacity-75 group-hover:opacity-100 transition duration-500"></div>
+            {/* Focused High-Contrast Primary CTAs (Mobile Responsive) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 w-full sm:w-auto mx-auto">
+              <button
+                onClick={() => onNavigate('home', 'healthcare')}
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md flex items-center justify-center gap-2 transition transform hover:-translate-y-0.5 cursor-pointer ring-1 ring-amber-400/50"
+              >
+                <i className="fa-solid fa-hospital-user text-slate-950 text-xs sm:text-sm"></i>
+                <span>হাসপাতাল ও চিকিৎসাকেন্দ্র</span>
+              </button>
 
-                <div className="relative rounded-3xl overflow-hidden border-2 border-amber-400/60 bg-emerald-950/90 shadow-2xl">
-                  {/* Cover Photo */}
-                  <div
-                    onClick={() => setIsCoverModalOpen(true)}
-                    className="relative cursor-pointer overflow-hidden aspect-video w-full"
-                  >
-                    <img
-                      src={coverImg}
-                      alt="আমার বগুড়া অফিসিয়াল কভার ফটো"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
-
-                    {/* Badge on Photo */}
-                    <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/85 backdrop-blur-md text-amber-300 text-[11px] font-bold border border-amber-400/30">
-                      <i className="fa-solid fa-image"></i>
-                      <span>অফিসিয়াল কভার আর্ট</span>
-                    </div>
-
-                    <div className="absolute bottom-3 inset-x-3 flex items-end justify-between text-white">
-                      <div>
-                        <h4 className="text-sm font-extrabold text-amber-300 drop-shadow-md">
-                          আমার বগুড়া · My Bogura
-                        </h4>
-                        <p className="text-[10px] text-emerald-100 font-medium">
-                          মহাস্থানগড় · সাতমাথা · লাল দই · নদীমাতৃক ঐতিহ্য
-                        </p>
-                      </div>
-
-                      <span className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-xs text-white hover:bg-amber-400 hover:text-emerald-950 transition">
-                        <i className="fa-solid fa-expand"></i>
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Logo Details Strip */}
-                  <div className="p-4 bg-emerald-950/95 flex items-center justify-between border-t border-emerald-800/80">
-                    <div className="flex items-center gap-2.5">
-                      <BrandLogo variant="emblem" size="sm" />
-                      <div>
-                        <p className="text-xs font-bold text-white">অফিসিয়াল ব্র্যান্ড প্রতীক</p>
-                        <p className="text-[10px] text-emerald-300">কভার ফটো অবলম্বনে নির্মিত লোগো</p>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => setIsCoverModalOpen(true)}
-                      className="text-xs font-bold text-amber-300 hover:text-white flex items-center gap-1 transition cursor-pointer"
-                    >
-                      <span>পূর্ণাঙ্গ ছবি</span>
-                      <i className="fa-solid fa-arrow-right text-[10px]"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <button
+                onClick={() => onNavigate('home', 'community')}
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer"
+              >
+                <i className="fa-solid fa-droplet text-rose-400 text-xs sm:text-sm"></i>
+                <span>রক্তদাতা নেটওয়ার্ক</span>
+              </button>
             </div>
           </div>
         </div>
@@ -277,56 +211,6 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
           </div>
         </div>
       </section>
-
-      {/* Lightbox Modal for Full Resolution Cover Photo */}
-      {isCoverModalOpen && (
-        <div
-          onClick={() => setIsCoverModalOpen(false)}
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fade-in cursor-pointer"
-        >
-          <div
-            onClick={e => e.stopPropagation()}
-            className="relative max-w-5xl w-full bg-slate-950 rounded-3xl overflow-hidden border border-amber-400/40 shadow-2xl"
-          >
-            <div className="p-4 bg-emerald-950 flex items-center justify-between border-b border-emerald-800">
-              <div className="flex items-center gap-2">
-                <BrandLogo variant="emblem" size="sm" />
-                <h4 className="text-white font-bold text-sm">
-                  আমার বগুড়া — অফিসিয়াল কভার আর্ট ও লোগো
-                </h4>
-              </div>
-              <button
-                onClick={() => setIsCoverModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer"
-              >
-                <i className="fa-solid fa-xmark"></i>
-              </button>
-            </div>
-
-            <div className="relative">
-              <img
-                src={coverImg}
-                alt="আমার বগুড়া ফুল কভার আর্ট"
-                className="w-full h-auto max-h-[75vh] object-contain mx-auto"
-              />
-            </div>
-
-            <div className="p-4 bg-emerald-950 text-xs text-emerald-200 flex flex-wrap items-center justify-between gap-2 border-t border-emerald-800">
-              <p>
-                অন্তর্ভুক্ত ঐতিহ্য: মহাস্থানগড় · সাতমাথা স্মৃতিস্তম্ভ · লাল দই · সারিয়াকান্দি যমুনা ঘাট · আলু ও শস্যভাণ্ডার
-              </p>
-              <a
-                href={coverImg}
-                download="amar-bogura-cover.jpg"
-                className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition flex items-center gap-1.5"
-              >
-                <i className="fa-solid fa-download"></i>
-                <span>ছবি ডাউনলোড করুন</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }

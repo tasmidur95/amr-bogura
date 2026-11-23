@@ -213,13 +213,13 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
               )}
             </button>
 
-            <Link
+            {/* <Link
               href="/admin"
               className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center justify-center text-sm cursor-pointer"
               title="অ্যাডমিন প্যানেল"
             >
               <i className="fa-solid fa-shield-halved text-emerald-700"></i>
-            </Link>
+            </Link> */}
 
             <button
               onClick={() => onOpenSearch ? onOpenSearch() : router.push('/explore')}
