@@ -6,6 +6,19 @@ import { useLanguage } from '@/lib/context/LanguageContext';
 import { Upazila } from '@/lib/data/district-data';
 import RealMap from '@/components/RealMap';
 import DistrictSvgMap from '@/components/DistrictSvgMap';
+import dynamic from 'next/dynamic';
+
+const BoguraGeoMap = dynamic(() => import('@/components/BoguraGeoMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[520px] sm:h-[620px] rounded-3xl bg-slate-900 animate-pulse flex items-center justify-center">
+      <div className="text-center text-slate-400">
+        <i className="fa-solid fa-map text-3xl mb-2 block opacity-40"></i>
+        <span className="text-xs font-medium">মানচিত্র লোড হচ্ছে...</span>
+      </div>
+    </div>
+  ),
+});
 import UnionVillageExplorer from '@/components/UnionVillageExplorer';
 import { districtSummaryStats, boguraUpazilasData, DetailedUpazilaData } from '@/lib/data/unions-villages-data';
 
@@ -26,7 +39,7 @@ export default function UpazilasPageView({
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mapFocusUpazilaId, setMapFocusUpazilaId] = useState<string>('all');
-  const [mapSubView, setMapSubView] = useState<'vector' | 'satellite'>('vector');
+  const [mapSubView, setMapSubView] = useState<'vector' | 'satellite' | 'geo'>('geo');
 
   const filtered = upazilas.filter(u => {
     const matchesFilter = activeFilter === 'all' || u.tags.includes(activeFilter);
@@ -119,12 +132,13 @@ export default function UpazilasPageView({
               </div>
             </div>
 
-            {/* Right Interactive Bogura District SVG Map Card (exact layout like amargaibandha.bd/upazilas) */}
+            {/* Right Interactive Bogura GeoJSON Map Card */}
             <div className="lg:col-span-5">
-              <DistrictSvgMap
+              <BoguraGeoMap
                 onSelectUpazila={onOpenDetail}
                 hoveredIndex={hoveredIndex}
                 onHoverIndex={setHoveredIndex}
+                heightClass="h-[380px] sm:h-[420px]"
               />
             </div>
           </div>
@@ -137,11 +151,10 @@ export default function UpazilasPageView({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveTab('cards')}
-              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${
-                activeTab === 'cards'
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${activeTab === 'cards'
                   ? 'bg-[#0B4635] text-white shadow-xs'
                   : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
-              }`}
+                }`}
             >
               <i className="fa-solid fa-border-all"></i>
               <span>১২টি উপজেলা পরিচিতি</span>
@@ -149,11 +162,10 @@ export default function UpazilasPageView({
 
             <button
               onClick={() => setActiveTab('map')}
-              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${
-                activeTab === 'map'
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${activeTab === 'map'
                   ? 'bg-[#0B4635] text-white shadow-xs'
                   : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
-              }`}
+                }`}
             >
               <i className="fa-solid fa-earth-americas text-sky-400"></i>
               <span>প্রশাসনিক ও বাস্তব মানচিত্র</span>
@@ -164,11 +176,10 @@ export default function UpazilasPageView({
 
             <button
               onClick={() => setActiveTab('unions')}
-              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${
-                activeTab === 'unions'
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${activeTab === 'unions'
                   ? 'bg-[#0B4635] text-white shadow-xs'
                   : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
-              }`}
+                }`}
             >
               <i className="fa-solid fa-sitemap text-[#C85A28]"></i>
               <span>ইউনিয়ন ও গ্রাম তালিকা ({districtSummaryStats.totalVillages} গ্রাম)</span>
@@ -186,45 +197,64 @@ export default function UpazilasPageView({
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
               <div>
                 <h3 className="text-xl font-extrabold text-slate-900">
-                  {mapSubView === 'vector'
-                    ? 'বগুড়া জেলার প্রশাসনিক সীমানা ভেক্টর মানচিত্র'
-                    : 'বগুড়া জেলার বাস্তব স্যাটেলাইট ও ওপেনস্ট্রিটম্যাপ টাইলস'}
+                  {mapSubView === 'geo'
+                    ? 'বগুড়া জেলার ইন্টারেক্টিভ প্রশাসনিক মানচিত্র'
+                    : mapSubView === 'vector'
+                      ? 'বগুড়া জেলার প্রশাসনিক সীমানা ভেক্টর মানচিত্র'
+                      : 'বগুড়া জেলার বাস্তব স্যাটেলাইট ও ওপেনস্ট্রিটম্যাপ টাইলস'}
                 </h3>
                 <p className="text-xs text-slate-600 mt-0.5">
-                  {mapSubView === 'vector'
-                    ? 'অনুরূপ amargaibandha.bd/upazilas — জুম, প্যান এবং এসভিজি মানচিত্র ডাউনলোড সুবিধা'
-                    : 'লাইভ স্যাটেলাইট ইমেজ, জিপিএস মার্কার ও ইউনিয়ন পরিষদ লোকেশন'}
+                  {mapSubView === 'geo'
+                    ? 'GeoJSON সীমানা মানচিত্র — উপজেলায় ক্লিক করে হাইলাইট করুন ও বিস্তারিত দেখুন'
+                    : mapSubView === 'vector'
+                      ? 'ভেক্টর মানচিত্র — জুম, প্যান এবং এসভিজি ডাউনলোড সুবিধা'
+                      : 'লাইভ স্যাটেলাইট ইমেজ, জিপিএস মার্কার ও ইউনিয়ন পরিষদ লোকেশন'}
                 </p>
               </div>
 
-              {/* Sub-toggle: Vector SVG Map vs Leaflet Satellite */}
-              <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+              {/* Sub-toggle: GeoJSON Map vs Vector SVG vs Leaflet Satellite */}
+              <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl overflow-x-auto">
                 <button
-                  onClick={() => setMapSubView('vector')}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
-                    mapSubView === 'vector'
+                  onClick={() => setMapSubView('geo')}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 ${mapSubView === 'geo'
                       ? 'bg-emerald-800 text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                    }`}
+                >
+                  <i className="fa-solid fa-earth-asia mr-1"></i>
+                  ইন্টারেক্টিভ ম্যাপ
+                </button>
+                <button
+                  onClick={() => setMapSubView('vector')}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 ${mapSubView === 'vector'
+                      ? 'bg-emerald-800 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                    }`}
                 >
                   <i className="fa-solid fa-vector-square mr-1"></i>
-                  ভেক্টর মানচিত্র (amargaibandha শৈলী)
+                  ভেক্টর মানচিত্র
                 </button>
                 <button
                   onClick={() => setMapSubView('satellite')}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
-                    mapSubView === 'satellite'
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 ${mapSubView === 'satellite'
                       ? 'bg-emerald-800 text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   <i className="fa-solid fa-satellite mr-1"></i>
-                  স্যাটেলাইট ও টাইলস ম্যাপ
+                  স্যাটেলাইট ম্যাপ
                 </button>
               </div>
             </div>
 
-            {mapSubView === 'vector' ? (
+            {mapSubView === 'geo' ? (
+              <BoguraGeoMap
+                onSelectUpazila={onOpenDetail}
+                hoveredIndex={hoveredIndex}
+                onHoverIndex={setHoveredIndex}
+                heightClass="h-[560px] sm:h-[660px]"
+              />
+            ) : mapSubView === 'vector' ? (
               <div className="max-w-4xl mx-auto">
                 <DistrictSvgMap
                   onSelectUpazila={onOpenDetail}
@@ -255,41 +285,37 @@ export default function UpazilasPageView({
               <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
                 <button
                   onClick={() => setActiveFilter('all')}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${
-                    activeFilter === 'all'
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${activeFilter === 'all'
                       ? 'bg-[#0B4635] text-white font-bold shadow-xs'
                       : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                    }`}
                 >
                   সব ১২টি উপজেলা
                 </button>
                 <button
                   onClick={() => setActiveFilter('pourashava')}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${
-                    activeFilter === 'pourashava'
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${activeFilter === 'pourashava'
                       ? 'bg-[#0B4635] text-white font-bold shadow-xs'
                       : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                    }`}
                 >
                   পৌরসভা সমৃদ্ধ (১১টি)
                 </button>
                 <button
                   onClick={() => setActiveFilter('jamuna')}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${
-                    activeFilter === 'jamuna'
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${activeFilter === 'jamuna'
                       ? 'bg-[#0B4635] text-white font-bold shadow-xs'
                       : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                    }`}
                 >
                   যমুনা তীরবর্তী
                 </button>
                 <button
                   onClick={() => setActiveFilter('heritage')}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${
-                    activeFilter === 'heritage'
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${activeFilter === 'heritage'
                       ? 'bg-[#0B4635] text-white font-bold shadow-xs'
                       : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                    }`}
                 >
                   প্রত্নতত্ত্ব ও ঐতিহ্য
                 </button>
@@ -334,11 +360,10 @@ export default function UpazilasPageView({
                   key={chip.label}
                   type="button"
                   onClick={() => setSearchQuery(chip.q)}
-                  className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition shrink-0 cursor-pointer ${
-                    searchQuery === chip.q
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition shrink-0 cursor-pointer ${searchQuery === chip.q
                       ? 'bg-[#0B4635] text-white font-bold'
                       : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80'
-                  }`}
+                    }`}
                 >
                   {chip.label}
                 </button>
@@ -376,28 +401,25 @@ export default function UpazilasPageView({
                       onMouseEnter={() => setHoveredIndex(originalIdx)}
                       onMouseLeave={() => setHoveredIndex(null)}
                       onClick={() => onOpenDetail(originalIdx)}
-                      className={`group bg-white rounded-3xl p-6 border card-hover flex flex-col justify-between cursor-pointer transition shadow-2xs ${
-                        isHovered
+                      className={`group bg-white rounded-3xl p-6 border card-hover flex flex-col justify-between cursor-pointer transition shadow-2xs ${isHovered
                           ? 'border-[#C85A28] ring-2 ring-[#C85A28]/40 shadow-md'
                           : 'border-slate-200/90'
-                      }`}
+                        }`}
                     >
                       <div>
                         {/* Top Serial Number & Pourashava Badge */}
                         <div className="flex items-center justify-between gap-2 mb-4">
                           <span
-                            className={`w-10 h-10 rounded-2xl text-white font-bold text-sm flex items-center justify-center shadow-xs transition-colors ${
-                              isHovered ? 'bg-[#C85A28]' : 'bg-[#0B4635]'
-                            }`}
+                            className={`w-10 h-10 rounded-2xl text-white font-bold text-sm flex items-center justify-center shadow-xs transition-colors ${isHovered ? 'bg-[#C85A28]' : 'bg-[#0B4635]'
+                              }`}
                           >
                             {serial}
                           </span>
                           <span
-                            className={`text-[11px] font-semibold px-2.5 py-1 rounded-full ${
-                              u.hasPourashava
+                            className={`text-[11px] font-semibold px-2.5 py-1 rounded-full ${u.hasPourashava
                                 ? 'bg-amber-50 text-amber-800 border border-amber-200'
                                 : 'bg-slate-100 text-slate-600 border border-slate-200'
-                            }`}
+                              }`}
                           >
                             {u.pourashava}
                           </span>
@@ -406,9 +428,8 @@ export default function UpazilasPageView({
                         {/* Upazila Name & English Subtitle */}
                         <div className="mb-2.5">
                           <h2
-                            className={`text-xl sm:text-2xl font-bold transition-colors ${
-                              isHovered ? 'text-[#C85A28]' : 'text-slate-900 group-hover:text-[#0B4635]'
-                            }`}
+                            className={`text-xl sm:text-2xl font-bold transition-colors ${isHovered ? 'text-[#C85A28]' : 'text-slate-900 group-hover:text-[#0B4635]'
+                              }`}
                           >
                             {title}
                           </h2>
