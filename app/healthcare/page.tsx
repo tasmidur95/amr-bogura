@@ -157,62 +157,62 @@ export default function HealthcarePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans w-full max-w-full overflow-x-hidden">
       <Navbar currentView="healthcare" />
 
-      <main className="flex-1 pb-16">
+      <main className="flex-1 pb-16 w-full max-w-full overflow-x-hidden min-w-0">
         {/* Hero Section */}
-        <div className="bg-gradient-to-b from-emerald-900 via-emerald-800 to-teal-800 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="bg-gradient-to-b from-emerald-900 via-emerald-800 to-teal-800 text-white pt-8 sm:pt-10 pb-14 sm:pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full max-w-full">
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
 
-          <div className="w-full max-w-[1600px] mx-auto relative z-10">
+          <div className="w-full max-w-[1600px] mx-auto relative z-10 min-w-0">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-semibold uppercase tracking-wider mb-3">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  স্বাস্থ্য অধিদপ্তর (DGHS) ও ডিজিএফপি যাচাইকৃত ডাটাবেজ
+              <div className="min-w-0 flex-1">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-semibold uppercase tracking-wider mb-3 max-w-full truncate">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                  <span className="truncate">স্বাস্থ্য অধিদপ্তর (DGHS) ও ডিজিএফপি যাচাইকৃত ডাটাবেজ</span>
                 </div>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
                   বগুড়া জেলা স্বাস্থ্যসেবা ডিরেক্টরি ও ম্যাপ
                 </h1>
-                <p className="mt-2 text-base sm:text-lg text-emerald-100 max-w-2xl leading-relaxed">
+                <p className="mt-2 text-sm sm:text-lg text-emerald-100 max-w-2xl leading-relaxed">
                   বগুড়ার ১২টি উপজেলার ৩৫২টি সরকারি ও বেসরকারি হাসপাতাল, স্বাস্থ্য কমপ্লেক্স, ইউনিয়ন সাব-সেন্টার, কমিউনিটি ক্লিনিক, ব্লাড ব্যাংক ও অ্যাম্বুলেন্স সেবা।
                 </p>
               </div>
 
               {/* National Emergency Hotline Cards */}
-              <div className="flex flex-wrap sm:flex-nowrap gap-3 shrink-0">
+              <div className="grid grid-cols-2 sm:flex sm:flex-nowrap gap-2.5 sm:gap-3 shrink-0 w-full sm:w-auto min-w-0">
                 <a
                   href="tel:16263"
-                  className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-3 rounded-2xl transition group"
+                  className="flex items-center gap-2.5 sm:gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-2.5 sm:p-3 rounded-2xl transition group min-w-0"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/30 flex items-center justify-center text-emerald-300 group-hover:scale-105 transition">
-                    <i className="fa-solid fa-phone-volume text-lg"></i>
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-500/30 flex items-center justify-center text-emerald-300 group-hover:scale-105 transition shrink-0">
+                    <i className="fa-solid fa-phone-volume text-base sm:text-lg"></i>
                   </div>
-                  <div>
-                    <span className="text-[11px] text-emerald-200 uppercase font-semibold block">স্বাস্থ্য বাতায়ন</span>
-                    <span className="text-lg font-bold tracking-wide">১৬২৬৩</span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-emerald-200 uppercase font-semibold block truncate">স্বাস্থ্য বাতায়ন</span>
+                    <span className="text-base sm:text-lg font-bold tracking-wide">১৬২৬৩</span>
                   </div>
                 </a>
 
                 <a
                   href="tel:999"
-                  className="flex items-center gap-3 bg-red-500/20 hover:bg-red-500/30 backdrop-blur-md border border-red-400/30 p-3 rounded-2xl transition group"
+                  className="flex items-center gap-2.5 sm:gap-3 bg-red-500/20 hover:bg-red-500/30 backdrop-blur-md border border-red-400/30 p-2.5 sm:p-3 rounded-2xl transition group min-w-0"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-red-500/40 flex items-center justify-center text-red-200 group-hover:scale-105 transition">
-                    <i className="fa-solid fa-truck-medical text-lg"></i>
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-red-500/40 flex items-center justify-center text-red-200 group-hover:scale-105 transition shrink-0">
+                    <i className="fa-solid fa-truck-medical text-base sm:text-lg"></i>
                   </div>
-                  <div>
-                    <span className="text-[11px] text-red-200 uppercase font-semibold block">জাতীয় জরুরী সেবা</span>
-                    <span className="text-lg font-bold tracking-wide">৯৯৯</span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-red-200 uppercase font-semibold block truncate">জরুরী সেবা</span>
+                    <span className="text-base sm:text-lg font-bold tracking-wide">৯৯৯</span>
                   </div>
                 </a>
               </div>
             </div>
 
             {/* Quick Emergency Filter Shortcuts */}
-            <div className="mt-6 pt-6 border-t border-emerald-700/60 flex flex-wrap items-center gap-2">
-              <span className="text-xs text-emerald-200 font-semibold mr-1">দ্রুত সেবা:</span>
+            <div className="mt-6 pt-6 border-t border-emerald-700/60 flex flex-wrap items-center gap-2 w-full min-w-0">
+              <span className="text-xs text-emerald-200 font-semibold mr-1 shrink-0">দ্রুত সেবা:</span>
               <button
                 onClick={() => {
                   setSelectedCategory('emergency_services');
@@ -270,12 +270,12 @@ export default function HealthcarePage() {
         </div>
 
         {/* Main Content Container */}
-        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 -mt-6 min-w-0">
           {/* Search & Control Card */}
-          <div className="bg-white rounded-2xl shadow-md border border-slate-200/80 p-4 sm:p-5 mb-6">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="bg-white rounded-2xl shadow-md border border-slate-200/80 p-4 sm:p-5 mb-6 w-full max-w-full min-w-0 overflow-hidden">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 min-w-0">
               {/* Search input */}
-              <div className="relative flex-1">
+              <div className="relative flex-1 min-w-0 w-full">
                 <i className="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
                 <input
                   type="text"
@@ -295,15 +295,15 @@ export default function HealthcarePage() {
               </div>
 
               {/* View Switcher & Result Count */}
-              <div className="flex items-center justify-between md:justify-end gap-3 shrink-0">
-                <span className="text-xs text-slate-600 font-medium">
+              <div className="flex items-center justify-between md:justify-end gap-2.5 shrink-0 w-full md:w-auto min-w-0 flex-wrap sm:flex-nowrap">
+                <span className="text-xs text-slate-600 font-medium shrink-0">
                   মোট <span className="font-bold text-emerald-800 text-sm">{filteredFacilities.length}</span> টি প্রতিষ্ঠান
                 </span>
 
-                <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs">
+                <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs shrink-0">
                   <button
                     onClick={() => setViewMode('split')}
-                    className={`px-3 py-1.5 rounded-lg font-medium transition cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-2.5 sm:px-3 py-1.5 rounded-lg font-medium transition cursor-pointer flex items-center gap-1.5 ${
                       viewMode === 'split' ? 'bg-white text-emerald-800 shadow-sm font-bold' : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
@@ -312,7 +312,7 @@ export default function HealthcarePage() {
                   </button>
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`px-3 py-1.5 rounded-lg font-medium transition cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-2.5 sm:px-3 py-1.5 rounded-lg font-medium transition cursor-pointer flex items-center gap-1.5 ${
                       viewMode === 'grid' ? 'bg-white text-emerald-800 shadow-sm font-bold' : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
@@ -321,7 +321,7 @@ export default function HealthcarePage() {
                   </button>
                   <button
                     onClick={() => setViewMode('map')}
-                    className={`px-3 py-1.5 rounded-lg font-medium transition cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-2.5 sm:px-3 py-1.5 rounded-lg font-medium transition cursor-pointer flex items-center gap-1.5 ${
                       viewMode === 'map' ? 'bg-white text-emerald-800 shadow-sm font-bold' : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
@@ -333,7 +333,7 @@ export default function HealthcarePage() {
             </div>
 
             {/* CRO High-Intent Quick Search Chips */}
-            <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+            <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs w-full max-w-full min-w-0">
               <span className="text-[11px] font-bold text-slate-400 shrink-0 mr-1">
                 <i className="fa-solid fa-bolt text-amber-500 mr-1"></i>জনপ্রিয় অনুসন্ধান:
               </span>
@@ -371,11 +371,11 @@ export default function HealthcarePage() {
             </div>
 
             {/* Upazila Tabs Filter */}
-            <div className="mt-4 pt-4 border-t border-slate-100">
+            <div className="mt-4 pt-4 border-t border-slate-100 w-full max-w-full min-w-0">
               <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1">
                 <i className="fa-solid fa-map-pin text-emerald-700"></i> উপজেলা বাছাই করুন:
               </div>
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none">
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none w-full max-w-full min-w-0">
                 {upazilaTabs.map((u) => (
                   <button
                     key={u.id}
@@ -400,7 +400,7 @@ export default function HealthcarePage() {
             </div>
 
             {/* Category Filter Pills */}
-            <div className="mt-2 pt-2 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+            <div className="mt-2 pt-2 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none w-full max-w-full min-w-0">
               <span className="text-[11px] font-bold text-slate-500 shrink-0 mr-1">ধরণ:</span>
               {categoryFilters.map((cat) => (
                 <button
@@ -635,7 +635,7 @@ function FacilityCard({
   return (
     <div
       onClick={onSelect}
-      className={`bg-white rounded-2xl border transition-all duration-200 p-5 flex flex-col justify-between hover:shadow-lg cursor-pointer ${
+      className={`bg-white rounded-2xl border transition-all duration-200 p-4 sm:p-5 flex flex-col justify-between hover:shadow-lg cursor-pointer w-full min-w-0 overflow-hidden ${
         isSelected
           ? 'border-emerald-600 ring-2 ring-emerald-600/30 shadow-md bg-emerald-50/20'
           : 'border-slate-200/90 hover:border-emerald-300'
@@ -709,17 +709,17 @@ function FacilityCard({
       </div>
 
       {/* Card Actions Footer */}
-      <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 mt-auto">
+      <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 mt-auto min-w-0">
         {facility.phone && facility.phone.length > 0 ? (
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 min-w-0 max-w-[65%]">
             <a
               href={`tel:${facility.phone[0]}`}
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-800 hover:bg-emerald-900 px-3 py-1.5 rounded-xl shadow-sm transition"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-800 hover:bg-emerald-900 px-2.5 sm:px-3 py-1.5 rounded-xl shadow-sm transition truncate max-w-full"
               title="সরাসরি কল করুন"
             >
-              <i className="fa-solid fa-phone text-[10px]"></i>
-              <span>{facility.phone[0]}</span>
+              <i className="fa-solid fa-phone text-[10px] shrink-0"></i>
+              <span className="truncate">{facility.phone[0]}</span>
             </a>
             {onCopyPhone && (
               <button
@@ -728,7 +728,7 @@ function FacilityCard({
                   e.stopPropagation();
                   onCopyPhone(facility.phone![0]);
                 }}
-                className="p-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs transition cursor-pointer"
+                className="p-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs transition cursor-pointer shrink-0"
                 title="নম্বর কপি করুন"
               >
                 <i className="fa-regular fa-copy"></i>
@@ -744,7 +744,7 @@ function FacilityCard({
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-emerald-800 bg-slate-100 hover:bg-slate-200 px-2.5 py-1.5 rounded-xl transition"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-emerald-800 bg-slate-100 hover:bg-slate-200 px-2.5 py-1.5 rounded-xl transition shrink-0 ml-auto"
         >
           <span>ম্যাপে যান</span>
           <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>

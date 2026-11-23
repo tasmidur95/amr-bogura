@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { HealthcareFacility } from '@/lib/services/healthcare.service';
+import 'leaflet/dist/leaflet.css';
 
 interface HealthcareMapProps {
   facilities: HealthcareFacility[];
@@ -218,67 +219,70 @@ export default function HealthcareMap({
 
   return (
     <div className={`relative w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200/90 ${heightClass} ${isFullscreen ? 'fixed inset-0 z-50 rounded-none h-screen w-screen' : ''}`}>
-      {/* Map Header Toolbar */}
-      <div className="absolute top-3 left-3 z-[400] flex flex-wrap items-center gap-1.5 bg-white/95 backdrop-blur-md p-1.5 rounded-xl shadow-md border border-slate-200 text-xs">
-        <button
-          onClick={() => setMapType('streets')}
-          className={`px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
-            mapType === 'streets' ? 'bg-emerald-800 text-white font-bold' : 'text-slate-700 hover:bg-slate-100'
-          }`}
-        >
-          রাস্তাঘাট
-        </button>
-        <button
-          onClick={() => setMapType('satellite')}
-          className={`px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
-            mapType === 'satellite' ? 'bg-emerald-800 text-white font-bold' : 'text-slate-700 hover:bg-slate-100'
-          }`}
-        >
-          স্যাটেলাইট
-        </button>
-        <button
-          onClick={() => setMapType('terrain')}
-          className={`px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
-            mapType === 'terrain' ? 'bg-emerald-800 text-white font-bold' : 'text-slate-700 hover:bg-slate-100'
-          }`}
-        >
-          টপোগ্রাফি
-        </button>
-      </div>
+      {/* Map Responsive Floating Header Toolbar */}
+      <div className="absolute top-2.5 sm:top-3 inset-x-2.5 sm:inset-x-3 z-[400] flex items-center justify-between gap-1.5 pointer-events-none">
+        {/* Map Type Switcher */}
+        <div className="flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 sm:p-1.5 rounded-xl shadow-md border border-slate-200 text-[11px] sm:text-xs pointer-events-auto">
+          <button
+            onClick={() => setMapType('streets')}
+            className={`px-2 sm:px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
+              mapType === 'streets' ? 'bg-emerald-800 text-white font-bold' : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            রাস্তাঘাট
+          </button>
+          <button
+            onClick={() => setMapType('satellite')}
+            className={`px-2 sm:px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
+              mapType === 'satellite' ? 'bg-emerald-800 text-white font-bold' : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            স্যাটেলাইট
+          </button>
+          <button
+            onClick={() => setMapType('terrain')}
+            className={`px-2 sm:px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
+              mapType === 'terrain' ? 'bg-emerald-800 text-white font-bold' : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            টপোগ্রাফি
+          </button>
+        </div>
 
-      {/* Floating Controls Right */}
-      <div className="absolute top-3 right-3 z-[400] flex items-center gap-2">
-        <button
-          onClick={handleResetView}
-          title="বগুড়ার সীমানায় ফিট করুন"
-          className="bg-white/95 hover:bg-white text-slate-700 hover:text-emerald-800 p-2 rounded-xl shadow-md border border-slate-200 text-xs font-semibold flex items-center gap-1 transition cursor-pointer"
-        >
-          <i className="fa-solid fa-arrows-to-eye"></i>
-          <span className="hidden sm:inline">রিসেট ভিউ</span>
-        </button>
-        <button
-          onClick={() => setIsFullscreen(!isFullscreen)}
-          title={isFullscreen ? 'ফুলস্ক্রিন বন্ধ' : 'ফুলস্ক্রিন ম্যাপ'}
-          className="bg-white/95 hover:bg-white text-slate-700 hover:text-emerald-800 p-2 rounded-xl shadow-md border border-slate-200 text-xs transition cursor-pointer"
-        >
-          <i className={`fa-solid ${isFullscreen ? 'fa-compress' : 'fa-expand'}`}></i>
-        </button>
+        {/* Floating Controls Right */}
+        <div className="flex items-center gap-1.5 pointer-events-auto">
+          <button
+            onClick={handleResetView}
+            title="বগুড়ার সীমানায় ফিট করুন"
+            className="bg-white/95 hover:bg-white text-slate-700 hover:text-emerald-800 p-2 rounded-xl shadow-md border border-slate-200 text-xs font-semibold flex items-center gap-1 transition cursor-pointer"
+          >
+            <i className="fa-solid fa-arrows-to-eye"></i>
+            <span className="hidden md:inline">রিসেট ভিউ</span>
+          </button>
+          <button
+            onClick={() => setIsFullscreen(!isFullscreen)}
+            title={isFullscreen ? 'ফুলস্ক্রিন বন্ধ' : 'ফুলস্ক্রিন ম্যাপ'}
+            className="bg-white/95 hover:bg-white text-slate-700 hover:text-emerald-800 p-2 rounded-xl shadow-md border border-slate-200 text-xs transition cursor-pointer"
+          >
+            <i className={`fa-solid ${isFullscreen ? 'fa-compress' : 'fa-expand'}`}></i>
+          </button>
+        </div>
       </div>
 
       {/* Map Container */}
       <div ref={mapContainerRef} className="w-full h-full bg-slate-100" />
 
-      {/* Bottom Category Legend */}
-      <div className="absolute bottom-3 left-3 right-3 sm:right-auto z-[400] bg-white/95 backdrop-blur-md p-2 rounded-xl shadow-md border border-slate-200 max-w-xl text-[11px] text-slate-700 flex flex-wrap items-center gap-2.5">
-        <span className="font-bold text-slate-900 flex items-center gap-1">
+      {/* Bottom Category Legend (Horizontal Scroll on Mobile) */}
+      <div className="absolute bottom-2.5 sm:bottom-3 inset-x-2.5 sm:inset-x-3 sm:right-auto z-[400] bg-white/95 backdrop-blur-md p-1.5 sm:p-2 rounded-xl shadow-md border border-slate-200 max-w-xl text-[10px] sm:text-[11px] text-slate-700 flex items-center gap-2 overflow-x-auto scrollbar-none whitespace-nowrap">
+        <span className="font-bold text-slate-900 flex items-center gap-1 shrink-0">
           <i className="fa-solid fa-layer-group text-emerald-800"></i> সূচক:
         </span>
-        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-red-700"></span> সরকারি হাসপাতাল</span>
-        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> স্বাস্থ্য কমপ্লেক্স</span>
-        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-sky-600"></span> ইউনিয়ন সাব-সেন্টার</span>
-        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-indigo-600"></span> বেসরকারি</span>
-        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-purple-600"></span> ডায়াগনস্টিক</span>
-        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-red-600"></span> ব্লাড/অ্যাম্বুলেন্স</span>
+        <span className="flex items-center gap-1 shrink-0"><span className="w-2.5 h-2.5 rounded-full bg-red-700"></span> সরকারি</span>
+        <span className="flex items-center gap-1 shrink-0"><span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> স্বাস্থ্য কমপ্লেক্স</span>
+        <span className="flex items-center gap-1 shrink-0"><span className="w-2.5 h-2.5 rounded-full bg-sky-600"></span> সাব-সেন্টার</span>
+        <span className="flex items-center gap-1 shrink-0"><span className="w-2.5 h-2.5 rounded-full bg-indigo-600"></span> বেসরকারি</span>
+        <span className="flex items-center gap-1 shrink-0"><span className="w-2.5 h-2.5 rounded-full bg-purple-600"></span> ডায়াগনস্টিক</span>
+        <span className="flex items-center gap-1 shrink-0"><span className="w-2.5 h-2.5 rounded-full bg-red-600"></span> অ্যাম্বুলেন্স/ব্লাড</span>
       </div>
     </div>
   );
