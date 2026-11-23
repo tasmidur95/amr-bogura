@@ -465,24 +465,35 @@ export default function HealthcarePage() {
 
               {/* VIEW MODE: SPLIT (Map on Top, Grid Below) */}
               {viewMode === 'split' && (
-                <div className="space-y-6 mb-8">
-                  <HealthcareMap
-                    facilities={filteredFacilities}
-                    selectedFacility={selectedFacility}
-                    onSelectFacility={(fac) => setSelectedFacility(fac)}
-                    heightClass="h-[420px] sm:h-[480px]"
-                  />
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-8 items-start">
+                  {/* Map: first on mobile, sticky right column on desktop */}
+                  <div className="lg:col-span-7 lg:order-2 lg:sticky lg:top-24">
+                    <HealthcareMap
+                      facilities={filteredFacilities}
+                      selectedFacility={selectedFacility}
+                      onSelectFacility={(fac) => setSelectedFacility(fac)}
+                      heightClass="h-[360px] sm:h-[460px] lg:h-[calc(100vh-8rem)] lg:min-h-[520px]"
+                    />
+                  </div>
 
-                  {/* Facility Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                    {paginatedFacilities.map((f) => (
-                      <FacilityCard
-                        key={f.id}
-                        facility={f}
-                        isSelected={selectedFacility?.id === f.id}
-                        onSelect={() => setSelectedFacility(f)}
-                      />
-                    ))}
+                  {/* Facility list: scrolls independently beside the map */}
+                  <div className="lg:col-span-5 lg:order-1 min-w-0">
+                    <div className="flex items-center justify-between mb-3 px-1 text-xs text-slate-500 font-medium">
+                      <span>
+                        <span className="font-bold text-slate-900">{filteredFacilities.length}</span>টি প্রতিষ্ঠান
+                      </span>
+                      <span className="hidden lg:inline">কার্ডে ক্লিক করলে ম্যাপে দেখাবে</span>
+                    </div>
+                    <div className="grid grid-cols-1 gap-4 lg:max-h-[calc(100vh-11rem)] lg:overflow-y-auto lg:pr-2">
+                      {paginatedFacilities.map((f) => (
+                        <FacilityCard
+                          key={f.id}
+                          facility={f}
+                          isSelected={selectedFacility?.id === f.id}
+                          onSelect={() => setSelectedFacility(f)}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import WeatherSection from '@/components/WeatherSection';
@@ -34,6 +35,7 @@ import {
 import { detailedExploreSpots } from '@/lib/data/explore-data';
 
 export default function HomePage() {
+  const router = useRouter();
   const [currentView, setCurrentView] = useState<'home' | 'upazilas' | 'upazila-detail'>('home');
   const [selectedUpazilaIdx, setSelectedUpazilaIdx] = useState<number>(0);
   const [activeCommunityTab, setActiveCommunityTab] = useState<string>('blood');
@@ -108,9 +110,8 @@ export default function HomePage() {
   };
 
   const handleOpenUpazilaDetail = (index: number) => {
-    setSelectedUpazilaIdx(index);
-    setCurrentView('upazila-detail');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Go to the real detail route: /upazilas/:id
+    router.push(`/upazilas/${index}`);
   };
 
   const handlePostCreated = (newPost: CommunityPost) => {

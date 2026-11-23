@@ -34,7 +34,7 @@ export default function UpazilasPageView({
   onOpenDetail,
 }: UpazilasPageViewProps) {
   const { language, t } = useLanguage();
-  const [activeTab, setActiveTab] = useState<'cards' | 'map' | 'unions'>('cards');
+  const [activeTab, setActiveTab] = useState<'cards' | 'map' | 'unions'>('map');
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -150,21 +150,10 @@ export default function UpazilasPageView({
         <div className="bg-white p-2 rounded-2xl border border-slate-200/90 shadow-xs flex flex-wrap items-center justify-between gap-3 mb-8">
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setActiveTab('cards')}
-              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${activeTab === 'cards'
-                  ? 'bg-[#0B4635] text-white shadow-xs'
-                  : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
-                }`}
-            >
-              <i className="fa-solid fa-border-all"></i>
-              <span>১২টি উপজেলা পরিচিতি</span>
-            </button>
-
-            <button
               onClick={() => setActiveTab('map')}
               className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${activeTab === 'map'
-                  ? 'bg-[#0B4635] text-white shadow-xs'
-                  : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
+                ? 'bg-[#0B4635] text-white shadow-xs'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
                 }`}
             >
               <i className="fa-solid fa-earth-americas text-sky-400"></i>
@@ -173,12 +162,24 @@ export default function UpazilasPageView({
                 লাইভ
               </span>
             </button>
+            <button
+              onClick={() => setActiveTab('cards')}
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${activeTab === 'cards'
+                ? 'bg-[#0B4635] text-white shadow-xs'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
+                }`}
+            >
+              <i className="fa-solid fa-border-all"></i>
+              <span>১২টি উপজেলা পরিচিতি</span>
+            </button>
+
+
 
             <button
               onClick={() => setActiveTab('unions')}
               className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${activeTab === 'unions'
-                  ? 'bg-[#0B4635] text-white shadow-xs'
-                  : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
+                ? 'bg-[#0B4635] text-white shadow-xs'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
                 }`}
             >
               <i className="fa-solid fa-sitemap text-[#C85A28]"></i>
@@ -217,32 +218,23 @@ export default function UpazilasPageView({
                 <button
                   onClick={() => setMapSubView('geo')}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 ${mapSubView === 'geo'
-                      ? 'bg-emerald-800 text-white shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-emerald-800 text-white shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
                     }`}
                 >
                   <i className="fa-solid fa-earth-asia mr-1"></i>
                   ইন্টারেক্টিভ ম্যাপ
                 </button>
-                <button
-                  onClick={() => setMapSubView('vector')}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 ${mapSubView === 'vector'
-                      ? 'bg-emerald-800 text-white shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
-                    }`}
-                >
-                  <i className="fa-solid fa-vector-square mr-1"></i>
-                  ভেক্টর মানচিত্র
-                </button>
+
                 <button
                   onClick={() => setMapSubView('satellite')}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 ${mapSubView === 'satellite'
-                      ? 'bg-emerald-800 text-white shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-emerald-800 text-white shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
                     }`}
                 >
                   <i className="fa-solid fa-satellite mr-1"></i>
-                  স্যাটেলাইট ম্যাপ
+                  ম্যাপ
                 </button>
               </div>
             </div>
@@ -286,8 +278,8 @@ export default function UpazilasPageView({
                 <button
                   onClick={() => setActiveFilter('all')}
                   className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${activeFilter === 'all'
-                      ? 'bg-[#0B4635] text-white font-bold shadow-xs'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    ? 'bg-[#0B4635] text-white font-bold shadow-xs'
+                    : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                     }`}
                 >
                   সব ১২টি উপজেলা
@@ -295,8 +287,8 @@ export default function UpazilasPageView({
                 <button
                   onClick={() => setActiveFilter('pourashava')}
                   className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${activeFilter === 'pourashava'
-                      ? 'bg-[#0B4635] text-white font-bold shadow-xs'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    ? 'bg-[#0B4635] text-white font-bold shadow-xs'
+                    : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                     }`}
                 >
                   পৌরসভা সমৃদ্ধ (১১টি)
@@ -304,8 +296,8 @@ export default function UpazilasPageView({
                 <button
                   onClick={() => setActiveFilter('jamuna')}
                   className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${activeFilter === 'jamuna'
-                      ? 'bg-[#0B4635] text-white font-bold shadow-xs'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    ? 'bg-[#0B4635] text-white font-bold shadow-xs'
+                    : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                     }`}
                 >
                   যমুনা তীরবর্তী
@@ -313,8 +305,8 @@ export default function UpazilasPageView({
                 <button
                   onClick={() => setActiveFilter('heritage')}
                   className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition shrink-0 cursor-pointer ${activeFilter === 'heritage'
-                      ? 'bg-[#0B4635] text-white font-bold shadow-xs'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    ? 'bg-[#0B4635] text-white font-bold shadow-xs'
+                    : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                     }`}
                 >
                   প্রত্নতত্ত্ব ও ঐতিহ্য
@@ -361,8 +353,8 @@ export default function UpazilasPageView({
                   type="button"
                   onClick={() => setSearchQuery(chip.q)}
                   className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition shrink-0 cursor-pointer ${searchQuery === chip.q
-                      ? 'bg-[#0B4635] text-white font-bold'
-                      : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80'
+                    ? 'bg-[#0B4635] text-white font-bold'
+                    : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80'
                     }`}
                 >
                   {chip.label}
@@ -402,8 +394,8 @@ export default function UpazilasPageView({
                       onMouseLeave={() => setHoveredIndex(null)}
                       onClick={() => onOpenDetail(originalIdx)}
                       className={`group bg-white rounded-3xl p-6 border card-hover flex flex-col justify-between cursor-pointer transition shadow-2xs ${isHovered
-                          ? 'border-[#C85A28] ring-2 ring-[#C85A28]/40 shadow-md'
-                          : 'border-slate-200/90'
+                        ? 'border-[#C85A28] ring-2 ring-[#C85A28]/40 shadow-md'
+                        : 'border-slate-200/90'
                         }`}
                     >
                       <div>
@@ -417,8 +409,8 @@ export default function UpazilasPageView({
                           </span>
                           <span
                             className={`text-[11px] font-semibold px-2.5 py-1 rounded-full ${u.hasPourashava
-                                ? 'bg-amber-50 text-amber-800 border border-amber-200'
-                                : 'bg-slate-100 text-slate-600 border border-slate-200'
+                              ? 'bg-amber-50 text-amber-800 border border-amber-200'
+                              : 'bg-slate-100 text-slate-600 border border-slate-200'
                               }`}
                           >
                             {u.pourashava}

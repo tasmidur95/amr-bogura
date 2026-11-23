@@ -172,28 +172,68 @@ export default function RealMap({
         const spotLat = coords[0] || 24.8465;
         const spotLng = coords[1] || 89.3777;
 
+        // const spotIcon = L.divIcon({
+        //   className: 'custom-spot-marker',
+        //   html: `
+        //     <div style="
+        //       background: #0B4635;
+        //       color: #FDE047;
+        //       width: 30px;
+        //       height: 30px;
+        //       border-radius: 50%;
+        //       border: 2px solid #ffffff;
+        //       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        //       display: flex;
+        //       align-items: center;
+        //       justify-content: center;
+        //       font-size: 12px;
+        //       cursor: pointer;
+        //     ">
+        //       🏛️
+        //     </div>
+        //   `,
+        //   iconSize: [30, 30],
+        //   iconAnchor: [15, 15],
+        // });
+
         const spotIcon = L.divIcon({
-          className: 'custom-spot-marker',
+          className: "custom-spot-marker",
           html: `
-            <div style="
-              background: #0B4635;
-              color: #FDE047;
-              width: 30px;
-              height: 30px;
-              border-radius: 50%;
-              border: 2px solid #ffffff;
-              box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 12px;
-              cursor: pointer;
-            ">
-              🏛️
-            </div>
-          `,
-          iconSize: [30, 30],
-          iconAnchor: [15, 15],
+    <div style="
+      width: 36px;
+      height: 36px;
+      background: #0B4635;
+      color: #FDE047;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    ">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 200 200"
+        width="25"
+        height="25"
+        style="color: #FDE047;"
+      >
+        <path d="M100 2C58.8 2 27.5 33.3 27.5 74.5c0 33.4 20.6 58.6 46.2 72.1 7.6 4.1 12.1 11.4 14.3 19.7 1.8 6.8 6.4 11.2 12 11.2s10.2-4.4 12-11.2c2.2-8.3 6.7-15.6 14.3-19.7 25.6-13.5 46.2-38.7 46.2-72.1C172.5 33.3 141.2 2 100 2zm0 123c-28.4 0-51.5-23.1-51.5-51.5S71.6 22 100 22s51.5 23.1 51.5 51.5S128.4 125 100 125z" fill="currentColor"/>
+        <g fill="currentColor">
+          <rect x="78" y="43" width="27" height="16" rx="7"/>
+          <rect x="64" y="53" width="69" height="48" rx="10"/>
+          <rect x="119" y="37.5" width="7" height="21" rx="3.5"/>
+          <rect x="112" y="44.5" width="21" height="7" rx="3.5"/>
+        </g>
+        <circle cx="90" cy="77" r="14" fill="#0B4635"/>
+        <circle cx="90" cy="77" r="8" fill="currentColor"/>
+        <ellipse cx="100" cy="195.5" rx="29" ry="4" fill="currentColor"/>
+      </svg>
+    </div>
+  `,
+          iconSize: [36, 36],
+          iconAnchor: [18, 18],
+          popupAnchor: [0, -18]
         });
 
         const spotMarker = L.marker([spotLat, spotLng], { icon: spotIcon }).addTo(spotsGroup);
@@ -351,9 +391,8 @@ export default function RealMap({
 
   return (
     <div
-      className={`relative bg-slate-900 rounded-3xl overflow-hidden border border-slate-200/90 shadow-lg ${
-        isFullscreen ? 'fixed inset-4 z-50 rounded-2xl' : ''
-      }`}
+      className={`relative bg-slate-900 rounded-3xl overflow-hidden border border-slate-200/90 shadow-lg ${isFullscreen ? 'fixed inset-4 z-50 rounded-2xl' : ''
+        }`}
     >
       {/* Top Map Control Bar */}
       <div className="absolute top-3 inset-x-3 z-[1000] flex flex-wrap items-center justify-between gap-2 pointer-events-none">
@@ -391,31 +430,28 @@ export default function RealMap({
           <div className="flex items-center bg-white/95 backdrop-blur-md p-1 rounded-2xl shadow-md border border-slate-200/90 text-xs font-bold">
             <button
               onClick={() => setMapType('streets')}
-              className={`px-2.5 py-1 rounded-xl transition cursor-pointer ${
-                mapType === 'streets'
-                  ? 'bg-emerald-800 text-white'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`px-2.5 py-1 rounded-xl transition cursor-pointer ${mapType === 'streets'
+                ? 'bg-emerald-800 text-white'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               রোডম্যাপ
             </button>
             <button
               onClick={() => setMapType('satellite')}
-              className={`px-2.5 py-1 rounded-xl transition cursor-pointer ${
-                mapType === 'satellite'
-                  ? 'bg-emerald-800 text-white'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`px-2.5 py-1 rounded-xl transition cursor-pointer ${mapType === 'satellite'
+                ? 'bg-emerald-800 text-white'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               🛰️ স্যাটেলাইট
             </button>
             <button
               onClick={() => setMapType('terrain')}
-              className={`hidden md:block px-2.5 py-1 rounded-xl transition cursor-pointer ${
-                mapType === 'terrain'
-                  ? 'bg-emerald-800 text-white'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`hidden md:block px-2.5 py-1 rounded-xl transition cursor-pointer ${mapType === 'terrain'
+                ? 'bg-emerald-800 text-white'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               টপোগ্রাফি
             </button>
@@ -425,11 +461,10 @@ export default function RealMap({
           <button
             onClick={() => setShowSpots(!showSpots)}
             title="দর্শনীয় স্থান পিন টগল করুন"
-            className={`px-2.5 py-1.5 rounded-2xl text-xs font-bold border transition shadow-md cursor-pointer ${
-              showSpots
-                ? 'bg-amber-400 text-slate-950 border-amber-500'
-                : 'bg-white/95 text-slate-600 border-slate-200'
-            }`}
+            className={`px-2.5 py-1.5 rounded-2xl text-xs font-bold border transition shadow-md cursor-pointer ${showSpots
+              ? 'bg-amber-400 text-slate-950 border-amber-500'
+              : 'bg-white/95 text-slate-600 border-slate-200'
+              }`}
           >
             🏛️ দর্শনীয় স্থান
           </button>
