@@ -3,24 +3,24 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class UpazilasService {
   private readonly upazilas = [
-    { serialBn: '০১', name: 'বগুড়া সদর', enName: 'Bogura Sadar', area: '১৭৬.৫৮ বর্গকিমি', unions: '১১টি ইউনিয়ন' },
-    { serialBn: '০২', name: 'শিবগঞ্জ', enName: 'Shibganj', area: '৩১৫.৩৩ বর্গকিমি', unions: '১২টি ইউনিয়ন' },
-    { serialBn: '০৩', name: 'শেরপুর', enName: 'Sherpur', area: '২৯৬.২৭ বর্গকিমি', unions: '১০টি ইউনিয়ন' },
-    { serialBn: '০৪', name: 'সোনাতলা', enName: 'Sonatala', area: '১৫৬.৭৫ বর্গকিমি', unions: '৭টি ইউনিয়ন' },
-    { serialBn: '০৫', name: 'সারিয়াকান্দি', enName: 'Sariakandi', area: '৪০৮.৫০ বর্গকিমি', unions: '১২টি ইউনিয়ন' },
-    { serialBn: '০৬', name: 'গাবতলী', enName: 'Gabtali', area: '২৩৯.৬০ বর্গকিমি', unions: '১১টি ইউনিয়ন' },
-    { serialBn: '০৭', name: 'ধুনট', enName: 'Dhunat', area: '২৪৭.৭৩ বর্গকিমি', unions: '১০টি ইউনিয়ন' },
-    { serialBn: '০৮', name: 'নন্দীগ্রাম', enName: 'Nandigram', area: '২৬৫.৪৭ বর্গকিমি', unions: '৫টি ইউনিয়ন' },
-    { serialBn: '০৯', name: 'কাহালু', enName: 'Kahaloo', area: '২৪০.৪২ বর্গকিমি', unions: '৯টি ইউনিয়ন' },
-    { serialBn: '১০', name: 'দুপচাঁচিয়া', enName: 'Dupchanchia', area: '১৬২.৪৫ বর্গকিমি', unions: '৬টি ইউনিয়ন' },
-    { serialBn: '১১', name: 'আদমদীঘি', enName: 'Adamdighi', area: '১৬৮.৮৩ বর্গকিমি', unions: '৬টি ইউনিয়ন' },
-    { serialBn: '১২', name: 'শাজাহানপুর', enName: 'Shajahanpur', area: '২২১.৬৯ বর্গকিমি', unions: '৯টি ইউনিয়ন' },
+    { serial: '০১', name: 'বগুড়া সদর', name_en: 'Bogura Sadar', area: '১৭৬.৫৮ বর্গকিমি', unions: '১১টি ইউনিয়ন' },
+    { serial: '০২', name: 'শিবগঞ্জ', name_en: 'Shibganj', area: '৩১৫.৩৩ বর্গকিমি', unions: '১২টি ইউনিয়ন' },
+    { serial: '০৩', name: 'শেরপুর', name_en: 'Sherpur', area: '২৯৬.২৭ বর্গকিমি', unions: '১০টি ইউনিয়ন' },
+    { serial: '০৪', name: 'সোনাতলা', name_en: 'Sonatala', area: '১৫৬.৭৫ বর্গকিমি', unions: '৭টি ইউনিয়ন' },
+    { serial: '০৫', name: 'সারিয়াকান্দি', name_en: 'Sariakandi', area: '৪০৮.৫০ বর্গকিমি', unions: '১২টি ইউনিয়ন' },
+    { serial: '০৬', name: 'গাবতলী', name_en: 'Gabtali', area: '২৩৯.৬০ বর্গকিমি', unions: '১১টি ইউনিয়ন' },
+    { serial: '০৭', name: 'ধুনট', name_en: 'Dhunat', area: '২৪৭.৭৩ বর্গকিমি', unions: '১০টি ইউনিয়ন' },
+    { serial: '০৮', name: 'নন্দীগ্রাম', name_en: 'Nandigram', area: '২৬৫.৪৭ বর্গকিমি', unions: '৫টি ইউনিয়ন' },
+    { serial: '০৯', name: 'কাহালু', name_en: 'Kahaloo', area: '২৪০.৪২ বর্গকিমি', unions: '৯টি ইউনিয়ন' },
+    { serial: '১০', name: 'দুপচাঁচিয়া', name_en: 'Dupchanchia', area: '১৬২.৪৫ বর্গকিমি', unions: '৬টি ইউনিয়ন' },
+    { serial: '১১', name: 'আদমদীঘি', name_en: 'Adamdighi', area: '১৬৮.৮৩ বর্গকিমি', unions: '৬টি ইউনিয়ন' },
+    { serial: '১২', name: 'শাজাহানপুর', name_en: 'Shajahanpur', area: '২২১.৬৯ বর্গকিমি', unions: '৯টি ইউনিয়ন' },
   ];
 
   findAll(query?: string) {
     if (!query) return this.upazilas;
     const q = query.toLowerCase();
-    return this.upazilas.filter(u => u.name.toLowerCase().includes(q) || u.enName.toLowerCase().includes(q));
+    return this.upazilas.filter(u => u.name.toLowerCase().includes(q) || u.name_en.toLowerCase().includes(q));
   }
 }
 

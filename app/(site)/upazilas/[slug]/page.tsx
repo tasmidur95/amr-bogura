@@ -1,13 +1,14 @@
 'use client';
 
+import { useRouter, useParams } from '@/lib/i18n/navigation';
+import { upazilaPath } from '@/lib/i18n/routes';
+import { resolveUpazilaIndex, upazilaSlugOf } from '@/lib/i18n/entities';
 import React, { useState, useEffect } from 'react';
-import { useRouter, useParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import UpazilaDetailView from '@/components/UpazilaDetailView';
 import { upazilasData, Upazila } from '@/lib/data/district-data';
-import { boguraUpazilasData } from '@/lib/data/unions-villages-data';
 
 export default function UpazilaDetailPage() {
   const router = useRouter();
@@ -25,20 +26,9 @@ export default function UpazilaDetailPage() {
       .catch(() => {});
   }, []);
 
-  const idStr = Array.isArray(params?.id) ? params.id[0] : params?.id || '0';
-  const num = parseInt(idStr, 10);
-  let validIndex = 0;
-
-  if (!isNaN(num) && num >= 0 && num < upazilas.length) {
-    validIndex = num;
-  } else {
-    const slugIdx = boguraUpazilasData.findIndex(
-      u => u.id.toLowerCase() === idStr.toLowerCase()
-    );
-    if (slugIdx !== -1) {
-      validIndex = slugIdx;
-    }
-  }
+  // slug validity / legacy redirects are handled by ./layout.tsx; here we only need the index
+  const slugStr = Array.isArray(params?.slug) ? params.slug[0] : params?.slug || '';
+  const validIndex = resolveUpazilaIndex(slugStr)?.index ?? 0;
 
   const handleNavigate = (view: string, anchor?: string) => {
     if (view === 'home') {
@@ -49,7 +39,7 @@ export default function UpazilaDetailPage() {
   };
 
   const handleSelectUpazila = (newIndex: number) => {
-    router.push(`/upazilas/${newIndex}`);
+    router.push(upazilaPath(upazilaSlugOf(upazilas[newIndex], newIndex)));
   };
 
   return (

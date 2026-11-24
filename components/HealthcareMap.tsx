@@ -90,7 +90,7 @@ export default function HealthcareMap({
 
   const upzCounts = useMemo(() => {
     const c = Array(12).fill(0) as number[];
-    (allFacilities ?? facilities).forEach(f => { const i = upzIndex(f.upazila); if (i >= 0) c[i]++; });
+    (allFacilities ?? facilities).forEach(f => { const i = upzIndex(f.upazila_en); if (i >= 0) c[i]++; });
     return c;
   }, [allFacilities, facilities]);
   const upzCountsRef = useRef(upzCounts);
@@ -211,7 +211,7 @@ export default function HealthcareMap({
       const m = L.circleMarker([f.latitude, f.longitude], {
         radius: big ? 7 : 5, fillColor: GROUPS[g].color, color: '#fff', weight: 1.5, fillOpacity: 0.95,
       });
-      m.bindTooltip(f.name_bn, { direction: 'top', offset: [0, -6], className: 'hc-tip' });
+      m.bindTooltip(f.name, { direction: 'top', offset: [0, -6], className: 'hc-tip' });
       m.on('click', (e: any) => { L.DomEvent.stopPropagation(e); cb.current.onSelectFacility(f); });
       layer.addLayer(m);
     });
@@ -233,8 +233,8 @@ export default function HealthcareMap({
     const owner = f.ownership === 'government' ? 'সরকারি' : f.ownership === 'private' ? 'বেসরকারি' : 'এনজিও';
     const popup = `
       <div class="hc-popup">
-        <div class="hc-popup-tags"><span style="background:${g.color}1A;color:${g.color}">${g.label}</span><span>${owner}</span><span>${f.upazila_bn}</span></div>
-        <h4>${f.name_bn}</h4>
+        <div class="hc-popup-tags"><span style="background:${g.color}1A;color:${g.color}">${g.label}</span><span>${owner}</span><span>${f.upazila}</span></div>
+        <h4>${f.name}</h4>
         <p class="hc-addr">${f.address}</p>
         ${f.services?.length ? `<div class="hc-svc">${f.services.slice(0, 3).map(s => `<span>${s}</span>`).join('')}</div>` : ''}
         <div class="hc-actions">

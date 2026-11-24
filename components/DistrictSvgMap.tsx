@@ -1,7 +1,9 @@
 'use client';
 
+import { useRouter } from '@/lib/i18n/navigation';
+import { upazilaPath } from '@/lib/i18n/routes';
+import { upazilaSlugFor } from '@/lib/i18n/entities';
 import React, { useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import { upazilasData, Upazila } from '@/lib/data/district-data';
 import { boguraUpazilasData } from '@/lib/data/unions-villages-data';
 import { useLanguage } from '@/lib/context/LanguageContext';
@@ -55,7 +57,7 @@ export default function DistrictSvgMap({
     if (onSelectUpazila) {
       onSelectUpazila(idx);
     } else {
-      router.push(`/upazilas/${idx}`);
+      router.push(upazilaPath(upazilaSlugFor(idx)));
     }
   };
 
@@ -120,7 +122,7 @@ export default function DistrictSvgMap({
     {
       idx: 0, // Bogura Sadar (Center Hub)
       name: 'বগুড়া সদর',
-      enName: 'Bogura Sadar',
+      name_en: 'Bogura Sadar',
       points: '280,242 360,238 382,318 312,335 272,302 274,258',
       textX: 326,
       textY: 288,
@@ -133,7 +135,7 @@ export default function DistrictSvgMap({
     {
       idx: 1, // Shibganj (North)
       name: 'শিবগঞ্জ',
-      enName: 'Shibganj',
+      name_en: 'Shibganj',
       points: '228,102 348,95 372,192 342,238 274,242 216,205 198,145',
       textX: 282,
       textY: 168,
@@ -146,7 +148,7 @@ export default function DistrictSvgMap({
     {
       idx: 2, // Sherpur (South)
       name: 'শেরপুর',
-      enName: 'Sherpur',
+      name_en: 'Sherpur',
       points: '272,408 376,402 396,540 342,572 268,568 252,468',
       textX: 322,
       textY: 486,
@@ -159,7 +161,7 @@ export default function DistrictSvgMap({
     {
       idx: 3, // Sonatala (North-East)
       name: 'সোনাতলা',
-      enName: 'Sonatala',
+      name_en: 'Sonatala',
       points: '348,95 458,98 474,178 412,198 372,192',
       textX: 416,
       textY: 145,
@@ -172,7 +174,7 @@ export default function DistrictSvgMap({
     {
       idx: 4, // Sariakandi (East / Jamuna Bank)
       name: 'সারিয়াকান্দি',
-      enName: 'Sariakandi',
+      name_en: 'Sariakandi',
       points: '458,98 558,135 572,330 514,375 442,312 436,210 474,178',
       textX: 506,
       textY: 248,
@@ -185,7 +187,7 @@ export default function DistrictSvgMap({
     {
       idx: 5, // Gabtali (East-Central)
       name: 'গাবতলী',
-      enName: 'Gabtali',
+      name_en: 'Gabtali',
       points: '372,192 436,210 442,312 382,318 360,238',
       textX: 406,
       textY: 262,
@@ -198,7 +200,7 @@ export default function DistrictSvgMap({
     {
       idx: 6, // Dhunat (South-East)
       name: 'ধুনট',
-      enName: 'Dhunat',
+      name_en: 'Dhunat',
       points: '382,318 442,312 514,375 498,490 398,485 376,412',
       textX: 446,
       textY: 412,
@@ -211,7 +213,7 @@ export default function DistrictSvgMap({
     {
       idx: 7, // Nandigram (South-West)
       name: 'নন্দীগ্রাম',
-      enName: 'Nandigram',
+      name_en: 'Nandigram',
       points: '168,365 254,365 264,488 178,485 148,405',
       textX: 212,
       textY: 432,
@@ -224,7 +226,7 @@ export default function DistrictSvgMap({
     {
       idx: 8, // Kahaloo (West-Central)
       name: 'কাহালু',
-      enName: 'Kahaloo',
+      name_en: 'Kahaloo',
       points: '190,235 274,242 278,340 198,345 168,290',
       textX: 232,
       textY: 295,
@@ -237,7 +239,7 @@ export default function DistrictSvgMap({
     {
       idx: 9, // Dupchanchia (North-West)
       name: 'দুপচাঁচিয়া',
-      enName: 'Dupchanchia',
+      name_en: 'Dupchanchia',
       points: '150,145 224,145 234,230 156,235 130,185',
       textX: 186,
       textY: 192,
@@ -250,7 +252,7 @@ export default function DistrictSvgMap({
     {
       idx: 10, // Adamdighi (Far West)
       name: 'আদমদীঘি',
-      enName: 'Adamdighi',
+      name_en: 'Adamdighi',
       points: '78,190 148,190 158,290 84,285 58,230',
       textX: 112,
       textY: 242,
@@ -263,7 +265,7 @@ export default function DistrictSvgMap({
     {
       idx: 11, // Shajahanpur (Central South)
       name: 'শাজাহানপুর',
-      enName: 'Shajahanpur',
+      name_en: 'Shajahanpur',
       points: '266,302 382,318 376,412 272,408 250,355',
       textX: 320,
       textY: 362,
@@ -472,7 +474,7 @@ export default function DistrictSvgMap({
           <div className="absolute bottom-3 left-3 right-16 sm:right-auto sm:max-w-xs bg-emerald-950/95 backdrop-blur-md text-white p-3.5 rounded-2xl shadow-xl border border-emerald-700/80 animate-fade-in pointer-events-none z-10">
             <div className="flex items-center justify-between gap-2 mb-1">
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-amber-400 text-emerald-950">
-                #{hoveredUpz.serialBn} {hoveredUpz.enName}
+                #{hoveredUpz.serial} {hoveredUpz.name_en}
               </span>
               <span className="text-[10px] text-emerald-300 font-semibold">
                 {hoveredUpz.pourashava}

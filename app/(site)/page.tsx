@@ -1,7 +1,12 @@
 'use client';
 
+import { useRouter } from '@/lib/i18n/navigation';
+import { upazilaPath, explorePath } from '@/lib/i18n/routes';
+import { upazilaSlugFor, upazilaSlugOf, spotSlug } from '@/lib/i18n/entities';
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/lib/context/LanguageContext';
+import { DEFAULT_LOCALE } from '@/lib/i18n/config';
+import { absoluteUrl } from '@/lib/i18n/routes';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import WeatherSection from '@/components/WeatherSection';
@@ -37,6 +42,7 @@ import { detailedExploreSpots } from '@/lib/data/explore-data';
 
 export default function HomePage() {
   const router = useRouter();
+  const { locale, t } = useLanguage();
   const [currentView, setCurrentView] = useState<'home' | 'upazilas' | 'upazila-detail'>('home');
   const [selectedUpazilaIdx, setSelectedUpazilaIdx] = useState<number>(0);
   const [activeCommunityTab, setActiveCommunityTab] = useState<string>('blood');
@@ -112,7 +118,7 @@ export default function HomePage() {
 
   const handleOpenUpazilaDetail = (index: number) => {
     // Go to the real detail route: /upazilas/:id
-    router.push(`/upazilas/${index}`);
+    router.push(upazilaPath(upazilaSlugOf(upazilas[index], index)));
   };
 
   const handlePostCreated = (newPost: CommunityPost) => {
@@ -126,7 +132,9 @@ export default function HomePage() {
     setActiveCommunityTab(newPost.category);
   };
 
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://amar-bogura.vercel.app').replace(/\/$/, '');
+  // CMS text (site_content) is authored in the default language only; other locales use the message files
+  const cmsContent = locale === DEFAULT_LOCALE ? siteContent : undefined;
+  const siteUrl = absoluteUrl(locale, '/');
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -134,27 +142,30 @@ export default function HomePage() {
         '@type': 'WebSite',
         '@id': `${siteUrl}/#website`,
         url: siteUrl,
-        name: 'আমার বগুড়া | Amar Bogura',
-        inLanguage: 'bn-BD',
-        description: 'বগুড়া জেলা পোর্টাল: ১২টি উপজেলা, স্বাস্থ্যসেবা, জরুরি যোগাযোগ, রক্তদাতা নেটওয়ার্ক ও দর্শনীয় স্থান।',
+        name: t('seo.home.title'),
+        inLanguage: locale === 'bn' ? 'bn-BD' : 'en',
+        description: t('seo.home.description'),
       },
       {
         '@type': 'AdministrativeArea',
         '@id': `${siteUrl}/#bogura`,
-        name: 'বগুড়া জেলা',
-        alternateName: 'Bogura District',
+        name: locale === 'bn' ? 'বগুড়া জেলা' : 'Bogura District',
+        alternateName: locale === 'bn' ? 'Bogura District' : 'বগুড়া জেলা',
         containedInPlace: { '@type': 'Country', name: 'Bangladesh' },
         geo: { '@type': 'GeoCoordinates', latitude: 24.8465, longitude: 89.3732 },
         url: siteUrl,
       },
-      {
-        '@type': 'FAQPage',
-        mainEntity: HOME_FAQS.map(f => ({
-          '@type': 'Question',
-          name: f.q,
-          acceptedAnswer: { '@type': 'Answer', text: f.a },
-        })),
-      },
+      // FAQ copy is Bangla-only for now; advertise it only on the Bangla page
+      ...(locale === DEFAULT_LOCALE
+        ? [{
+            '@type': 'FAQPage',
+            mainEntity: HOME_FAQS.map(f => ({
+              '@type': 'Question',
+              name: f.q,
+              acceptedAnswer: { '@type': 'Answer', text: f.a },
+            })),
+          }]
+        : []),
     ],
   };
 
@@ -171,7 +182,7 @@ export default function HomePage() {
         currentView={currentView}
         onNavigate={handleNavigate}
         onOpenSearch={() => setIsSearchOpen(true)}
-        siteContent={siteContent}
+        siteContent={cmsContent}
       />
 
       {/* Main Content Areas based on current view */}
@@ -183,7 +194,7 @@ export default function HomePage() {
             {/* 1. Value proposition, instant search & primary CTAs */}
             <Hero
               onNavigate={handleNavigate}
-              siteContent={siteContent}
+              siteContent={cmsContent}
               onOpenSearch={() => setIsSearchOpen(true)}
             />
 
@@ -233,7 +244,7 @@ export default function HomePage() {
             <HomeFaq />
 
             {/* 10. Roots, district facts & contribution closer */}
-            <HistorySection siteContent={siteContent} />
+            <HistorySection siteContent={cmsContent} />
           </div>
         )}
 
@@ -259,7 +270,7 @@ export default function HomePage() {
       <Footer
         onNavigate={handleNavigate}
         onSwitchCommunityTab={setActiveCommunityTab}
-        siteContent={siteContent}
+        siteContent={cmsContent}
       />
 
       {/* Mobile App Bottom Nav */}

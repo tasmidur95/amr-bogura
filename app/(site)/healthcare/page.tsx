@@ -1,17 +1,19 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React, { useState, useEffect, useMemo } from 'react';
-import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import HealthcareMap from '@/components/HealthcareMap';
 import { useToast } from '@/lib/context/ToastContext';
 import { HealthcareFacility } from '@/lib/services/healthcare.service';
+import { useLocalized } from '@/lib/i18n/useLocalized';
 
 export default function HealthcarePage() {
   const { showToast } = useToast();
-  const [facilities, setFacilities] = useState<HealthcareFacility[]>([]);
+  const [facilitiesRaw, setFacilities] = useState<HealthcareFacility[]>([]);
+  const facilities = useLocalized(facilitiesRaw);
   const [loading, setLoading] = useState(true);
   const [selectedUpazila, setSelectedUpazila] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -46,7 +48,7 @@ export default function HealthcarePage() {
   const filteredFacilities = useMemo(() => {
     return facilities.filter(f => {
       // Upazila filter
-      if (selectedUpazila !== 'all' && f.upazila.toLowerCase() !== selectedUpazila.toLowerCase()) {
+      if (selectedUpazila !== 'all' && f.upazila_en.toLowerCase() !== selectedUpazila.toLowerCase()) {
         return false;
       }
 
@@ -97,11 +99,11 @@ export default function HealthcarePage() {
       if (searchQuery.trim().length > 0) {
         const q = searchQuery.toLowerCase().trim();
         const match =
-          f.name.toLowerCase().includes(q) ||
-          f.name_bn.includes(q) ||
+          f.name_en.toLowerCase().includes(q) ||
+          f.name.includes(q) ||
           f.address.toLowerCase().includes(q) ||
-          f.upazila_bn.includes(q) ||
-          (f.union_bn && f.union_bn.includes(q)) ||
+          f.upazila.includes(q) ||
+          (f.union_name && f.union_name.includes(q)) ||
           (f.village_or_area && f.village_or_area.toLowerCase().includes(q)) ||
           f.services.some(s => s.toLowerCase().includes(q));
         if (!match) return false;
@@ -126,19 +128,19 @@ export default function HealthcarePage() {
 
   // Upazila List with counts
   const upazilaTabs = [
-    { id: 'all', name_bn: 'সকল উপজেলা', count: facilities.length },
-    { id: 'Bogura Sadar', name_bn: 'বগুড়া সদর', count: facilities.filter(f => f.upazila === 'Bogura Sadar').length },
-    { id: 'Sherpur', name_bn: 'শেরপুর', count: facilities.filter(f => f.upazila === 'Sherpur').length },
-    { id: 'Sariakandi', name_bn: 'সারিয়াকান্দি', count: facilities.filter(f => f.upazila === 'Sariakandi').length },
-    { id: 'Dhunat', name_bn: 'ধুনট', count: facilities.filter(f => f.upazila === 'Dhunat').length },
-    { id: 'Gabtali', name_bn: 'গাবতলী', count: facilities.filter(f => f.upazila === 'Gabtali').length },
-    { id: 'Shibganj', name_bn: 'শিবগঞ্জ', count: facilities.filter(f => f.upazila === 'Shibganj').length },
-    { id: 'Adamdighi', name_bn: 'আদমদীঘি', count: facilities.filter(f => f.upazila === 'Adamdighi').length },
-    { id: 'Dhupchanchia', name_bn: 'দুপচাঁচিয়া', count: facilities.filter(f => f.upazila === 'Dhupchanchia').length },
-    { id: 'Kahalu', name_bn: 'কাহালু', count: facilities.filter(f => f.upazila === 'Kahalu').length },
-    { id: 'Shajahanpur', name_bn: 'শাজাহানপুর', count: facilities.filter(f => f.upazila === 'Shajahanpur').length },
-    { id: 'Nandigram', name_bn: 'নন্দীগ্রাম', count: facilities.filter(f => f.upazila === 'Nandigram').length },
-    { id: 'Sonatala', name_bn: 'সোনাতলা', count: facilities.filter(f => f.upazila === 'Sonatala').length }
+    { id: 'all', name: 'সকল উপজেলা', count: facilities.length },
+    { id: 'Bogura Sadar', name: 'বগুড়া সদর', count: facilities.filter(f => f.upazila_en === 'Bogura Sadar').length },
+    { id: 'Sherpur', name: 'শেরপুর', count: facilities.filter(f => f.upazila_en === 'Sherpur').length },
+    { id: 'Sariakandi', name: 'সারিয়াকান্দি', count: facilities.filter(f => f.upazila_en === 'Sariakandi').length },
+    { id: 'Dhunat', name: 'ধুনট', count: facilities.filter(f => f.upazila_en === 'Dhunat').length },
+    { id: 'Gabtali', name: 'গাবতলী', count: facilities.filter(f => f.upazila_en === 'Gabtali').length },
+    { id: 'Shibganj', name: 'শিবগঞ্জ', count: facilities.filter(f => f.upazila_en === 'Shibganj').length },
+    { id: 'Adamdighi', name: 'আদমদীঘি', count: facilities.filter(f => f.upazila_en === 'Adamdighi').length },
+    { id: 'Dhupchanchia', name: 'দুপচাঁচিয়া', count: facilities.filter(f => f.upazila_en === 'Dhupchanchia').length },
+    { id: 'Kahalu', name: 'কাহালু', count: facilities.filter(f => f.upazila_en === 'Kahalu').length },
+    { id: 'Shajahanpur', name: 'শাজাহানপুর', count: facilities.filter(f => f.upazila_en === 'Shajahanpur').length },
+    { id: 'Nandigram', name: 'নন্দীগ্রাম', count: facilities.filter(f => f.upazila_en === 'Nandigram').length },
+    { id: 'Sonatala', name: 'সোনাতলা', count: facilities.filter(f => f.upazila_en === 'Sonatala').length }
   ];
 
   // Category filter tabs
@@ -386,7 +388,7 @@ export default function HealthcarePage() {
                         : 'bg-slate-100/90 text-slate-700 hover:bg-slate-200/80 font-medium'
                     }`}
                   >
-                    <span>{u.name_bn}</span>
+                    <span>{u.name}</span>
                     <span
                       className={`text-[10px] px-1.5 py-0.2 rounded-full ${
                         selectedUpazila === u.id ? 'bg-emerald-950 text-emerald-100' : 'bg-slate-200 text-slate-600'
@@ -516,7 +518,7 @@ export default function HealthcarePage() {
                       onCopyPhone={(phone) => {
                         if (navigator.clipboard) {
                           navigator.clipboard.writeText(phone);
-                          showToast(`কপি হয়েছে: ${f.name_bn} (${phone})`);
+                          showToast(`কপি হয়েছে: ${f.name} (${phone})`);
                         } else {
                           showToast(`নম্বর: ${phone}`);
                         }
@@ -675,12 +677,12 @@ function FacilityCard({
             </span>
 
             <span className="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">
-              {facility.upazila_bn}
+              {facility.upazila}
             </span>
 
-            {facility.union_bn && (
+            {facility.union_name && (
               <span className="text-[10px] text-slate-500 font-medium">
-                • {facility.union_bn}
+                • {facility.union_name}
               </span>
             )}
           </div>
@@ -695,10 +697,10 @@ function FacilityCard({
 
         {/* Facility Title */}
         <h3 className="font-bold text-slate-900 text-base leading-snug group-hover:text-emerald-800 transition">
-          {facility.name_bn}
+          {facility.name}
         </h3>
         <p className="text-xs text-slate-500 font-medium mb-2.5 line-clamp-1">
-          {facility.name}
+          {facility.name_en !== facility.name ? facility.name_en : ''}
         </p>
 
         {/* Address */}

@@ -77,10 +77,10 @@ const add = (name, title, body, count) => files.push({ name, content: header(tit
   const list = d?.data || [];
   const FALLBACK_VERIFIED = '2026-11-22'; // the dataset snapshot date (deterministic, unlike CURRENT_DATE)
   const rows = list.map(f => [
-    uuid('healthcare_facilities', f.id), str(f.id), str(f.dghs_facility_id), str(f.name), str(f.name_bn), str(f.slug),
+    uuid('healthcare_facilities', f.id), str(f.id), str(f.dghs_facility_id), str(f.name_en), str(f.name), str(f.slug),
     str(f.category), str(f.facility_type), str(f.original_facility_type), str(f.ownership),
-    str(f.district), str(f.district_bn), str(f.upazila), str(f.upazila_bn),
-    str(f.union), str(f.union_bn), str(f.village_or_area), strKeep(f.address),
+    str(f.district_en), str(f.district), str(f.upazila_en), str(f.upazila),
+    str(f.union_name_en), str(f.union_name), str(f.village_or_area), strKeep(f.address),
     json(f.phone || []), str(f.email), str(f.website), num(f.latitude, 24.85), num(f.longitude, 89.37),
     strKeep(f.google_maps_url || ''), str(f.image_url), json(f.services || []), json(f.source_urls || []),
     `'${['verified', 'partially_verified', 'unverified'].includes(f.verification_status) ? f.verification_status : 'verified'}'`,
@@ -88,8 +88,8 @@ const add = (name, title, body, count) => files.push({ name, content: header(tit
   ]);
   add('01_healthcare_facilities.sql', 'HEALTHCARE FACILITIES (DGHS)',
     insert('healthcare_facilities', [
-      'id', 'legacy_id', 'dghs_facility_id', 'name', 'name_bn', 'slug', 'category', 'facility_type', 'original_facility_type',
-      'ownership', 'district', 'district_bn', 'upazila', 'upazila_bn', 'union_name', 'union_bn', 'village_or_area',
+      'id', 'legacy_id', 'dghs_facility_id', 'name_en', 'name', 'slug', 'category', 'facility_type', 'original_facility_type',
+      'ownership', 'district_en', 'district', 'upazila_en', 'upazila', 'union_name_en', 'union_name', 'village_or_area',
       'address', 'phone', 'email', 'website', 'latitude', 'longitude', 'google_maps_url', 'image_url', 'services',
       'source_urls', 'verification_status', 'last_verified',
     ], rows, 50), list.length);
@@ -99,13 +99,13 @@ const add = (name, title, body, count) => files.push({ name, content: header(tit
 {
   const list = readJson('education/institutes.json') || [];
   const rows = list.map(i => [
-    uuid('educational_institutes', i.id), str(i.id), str(i.nameEn || i.name), str(i.name), str(i.category), str(i.categoryBn),
-    str(i.upazilaEn || i.upazila), str(i.upazila), str(i.eiin), str(i.established), str(i.address || i.location),
+    uuid('educational_institutes', i.id), str(i.id), str(i.name_en || i.name), str(i.name), str(i.category), str(i.category_label),
+    str(i.upazila_en || i.upazila), str(i.upazila), str(i.eiin), str(i.established), str(i.address || i.location),
     str(i.phone), json(i.phone ? [i.phone] : []), str(i.email), str(i.website), str(i.coverImage), 'true',
   ]);
   add('02_educational_institutes.sql', 'EDUCATIONAL INSTITUTES',
     insert('educational_institutes', [
-      'id', 'legacy_id', 'name', 'name_bn', 'category', 'category_bn', 'upazila', 'upazila_bn', 'eiin', 'established',
+      'id', 'legacy_id', 'name_en', 'name', 'category', 'category_label', 'upazila_en', 'upazila', 'eiin', 'established',
       'location', 'phone', 'phone_numbers', 'email', 'website', 'cover_image', 'is_approved',
     ], rows), list.length);
 }
@@ -137,19 +137,19 @@ const HOSPITALITY_UPAZILA = '\u09ac\u0997\u09c1\u09dc\u09be \u09b8\u09a6\u09b0';
   const hubs = d.transport_hubs || [];
   const services = d.transport_services || [];
   const hubRows = hubs.map(h => [
-    uuid('transport_hubs', h.id), str(h.id), str(h.name), str(h.name_bn), str(h.category), str(h.category_bn), str(h.location),
+    uuid('transport_hubs', h.id), str(h.id), str(h.name_en), str(h.name), str(h.category), str(h.category_label), str(h.location),
     str(h.upazila), str(h.description), json(h.connected_routes || []), json(h.facilities || []), str(h.operating_hours),
     str(h.phone_number), json(h.phone_numbers || []), str(h.banner_image),
   ]);
   const svcRows = services.map(s => [
-    uuid('transport_services', s.id), str(s.id), str(s.operator_name), str(s.operator_name_bn), str(s.service_type), str(s.service_type_bn),
+    uuid('transport_services', s.id), str(s.id), str(s.operator_name_en), str(s.operator_name), str(s.service_type_en), str(s.service_type),
     str(s.headquarters_or_main_depot), str(s.online_booking_url), str(s.description), json(s.facilities || []), json(s.major_routes || []),
     json(s.counters_in_bogura || []), str(s.phone_number), json(s.phone_numbers || []), str(s.banner_image),
   ]);
   add('04_transport.sql', 'TRANSPORT HUBS & SERVICES',
-    insert('transport_hubs', ['id', 'legacy_id', 'name', 'name_bn', 'category', 'category_bn', 'location', 'upazila', 'description', 'connected_routes', 'facilities', 'operating_hours', 'phone_number', 'phone_numbers', 'banner_image'], hubRows) +
+    insert('transport_hubs', ['id', 'legacy_id', 'name_en', 'name', 'category', 'category_label', 'location', 'upazila', 'description', 'connected_routes', 'facilities', 'operating_hours', 'phone_number', 'phone_numbers', 'banner_image'], hubRows) +
     '\n' +
-    insert('transport_services', ['id', 'legacy_id', 'operator_name', 'operator_name_bn', 'service_type', 'service_type_bn', 'headquarters', 'online_booking_url', 'description', 'facilities', 'major_routes', 'counters', 'phone_number', 'phone_numbers', 'banner_image'], svcRows),
+    insert('transport_services', ['id', 'legacy_id', 'operator_name_en', 'operator_name', 'service_type_en', 'service_type', 'headquarters', 'online_booking_url', 'description', 'facilities', 'major_routes', 'counters', 'phone_number', 'phone_numbers', 'banner_image'], svcRows),
     hubs.length + services.length);
 }
 
@@ -159,7 +159,7 @@ const HOSPITALITY_UPAZILA = '\u09ac\u0997\u09c1\u09dc\u09be \u09b8\u09a6\u09b0';
   const banks = [...(d.central_and_regulatory || []), ...(d.banks || [])];
   const atms = d.atm_and_fast_track_booths || [];
   const bankRows = banks.map(b => [
-    uuid('banks', b.id), str(b.id), str(b.bank_name), str(b.bank_name_bn), str(b.type), str(b.type_bn), str(b.branch_name), str(b.branch_name_bn),
+    uuid('banks', b.id), str(b.id), str(b.bank_name_en), str(b.bank_name), str(b.type_en), str(b.type), str(b.branch_name_en), str(b.branch_name),
     str(b.location), str(b.upazila), str(b.routing_number), str(b.swift_code), json(b.facilities || []), bool(b.has_atm), bool(b.has_crm),
     str(b.operating_hours), str(b.hotline), str(b.phone_number), json(b.phone_numbers || []), str(b.banner_image),
   ]);
@@ -168,7 +168,7 @@ const HOSPITALITY_UPAZILA = '\u09ac\u0997\u09c1\u09dc\u09be \u09b8\u09a6\u09b0';
     json(a.cards_accepted || []), json(a.services || []), str(a.operating_hours), str(a.hotline), str(a.banner_image),
   ]);
   add('05_banking.sql', 'BANKS & ATM BOOTHS',
-    insert('banks', ['id', 'legacy_id', 'bank_name', 'bank_name_bn', 'type', 'type_bn', 'branch_name', 'branch_name_bn', 'location', 'upazila', 'routing_number', 'swift_code', 'facilities', 'has_atm', 'has_crm', 'operating_hours', 'hotline', 'phone_number', 'phone_numbers', 'banner_image'], bankRows) +
+    insert('banks', ['id', 'legacy_id', 'bank_name_en', 'bank_name', 'type_en', 'type', 'branch_name_en', 'branch_name', 'location', 'upazila', 'routing_number', 'swift_code', 'facilities', 'has_atm', 'has_crm', 'operating_hours', 'hotline', 'phone_number', 'phone_numbers', 'banner_image'], bankRows) +
     '\n' +
     insert('atm_booths', ['id', 'legacy_id', 'booth_name', 'bank_name', 'location', 'upazila', 'cards_accepted', 'services', 'operating_hours', 'hotline', 'banner_image'], atmRows),
     banks.length + atms.length);
@@ -180,7 +180,7 @@ const HOSPITALITY_UPAZILA = '\u09ac\u0997\u09c1\u09dc\u09be \u09b8\u09a6\u09b0';
   const banks = d.emergency_blood_banks || [];
   const donors = d.donors || [];
   const bankRows = banks.map(b => [
-    uuid('blood_banks', b.id), str(b.id), str(b.name), str(b.name_bn), str(b.location), str(b.upazila), str(b.operating_hours),
+    uuid('blood_banks', b.id), str(b.id), str(b.name_en), str(b.name), str(b.location), str(b.upazila), str(b.operating_hours),
     json(b.services || []), json(b.hotlines || []),
   ]);
   // registry donors are published + verified from the start (moderation columns are set explicitly)
@@ -189,7 +189,7 @@ const HOSPITALITY_UPAZILA = '\u09ac\u0997\u09c1\u09dc\u09be \u09b8\u09a6\u09b0';
     str(x.status), str(x.last_donated), int(x.total_donations, 1), str(x.badge), 'true', 'true', `'approved'`,
   ]);
   add('06_blood.sql', 'BLOOD BANKS & DONOR REGISTRY',
-    insert('blood_banks', ['id', 'legacy_id', 'name', 'name_bn', 'location', 'upazila', 'operating_hours', 'services', 'hotlines'], bankRows) +
+    insert('blood_banks', ['id', 'legacy_id', 'name_en', 'name', 'location', 'upazila', 'operating_hours', 'services', 'hotlines'], bankRows) +
     '\n' +
     insert('blood_donors', ['id', 'legacy_id', 'name', 'blood_group', 'phone', 'alt_phone', 'upazila', 'location', 'availability', 'last_donated', 'total_donations', 'badge', 'is_verified', 'is_approved', 'status'], donorRows),
     banks.length + donors.length);

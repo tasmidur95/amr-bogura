@@ -1,10 +1,13 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
+import type { MessageKey } from '@/lib/i18n/messages';
+import { formatNumber } from '@/lib/i18n/format';
 import { useToast } from '@/lib/context/ToastContext';
 import { Hospital, EmergencyContact } from '@/lib/data/district-data';
+import { useLocalized } from '@/lib/i18n/useLocalized';
 
 interface HealthcareSectionProps {
   hospitals: Hospital[];
@@ -15,20 +18,21 @@ interface HealthcareSectionProps {
 }
 
 const FILTERS: [string, string][] = [
-  ['all', 'সবগুলো'],
-  ['govt', 'সরকারি'],
-  ['private', 'বেসরকারি'],
-  ['diagnostic', 'ডায়াগনস্টিক'],
+  ['all', 'home.health.fAll'],
+  ['govt', 'home.health.fGovt'],
+  ['private', 'home.health.fPrivate'],
+  ['diagnostic', 'home.health.fDiag'],
 ];
 
 export default function HealthcareSection({
-  hospitals,
+  hospitals: hospitalsRaw,
   emergencyContacts,
   currentFilter = 'all',
   onFilterChange,
   isHome = false,
 }: HealthcareSectionProps) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
+  const hospitals = useLocalized(hospitalsRaw);
   const { showToast } = useToast();
   const [internalFilter, setInternalFilter] = useState(currentFilter);
   const [searchQuery, setSearchQuery] = useState('');
@@ -39,16 +43,16 @@ export default function HealthcareSection({
   const handleCopy = (text: string, label: string) => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text);
-      showToast(`কপি হয়েছে: ${label} (${text})`);
+      showToast(t('home.health.copied', { label, text }));
     } else {
-      showToast(`নম্বর: ${text}`);
+      showToast(t('home.health.number', { text }));
     }
   };
 
   const filtered = hospitals.filter(h => {
     const matchesType = activeFilter === 'all' || h.type === activeFilter;
     const q = searchQuery.toLowerCase();
-    return matchesType && (h.name.toLowerCase().includes(q) || h.enName.toLowerCase().includes(q) || h.address.toLowerCase().includes(q));
+    return matchesType && (h.name.toLowerCase().includes(q) || h.name_en.toLowerCase().includes(q) || h.address.toLowerCase().includes(q));
   });
   const displayedHospitals = isHome ? filtered.slice(0, 6) : filtered;
 
@@ -59,16 +63,16 @@ export default function HealthcareSection({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 sm:mb-4">
           <div>
             <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-rose-500/20 text-rose-200 border border-rose-400/30">
-              <i className="fa-solid fa-bell"></i> <span>{t('emgBadge')}</span>
+              <i className="fa-solid fa-bell"></i> <span>{t('emergency.badge')}</span>
             </span>
-            <h2 className="text-lg sm:text-2xl font-bold mt-1.5 leading-snug">{t('emgTitle')}</h2>
+            <h2 className="text-lg sm:text-2xl font-bold mt-1.5 leading-snug">{t('emergency.title')}</h2>
           </div>
           <a
             href="tel:999"
             className="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md transition sm:self-auto"
           >
             <i className="fa-solid fa-phone"></i>
-            <span>জাতীয় জরুরি সেবা: ৯৯৯</span>
+            <span>{t('home.health.national', { n: formatNumber('999', locale) })}</span>
           </a>
         </div>
 
@@ -80,10 +84,10 @@ export default function HealthcareSection({
                 <p className="text-sm sm:text-base font-bold text-white tracking-wide">{item.number}</p>
               </div>
               <div className="flex items-center gap-1.5 shrink-0">
-                <a href={`tel:${item.number}`} className="w-9 h-9 rounded-lg bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center transition" aria-label={`${item.title} — কল করুন`}>
+                <a href={`tel:${item.number}`} className="w-9 h-9 rounded-lg bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center transition" aria-label={`${item.title} — ${t('home.health.call')}`}>
                   <i className="fa-solid fa-phone text-xs"></i>
                 </a>
-                <button onClick={() => handleCopy(item.number, item.title)} className="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition cursor-pointer" aria-label="কপি করুন">
+                <button onClick={() => handleCopy(item.number, item.title)} className="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition cursor-pointer" aria-label={t('home.health.copy')}>
                   <i className="fa-regular fa-copy text-xs"></i>
                 </button>
               </div>
@@ -97,13 +101,13 @@ export default function HealthcareSection({
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-3">
           <div>
             <h2 id="healthcare-title" className="text-xl sm:text-2xl font-bold text-slate-900">
-              {t('sec03Title')}
+              {t('healthcare.title')}
             </h2>
-            <p className="text-slate-600 text-xs sm:text-sm mt-0.5">{t('sec03Subtitle')}</p>
+            <p className="text-slate-600 text-xs sm:text-sm mt-0.5">{t('healthcare.subtitle')}</p>
           </div>
           {isHome && (
             <Link href="/healthcare" className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-800 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-xs transition self-start sm:self-auto shrink-0">
-              <span>সকল ৩৫২টি কেন্দ্র ও ম্যাপ</span>
+              <span>{t('home.health.allCentres', { n: formatNumber(352, locale) })}</span>
               <i className="fa-solid fa-arrow-right text-[10px]"></i>
             </Link>
           )}
@@ -120,7 +124,7 @@ export default function HealthcareSection({
                   activeFilter === key ? 'font-bold bg-emerald-800 text-white' : 'font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                 }`}
               >
-                {label}
+                {t(label as MessageKey)}
               </button>
             ))}
           </div>
@@ -130,8 +134,8 @@ export default function HealthcareSection({
               type="search"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              placeholder="হাসপাতাল বা এলাকা খুঁজুন..."
-              aria-label="হাসপাতাল খুঁজুন"
+              placeholder={t('home.health.search')}
+              aria-label={t('home.health.searchLabel')}
               className="w-full pl-8 pr-3 py-2 rounded-lg bg-white border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600"
             />
           </div>
@@ -141,7 +145,7 @@ export default function HealthcareSection({
         <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 pb-1">
           {displayedHospitals.length === 0 ? (
             <div className="col-span-full w-full text-center py-8 bg-white rounded-2xl border border-slate-200 text-slate-500 text-sm">
-              কোনো হাসপাতাল বা ডায়াগনস্টিক সেন্টার খুঁজে পাওয়া যায়নি।
+              {t('home.health.none')}
             </div>
           ) : (
             displayedHospitals.map(h => {
@@ -157,11 +161,11 @@ export default function HealthcareSection({
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeColor}`}>{h.typeLabel}</span>
                       <span className="text-[11px] text-emerald-700 font-semibold">
-                        <i className="fa-solid fa-circle-check"></i> সচল
+                        <i className="fa-solid fa-circle-check"></i> {t('home.health.active')}
                       </span>
                     </div>
                     <h3 className="font-bold text-slate-900 text-sm sm:text-base leading-snug">{h.name}</h3>
-                    <p className="text-[11px] text-slate-400">{h.enName}</p>
+                    <p className="text-[11px] text-slate-400">{h.name_en !== h.name ? h.name_en : ''}</p>
                     <p className="text-xs text-slate-600 mt-2 flex items-start gap-1.5 line-clamp-2">
                       <i className="fa-solid fa-location-dot text-emerald-700 mt-0.5"></i>
                       <span>{h.address}</span>
@@ -176,7 +180,7 @@ export default function HealthcareSection({
                       <i className="fa-solid fa-phone"></i>
                       <span>{h.phone}</span>
                     </a>
-                    <button onClick={() => handleCopy(h.phone, h.name)} className="py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs transition cursor-pointer" aria-label="নম্বর কপি করুন">
+                    <button onClick={() => handleCopy(h.phone, h.name)} className="py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs transition cursor-pointer" aria-label={t('home.health.copyNumber')}>
                       <i className="fa-regular fa-copy"></i>
                     </button>
                   </div>
@@ -193,10 +197,10 @@ export default function HealthcareSection({
             className="mt-3 flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-emerald-800 to-teal-800 text-white shadow-md hover:from-emerald-700 hover:to-teal-700 transition"
           >
             <span className="text-xs sm:text-sm font-bold leading-snug">
-              ১২টি উপজেলার ৩৫২টি স্বাস্থ্যকেন্দ্র, ব্লাড ব্যাংক ও অ্যাম্বুলেন্স — ম্যাপে দেখুন
+              {t('home.health.banner', { u: formatNumber(12, locale), n: formatNumber(352, locale) })}
             </span>
             <span className="shrink-0 px-3 py-1.5 rounded-lg bg-amber-400 text-slate-900 text-xs font-bold flex items-center gap-1.5">
-              খুলুন <i className="fa-solid fa-arrow-right text-[10px]"></i>
+              {t('home.health.open')} <i className="fa-solid fa-arrow-right text-[10px]"></i>
             </span>
           </Link>
         )}

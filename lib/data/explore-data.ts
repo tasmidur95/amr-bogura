@@ -14,10 +14,12 @@ export interface SpotReview {
 
 export interface DetailedExploreSpot {
   id: string;
+  /** URL slug (tourist_spots.slug). In file/memory mode the id already is the slug. */
+  slug?: string;
   title: string;
-  enTitle: string;
+  title_en: string;
   category: 'archaeological' | 'nature' | 'religious' | 'heritage';
-  categoryBn: string;
+  category_label: string;
   location: string;
   upazila: string;
   tag: string;
@@ -50,9 +52,9 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
   {
     id: 'mahasthangarh',
     title: 'মহাস্থানগড় (প্রাচীন পুণ্ড্রনগর)',
-    enTitle: 'Mahasthangarh Ancient Citadel',
+    title_en: 'Mahasthangarh Ancient Citadel',
     category: 'archaeological',
-    categoryBn: 'প্রত্নতাত্ত্বিক নিদর্শন',
+    category_label: 'প্রত্নতাত্ত্বিক নিদর্শন',
     location: 'মহাস্থান, শিবগঞ্জ উপজেলা, বগুড়া',
     upazila: 'শিবগঞ্জ',
     tag: 'ইউনেস্কো সম্ভাব্য ঐতিহ্য',
@@ -106,9 +108,9 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
   {
     id: 'gokul-medh',
     title: 'বেহুলার বাসর ঘর (গোকুল মেধ)',
-    enTitle: 'Gokul Medh (Behula Lakshindar)',
+    title_en: 'Gokul Medh (Behula Lakshindar)',
     category: 'archaeological',
-    categoryBn: 'প্রত্নতাত্ত্বিক নিদর্শন',
+    category_label: 'প্রত্নতাত্ত্বিক নিদর্শন',
     location: 'গোকুল গ্রাম, শিবগঞ্জ উপজেলা, বগুড়া',
     upazila: 'শিবগঞ্জ',
     tag: 'মনসামঙ্গল কিংবদন্তি',
@@ -152,9 +154,9 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
   {
     id: 'vasu-vihara',
     title: 'ভাসু বিহার (নরপতির ধাপ)',
-    enTitle: 'Vasu Vihara Buddhist Monastery',
+    title_en: 'Vasu Vihara Buddhist Monastery',
     category: 'archaeological',
-    categoryBn: 'বৌদ্ধ বিহার ও প্রত্নতত্ত্ব',
+    category_label: 'বৌদ্ধ বিহার ও প্রত্নতত্ত্ব',
     location: 'বিহার গ্রাম, শিবগঞ্জ উপজেলা, বগুড়া',
     upazila: 'শিবগঞ্জ',
     tag: 'হিউয়েন সাং বর্ণিত পো-শি-পো',
@@ -198,9 +200,9 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
   {
     id: 'kherua-mosque',
     title: 'ঐতিহাসিক খেরুয়া মসজিদ (১৫৮২)',
-    enTitle: 'Historic Kherua Mosque',
+    title_en: 'Historic Kherua Mosque',
     category: 'heritage',
-    categoryBn: 'সুলতানি ও মুঘল স্থাপত্য',
+    category_label: 'সুলতানি ও মুঘল স্থাপত্য',
     location: 'খন্দকারটোলা, শেরপুর উপজেলা, বগুড়া',
     upazila: 'শেরপুর',
     tag: '১৫৮২ সালের স্থাপত্য',
@@ -244,9 +246,9 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
   {
     id: 'sariakandi-jamuna-ghat',
     title: 'প্রেম যমুনার ঘাট ও কালিতলা গ্রোয়েন',
-    enTitle: 'Sariakandi Jamuna Ghat & Kalitala Groin',
+    title_en: 'Sariakandi Jamuna Ghat & Kalitala Groin',
     category: 'nature',
-    categoryBn: 'নদী পর্যটন ও চরাঞ্চল',
+    category_label: 'নদী পর্যটন ও চরাঞ্চল',
     location: 'কালিতলা, সারিয়াকান্দি উপজেলা, বগুড়া',
     upazila: 'সারিয়াকান্দি',
     tag: 'যমুনার সূর্যাস্ত ও নৌকাভ্রমণ',
@@ -290,9 +292,9 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
   {
     id: 'nawab-palace',
     title: 'নবাব প্যাaleস ও বগুড়ার দই ঐতিহ্য',
-    enTitle: 'Bogura Nawab Palace & Doi Heritage',
+    title_en: 'Bogura Nawab Palace & Doi Heritage',
     category: 'heritage',
-    categoryBn: 'ঐতিহ্য ও সংস্কৃতি',
+    category_label: 'ঐতিহ্য ও সংস্কৃতি',
     location: 'সূত্রাপুর ও সাতমাথা, বগুড়া সদর',
     upazila: 'বগুড়া সদর',
     tag: 'জিআই স্বীকৃত দই ও শতবর্ষী ইতিহাস',
@@ -336,9 +338,9 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
   {
     id: 'jogir-bhaban',
     title: 'যোগীর ভবন ও মন্দির কমপ্লেক্স',
-    enTitle: 'Jogir Bhaban Temple Complex',
+    title_en: 'Jogir Bhaban Temple Complex',
     category: 'religious',
-    categoryBn: 'ধর্মীয় ও প্রত্নতাত্ত্বিক আশ্রম',
+    category_label: 'ধর্মীয় ও প্রত্নতাত্ত্বিক আশ্রম',
     location: 'পাইকড়, কাহালু উপজেলা, বগুড়া',
     upazila: 'কাহালু',
     tag: 'সুপ্রাচীন নাথপন্থী তীর্থ',
@@ -381,9 +383,9 @@ export const detailedExploreSpots: DetailedExploreSpot[] = [
   {
     id: 'bhabanipur-shaktipeeth',
     title: 'ভবানীপুর শক্তিপীঠ ও অপরাজিতা তীর্থ',
-    enTitle: 'Bhabanipur Shaktipeeth Temple',
+    title_en: 'Bhabanipur Shaktipeeth Temple',
     category: 'religious',
-    categoryBn: 'ধর্মীয় ও ঐতিহাসিক তীর্থ',
+    category_label: 'ধর্মীয় ও ঐতিহাসিক তীর্থ',
     location: 'ভবানীপুর, শেরপুর উপজেলা, বগুড়া',
     upazila: 'শেরপুর',
     tag: 'উপমহাদেশের ৫১ শক্তিপীঠের এক পীঠ',

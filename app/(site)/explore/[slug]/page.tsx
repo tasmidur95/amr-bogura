@@ -1,21 +1,24 @@
 'use client';
 
+import Link, { useParams, useRouter } from '@/lib/i18n/navigation';
+import { upazilaPath, explorePath } from '@/lib/i18n/routes';
+import { upazilaSlugFor, upazilaSlugOf, spotSlug } from '@/lib/i18n/entities';
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import { useToast } from '@/lib/context/ToastContext';
 import { detailedExploreSpots, DetailedExploreSpot, SpotReview } from '@/lib/data/explore-data';
+import { useLocalized } from '@/lib/i18n/useLocalized';
 
 export default function ExploreDetailPage() {
   const params = useParams();
   const router = useRouter();
   const { showToast } = useToast();
 
-  const idStr = Array.isArray(params?.id) ? params.id[0] : params?.id || '';
-  const [spot, setSpot] = useState<DetailedExploreSpot | null>(null);
+  const idStr = Array.isArray(params?.slug) ? params.slug[0] : params?.slug || '';
+  const [spotRaw, setSpot] = useState<DetailedExploreSpot | null>(null);
+  const spot = useLocalized(spotRaw);
   const [activePhoto, setActivePhoto] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -154,7 +157,7 @@ export default function ExploreDetailPage() {
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#0B4635] text-white">
-                    {spot.categoryBn}
+                    {spot.category_label}
                   </span>
                   <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-200">
                     <i className="fa-solid fa-location-dot text-[#C85A28] mr-1"></i>
@@ -169,7 +172,7 @@ export default function ExploreDetailPage() {
                   {spot.title}
                 </h1>
                 <p className="text-sm sm:text-base font-semibold text-slate-500 uppercase tracking-wide mt-1">
-                  {spot.enTitle}
+                  {spot.title_en !== spot.title ? spot.title_en : ''}
                 </p>
                 <p className="text-base sm:text-lg text-slate-600 mt-3 max-w-3xl leading-relaxed">
                   {spot.shortDesc}
@@ -468,14 +471,14 @@ export default function ExploreDetailPage() {
                   {relatedSpots.map(rel => (
                     <Link
                       key={rel.id}
-                      href={`/explore/${rel.id}`}
+                      href={explorePath(spotSlug(rel))}
                       className="p-3 rounded-2xl bg-[#F9F8F4] hover:bg-emerald-50 border border-slate-200/70 flex items-center justify-between transition group"
                     >
                       <div>
                         <p className="font-bold text-slate-900 text-sm group-hover:text-emerald-800 transition">
                           {rel.title}
                         </p>
-                        <p className="text-[11px] text-slate-500">{rel.upazila} · {rel.categoryBn}</p>
+                        <p className="text-[11px] text-slate-500">{rel.upazila} · {rel.category_label}</p>
                       </div>
                       <i className="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-emerald-700"></i>
                     </Link>

@@ -1,8 +1,7 @@
 'use client';
 
+import Link, { useRouter, useSearchParams } from '@/lib/i18n/navigation';
 import React, { Suspense, useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
 import BrandLogo from '@/components/BrandLogo';
 import { useCommunityAuth } from '@/lib/context/CommunityAuthContext';
 

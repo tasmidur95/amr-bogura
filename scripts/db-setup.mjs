@@ -103,7 +103,11 @@ async function main() {
 
   // 3. baseline -> migrations -> seed. The seed files are DATA ONLY and target the final schema,
   //    so they must run after every migration.
-  await apply('schema.sql', read('supabase/schema.sql'));
+  // schema.sql is the legacy baseline. The consolidated migrations/00000000000000_init.sql replaces it
+  // (creating both would give the old column names), so only apply it when init.sql is absent.
+  if (!fs.existsSync(path.join(root, 'supabase/migrations/00000000000000_init.sql'))) {
+    await apply('schema.sql', read('supabase/schema.sql'));
+  }
   // Supabase grants everything to these roles by default; the migration then REVOKEs writes.
   await db.query(`GRANT ALL ON ALL TABLES IN SCHEMA public TO anon, authenticated, service_role`);
 

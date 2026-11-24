@@ -1,7 +1,9 @@
 'use client';
 
+import { useRouter } from '@/lib/i18n/navigation';
+import { upazilaPath, explorePath } from '@/lib/i18n/routes';
+import { upazilaSlugFor, upazilaSlugOf, spotSlug } from '@/lib/i18n/entities';
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import {
   Upazila,
   Hospital,
@@ -74,17 +76,17 @@ export default function SearchModal({
     upazilas.forEach((u, idx) => {
       if (
         u.name.toLowerCase().includes(q) ||
-        u.enName.toLowerCase().includes(q) ||
+        u.name_en.toLowerCase().includes(q) ||
         u.landmark.toLowerCase().includes(q) ||
         u.unionList.some(un => un.toLowerCase().includes(q))
       ) {
         results.push({
           type: 'উপজেলা',
-          title: `${u.serialBn}. ${u.name} (${u.enName})`,
+          title: `${u.serial}. ${u.name} (${u.name_en})`,
           sub: `${u.area} · ${u.unions}`,
           action: () => {
             onClose();
-            router.push(`/upazilas/${idx}`);
+            router.push(upazilaPath(upazilaSlugFor(idx)));
           },
         });
       }
@@ -94,17 +96,17 @@ export default function SearchModal({
     detailedExploreSpots.forEach(e => {
       if (
         e.title.toLowerCase().includes(q) ||
-        e.enTitle.toLowerCase().includes(q) ||
+        e.title_en.toLowerCase().includes(q) ||
         e.location.toLowerCase().includes(q) ||
         e.upazila.toLowerCase().includes(q)
       ) {
         results.push({
           type: 'দর্শনীয় স্থান',
           title: e.title,
-          sub: `${e.location} · ${e.categoryBn}`,
+          sub: `${e.location} · ${e.category_label}`,
           action: () => {
             onClose();
-            router.push(`/explore/${e.id}`);
+            router.push(explorePath(spotSlug(e)));
           },
         });
       }
@@ -114,7 +116,7 @@ export default function SearchModal({
     hospitals.forEach(h => {
       if (
         h.name.toLowerCase().includes(q) ||
-        h.enName.toLowerCase().includes(q) ||
+        h.name_en.toLowerCase().includes(q) ||
         h.address.toLowerCase().includes(q)
       ) {
         results.push({

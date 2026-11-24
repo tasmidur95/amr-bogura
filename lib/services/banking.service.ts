@@ -3,13 +3,13 @@ import path from 'path';
 
 export interface BankItem {
   id: string;
+  bank_name_en: string;
   bank_name: string;
-  bank_name_bn: string;
+  type_en: string;
   type: string;
-  type_bn: string;
   head_office_or_zonal_office?: string;
+  branch_name_en: string;
   branch_name: string;
-  branch_name_bn: string;
   location: string;
   upazila: string;
   routing_number: string;
@@ -116,7 +116,7 @@ export class BankingService {
       banks = [];
     } else if (type === 'islamic') {
       central = [];
-      banks = banks.filter(b => b.type === 'islamic_commercial');
+      banks = banks.filter(b => b.type_en === 'islamic_commercial');
       atms = atms.filter(a =>
         a.bank_name.toLowerCase().includes('islam') || a.booth_name.toLowerCase().includes('islam')
       );
@@ -128,11 +128,11 @@ export class BankingService {
       );
     } else if (type === 'state') {
       central = [];
-      banks = banks.filter(b => b.type === 'state_owned_commercial' || b.type === 'specialized_agricultural');
+      banks = banks.filter(b => b.type_en === 'state_owned_commercial' || b.type_en === 'specialized_agricultural');
       atms = [];
     } else if (type === 'private') {
       central = [];
-      banks = banks.filter(b => b.type === 'private_commercial' || b.type === 'islamic_commercial');
+      banks = banks.filter(b => b.type_en === 'private_commercial' || b.type_en === 'islamic_commercial');
       atms = [];
     }
 
@@ -140,10 +140,10 @@ export class BankingService {
     if (query) {
       central = central.filter(
         b =>
-          b.bank_name.toLowerCase().includes(query) ||
-          b.bank_name_bn.includes(query) ||
-          b.branch_name.toLowerCase().includes(query) ||
-          b.branch_name_bn.includes(query) ||
+          b.bank_name_en.toLowerCase().includes(query) ||
+          b.bank_name.includes(query) ||
+          b.branch_name_en.toLowerCase().includes(query) ||
+          b.branch_name.includes(query) ||
           b.location.toLowerCase().includes(query) ||
           b.routing_number.includes(query) ||
           (b.swift_code && b.swift_code.toLowerCase().includes(query))
@@ -151,10 +151,10 @@ export class BankingService {
 
       banks = banks.filter(
         b =>
-          b.bank_name.toLowerCase().includes(query) ||
-          b.bank_name_bn.includes(query) ||
-          b.branch_name.toLowerCase().includes(query) ||
-          b.branch_name_bn.includes(query) ||
+          b.bank_name_en.toLowerCase().includes(query) ||
+          b.bank_name.includes(query) ||
+          b.branch_name_en.toLowerCase().includes(query) ||
+          b.branch_name.includes(query) ||
           b.location.toLowerCase().includes(query) ||
           b.routing_number.includes(query) ||
           (b.swift_code && b.swift_code.toLowerCase().includes(query)) ||
@@ -172,7 +172,7 @@ export class BankingService {
     }
 
     const allBanksCount = rawData.banks.length + rawData.central_and_regulatory.length;
-    const islamicCount = rawData.banks.filter(b => b.type === 'islamic_commercial').length;
+    const islamicCount = rawData.banks.filter(b => b.type_en === 'islamic_commercial').length;
     const crmCount =
       rawData.banks.filter(b => b.has_crm).length +
       rawData.atm_and_fast_track_booths.filter(a =>

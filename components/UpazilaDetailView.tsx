@@ -1,7 +1,7 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { Upazila } from '@/lib/data/district-data';
 import { boguraUpazilasData, DetailedUpazilaData, UnionData } from '@/lib/data/unions-villages-data';
@@ -27,7 +27,7 @@ export default function UpazilaDetailView({
   onNavigate,
   onSelectUpazila,
 }: UpazilaDetailViewProps) {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const { showToast } = useToast();
 
   const u = upazilas[upazilaIndex] || upazilas[0];
@@ -73,18 +73,18 @@ export default function UpazilaDetailView({
               className="text-emerald-800 hover:text-amber-700 font-semibold flex items-center gap-1.5 transition cursor-pointer"
             >
               <i className="fa-solid fa-house text-xs"></i>
-              <span>{language === 'bn' ? 'হোম' : 'Home'}</span>
+              <span>{t('breadcrumb.home')}</span>
             </button>
             <i className="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
             <button
               onClick={() => onNavigate('upazilas')}
               className="text-emerald-800 hover:text-amber-700 font-semibold transition cursor-pointer"
             >
-              {language === 'bn' ? 'উপজেলা ও ইউনিয়ন' : 'Upazilas & Unions'}
+              {t('upazilaDetail.unionsBreadcrumb')}
             </button>
             <i className="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
             <span className="text-slate-800 font-bold">
-              {language === 'bn' ? u.name : u.enName}
+              {language === 'bn' ? u.name : u.name_en}
             </span>
           </nav>
 
@@ -93,21 +93,21 @@ export default function UpazilaDetailView({
             onClick={() => onNavigate('upazilas')}
             className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-emerald-50 text-[#0B4635] border border-slate-200 text-xs sm:text-sm font-bold shadow-2xs mb-6 transition cursor-pointer"
           >
-            <span>← {language === 'bn' ? 'সকল উপজেলা ও ম্যাপে ফিরুন' : 'Back to All Upazilas & Map'}</span>
+            <span>← {t('upazilaDetail.backToAll')}</span>
           </button>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B4635] text-white text-xs font-bold mb-3">
-                <span>উপজেলা ক্রমিক #{language === 'bn' ? u.serialBn : u.serialEn}</span>
+                <span>{t('upazilaDetail.serial', { n: language === 'bn' ? u.serial : u.serial_en })}</span>
                 <span className="text-amber-300">·</span>
-                <span className="text-amber-300">{u.enName} Upazila</span>
+                <span className="text-amber-300">{u.name_en} Upazila</span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-                {language === 'bn' ? `${u.name} উপজেলা` : `${u.enName} Upazila`}
+                {t('upazilaDetail.heading', { name: language === 'bn' ? u.name : u.name_en })}
               </h1>
               <p className="text-slate-600 text-base sm:text-lg mt-3 max-w-3xl leading-relaxed">
-                {language === 'bn' ? u.desc : u.enDesc}
+                {language === 'bn' ? u.desc : u.description_en}
               </p>
               <div className="flex flex-wrap items-center gap-3 mt-5">
                 <a
@@ -132,15 +132,15 @@ export default function UpazilaDetailView({
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 mt-8">
             <div className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-2xs">
               <p className="text-xs text-slate-500 font-medium">
-                {language === 'bn' ? 'আয়তন' : 'Area'}
+                {t('upazilaDetail.area')}
               </p>
               <p className="text-base sm:text-lg font-extrabold text-[#0B4635] mt-1">
-                {language === 'bn' ? u.area : u.areaEn}
+                {language === 'bn' ? u.area : u.area_en}
               </p>
             </div>
             <div className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-2xs">
               <p className="text-xs text-slate-500 font-medium">
-                {language === 'bn' ? 'মোট জনসংখ্যা' : 'Population'}
+                {t('upazilaDetail.population')}
               </p>
               <p className="text-base sm:text-lg font-extrabold text-slate-900 mt-1">
                 {detailedUpz.population}
@@ -148,7 +148,7 @@ export default function UpazilaDetailView({
             </div>
             <div className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-2xs">
               <p className="text-xs text-slate-500 font-medium">
-                {language === 'bn' ? 'ইউনিয়ন সংখ্যা' : 'Unions'}
+                {t('upazilaDetail.unions')}
               </p>
               <p className="text-base sm:text-lg font-extrabold text-slate-900 mt-1">
                 {detailedUpz.unionCount}টি ইউনিয়ন
@@ -156,7 +156,7 @@ export default function UpazilaDetailView({
             </div>
             <div className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-2xs">
               <p className="text-xs text-slate-500 font-medium">
-                {language === 'bn' ? 'মোট গ্রাম সংখ্যা' : 'Total Villages'}
+                {t('upazilaDetail.villages')}
               </p>
               <p className="text-base sm:text-lg font-extrabold text-[#C85A28] mt-1">
                 {detailedUpz.villageCount}টি গ্রাম
@@ -164,7 +164,7 @@ export default function UpazilaDetailView({
             </div>
             <div className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-2xs">
               <p className="text-xs text-slate-500 font-medium">
-                {language === 'bn' ? 'শিক্ষার হার' : 'Literacy Rate'}
+                {t('upazilaDetail.literacy')}
               </p>
               <p className="text-base sm:text-lg font-extrabold text-emerald-800 mt-1">
                 {detailedUpz.literacyRate}
@@ -172,7 +172,7 @@ export default function UpazilaDetailView({
             </div>
             <div className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-2xs">
               <p className="text-xs text-slate-500 font-medium">
-                {language === 'bn' ? 'পোস্ট কোড' : 'Postal Code'}
+                {t('upazilaDetail.postalCode')}
               </p>
               <p className="text-base sm:text-lg font-extrabold text-slate-900 mt-1">
                 {u.postalCode}
@@ -266,7 +266,7 @@ export default function UpazilaDetailView({
                     </button>
                     <h3 className="text-xl font-extrabold">{selectedUnion.name} ইউনিয়ন</h3>
                     <p className="text-xs text-emerald-100/90 mt-0.5">
-                      {selectedUnion.enName} · {detailedUpz.name} উপজেলা, বগুড়া
+                      {selectedUnion.name_en} · {detailedUpz.name} উপজেলা, বগুড়া
                     </p>
                   </div>
 
@@ -386,7 +386,7 @@ export default function UpazilaDetailView({
                   </div>
                   <div className="space-y-1.5 flex-1 min-h-0 overflow-y-auto pr-1">
                     {detailedUpz.unions
-                      .filter(x => !unionSearch.trim() || x.name.includes(unionSearch.trim()) || x.enName.toLowerCase().includes(unionSearch.trim().toLowerCase()))
+                      .filter(x => !unionSearch.trim() || x.name.includes(unionSearch.trim()) || x.name_en.toLowerCase().includes(unionSearch.trim().toLowerCase()))
                       .map(x => (
                         <button
                           key={x.id}
@@ -473,7 +473,7 @@ export default function UpazilaDetailView({
             <div>
               <p className="text-xs text-slate-500 font-medium">পূর্ববর্তী উপজেলা</p>
               <p className="font-bold text-slate-900 text-sm">
-                #{language === 'bn' ? prevUpz.serialBn : prevUpz.serialEn} {prevUpz.name} উপজেলা
+                {t('upazilaDetail.neighbour', { serial: language === 'bn' ? prevUpz.serial : prevUpz.serial_en, name: language === 'bn' ? prevUpz.name : prevUpz.name_en })}
               </p>
             </div>
           </button>
@@ -485,7 +485,7 @@ export default function UpazilaDetailView({
             <div>
               <p className="text-xs text-slate-500 font-medium">পরবর্তী উপজেলা</p>
               <p className="font-bold text-slate-900 text-sm">
-                #{language === 'bn' ? nextUpz.serialBn : nextUpz.serialEn} {nextUpz.name} উপজেলা
+                {t('upazilaDetail.neighbour', { serial: language === 'bn' ? nextUpz.serial : nextUpz.serial_en, name: language === 'bn' ? nextUpz.name : nextUpz.name_en })}
               </p>
             </div>
             <i className="fa-solid fa-arrow-right text-slate-400 group-hover:text-emerald-800 transition"></i>

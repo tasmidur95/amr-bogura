@@ -18,7 +18,7 @@ export default function ExploreContributeModal({
   const { showToast } = useToast();
 
   const [title, setTitle] = useState('');
-  const [enTitle, setEnTitle] = useState('');
+  const [title_en, setEnTitle] = useState('');
   const [category, setCategory] = useState<'archaeological' | 'nature' | 'religious' | 'heritage'>('archaeological');
   const [upazila, setUpazila] = useState('বগুড়া সদর');
   const [location, setLocation] = useState('');
@@ -70,9 +70,9 @@ export default function ExploreContributeModal({
 
     const payload = {
       title,
-      enTitle: enTitle || title,
+      title_en: title_en || title,
       category,
-      categoryBn: categoryBnMap[category] || 'দর্শনীয় স্থান',
+      category_label: categoryBnMap[category] || 'দর্শনীয় স্থান',
       location,
       upazila,
       tag: tag || 'নাগরিক প্রস্তাবিত স্থান',
@@ -176,7 +176,7 @@ export default function ExploreContributeModal({
               </label>
               <input
                 type="text"
-                value={enTitle}
+                value={title_en}
                 onChange={e => setEnTitle(e.target.value)}
                 placeholder="e.g. Historic Kherua Mosque"
                 className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"

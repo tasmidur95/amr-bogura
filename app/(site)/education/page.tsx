@@ -1,14 +1,16 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React, { useState, useEffect, useMemo } from 'react';
-import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import { EducationalInstitute } from '@/lib/types/education';
+import { useLocalized } from '@/lib/i18n/useLocalized';
 
 export default function EducationPage() {
-  const [institutes, setInstitutes] = useState<EducationalInstitute[]>([]);
+  const [institutesRaw, setInstitutes] = useState<EducationalInstitute[]>([]);
+  const institutes = useLocalized(institutesRaw);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -87,14 +89,14 @@ export default function EducationPage() {
       }
 
       // Upazila filter
-      const matchUpazila = selectedUpazila === 'ALL' || inst.upazila === selectedUpazila;
+      const matchUpazila = selectedUpazila === 'ALL' || ((inst as any).__bn_upazila ?? inst.upazila) === selectedUpazila;
 
       // Search query
       const q = searchQuery.toLowerCase().trim();
       const matchSearch =
         !q ||
         inst.name.toLowerCase().includes(q) ||
-        inst.enName.toLowerCase().includes(q) ||
+        inst.name_en.toLowerCase().includes(q) ||
         (inst.eiin && inst.eiin.includes(q)) ||
         inst.location.toLowerCase().includes(q) ||
         inst.upazila.toLowerCase().includes(q);
@@ -371,7 +373,7 @@ export default function EducationPage() {
                           {inst.upazila}
                         </span>
                         <span className="px-2 py-0.5 rounded-md bg-white/20 backdrop-blur-md text-[10px] font-bold text-slate-100 border border-white/20">
-                          {inst.categoryBn}
+                          {inst.category_label}
                         </span>
                       </div>
                     </div>
@@ -387,7 +389,7 @@ export default function EducationPage() {
                           {inst.name}
                         </h3>
                         <p className="text-xs text-slate-500 font-medium truncate mt-0.5">
-                          {inst.enName}
+                          {inst.name_en !== inst.name ? inst.name_en : ''}
                         </p>
                       </div>
 
@@ -605,7 +607,7 @@ export default function EducationPage() {
                   </span>
                 </div>
                 <span className="px-3 py-1 rounded-xl bg-white/20 backdrop-blur-md text-white text-xs font-semibold border border-white/20">
-                  {selectedInstitute.categoryBn}
+                  {selectedInstitute.category_label}
                 </span>
               </div>
             </div>
@@ -617,7 +619,7 @@ export default function EducationPage() {
                   {selectedInstitute.name}
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1 flex items-center gap-2">
-                  <span>{selectedInstitute.enName}</span>
+                  <span>{selectedInstitute.name_en !== selectedInstitute.name ? selectedInstitute.name_en : ''}</span>
                   <span>·</span>
                   <span className="text-emerald-700 flex items-center gap-1 font-semibold">
                     <i className="fa-solid fa-location-dot text-rose-500"></i>

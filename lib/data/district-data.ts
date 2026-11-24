@@ -1,15 +1,15 @@
 export interface Upazila {
-  serialBn: string;
-  serialEn: string;
+  serial: string;
+  serial_en: string;
   name: string;
-  enName: string;
+  name_en: string;
   area: string;
-  areaEn: string;
+  area_en: string;
   unionCount: string;
-  unionCountEn: string;
+  union_count_en: string;
   unions: string;
   pourashava: string;
-  pourashavaEn: string;
+  pourashava_en: string;
   hasPourashava: boolean;
   tags: string[];
   postalCode: string;
@@ -17,7 +17,7 @@ export interface Upazila {
   healthPhone: string;
   landmark: string;
   desc: string;
-  enDesc: string;
+  description_en: string;
   historyNote: string;
   unionList: string[];
 }
@@ -25,7 +25,7 @@ export interface Upazila {
 export interface Hospital {
   id?: string;
   name: string;
-  enName: string;
+  name_en: string;
   type: 'govt' | 'private' | 'diagnostic';
   typeLabel: string;
   address: string;
@@ -41,7 +41,7 @@ export interface EmergencyContact {
 
 export interface ExploreSpot {
   title: string;
-  enTitle: string;
+  title_en: string;
   location: string;
   tag: string;
   desc: string;
@@ -119,17 +119,17 @@ export const defaultSiteContent: SiteContent = {
 
 export const upazilasData: Upazila[] = [
   {
-    serialBn: '০১',
-    serialEn: '01',
+    serial: '০১',
+    serial_en: '01',
     name: 'বগুড়া সদর',
-    enName: 'Bogura Sadar',
+    name_en: 'Bogura Sadar',
     area: '১৭৬.৫৮ বর্গকিমি',
-    areaEn: '176.58 sq km',
+    area_en: '176.58 sq km',
     unionCount: '১১টি',
-    unionCountEn: '11 Unions',
+    union_count_en: '11 Unions',
     unions: '১১টি ইউনিয়ন',
     pourashava: 'বগুড়া পৌরসভা (১টি)',
-    pourashavaEn: 'Bogura Pourashava (1)',
+    pourashava_en: 'Bogura Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava', 'heritage'],
     postalCode: '৫৮০০',
@@ -137,22 +137,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '051-66550',
     landmark: 'নবাব প্যালেস, সাতমাথা, এডওয়ার্ড পার্ক, বগুড়া জিলা স্কুল',
     desc: 'বগুড়া জেলার প্রশাসনিক, বাণিজ্যিক ও শিক্ষাকেন্দ্র। করতোয়া নদীর তীরে অবস্থিত উত্তরবঙ্গের প্রাণকেন্দ্র ও ব্যস্ততম নগরী।',
-    enDesc: 'The administrative, commercial, and educational hub of Bogura District situated along the Karatoya River.',
+    description_en: 'The administrative, commercial, and educational hub of Bogura District situated along the Karatoya River.',
     historyNote: '১৮২১ সালে বগুড়া জেলা প্রতিষ্ঠার পর থেকে সদর উপজেলা উত্তরবঙ্গের ব্যবসা-বাণিজ্য, শিক্ষা ও প্রশাসনের কেন্দ্রবিন্দু হিসেবে গড়ে ওঠে। সাতমাথা ও নবাব প্যালেস এই শহরের ঐতিহাসিক সাক্ষী।',
     unionList: ['ফাপোর', 'সাবগ্রাম', 'নিশিন্দারা', 'এরুলিয়া', 'রাজাপুর', 'শাখারিয়া', 'শেখেরকোলা', 'গোকুল', 'নুনগোলা', 'লাহিড়ীপাড়া', 'নামুজা']
   },
   {
-    serialBn: '০২',
-    serialEn: '02',
+    serial: '০২',
+    serial_en: '02',
     name: 'শিবগঞ্জ',
-    enName: 'Shibganj',
+    name_en: 'Shibganj',
     area: '৩১৫.৩৩ বর্গকিমি',
-    areaEn: '315.33 sq km',
+    area_en: '315.33 sq km',
     unionCount: '১২টি',
-    unionCountEn: '12 Unions',
+    union_count_en: '12 Unions',
     unions: '১২টি ইউনিয়ন',
     pourashava: 'শিবগঞ্জ পৌরসভা (১টি)',
-    pourashavaEn: 'Shibganj Pourashava (1)',
+    pourashava_en: 'Shibganj Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava', 'heritage'],
     postalCode: '৫৮১০',
@@ -160,22 +160,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324763',
     landmark: 'মহাস্থানগড়, বেহুলার বাসর ঘর (গোকুল মেধ), ভাসু বিহার, মহাস্থানের কটকটি',
     desc: 'প্রাচীন পুণ্ড্রবর্ধনের রাজধানী মহাস্থানগড় ও আড়াই হাজার বছরের প্রত্নতাত্ত্বিক নিদর্শনে সমৃদ্ধ ঐতিহ্যবাহী জনপদ।',
-    enDesc: 'Home to Mahasthangarh, the 3rd-century BCE capital of ancient Pundravardhana, Gokul Medh, and Vasu Vihara.',
+    description_en: 'Home to Mahasthangarh, the 3rd-century BCE capital of ancient Pundravardhana, Gokul Medh, and Vasu Vihara.',
     historyNote: 'খ্রিস্টপূর্ব তৃতীয় শতাব্দীর মৌর্য যুগ থেকে পাল ও সেন আমল পর্যন্ত শিবগঞ্জের মহাস্থানগড় ছিল বাংলার অন্যতম প্রধান রাজধানী ও বৌদ্ধ জ্ঞানচর্চার কেন্দ্র।',
     unionList: ['ময়দানহাট্টা', 'কিচক', 'আটমূল', 'পিরব', 'মাঝিহট্ট', 'বুড়িগঞ্জ', 'বিহার', 'শিবগঞ্জ', 'দেউলী', 'সৈয়দপুর', 'মোকামতলা', 'রায়নগর']
   },
   {
-    serialBn: '০৩',
-    serialEn: '03',
+    serial: '০৩',
+    serial_en: '03',
     name: 'শেরপুর',
-    enName: 'Sherpur',
+    name_en: 'Sherpur',
     area: '২৯৬.২৭ বর্গকিমি',
-    areaEn: '296.27 sq km',
+    area_en: '296.27 sq km',
     unionCount: '১০টি',
-    unionCountEn: '10 Unions',
+    union_count_en: '10 Unions',
     unions: '১০টি ইউনিয়ন',
     pourashava: 'শেরপুর পৌরসভা (১টি)',
-    pourashavaEn: 'Sherpur Pourashava (1)',
+    pourashava_en: 'Sherpur Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava', 'heritage'],
     postalCode: '৫৮৪০',
@@ -183,22 +183,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324762',
     landmark: 'ঐতিহাসিক খেরুয়া মসজিদ (১৫৮২), ভবানীপুর শক্তিপীঠ, শাহ বন্দেগী মাজার, দই শিল্প',
     desc: 'সুলতানি স্থাপত্য খেরুয়া মসজিদ, ভবানীপুর মন্দির এবং জিআই স্বীকৃত বগুড়ার দই উৎপাদনের অন্যতম ঐতিহাসিক কেন্দ্র।',
-    enDesc: 'Renowned for the 1582 Sultanate-era Kherua Mosque, Bhabanipur Shaktipeeth, and authentic Bogura Doi craftsmanship.',
+    description_en: 'Renowned for the 1582 Sultanate-era Kherua Mosque, Bhabanipur Shaktipeeth, and authentic Bogura Doi craftsmanship.',
     historyNote: 'মুঘল ও সুলতানি আমলে শেরপুর ছিল একটি গুরুত্বপূর্ণ সামরিক ও প্রশাসনিক ঘাঁটি। ১৫৮২ সালে নির্মিত খেরুয়া মসজিদ এখানকার স্থাপত্য ঐতিহ্যের উজ্জ্বল নিদর্শন।',
     unionList: ['কুসুম্বী', 'গাড়ীদহ', 'খামারকান্দি', 'খানপুর', 'মির্জাপুর', 'বিশালপুর', 'ভবানীপুর', 'সুঘাট', 'সীমাবাড়ী', 'শাহবন্দেগী']
   },
   {
-    serialBn: '০৪',
-    serialEn: '04',
+    serial: '০৪',
+    serial_en: '04',
     name: 'সোনাতলা',
-    enName: 'Sonatala',
+    name_en: 'Sonatala',
     area: '১৫৬.৭৫ বর্গকিমি',
-    areaEn: '156.75 sq km',
+    area_en: '156.75 sq km',
     unionCount: '৭টি',
-    unionCountEn: '7 Unions',
+    union_count_en: '7 Unions',
     unions: '৭টি ইউনিয়ন',
     pourashava: 'সোনাতলা পৌরসভা (১টি)',
-    pourashavaEn: 'Sonatala Pourashava (1)',
+    pourashava_en: 'Sonatala Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava', 'jamuna'],
     postalCode: '৫৮২৬',
@@ -206,22 +206,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324764',
     landmark: 'যমুনা ও বাঙালি নদীর মোহনা, হরিখালী হাট, সোনাতলা রেলস্টেশন',
     desc: 'বগুড়ার উত্তর-পূর্বাঞ্চলে যমুনা ও বাঙালি নদীর মোহনায় অবস্থিত উর্বর কৃষি ও নদীমাতৃক জনপদ।',
-    enDesc: 'A fertile riverine upazila in northeastern Bogura situated at the confluence of the Jamuna and Bangali rivers.',
+    description_en: 'A fertile riverine upazila in northeastern Bogura situated at the confluence of the Jamuna and Bangali rivers.',
     historyNote: 'যমুনা ও বাঙালি নদীর পলিগঠিত উর্বর ভূমিতে ধান, পাট ও মরিচ চাষের জন্য সোনাতলা সুপ্রাচীনকাল থেকেই প্রসিদ্ধ।',
     unionList: ['সোনাতলা সদর', 'বালুয়া', 'দিগদাইড়', 'জোড়গাছা', 'মধুপুর', 'তেকানী চুকাইনগর', 'পাকুল্লা']
   },
   {
-    serialBn: '০৫',
-    serialEn: '05',
+    serial: '০৫',
+    serial_en: '05',
     name: 'সারিয়াকান্দি',
-    enName: 'Sariakandi',
+    name_en: 'Sariakandi',
     area: '৪০৮.৫০ বর্গকিমি',
-    areaEn: '408.50 sq km',
+    area_en: '408.50 sq km',
     unionCount: '১২টি',
-    unionCountEn: '12 Unions',
+    union_count_en: '12 Unions',
     unions: '১২টি ইউনিয়ন',
     pourashava: 'সারিয়াকান্দি পৌরসভা (১টি)',
-    pourashavaEn: 'Sariakandi Pourashava (1)',
+    pourashava_en: 'Sariakandi Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava', 'jamuna'],
     postalCode: '৫৮৩০',
@@ -229,22 +229,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324761',
     landmark: 'প্রেম যমুনার ঘাট, কালিতলা গ্রোয়েন বাঁধ, যমুনার চরাঞ্চল',
     desc: 'আয়তনে বগুড়ার বৃহত্তম উপজেলা; যমুনা নদীর বিশাল জলরাশি, চরাঞ্চল কৃষি ও প্রাকৃতিক সৌন্দর্যের লীলাভূমি।',
-    enDesc: 'The largest upazila in Bogura by area, celebrated for the sweeping Jamuna riverfront, Kalitala Groin, and char agriculture.',
+    description_en: 'The largest upazila in Bogura by area, celebrated for the sweeping Jamuna riverfront, Kalitala Groin, and char agriculture.',
     historyNote: 'যমুনা নদীর তীরবর্তী সারিয়াকান্দি নৌবাণিজ্য, মৎস্য সম্পদ এবং চরাঞ্চলের ভুট্টা ও মরিচ উৎপাদনে জেলার অর্থনীতিতে বড় ভূমিকা রাখে।',
     unionList: ['সারিয়াকান্দি সদর', 'নারচী', 'ভেলাবাড়ী', 'চন্দনবাইশা', 'কুতুবপুর', 'কর্ণিবাড়ী', 'বোহাইল', 'হাটশেরপুর', 'কাজলা', 'চালুয়াবাড়ী', 'কামালপুর', 'ফুলবাড়ী']
   },
   {
-    serialBn: '০৬',
-    serialEn: '06',
+    serial: '০৬',
+    serial_en: '06',
     name: 'গাবতলী',
-    enName: 'Gabtali',
+    name_en: 'Gabtali',
     area: '২৩৯.৬০ বর্গকিমি',
-    areaEn: '239.60 sq km',
+    area_en: '239.60 sq km',
     unionCount: '১১টি',
-    unionCountEn: '11 Unions',
+    union_count_en: '11 Unions',
     unions: '১১টি ইউনিয়ন',
     pourashava: 'গাবতলী পৌরসভা (১টি)',
-    pourashavaEn: 'Gabtali Pourashava (1)',
+    pourashava_en: 'Gabtali Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava', 'jamuna'],
     postalCode: '৫৮২০',
@@ -252,22 +252,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324757',
     landmark: 'বাগবাড়ী, ঐতিহ্যবাহী পোড়াদহ মাছের মেলা, সুখানপুকুর',
     desc: 'বাঙালি ও ইছামতি নদী বিধৌত কৃষি সমৃদ্ধ উপজেলা এবং শতবর্ষী ঐতিহ্যবাহী পোড়াদহ মেলার জন্য বিখ্যাত।',
-    enDesc: 'An agriculture-rich upazila along the Bangali and Ichamati rivers, famous for Bagbari and the traditional Poradaha Fair.',
+    description_en: 'An agriculture-rich upazila along the Bangali and Ichamati rivers, famous for Bagbari and the traditional Poradaha Fair.',
     historyNote: 'প্রতি বছর মাঘ মাসের শেষ বুধবার অনুষ্ঠিত ঐতিহ্যবাহী পোড়াদহ মেলা এবং সবজি ও ধান উৎপাদনের জন্য গাবতলী দেশব্যাপী পরিচিত।',
     unionList: ['গাবতলী সদর', 'নেপালতলী', 'সোনাবাড়ী', 'কাগইল', 'রামেশ্বরপুর', 'মহিষাবান', 'দক্ষিণপাড়া', 'দুর্গাহাটা', 'বালিয়াদিঘী', 'নাড়ুয়ামালা', 'নশিপুর']
   },
   {
-    serialBn: '০৭',
-    serialEn: '07',
+    serial: '০৭',
+    serial_en: '07',
     name: 'ধুনট',
-    enName: 'Dhunat',
+    name_en: 'Dhunat',
     area: '২৪৭.৭৩ বর্গকিমি',
-    areaEn: '247.73 sq km',
+    area_en: '247.73 sq km',
     unionCount: '১০টি',
-    unionCountEn: '10 Unions',
+    union_count_en: '10 Unions',
     unions: '১০টি ইউনিয়ন',
     pourashava: 'ধুনট পৌরসভা (১টি)',
-    pourashavaEn: 'Dhunat Pourashava (1)',
+    pourashava_en: 'Dhunat Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava', 'jamuna'],
     postalCode: '৫৮৫০',
@@ -275,22 +275,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324756',
     landmark: 'যমুনা স্পার বাঁধ (শহরাবাড়ী ঘাট), গোসাইবাড়ী, এলাঙ্গী',
     desc: 'বগুড়ার দক্ষিণ-পূর্বাঞ্চলে যমুনা ও বাঙালি অববাহিকার শান্ত, সুজলা-সুফলা কৃষি ও মৎস্য সমৃদ্ধ উপজেলা।',
-    enDesc: 'Situated in southeastern Bogura within the Jamuna and Bangali river basin, known for scenic river spurs and agriculture.',
+    description_en: 'Situated in southeastern Bogura within the Jamuna and Bangali river basin, known for scenic river spurs and agriculture.',
     historyNote: 'যমুনা ও বাঙালি নদীর তীরবর্তী ধুনট উপজেলা প্রাচীন নৌপথ ও উর্বর ফসলি জমির জন্য সমৃদ্ধ এক জনপদ।',
     unionList: ['ধুনট সদর', 'নিমগাছী', 'চিকাশী', 'গোসাইবাড়ী', 'ভান্ডারবাড়ী', 'এলাঙ্গী', 'কালেরপাড়া', 'চৌকিবাড়ী', 'মথুরাপুর', 'গোপালনগর']
   },
   {
-    serialBn: '০৮',
-    serialEn: '08',
+    serial: '০৮',
+    serial_en: '08',
     name: 'নন্দীগ্রাম',
-    enName: 'Nandigram',
+    name_en: 'Nandigram',
     area: '২৬৫.৪৭ বর্গকিমি',
-    areaEn: '265.47 sq km',
+    area_en: '265.47 sq km',
     unionCount: '৫টি',
-    unionCountEn: '5 Unions',
+    union_count_en: '5 Unions',
     unions: '৫টি ইউনিয়ন',
     pourashava: 'নন্দীগ্রাম পৌরসভা (১টি)',
-    pourashavaEn: 'Nandigram Pourashava (1)',
+    pourashava_en: 'Nandigram Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava'],
     postalCode: '৫৮৬০',
@@ -298,22 +298,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324760',
     landmark: 'বিজরুল, ওমরপুর হাট, বরেন্দ্র শস্যভাণ্ডার অঞ্চল',
     desc: 'বগুড়ার দক্ষিণাঞ্চলের প্রধান শস্যভাণ্ডার; বরেন্দ্র ভূমির উর্বর আমন ও বোরো ধান উৎপাদনের জন্য প্রসিদ্ধ।',
-    enDesc: 'The southern granary of Bogura situated in the fertile Barind tract, vital for paddy and winter crop production.',
+    description_en: 'The southern granary of Bogura situated in the fertile Barind tract, vital for paddy and winter crop production.',
     historyNote: 'বরেন্দ্র অঞ্চলের সমতল ও উর্বর কৃষিভূমি নিয়ে গঠিত নন্দীগ্রাম উপজেলা জেলার খাদ্য উদ্বৃত্ত তৈরিতে অগ্রণী ভূমিকা রাখে।',
     unionList: ['বুড়ইল', 'নন্দীগ্রাম সদর', 'ভাটরা', 'থালতা মাঝগ্রাম', 'ভাটগ্রাম']
   },
   {
-    serialBn: '০৯',
-    serialEn: '09',
+    serial: '০৯',
+    serial_en: '09',
     name: 'কাহালু',
-    enName: 'Kahaloo',
+    name_en: 'Kahaloo',
     area: '২৪০.৪২ বর্গকিমি',
-    areaEn: '240.42 sq km',
+    area_en: '240.42 sq km',
     unionCount: '৯টি',
-    unionCountEn: '9 Unions',
+    union_count_en: '9 Unions',
     unions: '৯টি ইউনিয়ন',
     pourashava: 'কাহালু পৌরসভা (১টি)',
-    pourashavaEn: 'Kahaloo Pourashava (1)',
+    pourashava_en: 'Kahaloo Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava', 'heritage'],
     postalCode: '৫৮৭০',
@@ -321,22 +321,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324758',
     landmark: 'যোগীর ভবন আশ্রম ও মন্দির কমপ্লেক্স, নাগর নদী, নারহট্ট',
     desc: 'নাগর নদীর তীরে অবস্থিত উন্নত মানের চাল উৎপাদন ও প্রাচীন স্থাপত্য নিদর্শন যোগীর ভবনের জন্য পরিচিত।',
-    enDesc: 'Located along the Nagar River, known for quality rice production and the historic Jogir Bhaban temple complex.',
+    description_en: 'Located along the Nagar River, known for quality rice production and the historic Jogir Bhaban temple complex.',
     historyNote: 'কাহালুর যোগীর ভবন নাথপন্থী সন্ন্যাসীদের প্রাচীন আস্তানা ও টেরাকোটা অলংকৃত মন্দির স্থাপত্যের জন্য প্রত্নতাত্ত্বিকভাবে গুরুত্বপূর্ণ।',
     unionList: ['বীরকেদার', 'কালাই', 'পাইকড়', 'নারহট্ট', 'কাহালু সদর', 'মুরইল', 'দুর্গাপুর', 'জামগ্রাম', 'মালঞ্চা']
   },
   {
-    serialBn: '১০',
-    serialEn: '10',
+    serial: '১০',
+    serial_en: '10',
     name: 'দুপচাঁচিয়া',
-    enName: 'Dupchanchia',
+    name_en: 'Dupchanchia',
     area: '১৬২.৪৫ বর্গকিমি',
-    areaEn: '162.45 sq km',
+    area_en: '162.45 sq km',
     unionCount: '৬টি',
-    unionCountEn: '6 Unions',
+    union_count_en: '6 Unions',
     unions: '৬টি ইউনিয়ন',
     pourashava: '২টি পৌরসভা (দুপচাঁচিয়া ও তালোড়া)',
-    pourashavaEn: '2 Pourashavas (Dupchanchia & Talora)',
+    pourashava_en: '2 Pourashavas (Dupchanchia & Talora)',
     hasPourashava: true,
     tags: ['pourashava'],
     postalCode: '৫৮৮০',
@@ -344,22 +344,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324755',
     landmark: 'তালোড়া বন্দর, উত্তরবঙ্গের অটো রাইস মিল শিল্পাঞ্চল',
     desc: 'দুটি পৌরসভা সমৃদ্ধ উপজেলা এবং উত্তরবঙ্গের অন্যতম প্রধান চালকল (অটো রাইস মিল) ও শস্য বাণিজ্য কেন্দ্র।',
-    enDesc: 'Uniquely home to two pourashavas (Dupchanchia & Talora) and North Bengal’s major modern rice-milling hub.',
+    description_en: 'Uniquely home to two pourashavas (Dupchanchia & Talora) and North Bengal’s major modern rice-milling hub.',
     historyNote: 'ব্রিটিশ আমল থেকেই তালোড়া বন্দর ও দুপচাঁচিয়া শস্য প্রক্রিয়াজাতকরণ ও চাল ব্যবসার অন্যতম প্রধান কেন্দ্র হিসেবে পরিচিত।',
     unionList: ['জিয়ানগর', 'চামরুল', 'দুপচাঁচিয়া সদর', 'গুনাহার', 'গোবিন্দপুর', 'তালোড়া']
   },
   {
-    serialBn: '১১',
-    serialEn: '11',
+    serial: '১১',
+    serial_en: '11',
     name: 'আদমদীঘি',
-    enName: 'Adamdighi',
+    name_en: 'Adamdighi',
     area: '১৬৮.৮৩ বর্গকিমি',
-    areaEn: '168.83 sq km',
+    area_en: '168.83 sq km',
     unionCount: '৬টি',
-    unionCountEn: '6 Unions',
+    union_count_en: '6 Unions',
     unions: '৬টি ইউনিয়ন',
     pourashava: 'সান্তাহার পৌরসভা (১টি)',
-    pourashavaEn: 'Santahar Pourashava (1)',
+    pourashava_en: 'Santahar Pourashava (1)',
     hasPourashava: true,
     tags: ['pourashava', 'heritage'],
     postalCode: '৫৮৯০',
@@ -367,22 +367,22 @@ export const upazilasData: Upazila[] = [
     healthPhone: '01730-324754',
     landmark: 'সান্তাহার রেলওয়ে জংশন, সান্তাহার সাইলো, রক্তদহ বিল, আদমদীঘি দীঘি',
     desc: 'ঐতিহাসিক সান্তাহার রেলওয়ে জংশন, আধুনিক খাদ্য সাইলো ও রক্তদহ বিলের প্রাকৃতিক সৌন্দর্যের জন্য বিখ্যাত।',
-    enDesc: 'Famous for the historic Santahar Railway Junction, grain silo complex, and the scenic Raktadaha Beel wetland.',
+    description_en: 'Famous for the historic Santahar Railway Junction, grain silo complex, and the scenic Raktadaha Beel wetland.',
     historyNote: '১৮৭৮ সালে প্রতিষ্ঠিত সান্তাহার রেলওয়ে জংশন উত্তরবঙ্গের রেল যোগাযোগের ইতিহাসে এক অবিচ্ছেদ্য অধ্যায়।',
     unionList: ['ছাতিয়ানগ্রাম', 'নশরতপুর', 'আদমদীঘি সদর', 'কুন্দগ্রাম', 'চাঁপাপুর', 'সান্তাহার']
   },
   {
-    serialBn: '১২',
-    serialEn: '12',
+    serial: '১২',
+    serial_en: '12',
     name: 'শাজাহানপুর',
-    enName: 'Shajahanpur',
+    name_en: 'Shajahanpur',
     area: '২২১.৬৯ বর্গকিমি',
-    areaEn: '221.69 sq km',
+    area_en: '221.69 sq km',
     unionCount: '৯টি',
-    unionCountEn: '9 Unions',
+    union_count_en: '9 Unions',
     unions: '৯টি ইউনিয়ন',
     pourashava: 'পৌরসভা নেই (ক্যান্টনমেন্ট ও উপশহর)',
-    pourashavaEn: 'No Pourashava (Cantonment & Suburban Hub)',
+    pourashava_en: 'No Pourashava (Cantonment & Suburban Hub)',
     hasPourashava: false,
     tags: ['heritage'],
     postalCode: '৫৮০১',
@@ -390,7 +390,7 @@ export const upazilasData: Upazila[] = [
     healthPhone: '051-69965',
     landmark: 'বগুড়া সেনানিবাস, শহীদ জিয়াউর রহমান মেডিকেল কলেজ (শজিমেক), মাঝিড়া',
     desc: 'বগুড়া শহরের দক্ষিণ উপকণ্ঠে অবস্থিত ক্যান্টনমেন্ট, মেডিকেল কলেজ ও দ্রুত বর্ধনশীল আবাসিক-বাণিজ্যিক উপজেলা।',
-    enDesc: 'Bogura’s youngest upazila (established 2003), housing Bogura Cantonment, SZRMC Hospital, and suburban growth corridors.',
+    description_en: 'Bogura’s youngest upazila (established 2003), housing Bogura Cantonment, SZRMC Hospital, and suburban growth corridors.',
     historyNote: '২০০৩ সালে বগুড়া সদর ও শেরপুর উপজেলার অংশবিশেষ নিয়ে প্রশাসনিক বিকেন্দ্রীকরণের লক্ষ্যে শাজাহানপুর উপজেলা গঠিত হয়।',
     unionList: ['আশেকপুর', 'মাদলা', 'মাঝিড়া', 'আড়িয়া', 'খোট্টাপাড়া', 'চোপীনগর', 'খড়না', 'গোহাইল', 'আমরুল']
   }
@@ -399,7 +399,7 @@ export const upazilasData: Upazila[] = [
 export const hospitalsData: Hospital[] = [
   {
     "name": "আদমদীঘি উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Adamdighi Upazila Health Complex",
+    "name_en": "Adamdighi Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "বগুড়া-নওগাঁ মহাসড়ক, আদমদীঘি, বগুড়া - ৫৮৪০",
@@ -408,7 +408,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া (সদর) উপজেলা স্বাস্থ্য ও পরিবার পরিকল্পনা কার্যালয়",
-    "enName": "Bogura (Sadar) Upazila Health Office",
+    "name_en": "Bogura (Sadar) Upazila Health Office",
     "type": "govt",
     "typeLabel": "Upazila Health Office",
     "address": "ওয়ার্ড নং ১০, বগুড়া পৌরসভা, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -417,7 +417,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ধুনট উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Dhunat Upazila Health Complex",
+    "name_en": "Dhunat Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "হাসপাতাল রোড, ১ নং ওয়ার্ড, ধুনট পৌরসভা, ধুনট, বগুড়া - ৫৮৫০",
@@ -426,7 +426,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দুপচাঁচিয়া উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Dhupchanchia Upazila Health Complex",
+    "name_en": "Dhupchanchia Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "হাসপাতাল রোড, দুপচাঁচিয়া পৌরসভা, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -435,7 +435,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গাবতলী উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Gabtali Upazila Health Complex",
+    "name_en": "Gabtali Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "বগুড়া-গাবতলী সড়ক, গাবতলী সদর, গাবতলী, বগুড়া - ৫৮২০",
@@ -444,7 +444,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাহালু উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Kahaloo Upazila Health Complex",
+    "name_en": "Kahaloo Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "বগুড়া-নওগাঁ মহাসড়ক, কাহালু পৌরসভা, কাহালু, বগুড়া - ৫৮৭০",
@@ -453,7 +453,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নন্দীগ্রাম উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Nandigram Upazila Health Complex",
+    "name_en": "Nandigram Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "বিজরুল, ভাটগ্রাম ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -462,7 +462,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সারিয়াকান্দি উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Sariakandi Upazila Health Complex",
+    "name_en": "Sariakandi Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "সারিয়াকান্দি সদর, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -471,7 +471,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শাজাহানপুর উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Shajahanpur Upazila Health Complex",
+    "name_en": "Shajahanpur Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "মাঝিড়া, ঢাকা-বগুড়া মহাসড়ক সংলগ্ন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -480,7 +480,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেরপুর উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Sherpur Upazila Health Complex",
+    "name_en": "Sherpur Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "শহীদ ছুনু রোড, শেরপুর পৌরসভা, শেরপুর, বগুড়া - ৫৮৪০",
@@ -489,7 +489,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শিবগঞ্জ উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Shibganj Upazila Health Complex",
+    "name_en": "Shibganj Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "বানাইল, শিবগঞ্জ পৌরসভা, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -498,7 +498,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনাতলা উপজেলা স্বাস্থ্য কমপ্লেক্স",
-    "enName": "Sonatala Upazila Health Complex",
+    "name_en": "Sonatala Upazila Health Complex",
     "type": "govt",
     "typeLabel": "Upazila Health Complex",
     "address": "হাসপাতাল রোড, সোনাতলা পৌরসভা, সোনাতলা, বগুড়া - ৫৮২০",
@@ -507,7 +507,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া সিভিল সার্জন কার্যালয়",
-    "enName": "Bogra Civil Surgeon Office",
+    "name_en": "Bogra Civil Surgeon Office",
     "type": "govt",
     "typeLabel": "District Health Administration",
     "address": "জলেশ্বরীতলা, ওয়ার্ড নং ৭, বগুড়া পৌরসভা, বগুড়া - ৫৮০০",
@@ -516,7 +516,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া জেলা রিজার্ভ ইপিআই স্টোর ও প্রশিক্ষণ কেন্দ্র",
-    "enName": "Bogra District Reserve EPI Store & Training Centre",
+    "name_en": "Bogra District Reserve EPI Store & Training Centre",
     "type": "govt",
     "typeLabel": "Vaccine & Cold Chain Logistics",
     "address": "সিভিল সার্জন চত্বর, জলেশ্বরীতলা, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -525,7 +525,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "হাজারদীঘি (নূনগোলা) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Hazardighi (Noongola) Union Health Sub Center",
+    "name_en": "Hazardighi (Noongola) Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "হাজারদীঘি, নূনগোলা ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -534,7 +534,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মাদারগঞ্জ (লাহিড়ীপাড়া) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Mothergonj Union Health Sub Center",
+    "name_en": "Mothergonj Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "মাদারগঞ্জ বাজার, লাহিড়ীপাড়া ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -543,7 +543,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নওদাপাড়া (নিশিন্দারা) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Nawdapara (Nishindara) Union Health Sub Center",
+    "name_en": "Nawdapara (Nishindara) Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "নওদাপাড়া, নিশিন্দারা ইউনিয়ন, বগুড়া-রংপুর মহাসড়ক সংলগ্ন, বগুড়া - ৫৮০০",
@@ -552,7 +552,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "এরুলিয়া ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Erulia Union Health Sub Center",
+    "name_en": "Erulia Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "এরুলিয়া বাজার, বগুড়া-নওগাঁ সড়ক, এরুলিয়া, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -561,7 +561,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ফাপোর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Fapor Union Health Sub Center",
+    "name_en": "Fapor Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "ফাপোর বাজার, ফাপোর ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -570,7 +570,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কুন্দগ্রাম ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Kundagram Union Health Sub Center",
+    "name_en": "Kundagram Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "কুন্দগ্রাম বাজার, কুন্দগ্রাম ইউনিয়ন, আদমদীঘি, বগুড়া - ৫৮৪০",
@@ -579,7 +579,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চাঁপাপুর (কাঞ্চনপুর) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Champapur (Kanchanpur) Union Health Sub Center",
+    "name_en": "Champapur (Kanchanpur) Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "কাঞ্চনপুর, চাঁপাপুর ইউনিয়ন, আদমদীঘি, বগুড়া - ৫৮৪০",
@@ -588,7 +588,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ছাতিয়ানগ্রাম ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Chhatiangram Union Health Sub Center",
+    "name_en": "Chhatiangram Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "ছাতিয়ানগ্রাম রেলগেট সংলগ্ন, ছাতিয়ানগ্রাম, আদমদীঘি, বগুড়া - ৫৮৪০",
@@ -597,7 +597,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সান্তাহার ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Santahar Union Health Sub Center",
+    "name_en": "Santahar Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "ছোটকি, সান্তাহার ইউনিয়ন, আদমদীঘি, বগুড়া - ৫৮৫০",
@@ -606,7 +606,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ভান্ডারবাড়ী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Bhandarbari Union Health Sub Center",
+    "name_en": "Bhandarbari Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "ভান্ডারবাড়ী বাজার, যমুনা তীরবর্তী এলাকা, ভান্ডারবাড়ী, ধুনট, বগুড়া - ৫৮৫০",
@@ -615,7 +615,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গোপালনগর (ছিকর) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Gopalnagar (Chhikar) Union Health Sub Center",
+    "name_en": "Gopalnagar (Chhikar) Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "ছিকর, গোপালনগর ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -624,7 +624,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মথুরাপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Mathurapur Union Health Sub Center",
+    "name_en": "Mathurapur Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "মথুরাপুর বাজার, মথুরাপুর ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -633,7 +633,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "এলাঙ্গী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Elangi Union Health Sub Center",
+    "name_en": "Elangi Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "এলাঙ্গী বাজার, এলাঙ্গী ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -642,7 +642,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গুণাহার ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Gunahar Union Health Sub Center",
+    "name_en": "Gunahar Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "গুণাহার তালুকদার বাড়ি সড়ক, গুণাহার, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -651,7 +651,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "তালোড়া ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Talora Union Health Sub Center",
+    "name_en": "Talora Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "তালোড়া রেলওয়ে বাজার, তালোড়া, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -660,7 +660,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গোবিন্দপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Gobindapur Union Health Sub Center",
+    "name_en": "Gobindapur Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "গোবিন্দপুর বাজার, গোবিন্দপুর ইউনিয়ন, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -669,7 +669,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চামরুল ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Chamrul Union Health Sub Center",
+    "name_en": "Chamrul Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "চামরুল বাজার, চামরুল ইউনিয়ন, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -678,7 +678,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "রামেশ্বরপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Rameshwarpur Union Health Sub Center",
+    "name_en": "Rameshwarpur Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "রামেশ্বরপুর বাজার, রামেশ্বরপুর ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
@@ -687,7 +687,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনারায় ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Sonaray Union Health Sub Center",
+    "name_en": "Sonaray Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "সোনারায় বাজার, সোনারায় ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
@@ -696,7 +696,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দূর্গাহাটা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Durgahata Union Health Sub Center",
+    "name_en": "Durgahata Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "দূর্গাহাটা বাজার, দূর্গাহাটা ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
@@ -705,7 +705,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সুখানপুকুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Sukhanpukur Union Health Sub Center",
+    "name_en": "Sukhanpukur Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "সুখানপুকুর রেল স্টেশন সড়ক, সুখানপুকুর, গাবতলী, বগুড়া - ৫৮২০",
@@ -714,7 +714,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পিলকুঞ্জ ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Pilkunja Union Health Sub Center",
+    "name_en": "Pilkunja Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "পিলকুঞ্জ, মুরইল ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -723,7 +723,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মালঞ্চা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Malancha Union Health Sub Center",
+    "name_en": "Malancha Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "মালঞ্চা বাজার, মালঞ্চা ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -732,7 +732,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নারহট্ট ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Narhatta Union Health Sub Center",
+    "name_en": "Narhatta Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "নারহট্ট বাজার, নারহট্ট ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -741,7 +741,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দুর্গাপুর (পাইকড়) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Durgapur (Paikar) Union Health Sub Center",
+    "name_en": "Durgapur (Paikar) Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "দুর্গাপুর, পাইকড় ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -750,7 +750,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "থালতা মাঝগ্রাম (বাশো) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Thalta Majhgram (Basho) Union Health Sub Center",
+    "name_en": "Thalta Majhgram (Basho) Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "বাশো, থালতা মাঝগ্রাম ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -759,7 +759,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বুড়ইল ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Burail Union Health Sub Center",
+    "name_en": "Burail Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "বুড়ইল বাজার, বুড়ইল ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -768,7 +768,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ভাটরা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Bhatra Union Health Sub Center",
+    "name_en": "Bhatra Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "ভাটরা বাজার, ভাটরা ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -777,7 +777,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নন্দীগ্রাম সদর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Nandigram Sadar Union Health Sub Center",
+    "name_en": "Nandigram Sadar Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "ওমরপুর, নন্দীগ্রাম ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -786,7 +786,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "হাটফুলবাড়ী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Hatfulbari Union Health Sub Center",
+    "name_en": "Hatfulbari Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "হাটফুলবাড়ী বাজার, ফুলবাড়ী ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -795,7 +795,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "হাটশেরপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Hatsherpur Union Health Sub Center",
+    "name_en": "Hatsherpur Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "হাটশেরপুর বাজার, হাটশেরপুর ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -804,7 +804,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "জোড়গাছা (ভেলাবাড়ী) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Jorgacha (Bhelabari) Union Health Sub Center",
+    "name_en": "Jorgacha (Bhelabari) Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "জোড়গাছা, ভেলাবাড়ী ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -813,7 +813,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নাওখিলা (চন্দনবাইশা) ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Nawkhila (Chandanbaisha) Union Health Sub Center",
+    "name_en": "Nawkhila (Chandanbaisha) Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "নাওখিলা, চন্দনবাইশা বাঁধ এলাকা, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -822,7 +822,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আড়িয়া ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Aria Union Health Sub Center",
+    "name_en": "Aria Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "আড়িয়া বাজার, ঢাকা-বগুড়া মহাসড়ক সংলগ্ন, আড়িয়া, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -831,7 +831,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মাদলা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Madla Union Health Sub Center",
+    "name_en": "Madla Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "মাদলা বাজার, মাদলা ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -840,7 +840,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গোহাইল ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Gohail Union Health Sub Center",
+    "name_en": "Gohail Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "গোহাইল বাজার, গোহাইল ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -849,7 +849,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আমরুল ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Amrool Union Health Sub Center",
+    "name_en": "Amrool Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "ডেমাজানী বাজার, আমরুল ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -858,7 +858,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ভবানীপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Bhabanipur Union Health Sub Center",
+    "name_en": "Bhabanipur Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "ভবানীপুর বাজার ও শক্তিপীঠ সড়ক, ভবানীপুর, শেরপুর, বগুড়া - ৫৮৪০",
@@ -867,7 +867,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সীমাবাড়ী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Shimabari Union Health Sub Center",
+    "name_en": "Shimabari Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "সীমাবাড়ী বাজার, ঢাকা-বগুড়া মহাসড়ক সংলগ্ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -876,7 +876,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মির্জাপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Mirzapur Union Health Sub Center",
+    "name_en": "Mirzapur Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "মির্জাপুর বাজার, মির্জাপুর ইউনিয়ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -885,7 +885,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গাড়ীদহ ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Garidaha Union Health Sub Center",
+    "name_en": "Garidaha Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "কালসীমটি, আরডিএ সংলগ্ন, গাড়ীদহ, শেরপুর, বগুড়া - ৫৮৪০",
@@ -894,7 +894,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মোকামতলা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Mokamtala Union Health Sub Center",
+    "name_en": "Mokamtala Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "মোকামতলা বাজার, রংপুর মহাসড়ক সংলগ্ন, মোকামতলা, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -903,7 +903,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বুড়িগঞ্জ ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Buriganj Union Health Sub Center",
+    "name_en": "Buriganj Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "বুড়িগঞ্জ বাজার, বুড়িগঞ্জ ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -912,7 +912,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দেউলী ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Deuli Union Health Sub Center",
+    "name_en": "Deuli Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "দেউলী বাজার, দেউলী ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -921,7 +921,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বিহার ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Bihar Union Health Sub Center",
+    "name_en": "Bihar Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "বিহার বাজার, ভাসু বিহার সংলগ্ন, বিহার, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -930,7 +930,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দিগদাইড় ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Digdair Union Health Sub Center",
+    "name_en": "Digdair Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "দিগদাইড় বাজার, দিগদাইড় ইউনিয়ন, সোনাতলা, বগুড়া - ৫৮২০",
@@ -939,7 +939,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মধুপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Madhupur Union Health Sub Center",
+    "name_en": "Madhupur Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "মধুপুর বাজার, মধুপুর ইউনিয়ন, সোনাতলা, বগুড়া - ৫৮২০",
@@ -948,7 +948,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পাকুল্লা ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Pakulla Union Health Sub Center",
+    "name_en": "Pakulla Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "পাকুল্লা বাজার, যমুনা নদী সংলগ্ন এলাকা, পাকুল্লা, সোনাতলা, বগুড়া - ৫৮২০",
@@ -957,7 +957,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বালুয়া ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
-    "enName": "Balua Union Health Sub Center",
+    "name_en": "Balua Union Health Sub Center",
     "type": "govt",
     "typeLabel": "Union Health Sub-Centre",
     "address": "বালুয়া হাট, বালুয়া ইউনিয়ন, সোনাতলা, বগুড়া - ৫৮২০",
@@ -966,7 +966,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সাবগ্রাম ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Sabgram Union Health & Family Welfare Centre",
+    "name_en": "Sabgram Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "সাবগ্রাম বাজার সংলগ্ন, সাবগ্রাম ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -975,7 +975,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শাকপালা (রাজাপুর) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Shakpala (Rajapur) Union Health & Family Welfare Centre",
+    "name_en": "Shakpala (Rajapur) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "শাকপালা, রাজাপুর ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -984,7 +984,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেখেরকোলা ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Sekherkola Union Health & Family Welfare Centre",
+    "name_en": "Sekherkola Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "শেখেরকোলা বাজার সংলগ্ন, শেখেরকোলা ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -993,7 +993,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বাঘোপাড়া (গোকুল) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Baghopara (Gokul) Union Health & Family Welfare Centre",
+    "name_en": "Baghopara (Gokul) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "বাঘোপাড়া, গোকুল ইউনিয়ন, বগুড়া-রংপুর মহাসড়ক, বগুড়া - ৫৮০০",
@@ -1002,7 +1002,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "এরুলিয়া ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Erulia Union Health & Family Welfare Centre",
+    "name_en": "Erulia Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "এরুলিয়া পরিষদ কমপ্লেক্স সংলগ্ন, এরুলিয়া, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -1011,7 +1011,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ফাপোর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Fapor Union Health & Family Welfare Centre",
+    "name_en": "Fapor Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "ফাপোর পশ্চিমপাড়া, ফাপোর ইউনিয়ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -1020,7 +1020,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নসরতপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Nasratpur Union Health & Family Welfare Centre",
+    "name_en": "Nasratpur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "নসরতপুর রেলওয়ে স্টেশন সংলগ্ন, নসরতপুর, আদমদীঘি, বগুড়া - ৫৮৪০",
@@ -1029,7 +1029,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আদমদীঘি সদর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Adamdighi Sadar Union Health & Family Welfare Centre",
+    "name_en": "Adamdighi Sadar Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "পুরাতন হাসপাতাল রোড, আদমদীঘি সদর, আদমদীঘি, বগুড়া - ৫৮৪০",
@@ -1038,7 +1038,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চাঁপাপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Champapur Union Health & Family Welfare Centre",
+    "name_en": "Champapur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "চাঁপাপুর বাজার, চাঁপাপুর ইউনিয়ন, আদমদীঘি, বগুড়া - ৫৮৪০",
@@ -1047,7 +1047,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ছাতিয়ানগ্রাম ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Chhatiangram Union Health & Family Welfare Centre",
+    "name_en": "Chhatiangram Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "পরিষদ চত্বর, ছাতিয়ানগ্রাম, আদমদীঘি, বগুড়া - ৫৮৪০",
@@ -1056,7 +1056,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কুন্দগ্রাম ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kundagram Union Health & Family Welfare Centre",
+    "name_en": "Kundagram Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কুন্দগ্রাম হাই স্কুল রোড, কুন্দগ্রাম, আদমদীঘি, বগুড়া - ৫৮৪০",
@@ -1065,7 +1065,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চৌকিবাড়ি ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Choukibari Union Health & Family Welfare Centre",
+    "name_en": "Choukibari Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "চৌকিবাড়ি বাজার, চৌকিবাড়ি ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -1074,7 +1074,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বেড়েরবাড়ি (গোপালনগর) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Bererbari (Gopalnagar) Union Health & Family Welfare Centre",
+    "name_en": "Bererbari (Gopalnagar) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "বেড়েরবাড়ি, গোপালনগর ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -1083,7 +1083,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নিমগাছি ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Nimgachhi Union Health & Family Welfare Centre",
+    "name_en": "Nimgachhi Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "নিমগাছি বাজার, নিমগাছি ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -1092,7 +1092,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কালেরপাড়া ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kalerpara Union Health & Family Welfare Centre",
+    "name_en": "Kalerpara Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কালেরপাড়া বাজার, কালেরপাড়া ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -1101,7 +1101,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "এলাঙ্গী ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Elangi Union Health & Family Welfare Centre",
+    "name_en": "Elangi Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "এলাঙ্গী হাই স্কুল রোড, এলাঙ্গী ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -1110,7 +1110,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মথুরাপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Mathurapur Union Health & Family Welfare Centre",
+    "name_en": "Mathurapur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "মথুরাপুর পুরাতন বাজার, মথুরাপুর ইউনিয়ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -1119,7 +1119,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "জিয়ানগর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Zianagar Union Health & Family Welfare Centre",
+    "name_en": "Zianagar Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "জিয়ানগর বাজার, জিয়ানগর ইউনিয়ন, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1128,7 +1128,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দুপচাঁচিয়া সদর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Dupchanchia Sadar Union Health & Family Welfare Centre",
+    "name_en": "Dupchanchia Sadar Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "খাঁতাখালী, দুপচাঁচিয়া সদর ইউনিয়ন, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1137,7 +1137,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গুণাহার ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Gunahar Union Health & Family Welfare Centre",
+    "name_en": "Gunahar Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "গুণাহার বাজার, গুণাহার ইউনিয়ন, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1146,7 +1146,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গোবিন্দপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Gobindapur Union Health & Family Welfare Centre",
+    "name_en": "Gobindapur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "পরিষদ চত্বর, গোবিন্দপুর ইউনিয়ন, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1155,7 +1155,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চামরুল ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Chamrul Union Health & Family Welfare Centre",
+    "name_en": "Chamrul Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "চামরুল স্কুল রোড, চামরুল ইউনিয়ন, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1164,7 +1164,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আগুনাথিরহাট ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Agunatirhat Union Health & Family Welfare Centre",
+    "name_en": "Agunatirhat Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "আগুনাথিরহাট বাজার, নারুয়ামালা ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
@@ -1173,7 +1173,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বালিয়া দিঘী (কোলাকোপা) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Balia Dighi (Kolakopa) Union Health & Family Welfare Centre",
+    "name_en": "Balia Dighi (Kolakopa) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কোলাকোপা, বালিয়া দিঘী ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
@@ -1182,7 +1182,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাগইল ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kagail Union Health & Family Welfare Centre",
+    "name_en": "Kagail Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কাগইল বাজার, কাগইল ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
@@ -1191,7 +1191,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নাসিপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Nasipur Union Health & Family Welfare Centre",
+    "name_en": "Nasipur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "নাসিপুর বাজার, নাসিপুর ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
@@ -1200,7 +1200,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নেপালতলী ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Nepaltali Union Health & Family Welfare Centre",
+    "name_en": "Nepaltali Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "নেপালতলী বাজার, নেপালতলী ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
@@ -1209,7 +1209,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মহিষাবান ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Mahishaban Union Health & Family Welfare Centre",
+    "name_en": "Mahishaban Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "পোড়াদহ সংলগ্ন, মহিষাবান ইউনিয়ন, গাবতলী, বগুড়া - ৫৮২০",
@@ -1218,7 +1218,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মুরইল ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Murail Union Health & Family Welfare Centre",
+    "name_en": "Murail Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "মুরইল বাজার সংলগ্ন, মুরইল ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -1227,7 +1227,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কালাই মাঝপাড়া ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kalai Majhpara Union Health & Family Welfare Centre",
+    "name_en": "Kalai Majhpara Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "মাঝপাড়া বাজার, কালাই মাঝপাড়া ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -1236,7 +1236,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "জামগ্রাম ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Jamgaon Union Health & Family Welfare Centre",
+    "name_en": "Jamgaon Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "জামগ্রাম বাজার, জামগ্রাম ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -1245,7 +1245,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আঘোর (মালঞ্চা) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Aghor (Malancha) Union Health & Family Welfare Centre",
+    "name_en": "Aghor (Malancha) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "আঘোর, মালঞ্চা ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -1254,7 +1254,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নারহট্ট ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Narahatta Union Health & Family Welfare Centre",
+    "name_en": "Narahatta Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "নারহট্ট স্কুল রোড, নারহট্ট ইউনিয়ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -1263,7 +1263,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ভাটরা ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Bhatra Union Health & Family Welfare Centre",
+    "name_en": "Bhatra Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "ভাটরা হাই স্কুল রোড, ভাটরা ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1272,7 +1272,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বুড়ইল ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Burail Union Health & Family Welfare Centre",
+    "name_en": "Burail Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "বুড়ইল পরিষদ কমপ্লেক্স, বুড়ইল ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1281,7 +1281,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "থালতা মাঝগ্রাম ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Thalta Majhgram Union Health & Family Welfare Centre",
+    "name_en": "Thalta Majhgram Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "থালতা বাজার, থালতা মাঝগ্রাম ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1290,7 +1290,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নন্দীগ্রাম সদর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Nandigram Sadar Union Health & Family Welfare Centre",
+    "name_en": "Nandigram Sadar Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "ওমরপুর, নন্দীগ্রাম ইউনিয়ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1299,7 +1299,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চালুয়াবাড়ী ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Chaluabari Union Health & Family Welfare Centre",
+    "name_en": "Chaluabari Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "চালুয়াবাড়ী যমুনা চর এলাকা, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1308,7 +1308,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কর্ণিবাড়ী ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kornibari Union Health & Family Welfare Centre",
+    "name_en": "Kornibari Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কর্ণিবাড়ী বাজার, কর্ণিবাড়ী ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1317,7 +1317,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বোহাইল ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Bohail Union Health & Family Welfare Centre",
+    "name_en": "Bohail Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "বোহাইল বাজার, যমুনা চর এলাকা, বোহাইল ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1326,7 +1326,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাজলা ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kazla Union Health & Family Welfare Centre",
+    "name_en": "Kazla Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কাজলা বাজার, কাজলা ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1335,7 +1335,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কামালপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kamalpur Union Health & Family Welfare Centre",
+    "name_en": "Kamalpur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কামালপুর বাজার, কামালপুর ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1344,7 +1344,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কুতুবপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kutubpur Union Health & Family Welfare Centre",
+    "name_en": "Kutubpur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কুতুবপুর বাজার, কুতুবপুর ইউনিয়ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1353,7 +1353,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "খোট্টাপাড়া ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Khottapara Union Health & Family Welfare Centre",
+    "name_en": "Khottapara Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "খোট্টাপাড়া বাজার, খোট্টাপাড়া ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -1362,7 +1362,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চোপিনগর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Chopinagar Union Health & Family Welfare Centre",
+    "name_en": "Chopinagar Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "চোপিনগর বাজার, চোপিনগর ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -1371,7 +1371,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আশেকপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Ashekpur Union Health & Family Welfare Centre",
+    "name_en": "Ashekpur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "রাণীরহাট, আশেকপুর ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -1380,7 +1380,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মাঝিড়া ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Majhira Union Health & Family Welfare Centre",
+    "name_en": "Majhira Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "মাঝিড়া সেনানিবাস সংলগ্ন, মাঝিড়া ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -1389,7 +1389,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আড়িয়া ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Aria Union Health & Family Welfare Centre",
+    "name_en": "Aria Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "রহিমাবাদ সড়ক, আড়িয়া ইউনিয়ন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -1398,7 +1398,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কুসুম্বী (আলতাদিঘী) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kusumbi (Altadighi) Union Health & Family Welfare Centre",
+    "name_en": "Kusumbi (Altadighi) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "আলতাদিঘী, কুসুম্বী ইউনিয়ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -1407,7 +1407,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বিশালপুর (পাঁচুয়াল) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Bishalpur (Pachual) Union Health & Family Welfare Centre",
+    "name_en": "Bishalpur (Pachual) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "পাঁচুয়াল, বিশালপুর ইউনিয়ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -1416,7 +1416,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সুঘাট (জয়লাজুয়ান) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Sughat (Joylajowan) Union Health & Family Welfare Centre",
+    "name_en": "Sughat (Joylajowan) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "জয়লাজুয়ান, সুঘাট ইউনিয়ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -1425,7 +1425,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "খামারকান্দি ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Khamarkandi Union Health & Family Welfare Centre",
+    "name_en": "Khamarkandi Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "খামারকান্দি বাজার, খামারকান্দি ইউনিয়ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -1434,7 +1434,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "খানপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Khanpur Union Health & Family Welfare Centre",
+    "name_en": "Khanpur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "খানপুর বাজার, খানপুর ইউনিয়ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -1443,7 +1443,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গাড়ীদহ (কালসীমটি) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Garidaha (Kalsimati) Union Health & Family Welfare Centre",
+    "name_en": "Garidaha (Kalsimati) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কালসীমটি, আরডিএ সংলগ্ন, গাড়ীদহ ইউনিয়ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -1452,7 +1452,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গঙ্গানগর (সৈয়দপুর) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Ganganagar (Sayedpur) Union Health & Family Welfare Centre",
+    "name_en": "Ganganagar (Sayedpur) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "গঙ্গানগর, সৈয়দপুর ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -1461,7 +1461,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ময়দানহাটা ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Maydanhat Union Health & Family Welfare Centre",
+    "name_en": "Maydanhat Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "ময়দানহাটা বাজার, ময়দানহাটা ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -1470,7 +1470,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পীরব ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Pirab Union Health & Family Welfare Centre",
+    "name_en": "Pirab Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "পীরব বাজার, পীরব ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -1479,7 +1479,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "রায়নগর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Raynagar Union Health & Family Welfare Centre",
+    "name_en": "Raynagar Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "রায়নগর বাজার, রায়নগর ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -1488,7 +1488,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আটমূল ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Atmul Union Health & Family Welfare Centre",
+    "name_en": "Atmul Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "আটমূল বাজার, আটমূল ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -1497,7 +1497,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কিচক ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Kichak Union Health & Family Welfare Centre",
+    "name_en": "Kichak Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "কিচক বাজার, কিচক ইউনিয়ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -1506,7 +1506,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "জোড়গাছা (ভেলুরপাড়া) ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Jorgacha (Valurpara) Union Health & Family Welfare Centre",
+    "name_en": "Jorgacha (Valurpara) Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "ভেলুরপাড়া রেল স্টেশন সংলগ্ন, জোড়গাছা ইউনিয়ন, সোনাতলা, বগুড়া - ৫৮২০",
@@ -1515,7 +1515,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দিগদাইড় ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Digdair Union Health & Family Welfare Centre",
+    "name_en": "Digdair Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "দিগদাইড় হাই স্কুল রোড, দিগদাইড় ইউনিয়ন, সোনাতলা, বগুড়া - ৫৮২০",
@@ -1524,7 +1524,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মধুপুর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Madhupur Union Health & Family Welfare Centre",
+    "name_en": "Madhupur Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "মধুপুর বাজার, মধুপুর ইউনিয়ন, সোনাতলা, বগুড়া - ৫৮২০",
@@ -1533,7 +1533,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পাকুল্লা ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Pakulla Union Health & Family Welfare Centre",
+    "name_en": "Pakulla Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "পাকুল্লা বাজার, যমুনা বন্যা নিয়ন্ত্রণ বাঁধ, পাকুল্লা, সোনাতলা, বগুড়া - ৫৮২০",
@@ -1542,7 +1542,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "তৈকানী চুকাইনগর ইউনিয়ন স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
-    "enName": "Tekani Chukainagar Union Health & Family Welfare Centre",
+    "name_en": "Tekani Chukainagar Union Health & Family Welfare Centre",
     "type": "govt",
     "typeLabel": "Union Health & Family Welfare Centre",
     "address": "চুকাইনগর বাজার, যমুনা তীরবর্তী এলাকা, তৈকানী চুকাইনগর, সোনাতলা, বগুড়া - ৫৮২০",
@@ -1551,7 +1551,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শিকারপুর কমিউনিটি ক্লিনিক",
-    "enName": "Shikarpur Community Clinic",
+    "name_en": "Shikarpur Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "শিকারপুর গ্রাম, এরুলিয়া, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -1560,7 +1560,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কৈচর কমিউনিটি ক্লিনিক",
-    "enName": "Koichor Community Clinic",
+    "name_en": "Koichor Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "কৈচর দক্ষিণপাড়া, ফাঁপোর, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -1569,7 +1569,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পলাশবাড়ী কমিউনিটি ক্লিনিক",
-    "enName": "Palashbari Community Clinic",
+    "name_en": "Palashbari Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "পলাশবাড়ী গ্রাম, গোকুল, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -1578,7 +1578,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাজীপুর কমিউনিটি ক্লিনিক",
-    "enName": "Kazipur Community Clinic",
+    "name_en": "Kazipur Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "কাজীপুর পশ্চিমপাড়া, লাহিড়ীপাড়া, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -1587,7 +1587,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বাকশৈল কমিউনিটি ক্লিনিক",
-    "enName": "Baksmoil Community Clinic",
+    "name_en": "Baksmoil Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বাকশৈল গ্রাম, নামুজা, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -1596,7 +1596,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চকলোকমান কমিউনিটি ক্লিনিক",
-    "enName": "Choklokman Community Clinic",
+    "name_en": "Choklokman Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "চকলোকমান বাজার সংলগ্ন, সাবগ্রাম, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -1605,7 +1605,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শালগ্রাম কমিউনিটি ক্লিনিক",
-    "enName": "Shalgram Community Clinic",
+    "name_en": "Shalgram Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "শালগ্রাম, আদমদীঘি সদর, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -1614,7 +1614,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "উথরাইল কমিউনিটি ক্লিনিক",
-    "enName": "Uthrail Community Clinic",
+    "name_en": "Uthrail Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "উথরাইল গ্রাম, চাঁপাপুর, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -1623,7 +1623,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বাগবাড়ি কমিউনিটি ক্লিনিক",
-    "enName": "Bagbari Community Clinic",
+    "name_en": "Bagbari Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বাগবাড়ি গ্রাম, ছাতিয়ানগ্রাম, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -1632,7 +1632,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "তারাপুর কমিউনিটি ক্লিনিক",
-    "enName": "Tarapur Community Clinic",
+    "name_en": "Tarapur Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "তারাপুর, কুন্দগ্রাম, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -1641,7 +1641,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মুরইল কমিউনিটি ক্লিনিক",
-    "enName": "Murail CC (Nasratpur)",
+    "name_en": "Murail CC (Nasratpur)",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "মুরইল গ্রাম, নসরতপুর, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -1650,7 +1650,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সান্দিড়া কমিউনিটি ক্লিনিক",
-    "enName": "Sandira Community Clinic",
+    "name_en": "Sandira Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "সান্দিড়া, সান্তাহার গ্রামীণ এলাকা, আদমদীঘি, বগুড়া - ৫৮৯১",
@@ -1659,7 +1659,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বৈশাখী চর কমিউনিটি ক্লিনিক",
-    "enName": "Boishakhi Char Community Clinic",
+    "name_en": "Boishakhi Char Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বৈশাখী চর, যমুনা নদীর অববাহিকা, ভান্ডারবাড়ী, ধুনট, বগুড়া - ৫৮৫০",
@@ -1668,7 +1668,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দিঘলকান্দি কমিউনিটি ক্লিনিক",
-    "enName": "Dighalkandi Community Clinic",
+    "name_en": "Dighalkandi Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "দিঘলকান্দি, চৌকিবাড়ী, ধুনট, বগুড়া - ৫৮৫০",
@@ -1677,7 +1677,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বড়চাপড়া কমিউনিটি ক্লিনিক",
-    "enName": "Boro Chapra Community Clinic",
+    "name_en": "Boro Chapra Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বড়চাপড়া, চিকাশী, ধুনট, বগুড়া - ৫৮৫০",
@@ -1686,7 +1686,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বিলকাজুলী কমিউনিটি ক্লিনিক",
-    "enName": "Bilkajuli Community Clinic",
+    "name_en": "Bilkajuli Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বিলকাজুলী, এলাঙ্গী, ধুনট, বগুড়া - ৫৮৫০",
@@ -1695,7 +1695,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বানিয়াযান কমিউনিটি ক্লিনিক",
-    "enName": "Baniyajan Community Clinic",
+    "name_en": "Baniyajan Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বানিয়াযান, গোসাইবাড়ী, ধুনট, বগুড়া - ৫৮৫০",
@@ -1704,7 +1704,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নান্দিয়ারপাড়া কমিউনিটি ক্লিনিক",
-    "enName": "Nandiyarpara Community Clinic",
+    "name_en": "Nandiyarpara Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "নান্দিয়ারপাড়া, নিমগাছি, ধুনট, বগুড়া - ৫৮৫০",
@@ -1713,7 +1713,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ফেঁপি কমিউনিটি ক্লিনিক",
-    "enName": "Phepi Community Clinic",
+    "name_en": "Phepi Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "ফেঁপি গ্রাম, চামরুল, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1722,7 +1722,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কুর্শাহার কমিউনিটি ক্লিনিক",
-    "enName": "Kurshahar Community Clinic",
+    "name_en": "Kurshahar Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "কুর্শাহার, দুপচাঁচিয়া সদর, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1731,7 +1731,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বালুকা কমিউনিটি ক্লিনিক",
-    "enName": "Baluka Community Clinic",
+    "name_en": "Baluka Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বালুকা গ্রাম, গোবিন্দপুর, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1740,7 +1740,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সুখানগাড়ী কমিউনিটি ক্লিনিক",
-    "enName": "Sukhangari Community Clinic",
+    "name_en": "Sukhangari Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "সুখানগাড়ী গ্রাম, গুনাহার, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1749,7 +1749,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দেবখন্ড কমিউনিটি ক্লিনিক",
-    "enName": "Debkhanda Community Clinic",
+    "name_en": "Debkhanda Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "দেবখন্ড গ্রাম, তালোড়া, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1758,7 +1758,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পোথা কমিউনিটি ক্লিনিক",
-    "enName": "Potha Community Clinic",
+    "name_en": "Potha Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "পোথা গ্রাম, জিয়ানগর, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -1767,7 +1767,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মালিয়ান্দহ কমিউনিটি ক্লিনিক",
-    "enName": "Maliandaha Community Clinic",
+    "name_en": "Maliandaha Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "মালিয়ান্দহ গ্রাম, বালিয়াদিঘী, গাবতলী, বগুড়া - ৫৮২০",
@@ -1776,7 +1776,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দেওপাড়া কমিউনিটি ক্লিনিক",
-    "enName": "Deopara Community Clinic",
+    "name_en": "Deopara Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "দেওপাড়া, কাগইল, গাবতলী, বগুড়া - ৫৮২০",
@@ -1785,7 +1785,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পেরী কমিউনিটি ক্লিনিক",
-    "enName": "Peri Community Clinic",
+    "name_en": "Peri Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "পেরী গ্রাম, মহিষাবান, গাবতলী, বগুড়া - ৫৮২০",
@@ -1794,7 +1794,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "উজগ্রাম কমিউনিটি ক্লিনিক",
-    "enName": "Ujgram Community Clinic",
+    "name_en": "Ujgram Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "উজগ্রাম, নাছিপুর, গাবতলী, বগুড়া - ৫৮২০",
@@ -1803,7 +1803,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পাচকাথিয়া কমিউনিটি ক্লিনিক",
-    "enName": "Pachkathia Community Clinic",
+    "name_en": "Pachkathia Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "পাচকাথিয়া গ্রাম, রামেশ্বরপুর, গাবতলী, বগুড়া - ৫৮২০",
@@ -1812,7 +1812,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "তিলকপুর কমিউনিটি ক্লিনিক",
-    "enName": "Tilokpur Community Clinic",
+    "name_en": "Tilokpur Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "তিলকপুর গ্রাম, সুখানপুকুর, গাবতলী, বগুড়া - ৫৮২০",
@@ -1821,7 +1821,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ভাল্লুক কমিউনিটি ক্লিনিক",
-    "enName": "Bhalluk Community Clinic",
+    "name_en": "Bhalluk Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "ভাল্লুক গ্রাম, বীরকেদার, কাহালু, বগুড়া - ৫৮৭০",
@@ -1830,7 +1830,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "জামতলী কমিউনিটি ক্লিনিক",
-    "enName": "Jamtoli Community Clinic",
+    "name_en": "Jamtoli Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "জামতলী বাজার সংলগ্ন, দুর্গাপুর, কাহালু, বগুড়া - ৫৮৭০",
@@ -1839,7 +1839,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ডিপইল কমিউনিটি ক্লিনিক",
-    "enName": "Dipail Community Clinic",
+    "name_en": "Dipail Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "ডিপইল গ্রাম, মালঞ্চা, কাহালু, বগুড়া - ৫৮৭০",
@@ -1848,7 +1848,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পাতাঞ্জ কমিউনিটি ক্লিনিক",
-    "enName": "Patanj Community Clinic",
+    "name_en": "Patanj Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "পাতাঞ্জ গ্রাম, নারহট্ট, কাহালু, বগুড়া - ৫৮৭০",
@@ -1857,7 +1857,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ছাতরা কমিউনিটি ক্লিনিক",
-    "enName": "Chhatra Community Clinic",
+    "name_en": "Chhatra Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "ছাতরা গ্রাম, পাইকর, কাহালু, বগুড়া - ৫৮৭০",
@@ -1866,7 +1866,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ঢাকান্টা কমিউনিটি ক্লিনিক",
-    "enName": "Dhakanta Community Clinic",
+    "name_en": "Dhakanta Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "ঢাকান্টা, কাহালু সদর, কাহালু, বগুড়া - ৫৮৭০",
@@ -1875,7 +1875,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দমদমা কমিউনিটি ক্লিনিক",
-    "enName": "Damdama CC (Bhatra)",
+    "name_en": "Damdama CC (Bhatra)",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "দমদমা গ্রাম, ভাটরা, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1884,7 +1884,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মুরাদপুর কমিউনিটি ক্লিনিক",
-    "enName": "Muradpur Community Clinic",
+    "name_en": "Muradpur Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "মুরাদপুর গ্রাম, বুড়ইল, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1893,7 +1893,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাথম কমিউনিটি ক্লিনিক",
-    "enName": "Katham Community Clinic",
+    "name_en": "Katham Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "কাথম গ্রাম, নন্দীগ্রাম সদর, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1902,7 +1902,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "রনবাঘা কমিউনিটি ক্লিনিক",
-    "enName": "Ranbagha Community Clinic",
+    "name_en": "Ranbagha Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "রনবাঘা বাজার সংলগ্ন, নন্দীগ্রাম সদর, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1911,7 +1911,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নিমাইদিঘী কমিউনিটি ক্লিনিক",
-    "enName": "Nimaidighi Community Clinic",
+    "name_en": "Nimaidighi Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "নিমাইদিঘী গ্রাম, থালতা মাঝগ্রাম, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1920,7 +1920,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "থালতা কমিউনিটি ক্লিনিক",
-    "enName": "Thalta Community Clinic",
+    "name_en": "Thalta Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "থালতা গ্রাম, থালতা মাঝগ্রাম, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -1929,7 +1929,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পারতিত পরল কমিউনিটি ক্লিনিক",
-    "enName": "Partitparol Community Clinic",
+    "name_en": "Partitparol Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "পারতিত পরল, ভেলাবাড়ী, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1938,7 +1938,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ধারাবর্ষা চর কমিউনিটি ক্লিনিক",
-    "enName": "Dharabarsha Char Community Clinic",
+    "name_en": "Dharabarsha Char Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "ধারাবর্ষা চর, যমুনা নদী তীরবর্তী, বোহাইল, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1947,7 +1947,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাজীর চর কমিউনিটি ক্লিনিক",
-    "enName": "Kajir Char Community Clinic",
+    "name_en": "Kajir Char Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "কাজীর চর, চালুয়াবাড়ী, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1956,7 +1956,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "রামচন্দ্রপুর কমিউনিটি ক্লিনিক",
-    "enName": "Ramchandrapur Community Clinic",
+    "name_en": "Ramchandrapur Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "রামচন্দ্রপুর গ্রাম, ফুলবাড়ী, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1965,7 +1965,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নিজবোল কমিউনিটি ক্লিনিক",
-    "enName": "Nijbol Community Clinic",
+    "name_en": "Nijbol Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "নিজবোল গ্রাম, হাটশেরপুর, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1974,7 +1974,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চর বেনুপুর কমিউনিটি ক্লিনিক",
-    "enName": "Char Benupur Community Clinic",
+    "name_en": "Char Benupur Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "চর বেনুপুর চর এলাকা, কাজলা, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -1983,7 +1983,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "রানীরহাট কমিউনিটি ক্লিনিক",
-    "enName": "Ranirhat CC (Amrool)",
+    "name_en": "Ranirhat CC (Amrool)",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "রানীরহাট বাজার সংলগ্ন, আমরুল, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -1992,7 +1992,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "রহিমাবাদ কমিউনিটি ক্লিনিক",
-    "enName": "Rahimabad Community Clinic",
+    "name_en": "Rahimabad Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "রহিমাবাদ গ্রাম, আড়িয়া, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2001,7 +2001,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "রানীরপাড়া কমিউনিটি ক্লিনিক",
-    "enName": "Ranirpara Community Clinic",
+    "name_en": "Ranirpara Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "রানীরপাড়া, আশেকপুর, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2010,7 +2010,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "খাদাস কমিউনিটি ক্লিনিক",
-    "enName": "Khadas Community Clinic",
+    "name_en": "Khadas Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "খাদাস গ্রাম, চোপীনগর, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2019,7 +2019,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গয়নাবান্দ কমিউনিটি ক্লিনিক",
-    "enName": "Goynaband Community Clinic",
+    "name_en": "Goynaband Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "গয়নাবান্দ গ্রাম, খরনা, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2028,7 +2028,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বিহিগ্রাম কমিউনিটি ক্লিনিক",
-    "enName": "Bihigram Community Clinic",
+    "name_en": "Bihigram Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বিহিগ্রাম, মাঝিড়া, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2037,7 +2037,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বেলগাড়ী কমিউনিটি ক্লিনিক",
-    "enName": "Belgari Community Clinic",
+    "name_en": "Belgari Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বেলগাড়ী গ্রাম, ভবানীপুর, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2046,7 +2046,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "রানীনগর কমিউনিটি ক্লিনিক",
-    "enName": "Raninagar Community Clinic",
+    "name_en": "Raninagar Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "রানীনগর, বিশালপুর, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2055,7 +2055,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চকপাথালিয়া কমিউনিটি ক্লিনিক",
-    "enName": "Chokpathalia Community Clinic",
+    "name_en": "Chokpathalia Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "চকপাথালিয়া, গাড়ীদহ, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2064,7 +2064,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বিলনালুয়া কমিউনিটি ক্লিনিক",
-    "enName": "Bilnalua Community Clinic",
+    "name_en": "Bilnalua Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "বিলনালুয়া গ্রাম, খানপুর, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2073,7 +2073,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কালিশহর কমিউনিটি ক্লিনিক",
-    "enName": "Kalishahar Community Clinic",
+    "name_en": "Kalishahar Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "কালিশহর গ্রাম, কুসুম্বী, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2082,7 +2082,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চান্দাইকোনা বর্ডার কমিউনিটি ক্লিনিক",
-    "enName": "Chandaikona Border Community Clinic",
+    "name_en": "Chandaikona Border Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "চান্দাইকোনা সীমান্ত সংলগ্ন, সীমাবাড়ী, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2091,7 +2091,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চককানু কমিউনিটি ক্লিনিক",
-    "enName": "Chokkanu Community Clinic",
+    "name_en": "Chokkanu Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "চককানু গ্রাম, আটমূল, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2100,7 +2100,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ভাসুবিহার কমিউনিটি ক্লিনিক",
-    "enName": "Vasu Vihara Community Clinic",
+    "name_en": "Vasu Vihara Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "ভাসুবিহার প্রত্নতাত্ত্বিক এলাকা সংলগ্ন, বিহার, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2109,7 +2109,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চন্ডিহারা কমিউনিটি ক্লিনিক",
-    "enName": "Chondihara Community Clinic",
+    "name_en": "Chondihara Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "চন্ডিহারা গ্রাম, বুড়িগঞ্জ, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2118,7 +2118,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মহাস্থানগড় কমিউনিটি ক্লিনিক",
-    "enName": "Mahasthangarh Community Clinic",
+    "name_en": "Mahasthangarh Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "মহাস্থানগড় ঐতিহাসিক প্রাচীর সংলগ্ন, দেউলী, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2127,7 +2127,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "জয়পুর কমিউনিটি ক্লিনিক",
-    "enName": "Joypur Community Clinic",
+    "name_en": "Joypur Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "জয়পুর গ্রাম, কিচক, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2136,7 +2136,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "খামারপাড়া কমিউনিটি ক্লিনিক",
-    "enName": "Khamarpara Community Clinic",
+    "name_en": "Khamarpara Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "খামারপাড়া গ্রাম, ময়দানহাট্টা, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2145,7 +2145,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নিশ্চিন্তপুর কমিউনিটি ক্লিনিক",
-    "enName": "Nishchintapur Community Clinic",
+    "name_en": "Nishchintapur Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "নিশ্চিন্তপুর গ্রাম, বালুয়া, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2154,7 +2154,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "তেকানী কমিউনিটি ক্লিনিক",
-    "enName": "Tekani Community Clinic",
+    "name_en": "Tekani Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "তেকানী গ্রাম, দিগদাইড়, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2163,7 +2163,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কালাইহাটা কমিউনিটি ক্লিনিক",
-    "enName": "Kalaihata Community Clinic",
+    "name_en": "Kalaihata Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "কালাইহাটা গ্রাম, জোড়গাছা, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2172,7 +2172,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "হুয়াকুয়া কমিউনিটি ক্লিনিক",
-    "enName": "Huakuwa Community Clinic",
+    "name_en": "Huakuwa Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "হুয়াকুয়া গ্রাম, মধুপুর, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2181,7 +2181,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "যমুনা চর কমিউনিটি ক্লিনিক",
-    "enName": "Jamuna Char CC (Pakulla)",
+    "name_en": "Jamuna Char CC (Pakulla)",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "যমুনা চর ও বাঁধ সংলগ্ন এলাকা, পাকুল্লা, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2190,7 +2190,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চুকাইনগর বাঁধ কমিউনিটি ক্লিনিক",
-    "enName": "Chukainagar Embankment Community Clinic",
+    "name_en": "Chukainagar Embankment Community Clinic",
     "type": "govt",
     "typeLabel": "Community Clinic",
     "address": "চুকাইনগর বন্যা নিয়ন্ত্রণ বাঁধ সংলগ্ন, তৈকানী চুকাইনগর, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2199,7 +2199,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শহীদ জিয়াউর রহমান মেডিকেল কলেজ হাসপাতাল",
-    "enName": "Shaheed Ziaur Rahman Medical College Hospital (SZRMCH)",
+    "name_en": "Shaheed Ziaur Rahman Medical College Hospital (SZRMCH)",
     "type": "govt",
     "typeLabel": "Medical Colleges and Hospitals",
     "address": "সিলিমপুর, মেডিকেল রোড, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2208,7 +2208,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মোহাম্মদ আলী ২৫০ শয্যা বিশিষ্ট জেলা হাসপাতাল, বগুড়া",
-    "enName": "Mohammad Ali 250-Bed District Hospital, Bogura",
+    "name_en": "Mohammad Ali 250-Bed District Hospital, Bogura",
     "type": "govt",
     "typeLabel": "Government District Hospitals",
     "address": "হাসপাতাল রোড, রেলওয়ে স্টেশন সংলগ্ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2217,7 +2217,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া পুলিশ হাসপাতাল",
-    "enName": "Bogura Police Hospital",
+    "name_en": "Bogura Police Hospital",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "পুলিশ লাইন্স কম্পাউন্ড, নিশিন্দারা, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2226,7 +2226,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া জেলা কারাগার হাসপাতাল",
-    "enName": "Bogura District Jail Hospital",
+    "name_en": "Bogura District Jail Hospital",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "বগুড়া জেলা কারাগার প্রাঙ্গণ, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2235,7 +2235,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সান্তাহার রেলওয়ে হাসপাতাল, বগুড়া",
-    "enName": "Santahar Railway Hospital, Bogura",
+    "name_en": "Santahar Railway Hospital, Bogura",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "রেলওয়ে স্টেশন কলোনি, সান্তাহার জংশন, আদমদীঘি, বগুড়া - ৫৮৯১",
@@ -2244,7 +2244,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া বক্ষব্যাধি হাসপাতাল (যক্ষ্মা হাসপাতাল)",
-    "enName": "Bogura Chest Disease Hospital",
+    "name_en": "Bogura Chest Disease Hospital",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "মালতীনগর, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2253,7 +2253,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া বক্ষব্যাধি ক্লিনিক (টিবি ক্লিনিক)",
-    "enName": "Bogura Chest Disease Clinic (TB Clinic)",
+    "name_en": "Bogura Chest Disease Clinic (TB Clinic)",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "বড়গোলা, জলেশ্বরীতলা, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2262,7 +2262,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মা ও শিশু কল্যাণ কেন্দ্র (MCWC), বগুড়া",
-    "enName": "Maternal and Child Welfare Centre (MCWC), Bogura",
+    "name_en": "Maternal and Child Welfare Centre (MCWC), Bogura",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "থানা রোড, কাটনারপাড়া সংলগ্ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2271,7 +2271,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনাতলা ২০ শয্যা বিশিষ্ট হাসপাতাল",
-    "enName": "Sonatala 20-Bed Specialized Hospital",
+    "name_en": "Sonatala 20-Bed Specialized Hospital",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "বালুয়া হাট সংলগ্ন, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2280,7 +2280,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চন্দনবাইশা ২০ শয্যা বিশিষ্ট হাসপাতাল, সারিয়াকান্দি",
-    "enName": "Chandanbaisha 20-Bed Riverine Hospital, Sariakandi",
+    "name_en": "Chandanbaisha 20-Bed Riverine Hospital, Sariakandi",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "চন্দনবাইশা বাজার, যমুনা নদী তীরবর্তী অঞ্চল, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -2289,7 +2289,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "তালোড়া ২০ শয্যা বিশিষ্ট হাসপাতাল, দুপচাঁচিয়া",
-    "enName": "Talora 20-Bed Hospital, Dhupchanchia",
+    "name_en": "Talora 20-Bed Hospital, Dhupchanchia",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "তালোড়া শিল্প এলাকা, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -2298,7 +2298,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ভান্ডারবাড়ী ১০ শয্যা বিশিষ্ট চর হাসপাতাল, ধুনট",
-    "enName": "Bhandarbari 10-Bed Char Hospital, Dhunat",
+    "name_en": "Bhandarbari 10-Bed Char Hospital, Dhunat",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "ভান্ডারবাড়ী বন্যা নিয়ন্ত্রণ বাঁধ সংলগ্ন, ধুনট, বগুড়া - ৫৮৫০",
@@ -2307,7 +2307,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেরপুর মা ও শিশু কল্যাণ কেন্দ্র (MCWC)",
-    "enName": "Sherpur Maternal & Child Welfare Centre (MCWC)",
+    "name_en": "Sherpur Maternal & Child Welfare Centre (MCWC)",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "পৌরসভা রোড, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2316,7 +2316,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শিবগঞ্জ ট্রমা ও জরুরী সেবা কেন্দ্র (মোকামতলা)",
-    "enName": "Shibganj Highway Trauma & Emergency Centre",
+    "name_en": "Shibganj Highway Trauma & Emergency Centre",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "ঢাকা-বগুড়া-রংপুর মহাসড়ক সংযোগস্থল, মোকামতলা, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2325,7 +2325,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গাবতলী গ্রামীণ চক্ষু ও বিশেষায়িত সেবা কেন্দ্র",
-    "enName": "Gabtali Rural Eye & Specialized Care Hospital",
+    "name_en": "Gabtali Rural Eye & Specialized Care Hospital",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "থানা মোড়, গাবতলী, বগুড়া - ৫৮২০",
@@ -2334,7 +2334,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাহালু বিশেষায়িত এনসিডি ও ডায়াবেটিস সেন্টার",
-    "enName": "Kahalu Specialized NCD & Diabetes Centre",
+    "name_en": "Kahalu Specialized NCD & Diabetes Centre",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "হাসপাতাল রোড, কাহালু, বগুড়া - ৫৮৭০",
@@ -2343,7 +2343,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নন্দীগ্রাম গ্রামীণ প্রসূতি সেবা কেন্দ্র",
-    "enName": "Nandigram Rural Maternity Centre",
+    "name_en": "Nandigram Rural Maternity Centre",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "ওমরপুর বাজার সংলগ্ন, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -2352,7 +2352,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শাজাহানপুর মহাসড়ক জরুরী সেবা কেন্দ্র",
-    "enName": "Shajahanpur Highway Emergency Response Unit",
+    "name_en": "Shajahanpur Highway Emergency Response Unit",
     "type": "govt",
     "typeLabel": "Government Specialized Hospitals",
     "address": "ঢাকা-বগুড়া মহাসড়ক (নয়মাইল মোড়), আড়িয়া, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2361,7 +2361,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস মেডিকেল কলেজ ও রফাতুল্লাহ কমিউনিটি হাসপাতাল",
-    "enName": "TMSS Medical College & Rafatullah Community Hospital (TMC & RCH)",
+    "name_en": "TMSS Medical College & Rafatullah Community Hospital (TMC & RCH)",
     "type": "private",
     "typeLabel": "Medical Colleges and Hospitals",
     "address": "ঠেঙ্গামারা, রংপুর রোড, গোকুল, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2370,7 +2370,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পপুলার হাসপাতাল ও কনসালটেশন সেন্টার, বগুড়া",
-    "enName": "Popular Hospital & Consultation Centre, Bogura",
+    "name_en": "Popular Hospital & Consultation Centre, Bogura",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "থানা রোড, জলেশ্বরীতলা, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2379,7 +2379,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ইবনে সিনা হাসপাতাল ও ডায়াগনস্টিক সেন্টার, বগুড়া",
-    "enName": "Ibn Sina Hospital & Diagnostic Centre, Bogura",
+    "name_en": "Ibn Sina Hospital & Diagnostic Centre, Bogura",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "কানোচগাড়ী, শেরপুর রোড, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2388,7 +2388,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া খ্রিস্টান মিশন হাসপাতাল",
-    "enName": "Bogura Christian Mission Hospital",
+    "name_en": "Bogura Christian Mission Hospital",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "থানা রোড, মিশন কম্পাউন্ড, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2397,7 +2397,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শামসুদ্দীন মেমোরিয়াল হাসপাতাল, বগুড়া",
-    "enName": "Shamsuddin Memorial Hospital, Bogura",
+    "name_en": "Shamsuddin Memorial Hospital, Bogura",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "কালীতলা, স্টেশন রোড সংলগ্ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2406,7 +2406,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "রেইনবো হাসপাতাল ও ডায়াগনস্টিক সেন্টার, বগুড়া",
-    "enName": "Rainbow Hospital & Diagnostic Centre, Bogura",
+    "name_en": "Rainbow Hospital & Diagnostic Centre, Bogura",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "মেডিকেল কলেজ রোড, সিলিমপুর, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2415,7 +2415,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "প্রাইম ক্লিনিক অ্যান্ড হাসপাতাল, বগুড়া",
-    "enName": "Prime Clinic & Hospital, Bogura",
+    "name_en": "Prime Clinic & Hospital, Bogura",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "জলেশ্বরীতলা মেইন রোড, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2424,7 +2424,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সান্তাহার জেনারেল হাসপাতাল ও ক্লিনিক",
-    "enName": "Santahar General Hospital & Clinic",
+    "name_en": "Santahar General Hospital & Clinic",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "রেলগেট এলাকা, সান্তাহার পৌরসভা, আদমদীঘি, বগুড়া - ৫৮৯১",
@@ -2433,7 +2433,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সেবা ক্লিনিক অ্যান্ড ডায়াগনস্টিক সেন্টার, আদমদীঘি",
-    "enName": "Sheba Clinic & Diagnostic Centre, Adamdighi",
+    "name_en": "Sheba Clinic & Diagnostic Centre, Adamdighi",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "আদমদীঘি বাসস্ট্যান্ড রোড, আদমদীঘি সদর, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -2442,7 +2442,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ধুনট সেন্ট্রাল ক্লিনিক অ্যান্ড নার্সিং হোম",
-    "enName": "Dhunat Central Clinic & Nursing Home",
+    "name_en": "Dhunat Central Clinic & Nursing Home",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "থানা রোড, ধুনট বাজার, ধুনট, বগুড়া - ৫৮৫০",
@@ -2451,7 +2451,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বিক্রমপুর মডেল ক্লিনিক, ধুনট",
-    "enName": "Bikrampur Model Clinic, Dhunat",
+    "name_en": "Bikrampur Model Clinic, Dhunat",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স রোড, ধুনট, বগুড়া - ৫৮৫০",
@@ -2460,7 +2460,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দুপচাঁচিয়া জেনারেল হাসপাতাল অ্যান্ড নার্সিং হোম",
-    "enName": "Dhupchanchia General Hospital & Nursing Home",
+    "name_en": "Dhupchanchia General Hospital & Nursing Home",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "বগুড়া-নওগাঁ মহাসড়ক, দুপচাঁচিয়া সদর, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -2469,7 +2469,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "তালোড়া ডিজিটাল ক্লিনিক অ্যান্ড হাসপাতাল",
-    "enName": "Talora Digital Clinic & Hospital",
+    "name_en": "Talora Digital Clinic & Hospital",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "রেলওয়ে স্টেশন রোড, তালোড়া, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -2478,7 +2478,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গাবতলী সেন্ট্রাল হাসপাতাল ও কনসালটেশন সেন্টার",
-    "enName": "Gabtali Central Hospital & Consultation Centre",
+    "name_en": "Gabtali Central Hospital & Consultation Centre",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "থানা মোড়, গাবতলী সদর, গাবতলী, বগুড়া - ৫৮২০",
@@ -2487,7 +2487,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনারায় হেলথ কেয়ার ক্লিনিক, গাবতলী",
-    "enName": "Sonaray Health Care Clinic, Gabtali",
+    "name_en": "Sonaray Health Care Clinic, Gabtali",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "সোনারায় বাজার রোড, সোনারায়, গাবতলী, বগুড়া - ৫৮২০",
@@ -2496,7 +2496,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাহালু মডেল ক্লিনিক অ্যান্ড নার্সিং হোম",
-    "enName": "Kahalu Model Clinic & Nursing Home",
+    "name_en": "Kahalu Model Clinic & Nursing Home",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "রেলগেট সংলগ্ন, কাহালু সদর, কাহালু, বগুড়া - ৫৮৭০",
@@ -2505,7 +2505,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মুরইল হেলথ কেয়ার অ্যান্ড ক্লিনিক, কাহালু",
-    "enName": "Murail Health Care & Clinic, Kahalu",
+    "name_en": "Murail Health Care & Clinic, Kahalu",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "মুরইল বাজার, কাহালু, বগুড়া - ৫৮৭০",
@@ -2514,7 +2514,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নন্দীগ্রাম জেনারেল হাসপাতাল অ্যান্ড নার্সিং হোম",
-    "enName": "Nandigram General Hospital & Nursing Home",
+    "name_en": "Nandigram General Hospital & Nursing Home",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "বাসস্ট্যান্ড মোড়, নন্দীগ্রাম সদর, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -2523,7 +2523,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ওমরপুর সেন্ট্রাল ক্লিনিক, নন্দীগ্রাম",
-    "enName": "Omarpur Central Clinic, Nandigram",
+    "name_en": "Omarpur Central Clinic, Nandigram",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "বগুড়া-নাটোর মহাসড়ক, ওমরপুর, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -2532,7 +2532,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সারিয়াকান্দি যমুনা ক্লিনিক অ্যান্ড নার্সিং হোম",
-    "enName": "Sariakandi Jamuna Clinic & Nursing Home",
+    "name_en": "Sariakandi Jamuna Clinic & Nursing Home",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "থানা রোড, সারিয়াকান্দি বাজার, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -2541,7 +2541,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চন্দনবাইশা সেবা ক্লিনিক, সারিয়াকান্দি",
-    "enName": "Chandanbaisha Seba Clinic, Sariakandi",
+    "name_en": "Chandanbaisha Seba Clinic, Sariakandi",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "চন্দনবাইশা বাজার সংলগ্ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -2550,7 +2550,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মাঝিড়া ক্যান্টনমেন্ট জেনারেল হাসপাতাল অ্যান্ড ক্লিনিক",
-    "enName": "Majhira Cantonment General Hospital & Clinic",
+    "name_en": "Majhira Cantonment General Hospital & Clinic",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "বগুড়া সেনানিবাস গেট সংলগ্ন, ঢাকা রোড, মাঝিড়া, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2559,7 +2559,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আড়িয়া মডেল হাসপাতাল অ্যান্ড নার্সিং হোম, শাজাহানপুর",
-    "enName": "Aria Model Hospital & Nursing Home, Shajahanpur",
+    "name_en": "Aria Model Hospital & Nursing Home, Shajahanpur",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "ঢাকা-বগুড়া মহাসড়ক, আড়িয়া বাজার, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2568,7 +2568,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেরপুর সেন্ট্রাল হাসপাতাল অ্যান্ড ডায়াগনস্টিক সেন্টার",
-    "enName": "Sherpur Central Hospital & Diagnostic Centre",
+    "name_en": "Sherpur Central Hospital & Diagnostic Centre",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "ঢাকা রোড, শেরপুর পৌরসভা, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2577,7 +2577,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আপন জেনারেল হাসপাতাল অ্যান্ড ক্লিনিক, শেরপুর",
-    "enName": "Apan General Hospital & Clinic, Sherpur",
+    "name_en": "Apan General Hospital & Clinic, Sherpur",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "বাসস্ট্যান্ড সংলগ্ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2586,7 +2586,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সীমাবাড়ী লাইফ কেয়ার ক্লিনিক, শেরপুর",
-    "enName": "Shimabari Life Care Clinic, Sherpur",
+    "name_en": "Shimabari Life Care Clinic, Sherpur",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "ঢাকা-বগুড়া মহাসড়ক, সীমাবাড়ী বাজার, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2595,7 +2595,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মোকামতলা জেনারেল হাসপাতাল অ্যান্ড ট্রমা সেন্টার",
-    "enName": "Mokamtala General Hospital & Trauma Centre (Private)",
+    "name_en": "Mokamtala General Hospital & Trauma Centre (Private)",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "রংপুর রোড, মোকামতলা মোড়, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2604,7 +2604,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শিবগঞ্জ মডেল হাসপাতাল অ্যান্ড নার্সিং হোম",
-    "enName": "Shibganj Model Hospital & Nursing Home",
+    "name_en": "Shibganj Model Hospital & Nursing Home",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "থানা মোড়, শিবগঞ্জ সদর, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2613,7 +2613,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনাতলা জেনারেল হাসপাতাল অ্যান্ড নার্সিং হোম",
-    "enName": "Sonatala General Hospital & Nursing Home",
+    "name_en": "Sonatala General Hospital & Nursing Home",
     "type": "private",
     "typeLabel": "Private Hospitals",
     "address": "স্টেশন রোড, সোনাতলা বাজার, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2622,7 +2622,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বালুয়া মডার্ন ক্লিনিক, সোনাতলা",
-    "enName": "Balua Modern Clinic, Sonatala",
+    "name_en": "Balua Modern Clinic, Sonatala",
     "type": "private",
     "typeLabel": "Private Clinics",
     "address": "বালুয়া হাট বাজার সংলগ্ন, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2631,7 +2631,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "পপুলার ডায়াগনস্টিক সেন্টার লি., বগুড়া",
-    "enName": "Popular Diagnostic Centre Ltd., Bogura",
+    "name_en": "Popular Diagnostic Centre Ltd., Bogura",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "থানা রোড, জলেশ্বরীতলা, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2640,7 +2640,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মেদিনোভা মেডিকেল সার্ভিসেস লি., বগুড়া",
-    "enName": "Medinova Medical Services Ltd., Bogura",
+    "name_en": "Medinova Medical Services Ltd., Bogura",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "কানোচগাড়ী, শেরপুর রোড, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2649,7 +2649,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ল্যাবএইড ডায়াগনস্টিক লি., বগুড়া",
-    "enName": "Labaid Diagnostic Ltd., Bogura",
+    "name_en": "Labaid Diagnostic Ltd., Bogura",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "জলেশ্বরীতলা প্রধান সড়ক, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2658,7 +2658,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ডক্টরস ডায়াগনস্টিক সেন্টার, বগুড়া",
-    "enName": "Doctors Diagnostic Centre, Bogura",
+    "name_en": "Doctors Diagnostic Centre, Bogura",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "মেডিকেল কলেজ মেইন গেট সংলগ্ন, সিলিমপুর, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2667,7 +2667,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "এপেক্স ডায়াগনস্টিক সেন্টার, বগুড়া",
-    "enName": "Apex Diagnostic Centre & Consultation, Bogura",
+    "name_en": "Apex Diagnostic Centre & Consultation, Bogura",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "বড়গোলা, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2676,7 +2676,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মডার্ন ডায়াগনস্টিক সেন্টার, বগুড়া",
-    "enName": "Modern Diagnostic Centre, Bogura",
+    "name_en": "Modern Diagnostic Centre, Bogura",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "স্টেশন রোড, রেলওয়ে স্টেশন সংলগ্ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2685,7 +2685,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সান্তাহার ডিজিটাল ডায়াগনস্টিক সেন্টার",
-    "enName": "Santahar Digital Diagnostic Centre",
+    "name_en": "Santahar Digital Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "স্টেশন রোড, সান্তাহার পৌরসভা, আদমদীঘি, বগুড়া - ৫৮৯১",
@@ -2694,7 +2694,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আদমদীঘি সেন্ট্রাল ডায়াগনস্টিক সেন্টার",
-    "enName": "Adamdighi Central Diagnostic Centre",
+    "name_en": "Adamdighi Central Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "বাসস্ট্যান্ড সংলগ্ন, আদমদীঘি সদর, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -2703,7 +2703,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ধুনট মডার্ন ডায়াগনস্টিক অ্যান্ড কনসালটেশন সেন্টার",
-    "enName": "Dhunat Modern Diagnostic & Consultation Centre",
+    "name_en": "Dhunat Modern Diagnostic & Consultation Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স রোড, ধুনট সদর, ধুনট, বগুড়া - ৫৮৫০",
@@ -2712,7 +2712,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "যমুনা ডায়াগনস্টিক সেন্টার, ধুনট",
-    "enName": "Jamuna Diagnostic Centre, Dhunat",
+    "name_en": "Jamuna Diagnostic Centre, Dhunat",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "থানা রোড, ধুনট বাজার, ধুনট, বগুড়া - ৫৮৫০",
@@ -2721,7 +2721,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দুপচাঁচিয়া ডিজিটাল ডায়াগনস্টিক সেন্টার",
-    "enName": "Dhupchanchia Digital Diagnostic Centre",
+    "name_en": "Dhupchanchia Digital Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "বগুড়া-নওগাঁ মহাসড়ক, দুপচাঁচিয়া সদর, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -2730,7 +2730,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "তালোড়া মডেল ডায়াগনস্টিক সেন্টার, দুপচাঁচিয়া",
-    "enName": "Talora Model Diagnostic Centre, Dhupchanchia",
+    "name_en": "Talora Model Diagnostic Centre, Dhupchanchia",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "রেলওয়ে বাজার, তালোড়া, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -2739,7 +2739,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গাবতলী ডিজিটাল ডায়াগনস্টিক সেন্টার",
-    "enName": "Gabtali Digital Diagnostic Centre",
+    "name_en": "Gabtali Digital Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "থানা মোড়, গাবতলী সদর, গাবতলী, বগুড়া - ৫৮২০",
@@ -2748,7 +2748,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনারায় সেন্ট্রাল ডায়াগনস্টিক সেন্টার, গাবতলী",
-    "enName": "Sonaray Central Diagnostic Centre, Gabtali",
+    "name_en": "Sonaray Central Diagnostic Centre, Gabtali",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "সোনারায় বাজার, গাবতলী, বগুড়া - ৫৮২০",
@@ -2757,7 +2757,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাহালু ডিজিটাল ডায়াগনস্টিক সেন্টার",
-    "enName": "Kahalu Digital Diagnostic Centre",
+    "name_en": "Kahalu Digital Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স রোড, কাহালু সদর, কাহালু, বগুড়া - ৫৮৭০",
@@ -2766,7 +2766,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মুরইল মডেল ডায়াগনস্টিক সেন্টার, কাহালু",
-    "enName": "Murail Model Diagnostic Centre, Kahalu",
+    "name_en": "Murail Model Diagnostic Centre, Kahalu",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "মুরইল বাজার, কাহালু, বগুড়া - ৫৮৭০",
@@ -2775,7 +2775,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নন্দীগ্রাম সেন্ট্রাল ডায়াগনস্টিক সেন্টার",
-    "enName": "Nandigram Central Diagnostic Centre",
+    "name_en": "Nandigram Central Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "বাসস্ট্যান্ড মোড়, নন্দীগ্রাম সদর, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -2784,7 +2784,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ওমরপুর ডিজিটাল ডায়াগনস্টিক সেন্টার, নন্দীগ্রাম",
-    "enName": "Omarpur Digital Diagnostic Centre, Nandigram",
+    "name_en": "Omarpur Digital Diagnostic Centre, Nandigram",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "বগুড়া-নাটোর মহাসড়ক, ওমরপুর, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -2793,7 +2793,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সারিয়াকান্দি মডার্ন ডায়াগনস্টিক সেন্টার",
-    "enName": "Sariakandi Modern Diagnostic Centre",
+    "name_en": "Sariakandi Modern Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "থানা রোড, সারিয়াকান্দি বাজার, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -2802,7 +2802,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "চন্দনবাইশা চরাঞ্চল ডায়াগনস্টিক সেন্টার, সারিয়াকান্দি",
-    "enName": "Chandanbaisha Riverine Diagnostic Centre, Sariakandi",
+    "name_en": "Chandanbaisha Riverine Diagnostic Centre, Sariakandi",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "চন্দনবাইশা বাজার, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -2811,7 +2811,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মাঝিড়া ক্যান্টনমেন্ট ডায়াগনস্টিক সেন্টার",
-    "enName": "Majhira Cantonment Diagnostic Centre",
+    "name_en": "Majhira Cantonment Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "ক্যান্টনমেন্ট গেট সংলগ্ন, ঢাকা রোড, মাঝিড়া, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2820,7 +2820,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আড়িয়া ডিজিটাল ডায়াগনস্টিক সেন্টার, শাজাহানপুর",
-    "enName": "Aria Digital Diagnostic Centre, Shajahanpur",
+    "name_en": "Aria Digital Diagnostic Centre, Shajahanpur",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "ঢাকা-বগুড়া মহাসড়ক, আড়িয়া বাজার, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -2829,7 +2829,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেরপুর মডার্ন ডায়াগনস্টিক সেন্টার",
-    "enName": "Sherpur Modern Diagnostic Centre",
+    "name_en": "Sherpur Modern Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "ঢাকা রোড, শেরপুর পৌরসভা, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2838,7 +2838,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আপন ডায়াগনস্টিক অ্যান্ড কনসালটেশন সেন্টার, শেরপুর",
-    "enName": "Apan Diagnostic & Consultation Centre, Sherpur",
+    "name_en": "Apan Diagnostic & Consultation Centre, Sherpur",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "বাসস্ট্যান্ড সংলগ্ন, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2847,7 +2847,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সীমাবাড়ী ডিজিটাল ডায়াগনস্টিক সেন্টার, শেরপুর",
-    "enName": "Shimabari Digital Diagnostic Centre, Sherpur",
+    "name_en": "Shimabari Digital Diagnostic Centre, Sherpur",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "ঢাকা-বগুড়া মহাসড়ক, সীমাবাড়ী বাজার, শেরপুর, বগুড়া - ৫৮৪০",
@@ -2856,7 +2856,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মোকামতলা সেন্ট্রাল ডায়াগনস্টিক সেন্টার",
-    "enName": "Mokamtala Central Diagnostic Centre",
+    "name_en": "Mokamtala Central Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "রংপুর রোড, মোকামতলা মোড়, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2865,7 +2865,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শিবগঞ্জ ডিজিটাল ডায়াগনস্টিক সেন্টার",
-    "enName": "Shibganj Digital Diagnostic Centre",
+    "name_en": "Shibganj Digital Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "থানা মোড়, শিবগঞ্জ সদর, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -2874,7 +2874,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনাতলা মডার্ন ডায়াগনস্টিক সেন্টার",
-    "enName": "Sonatala Modern Diagnostic Centre",
+    "name_en": "Sonatala Modern Diagnostic Centre",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "স্টেশন রোড, সোনাতলা বাজার, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2883,7 +2883,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বালুয়া ডিজিটাল ডায়াগনস্টিক সেন্টার, সোনাতলা",
-    "enName": "Balua Digital Diagnostic Centre, Sonatala",
+    "name_en": "Balua Digital Diagnostic Centre, Sonatala",
     "type": "diagnostic",
     "typeLabel": "Diagnostic Centres",
     "address": "বালুয়া হাট সংলগ্ন, সোনাতলা, বগুড়া - ৫৮২০",
@@ -2892,7 +2892,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া ডায়াবেটিক সমিতি হাসপাতাল",
-    "enName": "Bogura Diabetic Association Hospital",
+    "name_en": "Bogura Diabetic Association Hospital",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "সূত্রাপুর, শেরপুর রোড সংলগ্ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2901,7 +2901,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ডা. মতিন চক্ষু হাসপাতাল ও রিসার্চ ইনস্টিটিউট, বগুড়া",
-    "enName": "Dr. Matin Eye Hospital & Research Institute, Bogura",
+    "name_en": "Dr. Matin Eye Hospital & Research Institute, Bogura",
     "type": "private",
     "typeLabel": "Eye Hospitals",
     "address": "জলেশ্বরীতলা প্রধান সড়ক, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2910,7 +2910,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া চক্ষু হাসপাতাল",
-    "enName": "Bogura Eye Hospital",
+    "name_en": "Bogura Eye Hospital",
     "type": "private",
     "typeLabel": "Eye Hospitals",
     "address": "মালতীনগর, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2919,7 +2919,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "স্পেশালাইজড ডেন্টাল কেয়ার অ্যান্ড ওরাল সার্জারি, বগুড়া",
-    "enName": "Specialized Dental Care & Oral Surgery, Bogura",
+    "name_en": "Specialized Dental Care & Oral Surgery, Bogura",
     "type": "private",
     "typeLabel": "Dental Clinics",
     "address": "শেরপুর রোড, কানোচগাড়ী, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2928,7 +2928,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বগুড়া বিশেষায়িত শিশু ও মাতৃ হাসপাতাল",
-    "enName": "Bogura Specialized Child & Maternity Hospital",
+    "name_en": "Bogura Specialized Child & Maternity Hospital",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "মেডিকেল রোড, সিলিমপুর, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2937,7 +2937,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সিআরপি (পক্ষাঘাতগ্রস্তদের পুনর্বাসন কেন্দ্র) — বগুড়া",
-    "enName": "Centre for the Rehabilitation of the Paralysed (CRP) - Bogura",
+    "name_en": "Centre for the Rehabilitation of the Paralysed (CRP) - Bogura",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "হাইওয়ে লিংক রোড, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -2946,7 +2946,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সান্তাহার ডায়াবেটিক ও চক্ষু সেবা কেন্দ্র",
-    "enName": "Santahar Diabetic & Eye Care Centre",
+    "name_en": "Santahar Diabetic & Eye Care Centre",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "স্টেশন রোড, সান্তাহার পৌরসভা, আদমদীঘি, বগুড়া - ৫৮৯১",
@@ -2955,7 +2955,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আদমদীঘি স্পেশালাইজড ডেন্টাল ক্লিনিক",
-    "enName": "Adamdighi Specialized Dental Clinic",
+    "name_en": "Adamdighi Specialized Dental Clinic",
     "type": "private",
     "typeLabel": "Dental Clinics",
     "address": "বাসস্ট্যান্ড সংলগ্ন, আদমদীঘি সদর, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -2964,7 +2964,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ধুনট উপজেলা ডায়াবেটিক সমিতি ক্লিনিক",
-    "enName": "Dhunat Upazila Diabetic Samity Clinic",
+    "name_en": "Dhunat Upazila Diabetic Samity Clinic",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স রোড, ধুনট সদর, ধুনট, বগুড়া - ৫৮৫০",
@@ -2973,7 +2973,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ধুনট স্মাইল ডেন্টাল কেয়ার",
-    "enName": "Dhunat Smile Dental Care",
+    "name_en": "Dhunat Smile Dental Care",
     "type": "private",
     "typeLabel": "Dental Clinics",
     "address": "থানা মোড়, ধুনট বাজার, ধুনট, বগুড়া - ৫৮৫০",
@@ -2982,7 +2982,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দুপচাঁচিয়া ডায়াবেটিক সমিতি সাব-সেন্টার",
-    "enName": "Dhupchanchia Diabetic Association Sub-Centre",
+    "name_en": "Dhupchanchia Diabetic Association Sub-Centre",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "থানা মোড়, দুপচাঁচিয়া সদর, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -2991,7 +2991,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দুপচাঁচিয়া চক্ষু ও ডেন্টাল কেয়ার",
-    "enName": "Dhupchanchia Eye & Dental Care",
+    "name_en": "Dhupchanchia Eye & Dental Care",
     "type": "private",
     "typeLabel": "Eye Hospitals",
     "address": "বগুড়া-নওগাঁ মহাসড়ক, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -3000,7 +3000,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গাবতলী ডায়াবেটিক কেয়ার সেন্টার",
-    "enName": "Gabtali Diabetic Care Centre",
+    "name_en": "Gabtali Diabetic Care Centre",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "থানা মোড়, গাবতলী সদর, গাবতলী, বগুড়া - ৫৮২০",
@@ -3009,7 +3009,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গাবতলী মডার্ন চক্ষু ক্লিনিক",
-    "enName": "Gabtali Modern Eye Clinic",
+    "name_en": "Gabtali Modern Eye Clinic",
     "type": "private",
     "typeLabel": "Eye Hospitals",
     "address": "গাবতলী বাজার রোড, গাবতলী, বগুড়া - ৫৮২০",
@@ -3018,7 +3018,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাহালু ডায়াবেটিক কনসালটেশন সেন্টার",
-    "enName": "Kahalu Diabetic Consultation Centre",
+    "name_en": "Kahalu Diabetic Consultation Centre",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "হাসপাতাল রোড, কাহালু সদর, কাহালু, বগুড়া - ৫৮৭০",
@@ -3027,7 +3027,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাহালু ডেন্টাল অ্যান্ড ম্যাক্সিলোফেসিয়াল কেয়ার",
-    "enName": "Kahalu Dental & Maxillofacial Care",
+    "name_en": "Kahalu Dental & Maxillofacial Care",
     "type": "private",
     "typeLabel": "Dental Clinics",
     "address": "রেলগেট সংলগ্ন, কাহালু, বগুড়া - ৫৮৭০",
@@ -3036,7 +3036,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নন্দীগ্রাম ডায়াবেটিক অ্যান্ড ক্রনিক কেয়ার সেন্টার",
-    "enName": "Nandigram Diabetic & Chronic Care Centre",
+    "name_en": "Nandigram Diabetic & Chronic Care Centre",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "বাসস্ট্যান্ড, নন্দীগ্রাম সদর, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -3045,7 +3045,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নন্দীগ্রাম স্পেশালাইজড চক্ষু সেবা",
-    "enName": "Nandigram Specialized Eye Care",
+    "name_en": "Nandigram Specialized Eye Care",
     "type": "private",
     "typeLabel": "Eye Hospitals",
     "address": "ওমরপুর মোড়, বগুড়া-নাটোর মহাসড়ক, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -3054,7 +3054,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সারিয়াকান্দি ডায়াবেটিক ও চরাঞ্চল স্বাস্থ্য কল্যাণ ক্লিনিক",
-    "enName": "Sariakandi Diabetic & Char Health Welfare Clinic",
+    "name_en": "Sariakandi Diabetic & Char Health Welfare Clinic",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "থানা রোড, সারিয়াকান্দি বাজার, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -3063,7 +3063,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সারিয়াকান্দি নদীমাতৃক চক্ষু সেবা ইউনিট",
-    "enName": "Sariakandi Riverine Eye Care Unit",
+    "name_en": "Sariakandi Riverine Eye Care Unit",
     "type": "private",
     "typeLabel": "Eye Hospitals",
     "address": "সারিয়াকান্দি বাজার সংলগ্ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -3072,7 +3072,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শাজাহানপুর ডায়াবেটিক ও এনসিডি পুনর্বাসন কেন্দ্র",
-    "enName": "Shajahanpur Diabetic & NCD Rehabilitation Centre",
+    "name_en": "Shajahanpur Diabetic & NCD Rehabilitation Centre",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "ঢাকা-বগুড়া মহাসড়ক, মাঝিড়া, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -3081,7 +3081,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আড়িয়া ডেন্টাল অ্যান্ড ওরাল হেলথ ক্লিনিক, শাজাহানপুর",
-    "enName": "Aria Dental & Oral Health Clinic, Shajahanpur",
+    "name_en": "Aria Dental & Oral Health Clinic, Shajahanpur",
     "type": "private",
     "typeLabel": "Dental Clinics",
     "address": "ঢাকা মহাসড়ক, আড়িয়া বাজার, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -3090,7 +3090,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেরপুর ডায়াবেটিক হাসপাতাল",
-    "enName": "Sherpur Diabetic Hospital",
+    "name_en": "Sherpur Diabetic Hospital",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "ঢাকা রোড, শেরপুর পৌরসভা, শেরপুর, বগুড়া - ৫৮৪০",
@@ -3099,7 +3099,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেরপুর বিশেষায়িত চক্ষু হাসপাতাল",
-    "enName": "Sherpur Specialized Eye Hospital",
+    "name_en": "Sherpur Specialized Eye Hospital",
     "type": "private",
     "typeLabel": "Eye Hospitals",
     "address": "বাসস্ট্যান্ড রোড, শেরপুর, বগুড়া - ৫৮৪০",
@@ -3108,7 +3108,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেরপুর ডেন্টাল কেয়ার অ্যান্ড ওরাল সার্জারি",
-    "enName": "Sherpur Dental Care & Oral Surgery",
+    "name_en": "Sherpur Dental Care & Oral Surgery",
     "type": "private",
     "typeLabel": "Dental Clinics",
     "address": "কলেজ রোড, শেরপুর, বগুড়া - ৫৮৪০",
@@ -3117,7 +3117,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শিবগঞ্জ ডায়াবেটিক অ্যান্ড ক্রনিক কেয়ার সেন্টার",
-    "enName": "Shibganj Diabetic & Chronic Care Centre",
+    "name_en": "Shibganj Diabetic & Chronic Care Centre",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "থানা মোড়, শিবগঞ্জ সদর, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -3126,7 +3126,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মোকামতলা চক্ষু ও ডেন্টাল কেয়ার সেন্টার, শিবগঞ্জ",
-    "enName": "Mokamtala Eye & Dental Care Centre, Shibganj",
+    "name_en": "Mokamtala Eye & Dental Care Centre, Shibganj",
     "type": "private",
     "typeLabel": "Eye Hospitals",
     "address": "রংপুর রোড, মোকামতলা মোড়, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -3135,7 +3135,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনাতলা ডায়াবেটিক সমিতি সাব-সেন্টার",
-    "enName": "Sonatala Diabetic Association Sub-Centre",
+    "name_en": "Sonatala Diabetic Association Sub-Centre",
     "type": "private",
     "typeLabel": "Specialized Healthcare Facilities",
     "address": "স্টেশন রোড, সোনাতলা বাজার, সোনাতলা, বগুড়া - ৫৮২০",
@@ -3144,7 +3144,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনাতলা স্মাইল ডেন্টাল ক্লিনিক",
-    "enName": "Sonatala Smile Dental Clinic",
+    "name_en": "Sonatala Smile Dental Clinic",
     "type": "private",
     "typeLabel": "Dental Clinics",
     "address": "সোনাতলা বাজার রোড, সোনাতলা, বগুড়া - ৫৮২০",
@@ -3153,7 +3153,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, বগুড়া সদর",
-    "enName": "Surjer Hashi Clinic (SHN), Bogura Sadar",
+    "name_en": "Surjer Hashi Clinic (SHN), Bogura Sadar",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "সূত্রাপুর, মালতীনগর রোড, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3162,7 +3162,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ম্যারি স্টোপস ক্লিনিক, বগুড়া",
-    "enName": "Marie Stopes Clinic, Bogura",
+    "name_en": "Marie Stopes Clinic, Bogura",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "জলেশ্বরীতলা প্রধান সড়ক, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3171,7 +3171,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ব্র্যাক স্বাস্থ্য কেন্দ্র, বগুড়া সদর",
-    "enName": "BRAC Health Centre, Bogura Sadar",
+    "name_en": "BRAC Health Centre, Bogura Sadar",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "এরুলিয়া বাজার সংলগ্ন, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3180,7 +3180,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ঘাসফুল স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র, বগুড়া",
-    "enName": "Ghashful Health & Family Welfare Centre, Bogura",
+    "name_en": "Ghashful Health & Family Welfare Centre, Bogura",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "ফাঁপোর গ্রাম, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3189,7 +3189,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, সান্তাহার (আদমদীঘি)",
-    "enName": "Surjer Hashi Clinic, Santahar (Adamdighi)",
+    "name_en": "Surjer Hashi Clinic, Santahar (Adamdighi)",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "রেলওয়ে কলোনি সংলগ্ন, সান্তাহার, আদমদীঘি, বগুড়া - ৫৮৯১",
@@ -3198,7 +3198,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস কমিউনিটি স্বাস্থ্য কেন্দ্র, আদমদীঘি",
-    "enName": "TMSS Community Health Centre, Adamdighi",
+    "name_en": "TMSS Community Health Centre, Adamdighi",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "বাসস্ট্যান্ড রোড, আদমদীঘি সদর, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -3207,7 +3207,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, ধুনট",
-    "enName": "Surjer Hashi Clinic, Dhunat",
+    "name_en": "Surjer Hashi Clinic, Dhunat",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স সংলগ্ন, ধুনট সদর, ধুনট, বগুড়া - ৫৮৫০",
@@ -3216,7 +3216,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ব্র্যাক মাতৃ ও শিশু স্বাস্থ্য ক্লিনিক, ধুনট",
-    "enName": "BRAC Maternal & Child Health Clinic, Dhunat",
+    "name_en": "BRAC Maternal & Child Health Clinic, Dhunat",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "চিকাশী বাজার, ধুনট, বগুড়া - ৫৮৫০",
@@ -3225,7 +3225,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, দুপচাঁচিয়া",
-    "enName": "Surjer Hashi Clinic, Dhupchanchia",
+    "name_en": "Surjer Hashi Clinic, Dhupchanchia",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "থানা মোড়, দুপচাঁচিয়া সদর, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -3234,7 +3234,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস স্বাস্থ্য সেবা কেন্দ্র, দুপচাঁচিয়া",
-    "enName": "TMSS Health Care Centre, Dhupchanchia",
+    "name_en": "TMSS Health Care Centre, Dhupchanchia",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "তালোড়া বাজার, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -3243,7 +3243,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, গাবতলী",
-    "enName": "Surjer Hashi Clinic, Gabtali",
+    "name_en": "Surjer Hashi Clinic, Gabtali",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "থানা মোড়, গাবতলী সদর, গাবতলী, বগুড়া - ৫৮২০",
@@ -3252,7 +3252,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস স্বাস্থ্য কেন্দ্র, গাবতলী",
-    "enName": "TMSS Health Centre, Gabtali",
+    "name_en": "TMSS Health Centre, Gabtali",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "বালিয়াদিঘী বাজার, গাবতলী, বগুড়া - ৫৮২০",
@@ -3261,7 +3261,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, কাহালু",
-    "enName": "Surjer Hashi Clinic, Kahalu",
+    "name_en": "Surjer Hashi Clinic, Kahalu",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স রোড, কাহালু সদর, কাহালু, বগুড়া - ৫৮৭০",
@@ -3270,7 +3270,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস স্বাস্থ্য কেন্দ্র, কাহালু",
-    "enName": "TMSS Health Centre, Kahalu",
+    "name_en": "TMSS Health Centre, Kahalu",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "মুরইল বাজার, কাহালু, বগুড়া - ৫৮৭০",
@@ -3279,7 +3279,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, নন্দীগ্রাম",
-    "enName": "Surjer Hashi Clinic, Nandigram",
+    "name_en": "Surjer Hashi Clinic, Nandigram",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "বাসস্ট্যান্ড মোড়, নন্দীগ্রাম সদর, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -3288,7 +3288,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস স্বাস্থ্য কেন্দ্র, নন্দীগ্রাম",
-    "enName": "TMSS Health Centre, Nandigram",
+    "name_en": "TMSS Health Centre, Nandigram",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "ভাটরা বাজার, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -3297,7 +3297,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ব্র্যাক চরাঞ্চল স্বাস্থ্য ও পুষ্টি কেন্দ্র, সারিয়াকান্দি",
-    "enName": "BRAC Char Health & Nutrition Centre, Sariakandi",
+    "name_en": "BRAC Char Health & Nutrition Centre, Sariakandi",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "কুতুবপুর চর সংলগ্ন, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -3306,7 +3306,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস চরাঞ্চল কমিউনিটি ক্লিনিক, সারিয়াকান্দি",
-    "enName": "TMSS Char Community Clinic, Sariakandi",
+    "name_en": "TMSS Char Community Clinic, Sariakandi",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "চালুয়াবাড়ী দ্বীপ চর, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -3315,7 +3315,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, শাজাহানপুর",
-    "enName": "Surjer Hashi Clinic, Shajahanpur",
+    "name_en": "Surjer Hashi Clinic, Shajahanpur",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "ঢাকা মহাসড়ক সংলগ্ন, মাঝিড়া, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -3324,7 +3324,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস কমিউনিটি স্বাস্থ্য কেন্দ্র, শাজাহানপুর",
-    "enName": "TMSS Community Health Centre, Shajahanpur",
+    "name_en": "TMSS Community Health Centre, Shajahanpur",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "আড়িয়া বাজার, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -3333,7 +3333,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, শেরপুর",
-    "enName": "Surjer Hashi Clinic, Sherpur",
+    "name_en": "Surjer Hashi Clinic, Sherpur",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "ঢাকা রোড, শেরপুর পৌরসভা, শেরপুর, বগুড়া - ৫৮৪০",
@@ -3342,7 +3342,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ম্যারি স্টোপস মাতৃসেবা কেন্দ্র, শেরপুর",
-    "enName": "Marie Stopes Maternal Centre, Sherpur",
+    "name_en": "Marie Stopes Maternal Centre, Sherpur",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "বাসস্ট্যান্ড রোড, শেরপুর, বগুড়া - ৫৮৪০",
@@ -3351,7 +3351,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ব্র্যাক স্বাস্থ্য কেন্দ্র, শেরপুর",
-    "enName": "BRAC Health Centre, Sherpur",
+    "name_en": "BRAC Health Centre, Sherpur",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "মির্জাপুর বাজার, শেরপুর, বগুড়া - ৫৮৪০",
@@ -3360,7 +3360,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সূর্যের হাসি ক্লিনিক, শিবগঞ্জ",
-    "enName": "Surjer Hashi Clinic, Shibganj",
+    "name_en": "Surjer Hashi Clinic, Shibganj",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "থানা মোড়, শিবগঞ্জ সদর, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -3369,7 +3369,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ব্র্যাক প্রাথমিক স্বাস্থ্য কেন্দ্র, শিবগঞ্জ",
-    "enName": "BRAC Primary Health Centre, Shibganj",
+    "name_en": "BRAC Primary Health Centre, Shibganj",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "মোকামতলা মোড় সংলগ্ন, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -3378,7 +3378,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস স্বাস্থ্য সেবা সাব-সেন্টার, সোনাতলা",
-    "enName": "TMSS Health Care Sub-Centre, Sonatala",
+    "name_en": "TMSS Health Care Sub-Centre, Sonatala",
     "type": "private",
     "typeLabel": "NGO Healthcare Facilities",
     "address": "স্টেশন রোড, সোনাতলা বাজার, সোনাতলা, বগুড়া - ৫৮২০",
@@ -3387,7 +3387,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি রক্ত কেন্দ্র, বগুড়া",
-    "enName": "Bangladesh Red Crescent Society Blood Centre, Bogura",
+    "name_en": "Bangladesh Red Crescent Society Blood Centre, Bogura",
     "type": "private",
     "typeLabel": "Blood Banks",
     "address": "রেড ক্রিসেন্ট ভবন, সূত্রাপুর, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3396,7 +3396,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সন্ধানী (শজিমেক ইউনিট) রক্ত ব্যাংক ও মরণোত্তর চক্ষুদান কেন্দ্র",
-    "enName": "Sandhani (SZMC Unit) Blood Bank & Eye Donation Centre",
+    "name_en": "Sandhani (SZMC Unit) Blood Bank & Eye Donation Centre",
     "type": "private",
     "typeLabel": "Blood Banks",
     "address": "শহীদ জিয়াউর রহমান মেডিকেল কলেজ ক্যাম্পাস, সিলিমপুর, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3405,7 +3405,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "মোহাম্মদ আলী হাসপাতাল রক্ত পরিসঞ্চালন কেন্দ্র",
-    "enName": "Mohammad Ali Hospital Blood Transfusion Centre",
+    "name_en": "Mohammad Ali Hospital Blood Transfusion Centre",
     "type": "govt",
     "typeLabel": "Blood Banks",
     "address": "মোহাম্মদ আলী হাসপাতাল কম্পাউন্ড, হাসপাতাল রোড, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3414,7 +3414,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "টিএমএসএস ব্লাড ব্যাংক ও ট্রান্সফিউশন মেডিসিন সেন্টার",
-    "enName": "TMSS Blood Bank & Transfusion Medicine Centre",
+    "name_en": "TMSS Blood Bank & Transfusion Medicine Centre",
     "type": "private",
     "typeLabel": "Blood Banks",
     "address": "টিএমএসএস মেডিকেল কলেজ হাসপাতাল, ঠেঙ্গামারা, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3423,7 +3423,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "বাঁধন (স্বেচ্ছায় রক্তদাতাদের সংগঠন) — বগুড়া জেলা ইউনিট",
-    "enName": "Badhan Blood Donation Network, Bogura District",
+    "name_en": "Badhan Blood Donation Network, Bogura District",
     "type": "private",
     "typeLabel": "Blood Banks",
     "address": "সরকারি আজিজুল হক কলেজ প্রাঙ্গণ, ফুলবাড়ি, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3432,7 +3432,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ফায়ার সার্ভিস ও সিভিল ডিফেন্স কেন্দ্রীয় অ্যাম্বুলেন্স ইউনিট, বগুড়া",
-    "enName": "Fire Service & Civil Defence Central Ambulance Unit, Bogura",
+    "name_en": "Fire Service & Civil Defence Central Ambulance Unit, Bogura",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "ফায়ার স্টেশন কম্পাউন্ড, স্টেশন রোড, বগুড়া সদর, বগুড়া - ৫৮০০",
@@ -3441,7 +3441,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শজিমেক হাসপাতাল নিবিড় পরিচর্যা (ICU) অ্যাম্বুলেন্স বহর",
-    "enName": "SZRMCH Critical Care & ICU Ambulance Fleet",
+    "name_en": "SZRMCH Critical Care & ICU Ambulance Fleet",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "শহীদ জিয়াউর রহমান মেডিকেল কলেজ হাসপাতাল, সিলিমপুর, বগুড়া - ৫৮০০",
@@ -3450,7 +3450,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "আদমদীঘি ফায়ার সার্ভিস ও হাসপাতাল জরুরি অ্যাম্বুলেন্স",
-    "enName": "Adamdighi Fire Service & Hospital Emergency Ambulance",
+    "name_en": "Adamdighi Fire Service & Hospital Emergency Ambulance",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স প্রাঙ্গণ, আদমদীঘি, বগুড়া - ৫৮৯২",
@@ -3459,7 +3459,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "ধুনট উপজেলা স্বাস্থ্য কমপ্লেক্স জরুরি অ্যাম্বুলেন্স",
-    "enName": "Dhunat Upazila Health Complex Emergency Ambulance",
+    "name_en": "Dhunat Upazila Health Complex Emergency Ambulance",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স, ধুনট, বগুড়া - ৫৮৫০",
@@ -3468,7 +3468,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "দুপচাঁচিয়া ফায়ার সার্ভিস ও হাসপাতাল অ্যাম্বুলেন্স ইউনিট",
-    "enName": "Dhupchanchia Fire Service & Hospital Ambulance Unit",
+    "name_en": "Dhupchanchia Fire Service & Hospital Ambulance Unit",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স, দুপচাঁচিয়া, বগুড়া - ৫৮৮০",
@@ -3477,7 +3477,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "গাবতলী উপজেলা স্বাস্থ্য কমপ্লেক্স অ্যাম্বুলেন্স সার্ভিস",
-    "enName": "Gabtali Upazila Health Complex Ambulance Service",
+    "name_en": "Gabtali Upazila Health Complex Ambulance Service",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স প্রাঙ্গণ, গাবতলী, বগুড়া - ৫৮২০",
@@ -3486,7 +3486,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "কাহালু উপজেলা স্বাস্থ্য কমপ্লেক্স অ্যাম্বুলেন্স সার্ভিস",
-    "enName": "Kahalu Upazila Health Complex Ambulance Service",
+    "name_en": "Kahalu Upazila Health Complex Ambulance Service",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স, কাহালু, বগুড়া - ৫৮৭০",
@@ -3495,7 +3495,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "নন্দীগ্রাম ফায়ার সার্ভিস ও হাসপাতাল জরুরি অ্যাম্বুলেন্স",
-    "enName": "Nandigram Fire Service & Hospital Emergency Ambulance",
+    "name_en": "Nandigram Fire Service & Hospital Emergency Ambulance",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স, নন্দীগ্রাম, বগুড়া - ৫৮৬০",
@@ -3504,7 +3504,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সারিয়াকান্দি নদীমাতৃক স্পিডবোট ও সড়ক অ্যাম্বুলেন্স সার্ভিস",
-    "enName": "Sariakandi Riverine Speedboat & Road Ambulance Service",
+    "name_en": "Sariakandi Riverine Speedboat & Road Ambulance Service",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "যমুনা নদী ঘাট ও উপজেলা স্বাস্থ্য কমপ্লেক্স, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -3513,7 +3513,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সারিয়াকান্দি স্বেচ্ছায় রক্তদাতা নেটওয়ার্ক",
-    "enName": "Sariakandi Voluntary Blood Donor Network",
+    "name_en": "Sariakandi Voluntary Blood Donor Network",
     "type": "private",
     "typeLabel": "Blood Banks",
     "address": "থানা রোড, সারিয়াকান্দি, বগুড়া - ৫৮৩০",
@@ -3522,7 +3522,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শাজাহানপুর মহাসড়ক ফায়ার সার্ভিস ও জরুরি অ্যাম্বুলেন্স",
-    "enName": "Shajahanpur Highway Fire Service & Emergency Ambulance",
+    "name_en": "Shajahanpur Highway Fire Service & Emergency Ambulance",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "ঢাকা মহাসড়ক, মাঝিড়া ফায়ার স্টেশন, শাজাহানপুর, বগুড়া - ৫৮০১",
@@ -3531,7 +3531,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেরপুর উপজেলা ফায়ার সার্ভিস ও হাসপাতাল অ্যাম্বুলেন্স বহর",
-    "enName": "Sherpur Upazila Fire Service & Hospital Ambulance Fleet",
+    "name_en": "Sherpur Upazila Fire Service & Hospital Ambulance Fleet",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "ঢাকা রোড, শেরপুর পৌরসভা, শেরপুর, বগুড়া - ৫৮৪০",
@@ -3540,7 +3540,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শেরপুর উপজেলা রক্তদান ক্লাব",
-    "enName": "Sherpur Upazila Blood Donation Club",
+    "name_en": "Sherpur Upazila Blood Donation Club",
     "type": "private",
     "typeLabel": "Blood Banks",
     "address": "কলেজ রোড, শেরপুর, বগুড়া - ৫৮৪০",
@@ -3549,7 +3549,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "শিবগঞ্জ ফায়ার সার্ভিস ও মহাসড়ক ট্রমা অ্যাম্বুলেন্স ইউনিট",
-    "enName": "Shibganj Fire Service & Highway Trauma Ambulance Unit",
+    "name_en": "Shibganj Fire Service & Highway Trauma Ambulance Unit",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "মোকামতলা মোড়, রংপুর মহাসড়ক, শিবগঞ্জ, বগুড়া - ৫৮১০",
@@ -3558,7 +3558,7 @@ export const hospitalsData: Hospital[] = [
   },
   {
     "name": "সোনাতলা উপজেলা স্বাস্থ্য কমপ্লেক্স অ্যাম্বুলেন্স সার্ভিস",
-    "enName": "Sonatala Upazila Health Complex Ambulance Service",
+    "name_en": "Sonatala Upazila Health Complex Ambulance Service",
     "type": "govt",
     "typeLabel": "Ambulance Services",
     "address": "উপজেলা স্বাস্থ্য কমপ্লেক্স, সোনাতলা, বগুড়া - ৫৮২০",
@@ -3579,7 +3579,7 @@ export const emergencyData: EmergencyContact[] = [
 export const exploreData: ExploreSpot[] = [
   {
     title: 'মহাস্থানগড় (প্রাচীন পুণ্ড্রনগর)',
-    enTitle: 'Mahasthangarh Citadel',
+    title_en: 'Mahasthangarh Citadel',
     location: 'শিবগঞ্জ উপজেলা, বগুড়া',
     tag: 'প্রত্নতাত্ত্বিক নিদর্শন',
     desc: 'খ্রিস্টপূর্ব ৩য় শতাব্দীর প্রাচীন পুণ্ড্রবর্ধন রাজ্যের রাজধানী। করতোয়া নদীর তীরে অবস্থিত বাংলাদেশের প্রাচীনতম নগর সভ্যতার নিদর্শন ও জাদুঘর।',
@@ -3588,7 +3588,7 @@ export const exploreData: ExploreSpot[] = [
   },
   {
     title: 'বেহুলার বাসর ঘর (গোকুল মেধ)',
-    enTitle: 'Gokul Medh (Behula Lakshindar)',
+    title_en: 'Gokul Medh (Behula Lakshindar)',
     location: 'গোকুল, শিবগঞ্জ, বগুড়া',
     tag: 'ঐতিহাসিক স্থাপনা',
     desc: 'মহাস্থানগড়ের ২ কিমি দক্ষিণে অবস্থিত ১৭২টি কুঠুরি বিশিষ্ট অনন্য স্থাপত্য নিদর্শন, যা লোককাহিনী ও বৌদ্ধ স্তূপের ইতিহাসের সাথে জড়িত।',
@@ -3597,7 +3597,7 @@ export const exploreData: ExploreSpot[] = [
   },
   {
     title: 'ভাসু বিহার (নরপতির ধাপ)',
-    enTitle: 'Vasu Vihara Buddhist Monastery',
+    title_en: 'Vasu Vihara Buddhist Monastery',
     location: 'বিহার, শিবগঞ্জ, বগুড়া',
     tag: 'প্রাচীন বৌদ্ধ বিহার',
     desc: 'চীনা পরিব্রাজক হিউয়েন সাং বর্ণিত "পো-শি-পো" বিহার। এখানে প্রাচীন বৌদ্ধ সংঘারাম, পোড়ামাটির ফলক ও ব্রোঞ্জ মূর্তি আবিষ্কৃত হয়েছে।',
@@ -3606,7 +3606,7 @@ export const exploreData: ExploreSpot[] = [
   },
   {
     title: 'ঐতিহাসিক খেরুয়া মসজিদ (১৫৮২)',
-    enTitle: 'Historic Kherua Mosque',
+    title_en: 'Historic Kherua Mosque',
     location: 'খন্দকারটোলা, শেরপুর, বগুড়া',
     tag: 'সুলতানি স্থাপত্য',
     desc: '১৫৮২ সালে জওহর আলী কাকশালের পুত্র মির্জা মুরাদ খান কাকশাল নির্মিত তিন গম্বুজ বিশিষ্ট অপূর্ব পোড়ামাটির অলংকরণ সমৃদ্ধ মসজিদ।',
@@ -3615,7 +3615,7 @@ export const exploreData: ExploreSpot[] = [
   },
   {
     title: 'প্রেম যমুনার ঘাট ও কালিতলা গ্রোয়েন',
-    enTitle: 'Sariakandi Jamuna Ghat',
+    title_en: 'Sariakandi Jamuna Ghat',
     location: 'সারিয়াকান্দি, বগুড়া',
     tag: 'নদী পর্যটন',
     desc: 'যমুনা নদীর বিশাল জলরাশি, সূর্যোদয়-সূর্যাস্ত এবং নৌকা ভ্রমণের জন্য বগুড়াবাসীর অন্যতম জনপ্রিয় অবকাশ কেন্দ্র।',
@@ -3624,7 +3624,7 @@ export const exploreData: ExploreSpot[] = [
   },
   {
     title: 'নবাব প্যালেস ও বগুড়ার দই ঐতিহ্য',
-    enTitle: 'Nawab Palace & Bogura Doi Heritage',
+    title_en: 'Nawab Palace & Bogura Doi Heritage',
     location: 'সূত্রাপুর ও সাতমাথা, বগুড়া সদর',
     tag: 'ঐতিহ্য ও সংস্কৃতি',
     desc: 'পাকিস্তানের সাবেক প্রধানমন্ত্রী মোহাম্মদ আলী বগুড়ার ঐতিহাসিক নবাব প্যালেস এবং বগুড়ার বিশ্বখ্যাত জিআই স্বীকৃত দই ও মহাস্থানের কটকটি।',

@@ -4,19 +4,19 @@ import path from 'path';
 export interface HealthcareFacility {
   id: string;
   dghs_facility_id: string;
+  name_en: string;
   name: string;
-  name_bn: string;
   slug: string;
   category: string;
   facility_type: string;
   original_facility_type: string;
   ownership: 'government' | 'private' | 'ngo';
+  district_en: string;
   district: string;
-  district_bn: string;
+  upazila_en: string;
   upazila: string;
-  upazila_bn: string;
-  union: string | null;
-  union_bn: string | null;
+  union_name_en: string | null;
+  union_name: string | null;
   village_or_area: string | null;
   address: string;
   phone: string[];
@@ -47,7 +47,7 @@ export interface HealthcarePaginatedResult {
   total: number;
   page: number;
   totalPages: number;
-  upazilas: { name: string; name_bn: string; count: number }[];
+  upazilas: { name_en: string; name: string; count: number }[];
   categories: { name: string; count: number }[];
 }
 
@@ -99,8 +99,8 @@ export class HealthcareService {
     // Upazila filter
     if (upazila && upazila !== 'all') {
       filtered = filtered.filter(f =>
-        f.upazila.toLowerCase() === upazila.toLowerCase() ||
-        f.upazila_bn === upazila
+        f.upazila_en.toLowerCase() === upazila.toLowerCase() ||
+        f.upazila === upazila
       );
     }
 
@@ -129,20 +129,20 @@ export class HealthcareService {
     if (query && query.trim().length > 0) {
       const q = query.trim().toLowerCase();
       filtered = filtered.filter(f =>
-        f.name.toLowerCase().includes(q) ||
-        f.name_bn.includes(q) ||
+        f.name_en.toLowerCase().includes(q) ||
+        f.name.includes(q) ||
         f.address.toLowerCase().includes(q) ||
-        f.upazila.toLowerCase().includes(q) ||
-        f.upazila_bn.includes(q) ||
-        (f.union && f.union.toLowerCase().includes(q)) ||
-        (f.union_bn && f.union_bn.includes(q)) ||
+        f.upazila_en.toLowerCase().includes(q) ||
+        f.upazila.includes(q) ||
+        (f.union_name_en && f.union_name_en.toLowerCase().includes(q)) ||
+        (f.union_name && f.union_name.includes(q)) ||
         (f.village_or_area && f.village_or_area.toLowerCase().includes(q)) ||
         f.services.some(s => s.toLowerCase().includes(q))
       );
     }
 
     // Upazila counts for tabs
-    const upazilaMap = new Map<string, { name_bn: string; count: number }>();
+    const upazilaMap = new Map<string, { name: string; count: number }>();
     const upazilaBanglaMap: Record<string, string> = {
       "Bogura Sadar": "বগুড়া সদর",
       "Adamdighi": "আদমদীঘি",
@@ -158,22 +158,22 @@ export class HealthcareService {
       "Sonatala": "সোনাতলা"
     };
 
-    for (const [enName, bnName] of Object.entries(upazilaBanglaMap)) {
-      upazilaMap.set(enName, { name_bn: bnName, count: 0 });
+    for (const [name_en, bnName] of Object.entries(upazilaBanglaMap)) {
+      upazilaMap.set(name_en, { name: bnName, count: 0 });
     }
 
     for (const f of all) {
-      const entry = upazilaMap.get(f.upazila);
+      const entry = upazilaMap.get(f.upazila_en);
       if (entry) {
         entry.count++;
       } else {
-        upazilaMap.set(f.upazila, { name_bn: f.upazila_bn || f.upazila, count: 1 });
+        upazilaMap.set(f.upazila_en, { name: f.upazila || f.upazila_en, count: 1 });
       }
     }
 
-    const upazilas = Array.from(upazilaMap.entries()).map(([name, val]) => ({
-      name,
-      name_bn: val.name_bn,
+    const upazilas = Array.from(upazilaMap.entries()).map(([name_en, val]) => ({
+      name_en,
+      name: val.name,
       count: val.count
     }));
 

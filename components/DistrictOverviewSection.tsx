@@ -1,7 +1,7 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React from 'react';
-import Link from 'next/link';
 
 export default function DistrictOverviewSection() {
   const pillars = [

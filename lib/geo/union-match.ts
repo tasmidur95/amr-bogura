@@ -15,12 +15,12 @@ function lev(a: string, b: string): number {
 }
 
 /** Returns Map<geoName, unionId>. Unmatched geo names are simply absent. */
-export function matchUnions(geoNames: string[], unions: { id: string; enName: string }[]): Map<string, string> {
+export function matchUnions(geoNames: string[], unions: { id: string; name_en: string }[]): Map<string, string> {
   const pairs: { g: string; u: string; d: number }[] = [];
   for (const g of geoNames) {
     const gc = clean(g) || g.toLowerCase();
     for (const u of unions) {
-      const uc = clean(u.enName) || u.enName.toLowerCase();
+      const uc = clean(u.name_en) || u.name_en.toLowerCase();
       pairs.push({ g, u: u.id, d: lev(gc, uc) / Math.max(gc.length, uc.length) });
     }
   }

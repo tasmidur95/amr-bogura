@@ -1,10 +1,11 @@
 import type { MetadataRoute } from 'next';
+import { ROUTES } from '@/lib/i18n/routes';
 
 const SITE = (process.env.NEXT_PUBLIC_SITE_URL || 'https://amar-bogura.vercel.app').replace(/\/$/, '');
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [{ userAgent: '*', allow: '/', disallow: ['/admin', '/api/'] }],
+    rules: [{ userAgent: '*', allow: '/', disallow: ['/admin', '/api/', ROUTES.login] }],
     sitemap: `${SITE}/sitemap.xml`,
     host: SITE,
   };

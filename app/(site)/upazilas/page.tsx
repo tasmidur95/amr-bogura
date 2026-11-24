@@ -1,7 +1,9 @@
 'use client';
 
+import { useRouter } from '@/lib/i18n/navigation';
+import { upazilaPath, explorePath } from '@/lib/i18n/routes';
+import { upazilaSlugFor, upazilaSlugOf, spotSlug } from '@/lib/i18n/entities';
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
@@ -32,7 +34,7 @@ export default function UpazilasPage() {
   };
 
   const handleOpenDetail = (index: number) => {
-    router.push(`/upazilas/${index}`);
+    router.push(upazilaPath(upazilaSlugOf(upazilas[index], index)));
   };
 
   return (

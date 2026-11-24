@@ -9,8 +9,8 @@
   "emergency_blood_banks": [
     {
       "id": "sandhani-szmc-bogura",
-      "name": "Sandhani Blood Bank (SZMC Unit)",
-      "name_bn": "সন্ধানী (শজিমেক ইউনিট) রক্ত পরিসঞ্চালন ও চক্ষু ব্যাংক",
+      "name_en": "Sandhani Blood Bank (SZMC Unit)",
+      "name": "সন্ধানী (শজিমেক ইউনিট) রক্ত পরিসঞ্চালন ও চক্ষু ব্যাংক",
       "location": "Shahid Ziaur Rahman Medical College Hospital Campus, Silimpur, Bogura",
       "upazila": "বগুড়া সদর",
       "operating_hours": "24/7 (round the clock)",
@@ -28,8 +28,8 @@
     },
     {
       "id": "red-crescent-blood-centre-bogura",
-      "name": "Bangladesh Red Crescent Society Blood Centre, Bogura",
-      "name_bn": "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি রক্ত কেন্দ্র, বগুড়া",
+      "name_en": "Bangladesh Red Crescent Society Blood Centre, Bogura",
+      "name": "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি রক্ত কেন্দ্র, বগুড়া",
       "location": "Red Crescent Bhaban, Sutrapur, Bogura Sadar, Bogura 5800",
       "upazila": "বগুড়া সদর",
       "operating_hours": "24/7",
@@ -47,8 +47,8 @@
     },
     {
       "id": "badhan-azizul-haque-college",
-      "name": "Badhan (Govt. Azizul Haque College Unit)",
-      "name_bn": "বাঁধন (সরকারি আজিজুল হক কলেজ ইউনিট)",
+      "name_en": "Badhan (Govt. Azizul Haque College Unit)",
+      "name": "বাঁধন (সরকারি আজিজুল হক কলেজ ইউনিট)",
       "location": "Govt. Azizul Haque College Campus, Bogura",
       "upazila": "বগুড়া সদর",
       "operating_hours": "24/7 on-call volunteer network",
@@ -65,8 +65,8 @@
     },
     {
       "id": "tmss-blood-bank",
-      "name": "TMSS Medical College & Rafatullah Hospital Blood Bank",
-      "name_bn": "টিএমএসএস মেডিকেল কলেজ ও রফাতুল্লাহ কমিউনিটি হাসপাতাল ব্লাড ব্যাংক",
+      "name_en": "TMSS Medical College & Rafatullah Hospital Blood Bank",
+      "name": "টিএমএসএস মেডিকেল কলেজ ও রফাতুল্লাহ কমিউনিটি হাসপাতাল ব্লাড ব্যাংক",
       "location": "Nawdapara, Rangpur Road, Bogura 5800",
       "upazila": "বগুড়া সদর",
       "operating_hours": "24/7",
@@ -83,8 +83,8 @@
     },
     {
       "id": "mohammad-ali-hospital-blood-transfusion",
-      "name": "Mohammad Ali Hospital Blood Transfusion Centre",
-      "name_bn": "মোহাম্মদ আলী হাসপাতাল রক্ত পরিসঞ্চালন কেন্দ্র",
+      "name_en": "Mohammad Ali Hospital Blood Transfusion Centre",
+      "name": "মোহাম্মদ আলী হাসপাতাল রক্ত পরিসঞ্চালন কেন্দ্র",
       "location": "Hospital Compound, Hospital Road, Bogura Sadar, Bogura 5800",
       "upazila": "বগুড়া সদর",
       "operating_hours": "24/7",
@@ -569,4 +569,3 @@
     }
   ]
 }
-

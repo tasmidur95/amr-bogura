@@ -1,7 +1,7 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React from 'react';
-import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 
 interface ServicesGridProps {
@@ -25,14 +25,14 @@ export default function ServicesGrid({ onNavigate, onFilterHospital, onSwitchCom
   const { t } = useLanguage();
 
   const services: Service[] = [
-    { key: 'hospital', title: t('srvHospital'), sub: t('srvHospitalSub'), badge: '১৮+ কেন্দ্র', icon: 'fa-hospital-user', tone: 'bg-emerald-50 text-emerald-700', href: '/healthcare' },
-    { key: 'diagnostic', title: t('srvDiagnostic'), sub: t('srvDiagnosticSub'), badge: '২৫+ ল্যাব', icon: 'fa-microscope', tone: 'bg-cyan-50 text-cyan-700', onClick: () => { onFilterHospital('diagnostic'); onNavigate('home', 'healthcare'); } },
-    { key: 'emergency', title: t('srvEmergency'), sub: t('srvEmergencySub'), badge: '২৪/৭', icon: 'fa-truck-medical', tone: 'bg-rose-50 text-rose-600', onClick: () => onNavigate('home', 'emergency') },
-    { key: 'upazila', title: t('srvUpazila'), sub: t('srvUpazilaSub'), badge: '১২ উপজেলা', icon: 'fa-building-flag', tone: 'bg-amber-50 text-amber-700', href: '/upazilas' },
-    { key: 'explore', title: t('srvExplore'), sub: t('srvExploreSub'), badge: '১০+ স্থান', icon: 'fa-gopuram', tone: 'bg-teal-50 text-teal-700', href: '/explore' },
-    { key: 'banking', title: 'ব্যাংক ও এটিএম', sub: 'রাউটিং নম্বর, সুইফট কোড ও এটিএম বুথ', badge: '২৪/৭ এটিএম', icon: 'fa-building-columns', tone: 'bg-emerald-50 text-emerald-800', href: '/banking' },
-    { key: 'doi', title: t('srvDoi'), sub: t('srvDoiSub'), badge: 'GI পণ্য', icon: 'fa-bowl-food', tone: 'bg-yellow-50 text-yellow-700', onClick: () => { onSwitchCommunityTab('business'); onNavigate('home', 'community'); } },
-    { key: 'history', title: t('srvHistory'), sub: t('srvHistorySub'), badge: '১৮২১ সাল', icon: 'fa-scroll', tone: 'bg-orange-50 text-orange-700', onClick: () => onNavigate('home', 'history') },
+    { key: 'hospital', title: t('services.items.hospital.title'), sub: t('services.items.hospital.desc'), badge: t('home.services.badgeHospital'), icon: 'fa-hospital-user', tone: 'bg-emerald-50 text-emerald-700', href: '/healthcare' },
+    { key: 'diagnostic', title: t('services.items.diagnostic.title'), sub: t('services.items.diagnostic.desc'), badge: t('home.services.badgeLab'), icon: 'fa-microscope', tone: 'bg-cyan-50 text-cyan-700', onClick: () => { onFilterHospital('diagnostic'); onNavigate('home', 'healthcare'); } },
+    { key: 'emergency', title: t('services.items.emergency.title'), sub: t('services.items.emergency.desc'), badge: t('home.services.badgeAlways'), icon: 'fa-truck-medical', tone: 'bg-rose-50 text-rose-600', onClick: () => onNavigate('home', 'emergency') },
+    { key: 'upazila', title: t('services.items.upazila.title'), sub: t('services.items.upazila.desc'), badge: t('home.services.badgeUpazila'), icon: 'fa-building-flag', tone: 'bg-amber-50 text-amber-700', href: '/upazilas' },
+    { key: 'explore', title: t('services.items.explore.title'), sub: t('services.items.explore.desc'), badge: t('home.services.badgeSpots'), icon: 'fa-gopuram', tone: 'bg-teal-50 text-teal-700', href: '/explore' },
+    { key: 'banking', title: t('home.services.bankTitle'), sub: t('home.services.bankDesc'), badge: t('home.services.badgeAtm'), icon: 'fa-building-columns', tone: 'bg-emerald-50 text-emerald-800', href: '/banking' },
+    { key: 'doi', title: t('services.items.doi.title'), sub: t('services.items.doi.desc'), badge: t('home.services.badgeGi'), icon: 'fa-bowl-food', tone: 'bg-yellow-50 text-yellow-700', onClick: () => { onSwitchCommunityTab('business'); onNavigate('home', 'community'); } },
+    { key: 'history', title: t('services.items.history.title'), sub: t('services.items.history.desc'), badge: t('home.services.badgeYear'), icon: 'fa-scroll', tone: 'bg-orange-50 text-orange-700', onClick: () => onNavigate('home', 'history') },
   ];
 
   const cardClass =
@@ -62,13 +62,13 @@ export default function ServicesGrid({ onNavigate, onFilterHospital, onSwitchCom
       <div className="flex items-end justify-between gap-3 mb-3 sm:mb-5">
         <div>
           <h2 id="services-title" className="text-xl sm:text-2xl font-bold text-slate-900">
-            {t('sec01Title')}
+            {t('services.title')}
           </h2>
-          <p className="text-slate-600 text-xs sm:text-sm mt-0.5 hidden sm:block">{t('sec01Subtitle')}</p>
+          <p className="text-slate-600 text-xs sm:text-sm mt-0.5 hidden sm:block">{t('services.subtitle')}</p>
         </div>
         <span className="text-[11px] text-slate-500 bg-white px-2.5 py-1 rounded-lg border border-slate-200 flex items-center gap-1.5 shrink-0">
           <i className="fa-solid fa-circle-check text-emerald-600"></i>
-          <span>{t('verifiedBadge')}</span>
+          <span>{t('services.verified')}</span>
         </span>
       </div>
 

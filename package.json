@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "clean": "node -e \"const fs = require('fs'); fs.rmSync('.next', { recursive: true, force: true }); console.log('✓ Cleaned .next build and cache');\"",
+    "seed": "node scripts/seed.mjs",
+    "seed:export": "node scripts/seed-export.mjs",
     "seed:healthcare": "node scripts/seed-healthcare.mjs",
     "seed:all": "node scripts/seed-all.mjs",
     "db:setup": "node scripts/db-setup.mjs",

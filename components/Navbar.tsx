@@ -1,13 +1,14 @@
 'use client';
 
+import Link, { useRouter } from '@/lib/i18n/navigation';
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import BrandLogo from '@/components/BrandLogo';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
 import { useCommunityAuth } from '@/lib/context/CommunityAuthContext';
 import { SiteContent } from '@/lib/data/district-data';
+import { DEFAULT_LOCALE, otherLocale } from '@/lib/i18n/config';
+import { translate } from '@/lib/i18n/messages';
 
 interface NavbarProps {
   currentView: string;
@@ -18,10 +19,12 @@ interface NavbarProps {
 
 export default function Navbar({ currentView, onNavigate, onOpenSearch, siteContent }: NavbarProps) {
   const router = useRouter();
-  const { language, toggleLanguage, t } = useLanguage();
+  const { locale, toggleLanguage, t } = useLanguage();
   const { showToast } = useToast();
   const { user, isLoggedIn, openAuthPage } = useCommunityAuth();
   const [activeContent, setActiveContent] = useState<SiteContent | undefined>(siteContent);
+  // CMS banner text (site_content) is authored in the default language only
+  const cms = locale === DEFAULT_LOCALE ? activeContent : undefined;
 
   const handleNavClick = (view: string, anchor?: string) => {
     if (onNavigate) {
@@ -51,10 +54,9 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
   }, [siteContent]);
 
   const handleLangToggle = () => {
+    const next = otherLocale(locale);
     toggleLanguage();
-    showToast(
-      language === 'bn' ? 'Language switched to English' : 'ভাষা বাংলায় পরিবর্তন করা হয়েছে'
-    );
+    showToast(translate(next, 'lang.switched'));
   };
 
   return (
@@ -65,14 +67,14 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
           <div className="flex items-center gap-3 overflow-hidden">
             <span className="inline-flex items-center gap-1.5 font-medium text-amber-400 shrink-0">
               <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-              <span>{activeContent?.topNoticeLabel || t('topNoticeLabel')}</span>
+              <span>{cms?.topNoticeLabel || t('notice.label')}</span>
             </span>
-            <span className="truncate text-emerald-200/90">{activeContent?.topNoticeText || t('topNoticeText')}</span>
+            <span className="truncate text-emerald-200/90">{cms?.topNoticeText || t('notice.text')}</span>
           </div>
           <div className="hidden sm:flex items-center gap-4 shrink-0 text-emerald-300">
             <span>
               <i className="fa-solid fa-location-dot text-amber-400 mr-1"></i>{' '}
-              {activeContent?.divisionBadge || t('divisionBadge')}
+              {cms?.divisionBadge || t('notice.division')}
             </span>
           </div>
         </div>
@@ -98,13 +100,13 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
-              {t('navHome')}
+              {t('nav.home')}
             </Link>
             <button
               onClick={() => handleNavClick('home', 'services')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition-all duration-200 ease-out active:scale-95 cursor-pointer"
             >
-              {t('navServices')}
+              {t('nav.services')}
             </button>
             <Link
               href="/upazilas"
@@ -113,7 +115,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
-              {t('navUpazilas')}
+              {t('nav.upazilas')}
             </Link>
             <Link
               href="/healthcare"
@@ -122,7 +124,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
-              {t('navHealthcare')}
+              {t('nav.healthcare')}
             </Link>
             <Link
               href="/education"
@@ -131,7 +133,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
-              {language === 'bn' ? 'শিক্ষাপ্রতিষ্ঠান' : 'Education'}
+              {t('nav.education')}
             </Link>
             <Link
               href="/explore"
@@ -140,7 +142,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
-              {t('navExplore')}
+              {t('nav.explore')}
             </Link>
             <Link
               href="/transport"
@@ -149,7 +151,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
-              {language === 'bn' ? 'পরিবহন' : 'Transport'}
+              {t('nav.transport')}
             </Link>
             <Link
               href="/hospitality"
@@ -158,7 +160,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
-              {language === 'bn' ? 'হোটেল-রেস্তোরাঁ' : 'Hospitality'}
+              {t('nav.hospitality')}
             </Link>
             <Link
               href="/banking"
@@ -167,13 +169,13 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
-              {language === 'bn' ? 'ব্যাংক ও এটিএম' : 'Banking & ATM'}
+              {t('nav.banking')}
             </Link>
             {/* <button
               onClick={() => handleNavClick('home', 'history')}
               className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60 transition-all duration-200 ease-out active:scale-95 cursor-pointer"
             >
-              {t('navHistory')}
+              {t('nav.history')}
             </button> */}
             <Link
               href="/community"
@@ -182,7 +184,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 : 'font-medium text-slate-600 hover:text-emerald-800 hover:bg-white/60'
                 }`}
             >
-              {t('navCommunity')}
+              {t('nav.community')}
             </Link>
 
           </nav>
@@ -192,11 +194,11 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             <button
               onClick={() => onOpenSearch ? onOpenSearch() : router.push('/explore')}
               className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 transition flex items-center gap-1.5 sm:gap-2 text-sm cursor-pointer"
-              title="Search Bogura"
+              title={t('nav.searchTitle')}
             >
               <i className="fa-solid fa-magnifying-glass text-emerald-700"></i>
               <span className="hidden sm:inline text-slate-500 text-xs font-medium">
-                {t('searchPlaceholderBtn')}
+                {t('nav.search')}
               </span>
             </button>
 
@@ -207,8 +209,8 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
             >
               <i className="fa-solid fa-language text-amber-300 text-sm"></i>
               <span>
-                <span className="sm:hidden">{language === 'bn' ? 'EN' : 'বাং'}</span>
-                <span className="hidden sm:inline">{language === 'bn' ? 'English' : 'বাংলা'}</span>
+                <span className="sm:hidden">{t('lang.switchToShort')}</span>
+                <span className="hidden sm:inline">{t('lang.switchTo')}</span>
               </span>
             </button>
             <Link
@@ -219,7 +221,7 @@ export default function Navbar({ currentView, onNavigate, onOpenSearch, siteCont
                 }`}
             >
               <i className="fa-solid fa-heart-circle-plus text-rose-500"></i>
-              <span>{language === 'bn' ? 'অবদান রাখুন' : 'Contribute'}</span>
+              <span>{t('nav.contribute')}</span>
             </Link>
           </div>
         </div>

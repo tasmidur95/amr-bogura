@@ -3,14 +3,21 @@
 import React, { useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useLanguage } from '@/lib/context/LanguageContext';
+import { formatNumber } from '@/lib/i18n/format';
+import type { Locale } from '@/lib/i18n/config';
 import { Upazila } from '@/lib/data/district-data';
 import { boguraUpazilasData } from '@/lib/data/unions-villages-data';
+
+function MapLoading() {
+  const { t } = useLanguage();
+  return <>{t('home.upazila.mapLoading')}</>;
+}
 
 const BoguraGeoMap = dynamic(() => import('@/components/BoguraGeoMap'), {
   ssr: false,
   loading: () => (
     <div className="h-[420px] sm:h-[520px] rounded-3xl bg-[#F3F6F1] animate-pulse flex items-center justify-center text-slate-400 text-xs">
-      মানচিত্র লোড হচ্ছে...
+      <MapLoading />
     </div>
   ),
 });
@@ -24,12 +31,14 @@ interface UpazilaSectionProps {
 
 type SortKey = 'serial' | 'population' | 'area';
 
-const toBn = (n: number | string) =>
-  String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[+d]);
+// digits follow the active language (see lib/i18n/format.ts)
+let digitLocale: Locale = 'bn';
+const toBn = (n: number | string) => formatNumber(n, digitLocale);
 const fmtBn = (n: number) => toBn(n.toLocaleString('en-IN'));
 
 export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: UpazilaSectionProps) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
+  digitLocale = locale;
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [sortKey, setSortKey] = useState<SortKey>('population');
 
@@ -59,11 +68,11 @@ export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: U
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
           <span className="text-xs font-bold tracking-wider uppercase text-amber-700 bg-amber-100/80 px-2.5 py-1 rounded-md border border-amber-200">
-            {t('upzBadge')}
+            {t('upazilaSection.badge')}
           </span>
-          <h2 id="upazilas-title" className="text-xl sm:text-3xl font-bold text-slate-900 mt-2">{t('upzTitle')}</h2>
+          <h2 id="upazilas-title" className="text-xl sm:text-3xl font-bold text-slate-900 mt-2">{t('upazilaSection.title')}</h2>
           <p className="text-slate-600 text-sm sm:text-base mt-1">
-            মানচিত্রে বা তালিকায় যেকোনো উপজেলায় ক্লিক করে ইউনিয়ন, গ্রাম ও জনসংখ্যার বিস্তারিত দেখুন
+            {t('home.upazila.hint')}
           </p>
         </div>
         <button
@@ -71,7 +80,7 @@ export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: U
           className="px-4 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-xs transition cursor-pointer shrink-0"
         >
           <i className="fa-solid fa-earth-americas text-amber-300"></i>
-          <span>সব উপজেলা ও ইউনিয়ন ({upazilas.length})</span>
+          <span>{t('home.upazila.all', { n: formatNumber(upazilas.length, locale) })}</span>
           <i className="fa-solid fa-arrow-right"></i>
         </button>
       </div>
@@ -79,10 +88,10 @@ export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: U
       {/* District totals strip */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-4">
         {[
-          { label: 'মোট জনসংখ্যা', value: fmtBn(totals.population), tone: 'text-[#0B4635]' },
-          { label: 'মোট আয়তন', value: `${fmtBn(Math.round(totals.area))} বর্গ কিমি`, tone: 'text-slate-900' },
-          { label: 'ইউনিয়ন পরিষদ', value: `${toBn(totals.unions)}টি`, tone: 'text-[#0B4635]' },
-          { label: 'মোট গ্রাম', value: `${fmtBn(totals.villages)}টি`, tone: 'text-[#C85A28]' },
+          { label: t('home.upazila.population'), value: fmtBn(totals.population), tone: 'text-[#0B4635]' },
+          { label: t('home.upazila.area'), value: `${fmtBn(Math.round(totals.area))} ${t('home.upazila.sqkm')}`, tone: 'text-slate-900' },
+          { label: t('home.upazila.unionCouncils'), value: toBn(totals.unions), tone: 'text-[#0B4635]' },
+          { label: t('home.upazila.villages'), value: fmtBn(totals.villages), tone: 'text-[#C85A28]' },
         ].map(s => (
           <div key={s.label} className="bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-2xs">
             <p className="text-[11px] font-semibold text-slate-500">{s.label}</p>
@@ -106,12 +115,12 @@ export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: U
         <div className="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 shadow-2xs overflow-hidden flex flex-col lg:h-[562px]">
           <div className="p-4 border-b border-slate-100 shrink-0">
             <div className="flex items-center justify-between gap-2">
-              <h3 className="font-extrabold text-slate-900 text-base">উপজেলা সারসংক্ষেপ</h3>
+              <h3 className="font-extrabold text-slate-900 text-base">{t('home.upazila.summary')}</h3>
               <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg text-[11px] font-bold">
                 {([
-                  ['population', 'জনসংখ্যা'],
-                  ['area', 'আয়তন'],
-                  ['serial', 'ক্রমিক'],
+                  ['population', t('home.upazila.sortPopulation')],
+                  ['area', t('home.upazila.sortArea')],
+                  ['serial', t('home.upazila.sortSerial')],
                 ] as [SortKey, string][]).map(([k, label]) => (
                   <button
                     key={k}
@@ -151,7 +160,7 @@ export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: U
                             active ? 'bg-[#C85A28] text-white' : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
                           }`}
                         >
-                          {d.serialBn}
+                          {d.serial}
                         </span>
                         <span className="font-bold text-sm text-slate-900 truncate">{d.name}</span>
                       </div>
@@ -166,13 +175,13 @@ export default function UpazilaSection({ upazilas, onNavigate, onOpenDetail }: U
                       />
                     </div>
                     <div className="mt-1.5 flex items-center gap-3 text-[11px] text-slate-500">
-                      <span>{toBn(d.unionCount)}টি ইউনিয়ন</span>
+                      <span>{t('home.upazila.unionsCount', { n: toBn(d.unionCount) })}</span>
                       <span>·</span>
-                      <span>{toBn(d.villageCount)}টি গ্রাম</span>
+                      <span>{t('home.upazila.villagesCount', { n: toBn(d.villageCount) })}</span>
                       {d.hasPourashava && (
                         <>
                           <span>·</span>
-                          <span className="text-amber-700">পৌরসভা</span>
+                          <span className="text-amber-700">{t('home.upazila.pourashava')}</span>
                         </>
                       )}
                     </div>

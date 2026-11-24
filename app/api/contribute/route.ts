@@ -56,9 +56,9 @@ export async function POST(req: NextRequest) {
     if (type === 'spot') {
       const {
         title,
-        enTitle,
+        title_en,
         category,
-        categoryBn,
+        category_label,
         location,
         upazila,
         tag,
@@ -89,9 +89,9 @@ export async function POST(req: NextRequest) {
 
       const created = await DistrictService.createExploreSpot({
         title,
-        enTitle: enTitle || title,
+        title_en: title_en || title,
         category: category || 'heritage',
-        categoryBn: categoryBn || 'ঐতিহ্য ও প্রত্নতত্ত্ব',
+        category_label: category_label || 'ঐতিহ্য ও প্রত্নতত্ত্ব',
         location,
         upazila,
         tag: tag || 'নাগরিক প্রস্তাবিত স্থান',

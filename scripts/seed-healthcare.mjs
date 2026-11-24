@@ -145,8 +145,8 @@ async function run() {
       file_name: "healthcare-all.json",
       relative_path: "amr-bogura-data/healthcare/healthcare-all.json",
       total_records: allFacilities.length,
-      district: "Bogura",
-      district_bn: "বগুড়া",
+      district_en: "Bogura",
+      district: "বগুড়া",
       covered_upazilas: report.covered_upazila_list,
       covered_upazilas_count: report.covered_upazila_list.length,
       source_urls: [

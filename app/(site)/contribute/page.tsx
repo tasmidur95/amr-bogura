@@ -1,7 +1,8 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
+import { upazilaPath, explorePath } from '@/lib/i18n/routes';
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
@@ -105,7 +106,7 @@ function ContributeWorkspace() {
           id: s.id,
           type: 'spot' as const,
           title: s.title,
-          category: s.categoryBn,
+          category: s.category_label,
           upazila: s.upazila,
           date: s.contributor?.date || '',
           status: s.status || (s.isApproved ? 'approved' : 'pending'),
@@ -178,9 +179,9 @@ function ContributeWorkspace() {
           type: 'spot',
           data: {
             title: spotTitle,
-            enTitle: spotEnTitle || spotTitle,
+            title_en: spotEnTitle || spotTitle,
             category: spotCategory,
-            categoryBn: categoryBnMap[spotCategory] || 'ঐতিহ্য ও দর্শনীয় স্থান',
+            category_label: categoryBnMap[spotCategory] || 'ঐতিহ্য ও দর্শনীয় স্থান',
             location: spotLocation,
             upazila: spotUpazila,
             tag: spotTag || 'নাগরিক প্রস্তাবিত স্থান',
@@ -215,7 +216,7 @@ function ContributeWorkspace() {
             id: json.data.id,
             type: 'spot',
             title: json.data.title,
-            category: json.data.categoryBn,
+            category: json.data.category_label,
             upazila: json.data.upazila,
             date: 'আজ',
             status: 'pending',
@@ -1203,7 +1204,7 @@ function ContributeWorkspace() {
                     </span>
                     {item.status === 'approved' ? (
                       <Link
-                        href={item.type === 'spot' ? `/explore/${item.id}` : '/#community'}
+                        href={item.type === 'spot' ? explorePath(item.id) : '/#community'}
                         className="text-xs font-bold text-emerald-700 hover:text-emerald-900 flex items-center gap-1"
                       >
                         <span>সরাসরি দেখুন</span>

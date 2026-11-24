@@ -22,8 +22,8 @@ export async function seedContent(db) {
     for (const u of JSON.parse(fs.readFileSync(usersFile, 'utf8'))) {
       const r = await db.query(
         `INSERT INTO public.community_users
-           (id, name, username, phone, upazila, blood_group, role, bio, is_verified, password_hash, created_at, last_login_at)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10, COALESCE($11::timestamptz, now()), $12::timestamptz)
+           (id, legacy_id, name, username, phone, upazila, blood_group, role, bio, is_verified, password_hash, created_at, last_login_at)
+         VALUES (public.uuid_of('community_users',$1::text),$1,$2,$3,$4,$5,$6,$7,$8,$9,$10, COALESCE($11::timestamptz, now()), $12::timestamptz)
          ON CONFLICT DO NOTHING`,
         [u.id, u.name, u.username, u.phone, u.upazila, u.bloodGroup ?? null, u.role ?? 'নাগরিক সদস্য', u.bio ?? null,
          u.isVerified !== false, u.passwordHash, u.createdAt ?? null, u.lastLoginAt ?? null]
@@ -39,10 +39,10 @@ export async function seedContent(db) {
     const st = statusOf(p);
     const r = await db.query(
       `INSERT INTO public.community_posts
-         (id, category, name, badge, upazila, detail, phone,
+         (id, legacy_id, category, name, badge, upazila, detail, phone,
           is_approved, status, reject_reason, contributor_name, contributor_phone, created_at)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12, COALESCE($13::timestamptz, now()))
-       ON CONFLICT (id) DO NOTHING`,
+       VALUES (public.uuid_of('community_posts',$1::text),$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12, COALESCE($13::timestamptz, now()))
+       ON CONFLICT DO NOTHING`,
       [p.id, p.category, p.name, p.badge ?? null, p.upazila, p.detail, p.phone,
        st === 'approved', st, p.rejectReason ?? null, p.contributorName ?? null, p.contributorPhone ?? null,
        p.created_at && !isNaN(Date.parse(p.created_at)) ? p.created_at : null]
@@ -56,24 +56,24 @@ export async function seedContent(db) {
     const c = s.contributor || {};
     const r = await db.query(
       `INSERT INTO public.tourist_spots
-         (id, title, en_title, category, category_bn, location, upazila, tag, cover_image, gallery,
+         (id, slug, legacy_id, title, title_en, category, category_label, location, upazila, tag, cover_image, gallery,
           short_desc, history, architecture, how_to_reach, highlights, timings, entry_fee, best_time,
           map_coordinates, map_url, is_approved, status, contributor,
           contributor_name, contributor_phone, contributor_email, contributor_note)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10::jsonb,$11,$12,$13,$14,$15::jsonb,$16,$17,$18,$19,$20,$21,$22,$23::jsonb,$24,$25,$26,$27)
-       ON CONFLICT (id) DO NOTHING`,
-      [s.id, s.title, s.enTitle || s.title, s.category, s.categoryBn, s.location, s.upazila, s.tag || '', s.coverImage,
+       VALUES (public.uuid_of('tourist_spots',$1::text),$28,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10::jsonb,$11,$12,$13,$14,$15::jsonb,$16,$17,$18,$19,$20,$21,$22,$23::jsonb,$24,$25,$26,$27)
+       ON CONFLICT DO NOTHING`,
+      [s.id, s.title, s.title_en || s.title, s.category, s.category_label, s.location, s.upazila, s.tag || '', s.coverImage,
        JSON.stringify(s.gallery || []), s.shortDesc, s.history || s.shortDesc, s.architecture || '', s.howToReach || '',
        JSON.stringify(s.highlights || []), s.timings || '', s.entryFee || '', s.bestTime || '',
        s.mapCoordinates || null, s.mapUrl || null, st === 'approved', st, JSON.stringify(c),
-       c.name ?? null, c.phone ?? null, c.email ?? null, c.note ?? null]
+       c.name ?? null, c.phone ?? null, c.email ?? null, c.note ?? null, s.slug || s.id]
     );
     spots += r.rowCount;
 
     for (const rv of s.reviews || []) {
       const rr = await db.query(
-        `INSERT INTO public.spot_reviews (id, spot_id, author, rating, comment, date, location)
-         VALUES ($1,$2,$3,$4,$5,$6,$7) ON CONFLICT (id) DO NOTHING`,
+        `INSERT INTO public.spot_reviews (id, legacy_id, spot_id, author, rating, comment, date, location)
+         VALUES (public.uuid_of('spot_reviews',$1::text),$1,public.uuid_of('tourist_spots',$2::text),$3,$4,$5,$6,$7) ON CONFLICT DO NOTHING`,
         [`${s.id}:${rv.id}`, s.id, rv.author, rv.rating, rv.comment, rv.date || '', rv.location ?? null]
       );
       reviews += rr.rowCount;

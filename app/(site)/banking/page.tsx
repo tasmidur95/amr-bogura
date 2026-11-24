@@ -1,19 +1,21 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React, { useState, useEffect, useMemo } from 'react';
-import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import { useToast } from '@/lib/context/ToastContext';
 import { BankItem, AtmBoothItem, BankingData } from '@/lib/services/banking.service';
+import { useLocalized } from '@/lib/i18n/useLocalized';
 
 export default function BankingPage() {
   const { showToast } = useToast();
   const [activeTab, setActiveTab] = useState<'all' | 'central' | 'bank' | 'atm' | 'islamic' | 'crm' | 'state'>('all');
   const [selectedUpazila, setSelectedUpazila] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
-  const [bankingData, setBankingData] = useState<BankingData | null>(null);
+  const [bankingRaw, setBankingData] = useState<BankingData | null>(null);
+  const bankingData = useLocalized(bankingRaw);
   const [loading, setLoading] = useState(true);
   const [selectedBankPhones, setSelectedBankPhones] = useState<{ name: string; numbers: string[] } | null>(null);
 
@@ -69,10 +71,10 @@ export default function BankingPage() {
     if (!q) return list;
     return list.filter(
       b =>
-        b.bank_name.toLowerCase().includes(q) ||
-        b.bank_name_bn.includes(q) ||
-        b.branch_name.toLowerCase().includes(q) ||
-        b.branch_name_bn.includes(q) ||
+        b.bank_name_en.toLowerCase().includes(q) ||
+        b.bank_name.includes(q) ||
+        b.branch_name_en.toLowerCase().includes(q) ||
+        b.branch_name.includes(q) ||
         b.location.toLowerCase().includes(q) ||
         b.routing_number.includes(q) ||
         (b.swift_code && b.swift_code.toLowerCase().includes(q))
@@ -85,11 +87,11 @@ export default function BankingPage() {
     let list = bankingData.banks;
 
     if (activeTab === 'islamic') {
-      list = list.filter(b => b.type === 'islamic_commercial');
+      list = list.filter(b => b.type_en === 'islamic_commercial');
     } else if (activeTab === 'crm') {
       list = list.filter(b => b.has_crm);
     } else if (activeTab === 'state') {
-      list = list.filter(b => b.type === 'state_owned_commercial' || b.type === 'specialized_agricultural');
+      list = list.filter(b => b.type_en === 'state_owned_commercial' || b.type_en === 'specialized_agricultural');
     }
 
     if (selectedUpazila !== 'ALL') {
@@ -101,10 +103,10 @@ export default function BankingPage() {
 
     return list.filter(
       b =>
-        b.bank_name.toLowerCase().includes(q) ||
-        b.bank_name_bn.includes(q) ||
-        b.branch_name.toLowerCase().includes(q) ||
-        b.branch_name_bn.includes(q) ||
+        b.bank_name_en.toLowerCase().includes(q) ||
+        b.bank_name.includes(q) ||
+        b.branch_name_en.toLowerCase().includes(q) ||
+        b.branch_name.includes(q) ||
         b.location.toLowerCase().includes(q) ||
         b.routing_number.includes(q) ||
         (b.swift_code && b.swift_code.toLowerCase().includes(q)) ||
@@ -150,7 +152,7 @@ export default function BankingPage() {
     const rawBanks = bankingData?.banks || [];
     const centralCount = bankingData?.central_and_regulatory?.length || 0;
     const atmsCount = bankingData?.atm_and_fast_track_booths?.length || 0;
-    const islamicCount = rawBanks.filter(b => b.type === 'islamic_commercial').length;
+    const islamicCount = rawBanks.filter(b => b.type_en === 'islamic_commercial').length;
     const crmCount =
       rawBanks.filter(b => b.has_crm).length +
       (bankingData?.atm_and_fast_track_booths?.filter(a =>
@@ -450,7 +452,7 @@ export default function BankingPage() {
                       <div className="max-w-2xl min-w-0">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
                           <span className="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-xs font-bold">
-                            {cb.type_bn}
+                            {cb.type}
                           </span>
                           <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-emerald-200 text-xs font-mono font-bold">
                             রাউটিং: {cb.routing_number}
@@ -461,8 +463,8 @@ export default function BankingPage() {
                             </span>
                           )}
                         </div>
-                        <h3 className="text-xl sm:text-2xl font-black text-white">{cb.bank_name_bn}</h3>
-                        <p className="text-xs text-slate-300 font-mono mt-0.5">{cb.bank_name}</p>
+                        <h3 className="text-xl sm:text-2xl font-black text-white">{cb.bank_name}</h3>
+                        <p className="text-xs text-slate-300 font-mono mt-0.5">{cb.bank_name_en !== cb.bank_name ? cb.bank_name_en : ''}</p>
                         <p className="text-xs text-amber-300 mt-2 flex items-center gap-1.5">
                           <i className="fa-solid fa-location-dot"></i>
                           <span>{cb.location}</span>
@@ -491,7 +493,7 @@ export default function BankingPage() {
                         <button
                           onClick={() =>
                             setSelectedBankPhones({
-                              name: cb.bank_name_bn,
+                              name: cb.bank_name,
                               numbers: cb.phone_numbers,
                             })
                           }
@@ -537,7 +539,7 @@ export default function BankingPage() {
                           <div className="p-4 sm:p-5 border-b border-slate-100 bg-slate-50/70 min-w-0">
                             <div className="flex items-start justify-between gap-2 mb-2.5">
                               <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200/80 truncate max-w-[150px]">
-                                {bank.type_bn}
+                                {bank.type}
                               </span>
                               <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200/80 truncate max-w-[120px]">
                                 {bank.upazila}
@@ -550,10 +552,10 @@ export default function BankingPage() {
                               </div>
                               <div className="min-w-0 flex-1">
                                 <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug line-clamp-1 group-hover:text-emerald-800 transition-colors">
-                                  {bank.bank_name_bn}
+                                  {bank.bank_name}
                                 </h3>
-                                <p className="text-xs text-emerald-700 font-semibold truncate">{bank.branch_name_bn}</p>
-                                <p className="text-[10px] text-slate-400 font-mono truncate">{bank.bank_name} • {bank.branch_name}</p>
+                                <p className="text-xs text-emerald-700 font-semibold truncate">{bank.branch_name}</p>
+                                <p className="text-[10px] text-slate-400 font-mono truncate">{bank.bank_name_en !== bank.bank_name ? `${bank.bank_name_en} • ${bank.branch_name_en}` : ''}</p>
                               </div>
                             </div>
                           </div>
@@ -563,7 +565,7 @@ export default function BankingPage() {
                             {/* Routing & Swift chips with 1-tap copy */}
                             <div className="flex flex-wrap items-center gap-1.5 mb-3">
                               <button
-                                onClick={() => handleCopy(bank.routing_number, `${bank.bank_name_bn} রাউটিং নম্বর`)}
+                                onClick={() => handleCopy(bank.routing_number, `${bank.bank_name} রাউটিং নম্বর`)}
                                 className="inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2 py-1 rounded-lg bg-emerald-50 text-emerald-900 border border-emerald-200/80 hover:bg-emerald-100 transition cursor-pointer"
                                 title="রাউটিং নম্বর কপি করুন"
                               >
@@ -574,7 +576,7 @@ export default function BankingPage() {
 
                               {bank.swift_code && (
                                 <button
-                                  onClick={() => handleCopy(bank.swift_code!, `${bank.bank_name_bn} সুইফট কোড`)}
+                                  onClick={() => handleCopy(bank.swift_code!, `${bank.bank_name} সুইফট কোড`)}
                                   className="inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2 py-1 rounded-lg bg-slate-100 text-slate-800 border border-slate-200/80 hover:bg-slate-200 transition cursor-pointer"
                                   title="সুইফট কোড কপি করুন"
                                 >
@@ -645,7 +647,7 @@ export default function BankingPage() {
 
                           {primaryPhone && (
                             <button
-                              onClick={() => handleCopy(primaryPhone, bank.bank_name_bn)}
+                              onClick={() => handleCopy(primaryPhone, bank.bank_name)}
                               className="shrink-0 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs transition cursor-pointer"
                               title="নম্বর কপি করুন"
                             >
@@ -668,7 +670,7 @@ export default function BankingPage() {
                             <button
                               onClick={() =>
                                 setSelectedBankPhones({
-                                  name: `${bank.bank_name_bn} (${bank.branch_name_bn})`,
+                                  name: `${bank.bank_name} (${bank.branch_name})`,
                                   numbers: bank.phone_numbers,
                                 })
                               }

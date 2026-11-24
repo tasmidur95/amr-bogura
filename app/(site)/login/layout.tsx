@@ -1,13 +1,10 @@
-import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+import { staticPageMetadata } from '@/lib/i18n/seo';
 
-export const metadata: Metadata = {
-  title: 'লগইন ও নিবন্ধন | আমার বগুড়া',
-  description: 'আমার বগুড়ায় লগইন করুন বা নতুন অবদানকারী প্রোফাইল তৈরি করুন।',
-  // Account pages should not appear in search results
-  robots: { index: false, follow: false },
-  alternates: { canonical: '/login' },
-};
+// Account pages should not appear in search results
+export const generateMetadata = ({ params }: { params: { locale: string } }) =>
+  staticPageMetadata('bn', 'login', { noindex: true });
 
-export default function LoginLayout({ children }: { children: React.ReactNode }) {
+export default function LoginLayout({ children }: { children: ReactNode }) {
   return children;
 }

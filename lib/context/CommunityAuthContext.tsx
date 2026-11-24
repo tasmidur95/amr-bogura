@@ -1,7 +1,7 @@
 'use client';
 
+import { usePathname, useRouter } from '@/lib/i18n/navigation';
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
 import { useToast } from './ToastContext';
 import { CommunityUser } from '@/lib/services/community-auth.service';
 

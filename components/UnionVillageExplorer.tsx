@@ -1,7 +1,7 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React, { useState, useMemo } from 'react';
-import Link from 'next/link';
 import {
   boguraUpazilasData,
   DetailedUpazilaData,
@@ -144,7 +144,7 @@ export default function UnionVillageExplorer({ onLocateOnMap }: UnionVillageExpl
                           : 'bg-[#F9F8F4] hover:bg-emerald-50 text-slate-700 border border-slate-200'
                       }`}
                     >
-                      <span className="text-[10px] opacity-70">#{u.serialBn}</span>
+                      <span className="text-[10px] opacity-70">#{u.serial}</span>
                       <span>{u.name}</span>
                       <span
                         className={`text-[10px] px-1.5 py-0.5 rounded-full ${

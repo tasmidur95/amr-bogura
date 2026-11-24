@@ -1,5 +1,5 @@
+import Link from '@/lib/i18n/navigation';
 import React from 'react';
-import Link from 'next/link';
 
 // Short, factual Q&A. Facts come from the portal's own district data.
 // Rendered as <details> (works without JS, fully crawlable) and mirrored as FAQPage JSON-LD.

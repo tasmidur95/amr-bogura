@@ -15,15 +15,15 @@ export async function GET(req: NextRequest) {
 
     if (q) {
       hubs = hubs.filter((h: any) =>
-        h.name?.toLowerCase().includes(q) ||
-        h.name_bn?.includes(q) ||
+        h.name_en?.toLowerCase().includes(q) ||
+        h.name?.includes(q) ||
         h.location?.toLowerCase().includes(q) ||
         h.upazila?.includes(q) ||
         h.connected_routes?.some((r: string) => r.toLowerCase().includes(q))
       );
       services = services.filter((s: any) =>
-        s.operator_name?.toLowerCase().includes(q) ||
-        s.operator_name_bn?.includes(q) ||
+        s.operator_name_en?.toLowerCase().includes(q) ||
+        s.operator_name?.includes(q) ||
         s.major_routes?.some((r: string) => r.toLowerCase().includes(q)) ||
         s.counters_in_bogura?.some((c: any) =>
           c.counter_name?.toLowerCase().includes(q) ||

@@ -1,0 +1,356 @@
+{
+  "notice": {
+    "label": "Emergency Hotline:",
+    "text": "National Emergency 999 · Bogura District Police Control: 01320-126498 · Fire Service: 01730-002421",
+    "division": "Rajshahi Division, Bangladesh"
+  },
+  "brand": {
+    "title": "Amar Bogura",
+    "subtitle": "আমার বগুড়া · Rajshahi Division"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "upazilas": "Upazilas",
+    "healthcare": "Healthcare",
+    "explore": "Explore",
+    "history": "History",
+    "community": "Community",
+    "search": "Search...",
+    "education": "Education",
+    "transport": "Transport",
+    "hospitality": "Hospitality",
+    "banking": "Banking & ATM",
+    "contribute": "Contribute",
+    "searchTitle": "Search Bogura"
+  },
+  "hero": {
+    "badge": "Bogura District · Rajshahi Division",
+    "headline": "Historic Land of Ancient Pundravardhana on the Banks of Karatoya",
+    "subtitle": "Upazilas, unions, hospitals, heritage landmarks, and emergency directories in one place — the civic digital portal for the Gateway to North Bengal.",
+    "ctaHospitals": "Find Hospitals",
+    "ctaUpazilas": "Explore Upazilas",
+    "ctaBlood": "Find Blood Donors",
+    "tagline": "Heritage · Agriculture · Culture",
+    "titleLead": "Bogura history, heritage & civic services",
+    "titleAccent": "in one click",
+    "intro": "Mahasthangarh, Satmatha Zero Point, GI-certified Bogura doi, 12 upazilas and 2,692 villages — a modern information and community platform for the Gateway to North Bengal."
+  },
+  "quickLinks": {
+    "hospital": {
+      "title": "Hospitals",
+      "desc": "Govt & Private Medical Centers"
+    },
+    "emergency": {
+      "title": "Emergency",
+      "desc": "999, Police, Fire & Ambulance"
+    },
+    "upazila": {
+      "title": "12 Upazilas",
+      "desc": "Pourashavas & 108 Unions Info"
+    },
+    "explore": {
+      "title": "Explore Bogura",
+      "desc": "Mahasthangarh, Behula & Heritage"
+    }
+  },
+  "services": {
+    "badge": "SECTION 01 · CIVIC DIRECTORY",
+    "title": "All Services at a Glance",
+    "subtitle": "Essential government, healthcare, heritage, and administrative services of Bogura District",
+    "verified": "Verified District Directory",
+    "items": {
+      "hospital": {
+        "title": "Hospitals",
+        "desc": "SZRMC, Mohammad Ali Hospital & Upazila Complexes"
+      },
+      "diagnostic": {
+        "title": "Diagnostics",
+        "desc": "Popular, Ibn Sina, Labaid & Pathology Labs"
+      },
+      "emergency": {
+        "title": "Emergency Numbers",
+        "desc": "Police, Fire Service, Ambulance & Power Office"
+      },
+      "upazila": {
+        "title": "Upazilas & Pourashavas",
+        "desc": "12 Upazilas, 12 Pourashavas & 108 Unions"
+      },
+      "explore": {
+        "title": "Tourist Landmarks",
+        "desc": "Mahasthangarh, Gokul Medh, Kherua Mosque & Jamuna"
+      },
+      "history": {
+        "title": "District History",
+        "desc": "From Pundranagara to 1821 District & Liberation War"
+      },
+      "stats": {
+        "title": "Map & Statistics",
+        "desc": "Area, population, rivers & geographic profile"
+      },
+      "doi": {
+        "title": "Bogura Doi & Heritage",
+        "desc": "GI-certified Bogura Doi, Kotkoti & Local Businesses"
+      }
+    }
+  },
+  "community": {
+    "badge": "SECTION 02 · CITIZEN NETWORK",
+    "title": "Community Services",
+    "subtitle": "Find blood donors, tuition, house rentals, local skilled workers, and iconic Bogura businesses",
+    "addButton": "Add Listing / Request",
+    "tabs": {
+      "blood": "Blood Donors",
+      "tuition": "Tuition",
+      "rent": "Rentals",
+      "jobs": "Jobs & Skills",
+      "business": "Business & Doi"
+    }
+  },
+  "upazilaSection": {
+    "badge": "ADMINISTRATIVE STRUCTURE",
+    "title": "12 Upazilas of Bogura District",
+    "subtitle": "Click any upazila to inspect area, unions, pourashavas, and notable landmarks",
+    "viewAll": "Full Upazilas Page"
+  },
+  "healthcare": {
+    "badge": "SECTION 03 · HEALTH & EMERGENCY",
+    "title": "Hospitals & Diagnostics Directory",
+    "subtitle": "Major government medical colleges, district hospitals, and private healthcare centers in Bogura"
+  },
+  "emergency": {
+    "badge": "24/7 EMERGENCY RESPONSE",
+    "title": "Bogura District Emergency Telephone Numbers"
+  },
+  "explore": {
+    "badge": "TOURISM & ARCHAEOLOGY",
+    "title": "Heritage & Landmarks of Bogura",
+    "subtitle": "2,500-year-old ancient civilization, Buddhist viharas, Sultanate mosques, and riverine beauty"
+  },
+  "history": {
+    "badge": "HISTORICAL TIMELINE",
+    "title": "From Pundravardhana to Modern Bogura"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "upazilas": "Upazilas"
+  },
+  "upazilasPage": {
+    "eyebrow": "UPAZILAS & UNIONS",
+    "title": "Upazilas of Bogura District",
+    "subtitle": "Twelve upazilas, their unions, area, and history. Click on the map or cards to visit any upazila.",
+    "stats": {
+      "upazilas": {
+        "label": "Total Upazilas",
+        "value": "12"
+      },
+      "unions": {
+        "label": "Total Unions",
+        "value": "108"
+      },
+      "pourashavas": {
+        "label": "Pourashavas",
+        "value": "12"
+      },
+      "area": {
+        "label": "Total Area",
+        "value": "2,898.68 km²"
+      }
+    },
+    "mapTitle": "Administrative Map of Bogura District",
+    "interactiveMap": "View on Interactive Map"
+  },
+  "common": {
+    "loading": "Loading…",
+    "backHome": "Back to home",
+    "notFoundTitle": "Page not found",
+    "notFoundText": "The page you are looking for does not exist or has moved."
+  },
+  "lang": {
+    "switchTo": "বাংলা",
+    "switchToShort": "বাং",
+    "switched": "Language switched to English",
+    "label": "Language"
+  },
+  "upazilaDetail": {
+    "unionsBreadcrumb": "Upazilas & Unions",
+    "backToAll": "Back to All Upazilas & Map",
+    "serial": "Upazila serial #{n}",
+    "heading": "{name} Upazila",
+    "area": "Area",
+    "population": "Population",
+    "unions": "Unions",
+    "villages": "Total Villages",
+    "literacy": "Literacy Rate",
+    "postalCode": "Postal Code",
+    "neighbour": "#{serial} {name} Upazila"
+  },
+  "seo": {
+    "siteName": "Amar Bogura",
+    "ogImageAlt": "Amar Bogura — official cover photo and logo",
+    "home": {
+      "title": "Amar Bogura — Bogura District Portal & Community Platform",
+      "description": "Historic land of ancient Pundravardhana on the banks of the Karatoya. 12 upazilas, healthcare, emergency contacts, blood-donor network and civic services of Bogura in one digital platform."
+    },
+    "upazilas": {
+      "title": "Upazilas of Bogura District — 12 Upazilas & 108 Unions",
+      "description": "Area, unions, pourashavas, rivers and history of all twelve upazilas of Bogura district, Bangladesh."
+    },
+    "healthcare": {
+      "title": "Hospitals, Clinics & Diagnostics in Bogura",
+      "description": "Directory of government and private hospitals, clinics, diagnostic centres, ambulance and blood-bank services across Bogura district."
+    },
+    "education": {
+      "title": "Schools, Colleges & Madrasas in Bogura",
+      "description": "Search educational institutes of Bogura district by upazila, category and EIIN."
+    },
+    "explore": {
+      "title": "Heritage & Tourist Spots of Bogura",
+      "description": "Mahasthangarh, Behula Basar Ghar, Gokul Medh, Kherua Mosque and more heritage landmarks of Bogura."
+    },
+    "transport": {
+      "title": "Transport in Bogura — Bus, Train & Local Services",
+      "description": "Bus terminals, railway stations and local transport services across Bogura district."
+    },
+    "hospitality": {
+      "title": "Hotels & Restaurants in Bogura",
+      "description": "Find hotels, restaurants and famous Bogura doi shops across the district."
+    },
+    "banking": {
+      "title": "Banks & ATM Booths in Bogura",
+      "description": "Bank branches, routing numbers and ATM booths across Bogura district."
+    },
+    "community": {
+      "title": "Community — Blood Donors, Tuition & Local Services",
+      "description": "Find blood donors, tuition, rentals and local skilled workers in Bogura."
+    },
+    "contribute": {
+      "title": "Contribute to Amar Bogura",
+      "description": "Add a heritage spot, blood donor or community listing and help keep Bogura data accurate."
+    },
+    "login": {
+      "title": "Sign in — Amar Bogura Community",
+      "description": "Sign in or create a community account to post and manage your contributions."
+    },
+    "upazilaDetail": {
+      "title": "{name} Upazila, Bogura — Unions, Area & Profile",
+      "description": "{name} upazila of Bogura district: area, unions, pourashava, rivers, landmarks and history."
+    },
+    "spotDetail": {
+      "title": "{name} — Bogura Heritage & Tourism",
+      "description": "{name} in Bogura: history, architecture, opening hours, entry fee and how to reach."
+    },
+    "instituteDetail": {
+      "title": "{name} — Bogura Educational Institute",
+      "description": "Contact details, EIIN and location of {name}, Bogura."
+    }
+  },
+  "footer": {
+    "about": "A civic initiative bringing together the history of ancient Pundravardhana on the Karatoya, information on 12 upazilas, emergency healthcare, the blood-donor network and the local community.",
+    "quickLinks": "Quick links",
+    "allServices": "All civic services",
+    "upazilaDirectory": "Directory of 12 upazilas",
+    "hospitals": "Hospitals & diagnostics",
+    "transport": "Transport & connectivity hubs",
+    "hospitality": "Hotels, resorts & restaurants",
+    "explore": "Tourist spots & heritage",
+    "contribute": "Contribute as a citizen",
+    "admin": "Admin panel",
+    "communityTitle": "Community platform",
+    "blood": "Blood-donor network",
+    "tuition": "Tuition & education",
+    "rent": "House & shop rentals",
+    "business": "Bogura doi & local businesses",
+    "copyright": "© {year} Amar Bogura — built for the citizens of Bogura district.",
+    "sources": "Sources: Bangladesh National Portal (Bogura district) and local community directories."
+  },
+  "home": {
+    "hero": {
+      "coverAlt": "Amar Bogura cover photo",
+      "searchHint": "Search hospitals, blood donors, bus counters or upazilas...",
+      "searchBtn": "Search",
+      "popular": "Popular:",
+      "tagBlood": "Urgent blood donors",
+      "tagSzmch": "SZMCH Hospital",
+      "tagBus": "Charmatha bus terminal",
+      "tagCollege": "Azizul Haque College",
+      "tagMahasthan": "Mahasthangarh",
+      "ctaHealth": "Hospitals & health centres",
+      "ctaBlood": "Blood-donor network",
+      "trustPortal": "National Portal guidelines",
+      "statHealth": "health centres",
+      "statDonors": "safe blood donors",
+      "statEdu": "educational institutes",
+      "helplines": "Emergency helplines:",
+      "h999": "National emergency service",
+      "h109": "Women & children helpline",
+      "h333": "National information service"
+    },
+    "services": {
+      "badgeHospital": "18+ centres",
+      "badgeLab": "25+ labs",
+      "badgeAlways": "24/7",
+      "badgeUpazila": "12 upazilas",
+      "badgeSpots": "10+ spots",
+      "bankTitle": "Banks & ATMs",
+      "bankDesc": "Routing numbers, SWIFT codes & ATM booths",
+      "badgeAtm": "24/7 ATM",
+      "badgeGi": "GI product",
+      "badgeYear": "Since 1821"
+    },
+    "upazila": {
+      "mapLoading": "Loading map...",
+      "hint": "Click any upazila on the map or list for unions, villages and population",
+      "population": "Total population",
+      "area": "Total area",
+      "unionCouncils": "Union councils",
+      "villages": "Total villages",
+      "summary": "Upazila summary",
+      "sortPopulation": "Population",
+      "sortArea": "Area",
+      "sortSerial": "Serial",
+      "pourashava": "Pourashava",
+      "all": "All upazilas & unions ({n})",
+      "sqkm": "sq km",
+      "unionsCount": "{n} unions",
+      "villagesCount": "{n} villages"
+    },
+    "health": {
+      "copy": "Copy",
+      "search": "Search hospital or area...",
+      "searchLabel": "Find hospitals",
+      "none": "No hospital or diagnostic centre found.",
+      "active": "Active",
+      "copyNumber": "Copy number",
+      "open": "Open",
+      "copied": "Copied: {label} ({text})",
+      "number": "Number: {text}",
+      "national": "National emergency service: {n}",
+      "call": "Call",
+      "allCentres": "All {n} centres & map",
+      "banner": "{n} health centres, blood banks and ambulances across {u} upazilas — view on map",
+      "fAll": "All",
+      "fGovt": "Government",
+      "fPrivate": "Private",
+      "fDiag": "Diagnostic"
+    },
+    "explore": {
+      "all": "All tourist spots ({n})",
+      "details": "view details",
+      "bogura": "Bogura"
+    }
+  },
+  "bottomNav": {
+    "home": "Home",
+    "upazilas": "Upazilas",
+    "health": "Healthcare",
+    "edu": "Education",
+    "transport": "Transport",
+    "hotel": "Hotels & food",
+    "bank": "Banks & ATMs",
+    "community": "Community",
+    "explore": "Explore",
+    "contribute": "Contribute",
+    "admin": "Admin"
+  }
+}

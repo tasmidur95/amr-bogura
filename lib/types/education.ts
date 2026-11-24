@@ -1,11 +1,11 @@
 export interface EducationalInstitute {
   id: string;
   name: string;
-  enName: string;
+  name_en: string;
   eiin: string;
   rank?: number;
   category: 'college' | 'university' | 'medical' | 'polytechnic' | 'technical' | 'vocational' | 'school-college' | 'madrasah' | 'school' | 'kindergarten';
-  categoryBn: string;
+  category_label: string;
   upazila: string;
   location: string;
   established: string;

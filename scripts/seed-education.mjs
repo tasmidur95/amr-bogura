@@ -78,7 +78,7 @@ scraped.forEach((item, idx) => {
   const location = item.location ? `${item.location}, ${upazila}` : `${upazila}, বগুড়া`;
 
   let category = 'school';
-  let categoryBn = 'মাধ্যমিক ও উচ্চ বিদ্যালয়';
+  let category_label = 'মাধ্যমিক ও উচ্চ বিদ্যালয়';
   let board = 'মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বোর্ড, রাজশাহী';
   let coverImage = schoolImages[idx % schoolImages.length];
   let facilities = [
@@ -96,7 +96,7 @@ scraped.forEach((item, idx) => {
 
   if (item.type === 'technical') {
     category = 'technical';
-    categoryBn = 'কারিগরি ও ভোকেশনাল';
+    category_label = 'কারিগরি ও ভোকেশনাল';
     board = 'বাংলাদেশ কারিগরি শিক্ষা বোর্ড (BTEB)';
     coverImage = technicalImages[idx % technicalImages.length];
     facilities = [
@@ -116,7 +116,7 @@ scraped.forEach((item, idx) => {
     addedTechnical++;
   } else if (item.type === 'madrasa') {
     category = 'madrasah';
-    categoryBn = 'মাদ্রাসা শিক্ষা';
+    category_label = 'মাদ্রাসা শিক্ষা';
     board = 'বাংলাদেশ মাদ্রাসা শিক্ষা বোর্ড, ঢাকা';
     coverImage = madrasahImages[idx % madrasahImages.length];
     facilities = [
@@ -135,7 +135,7 @@ scraped.forEach((item, idx) => {
     addedMadrasah++;
   } else if (item.type === 'school-college') {
     category = 'school-college';
-    categoryBn = 'স্কুল অ্যান্ড কলেজ';
+    category_label = 'স্কুল অ্যান্ড কলেজ';
     board = 'মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বোর্ড, রাজশাহী';
     coverImage = collegeImages[idx % collegeImages.length];
     facilities = [
@@ -162,10 +162,10 @@ scraped.forEach((item, idx) => {
   const newInst = {
     id: `ins-${eiinStr}`,
     name: cleanName,
-    enName: cleanName,
+    name_en: cleanName,
     eiin: eiinStr,
     category,
-    categoryBn,
+    category_label,
     upazila,
     location,
     established: 'প্রতিষ্ঠিত',
@@ -195,10 +195,10 @@ const kindergartens = [
   {
     id: 'kg-sos-kindergarten-bogura',
     name: 'এসওএস কিন্ডারগার্টেন (SOS Hermann Gmeiner Kindergarten)',
-    enName: 'SOS Hermann Gmeiner Kindergarten, Bogura',
+    name_en: 'SOS Hermann Gmeiner Kindergarten, Bogura',
     eiin: 'KG-101',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'বগুড়া সদর',
     location: 'মালতিনগর, বগুড়া সদর',
     established: '১৯৯৫',
@@ -216,10 +216,10 @@ const kindergartens = [
   {
     id: 'kg-ideal-kindergarten-maligram',
     name: 'আইডিয়াল কিন্ডারগার্টেন স্কুল, বগুড়া',
-    enName: 'Ideal Kindergarten School, Bogura',
+    name_en: 'Ideal Kindergarten School, Bogura',
     eiin: 'KG-102',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'বগুড়া সদর',
     location: 'মালিগ্রাম, বগুড়া সদর',
     established: '২০০২',
@@ -237,10 +237,10 @@ const kindergartens = [
   {
     id: 'kg-fulbari-kindergarten',
     name: 'ফুলবাড়ী কিন্ডারগার্টেন ও মডেল স্কুল',
-    enName: 'Fulbari Kindergarten and Model School',
+    name_en: 'Fulbari Kindergarten and Model School',
     eiin: 'KG-103',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'বগুড়া সদর',
     location: 'ফুলবাড়ী, বগুড়া সদর',
     established: '২০০৫',
@@ -258,10 +258,10 @@ const kindergartens = [
   {
     id: 'kg-nishindara-model-kg',
     name: 'নিশিন্দারা মডেল কেজি স্কুল',
-    enName: 'Nishindara Model KG School',
+    name_en: 'Nishindara Model KG School',
     eiin: 'KG-104',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'বগুড়া সদর',
     location: 'নিশিন্দারা, বগুড়া সদর',
     established: '২০০৮',
@@ -279,10 +279,10 @@ const kindergartens = [
   {
     id: 'kg-biam-model-junior-school',
     name: 'বিয়াম মডেল জুনিয়র ল্যাবরেটরি স্কুল',
-    enName: 'BIAM Model Junior Laboratory School, Bogura',
+    name_en: 'BIAM Model Junior Laboratory School, Bogura',
     eiin: 'KG-105',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'বগুড়া সদর',
     location: 'উপশহর, বগুড়া সদর',
     established: '২০০৪',
@@ -300,10 +300,10 @@ const kindergartens = [
   {
     id: 'kg-morning-bell-kindergarten',
     name: 'মর্নিং বেল কিন্ডারগার্টেন ও একাডেমি',
-    enName: 'Morning Bell Kindergarten & Academy',
+    name_en: 'Morning Bell Kindergarten & Academy',
     eiin: 'KG-106',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'বগুড়া সদর',
     location: 'জলেশ্বরীতলা, বগুড়া সদর',
     established: '১৯৯৮',
@@ -321,10 +321,10 @@ const kindergartens = [
   {
     id: 'kg-shibganj-model-kg',
     name: 'শিবগঞ্জ আদর্শ কিন্ডারগার্টেন স্কুল',
-    enName: 'Shibganj Ideal Kindergarten School',
+    name_en: 'Shibganj Ideal Kindergarten School',
     eiin: 'KG-107',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'শিবগঞ্জ',
     location: 'শিবগঞ্জ পৌরসভা, শিবগঞ্জ',
     established: '২০০১',
@@ -342,10 +342,10 @@ const kindergartens = [
   {
     id: 'kg-sherpur-sunflower-kg',
     name: 'শেরপুর সানফ্লাওয়ার কিন্ডারগার্টেন',
-    enName: 'Sherpur Sunflower Kindergarten',
+    name_en: 'Sherpur Sunflower Kindergarten',
     eiin: 'KG-108',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'শেরপুর',
     location: 'শেরপুর বাসস্ট্যান্ড সংলগ্ন, শেরপুর',
     established: '২০০৩',
@@ -363,10 +363,10 @@ const kindergartens = [
   {
     id: 'kg-gabtali-central-kg',
     name: 'গাবতলী সেন্ট্রাল কেজি স্কুল',
-    enName: 'Gabtali Central KG School',
+    name_en: 'Gabtali Central KG School',
     eiin: 'KG-109',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'গাবতলী',
     location: 'গাবতলী বাজার রোড, গাবতলী',
     established: '২০০৪',
@@ -384,10 +384,10 @@ const kindergartens = [
   {
     id: 'kg-sariakandi-model-kg',
     name: 'সারিয়াকান্দি মডেল কিন্ডারগার্টেন',
-    enName: 'Sariakandi Model Kindergarten',
+    name_en: 'Sariakandi Model Kindergarten',
     eiin: 'KG-110',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'সারিয়াকান্দি',
     location: 'সারিয়াকান্দি পৌরসভা, সারিয়াকান্দি',
     established: '২০০৬',
@@ -405,10 +405,10 @@ const kindergartens = [
   {
     id: 'kg-dupchanchia-little-flower-kg',
     name: 'দুপচাঁচিয়া লিটল ফ্লাওয়ার কিন্ডারগার্টেন',
-    enName: 'Dupchanchia Little Flower Kindergarten',
+    name_en: 'Dupchanchia Little Flower Kindergarten',
     eiin: 'KG-111',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'দুপচাঁচিয়া',
     location: 'থানা রোড, দুপচাঁচিয়া',
     established: '২০০৫',
@@ -426,10 +426,10 @@ const kindergartens = [
   {
     id: 'kg-kahaloo-shishu-niketan',
     name: 'কাহালু শিশু নিকেতন কিন্ডারগার্টেন',
-    enName: 'Kahaloo Shishu Niketan Kindergarten',
+    name_en: 'Kahaloo Shishu Niketan Kindergarten',
     eiin: 'KG-112',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'কাহালু',
     location: 'কাহালু রেলওয়ে স্টেশন রোড, কাহালু',
     established: '২০০২',
@@ -447,10 +447,10 @@ const kindergartens = [
   {
     id: 'kg-dhunat-modern-kg',
     name: 'ধুনট মডার্ন কিন্ডারগার্টেন স্কুল',
-    enName: 'Dhunat Modern Kindergarten School',
+    name_en: 'Dhunat Modern Kindergarten School',
     eiin: 'KG-113',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'ধুনট',
     location: 'ধুনট বাজার, ধুনট',
     established: '২০০৭',
@@ -468,10 +468,10 @@ const kindergartens = [
   {
     id: 'kg-nandigram-model-kg',
     name: 'নন্দীগ্রাম মডেল কিন্ডারগার্টেন স্কুল',
-    enName: 'Nandigram Model Kindergarten School',
+    name_en: 'Nandigram Model Kindergarten School',
     eiin: 'KG-114',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'নন্দীগ্রাম',
     location: 'নন্দীগ্রাম বাসস্ট্যান্ড রোড, নন্দীগ্রাম',
     established: '২০০৬',
@@ -489,10 +489,10 @@ const kindergartens = [
   {
     id: 'kg-sonatola-model-kg',
     name: 'সোনাতলা প্রিপারেটরি কেজি স্কুল',
-    enName: 'Sonatola Preparatory KG School',
+    name_en: 'Sonatola Preparatory KG School',
     eiin: 'KG-115',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'সোনাতলা',
     location: 'সোনাতলা রেলস্টেশন মোড়, সোনাতলা',
     established: '২০০৩',
@@ -510,10 +510,10 @@ const kindergartens = [
   {
     id: 'kg-adamdighi-ideal-kg',
     name: 'আদমদীঘি আইডিয়াল কেজি স্কুল',
-    enName: 'Adamdighi Ideal KG School',
+    name_en: 'Adamdighi Ideal KG School',
     eiin: 'KG-116',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'আদমদীঘি',
     location: 'সান্তাহার রোড, আদমদীঘি',
     established: '২০০৫',
@@ -531,10 +531,10 @@ const kindergartens = [
   {
     id: 'kg-shajahanpur-central-kg',
     name: 'শাজাহানপুর সেন্ট্রাল কিন্ডারগার্টেন',
-    enName: 'Shajahanpur Central Kindergarten',
+    name_en: 'Shajahanpur Central Kindergarten',
     eiin: 'KG-117',
     category: 'kindergarten',
-    categoryBn: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
+    category_label: 'কিন্ডারগার্টেন ও প্রাক-প্রাথমিক',
     upazila: 'শাজাহানপুর',
     location: 'মাঝিড়া, শাজাহানপুর',
     established: '২০০৭',

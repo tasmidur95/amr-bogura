@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, enName, type, typeLabel, address, phone, emergency, id } = body;
+    const { name, name_en, type, typeLabel, address, phone, emergency, id } = body;
 
     if (!name || !address || !phone) {
       return NextResponse.json(
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     const created = await DistrictService.addHospital({
       id,
       name,
-      enName: enName || name,
+      name_en: name_en || name,
       type: type || 'private',
       typeLabel: typeLabel || (type === 'govt' ? 'সরকারি হাসপাতাল' : 'বেসরকারি হাসপাতাল'),
       address,

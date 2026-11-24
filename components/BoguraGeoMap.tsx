@@ -1,7 +1,9 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
+import { upazilaPath } from '@/lib/i18n/routes';
+import { upazilaSlugFor } from '@/lib/i18n/entities';
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
-import Link from 'next/link';
 import { boguraUpazilasData } from '@/lib/data/unions-villages-data';
 
 // Real upazila boundaries (ArcGIS BD CRIIPS layer, simplified) — see scripts/build-upazila-geo.mjs
@@ -319,12 +321,12 @@ export default function BoguraGeoMap({
             <div className="flex items-center justify-between gap-2 mb-2">
               <div className="flex items-center gap-2 min-w-0">
                 <span className="text-[10px] font-black px-2.5 py-0.5 rounded-lg bg-[#F5B73B] text-emerald-950">
-                  #{selected.serialBn}
+                  #{selected.serial}
                 </span>
                 <h5 className="font-extrabold text-base text-[#0B4635] truncate">{selected.name} উপজেলা</h5>
               </div>
               <Link
-                href={`/upazilas/${selectedIdx}`}
+                href={upazilaPath(upazilaSlugFor(selectedIdx))}
                 className="text-[#C85A28] font-bold hover:underline text-xs flex items-center gap-1 shrink-0"
               >
                 বিস্তারিত <i className="fa-solid fa-arrow-right text-[10px]"></i>
@@ -352,9 +354,9 @@ export default function BoguraGeoMap({
         ) : hovered ? (
           <div className="pointer-events-auto bg-white p-3 rounded-2xl border border-slate-200 shadow-xl max-w-xs text-xs animate-fade-in">
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#C85A28] text-white">#{hovered.serialBn}</span>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#C85A28] text-white">#{hovered.serial}</span>
               <h5 className="font-extrabold text-sm text-[#0B4635]">{hovered.name}</h5>
-              <span className="text-[10px] text-slate-400">{hovered.enName}</span>
+              <span className="text-[10px] text-slate-400">{hovered.name_en}</span>
             </div>
             <div className="grid grid-cols-3 gap-1.5 text-[10px] text-center font-bold">
               <div className="bg-[#F9F8F4] px-1 py-1 rounded-md">

@@ -1,21 +1,23 @@
 'use client';
 
+import Link, { useParams, useRouter } from '@/lib/i18n/navigation';
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import SearchModal from '@/components/SearchModal';
 import { EducationalInstitute } from '@/lib/types/education';
+import { useLocalized } from '@/lib/i18n/useLocalized';
 
 export default function EducationProfilePage() {
   const params = useParams();
   const router = useRouter();
-  const idStr = Array.isArray(params?.id) ? params.id[0] : params?.id || '';
+  const idStr = Array.isArray(params?.slug) ? params.slug[0] : params?.slug || '';
 
-  const [institute, setInstitute] = useState<EducationalInstitute | null>(null);
-  const [related, setRelated] = useState<EducationalInstitute[]>([]);
+  const [instituteRaw, setInstitute] = useState<EducationalInstitute | null>(null);
+  const [relatedRaw, setRelated] = useState<EducationalInstitute[]>([]);
+  const institute = useLocalized(instituteRaw);
+  const related = useLocalized(relatedRaw);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
@@ -134,7 +136,7 @@ export default function EducationProfilePage() {
                 EIIN: {institute.eiin}
               </span>
               <span className="px-3 py-1 rounded-xl bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">
-                {institute.categoryBn}
+                {institute.category_label}
               </span>
               <span className="px-3 py-1 rounded-xl bg-emerald-600/80 text-white text-xs font-semibold backdrop-blur-md">
                 {institute.management}
@@ -146,7 +148,7 @@ export default function EducationProfilePage() {
             </h1>
 
             <p className="text-sm sm:text-base text-slate-300 font-medium flex items-center gap-2">
-              <span>{institute.enName}</span>
+              <span>{institute.name_en !== institute.name ? institute.name_en : ''}</span>
               <span>·</span>
               <span className="text-emerald-300 flex items-center gap-1">
                 <i className="fa-solid fa-location-dot text-rose-400"></i>

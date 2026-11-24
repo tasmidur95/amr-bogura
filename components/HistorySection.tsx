@@ -1,7 +1,7 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React from 'react';
-import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { SiteContent } from '@/lib/data/district-data';
 
@@ -19,7 +19,7 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
         <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200/90 shadow-sm">
           <div className="flex flex-wrap items-center gap-2 mb-2">
             <span className="text-xs font-bold tracking-wider uppercase text-amber-800 bg-amber-100 px-2.5 py-1 rounded-md border border-amber-200">
-              {siteContent?.historyBadge || t('hisBadge')}
+              {siteContent?.historyBadge || t('history.badge')}
             </span>
             {siteContent?.historyPeriod && (
               <span className="text-xs font-medium text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
@@ -29,7 +29,7 @@ export default function HistorySection({ siteContent }: HistorySectionProps = {}
             )}
           </div>
           <h2 id="history-title" className="text-xl sm:text-3xl font-bold text-slate-900 mt-2 mb-3">
-            {siteContent?.historyTitle || t('hisTitle')}
+            {siteContent?.historyTitle || t('history.title')}
           </h2>
 
           {siteContent?.historySummary && (

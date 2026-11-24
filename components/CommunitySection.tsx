@@ -1,7 +1,7 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useToast } from '@/lib/context/ToastContext';
 import { CommunityPost } from '@/lib/data/district-data';
@@ -118,13 +118,13 @@ export default function CommunitySection({
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-4 border-b border-slate-100">
           <div>
             <span className="text-xs font-bold tracking-wider uppercase text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
-              {t('sec02Badge')}
+              {t('community.badge')}
             </span>
             <h2 id="community-title" className="text-xl sm:text-3xl font-bold text-slate-900 mt-2">
-              {t('sec02Title')}
+              {t('community.title')}
             </h2>
             <p className="text-slate-600 text-sm sm:text-base mt-1">
-              {t('sec02Subtitle')}
+              {t('community.subtitle')}
             </p>
           </div>
 
@@ -143,7 +143,7 @@ export default function CommunitySection({
               className="px-5 py-3 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 transition cursor-pointer"
             >
               <i className="fa-solid fa-plus"></i>
-              <span>{t('btnPostCommunity')}</span>
+              <span>{t('community.addButton')}</span>
             </button>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function CommunitySection({
             }`}
           >
             <i className="fa-solid fa-droplet text-rose-400"></i>
-            <span>{t('tabBlood')}</span>
+            <span>{t('community.tabs.blood')}</span>
             <span className="text-xs px-1.5 py-0.5 rounded-full bg-white/20">
               {(communityData.blood || []).filter(p => p.kind !== 'blood_request').length}
             </span>
@@ -176,7 +176,7 @@ export default function CommunitySection({
             }`}
           >
             <i className="fa-solid fa-graduation-cap text-emerald-700"></i>
-            <span>{t('tabTuition')}</span>
+            <span>{t('community.tabs.tuition')}</span>
             <span className="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 text-slate-700">
               {communityData.tuition?.length || 0}
             </span>
@@ -192,7 +192,7 @@ export default function CommunitySection({
             }`}
           >
             <i className="fa-solid fa-house-chimney text-amber-600"></i>
-            <span>{t('tabRent')}</span>
+            <span>{t('community.tabs.rent')}</span>
             <span className="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 text-slate-700">
               {communityData.rent?.length || 0}
             </span>
@@ -208,7 +208,7 @@ export default function CommunitySection({
             }`}
           >
             <i className="fa-solid fa-briefcase text-indigo-600"></i>
-            <span>{t('tabJobs')}</span>
+            <span>{t('community.tabs.jobs')}</span>
             <span className="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 text-slate-700">
               {communityData.jobs?.length || 0}
             </span>
@@ -224,7 +224,7 @@ export default function CommunitySection({
             }`}
           >
             <i className="fa-solid fa-store text-amber-700"></i>
-            <span>{t('tabBusiness')}</span>
+            <span>{t('community.tabs.business')}</span>
             <span className="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 text-slate-700">
               {communityData.business?.length || 0}
             </span>

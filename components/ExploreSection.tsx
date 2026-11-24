@@ -1,8 +1,11 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
+import { upazilaPath, explorePath } from '@/lib/i18n/routes';
+import { upazilaSlugFor, upazilaSlugOf, spotSlug } from '@/lib/i18n/entities';
 import React from 'react';
-import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
+import { formatNumber } from '@/lib/i18n/format';
 import { detailedExploreSpots } from '@/lib/data/explore-data';
 
 interface ExploreSectionProps {
@@ -10,7 +13,7 @@ interface ExploreSectionProps {
 }
 
 export default function ExploreSection({ exploreSpots }: ExploreSectionProps = {}) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   const list = exploreSpots && exploreSpots.length > 0 ? exploreSpots : detailedExploreSpots;
   const previewSpots = list.slice(0, 6);
@@ -20,15 +23,15 @@ export default function ExploreSection({ exploreSpots }: ExploreSectionProps = {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-3 sm:mb-5">
         <div>
           <h2 id="explore-title" className="text-xl sm:text-2xl font-bold text-slate-900">
-            {t('expTitle')}
+            {t('explore.title')}
           </h2>
-          <p className="text-slate-600 text-xs sm:text-sm mt-0.5">{t('expSubtitle')}</p>
+          <p className="text-slate-600 text-xs sm:text-sm mt-0.5">{t('explore.subtitle')}</p>
         </div>
         <Link
           href="/explore"
           className="px-3.5 py-2 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition shrink-0 self-start sm:self-auto"
         >
-          <span>সকল দর্শনীয় স্থান ({list.length})</span>
+          <span>{t('home.explore.all', { n: formatNumber(list.length, locale) })}</span>
           <i className="fa-solid fa-arrow-right text-[10px]"></i>
         </Link>
       </div>
@@ -40,11 +43,11 @@ export default function ExploreSection({ exploreSpots }: ExploreSectionProps = {
             key={spot.id}
             className="snap-start shrink-0 w-[78%] min-[480px]:w-[52%] md:w-auto bg-white rounded-2xl overflow-hidden border border-slate-200/90 card-hover shadow-2xs group"
           >
-            <Link href={`/explore/${spot.id}`} className="block" aria-label={`${spot.title} — বিস্তারিত দেখুন`}>
+            <Link href={explorePath(spotSlug(spot))} className="block" aria-label={`${spot.title} — ${t('home.explore.details')}`}>
               <div className="relative h-32 sm:h-40 w-full overflow-hidden bg-slate-900">
                 <img
                   src={spot.coverImage}
-                  alt={`${spot.title} — ${spot.upazila}, বগুড়া`}
+                  alt={`${spot.title} — ${spot.upazila}, ${t('home.explore.bogura')}`}
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
@@ -55,7 +58,7 @@ export default function ExploreSection({ exploreSpots }: ExploreSectionProps = {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
                 <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between">
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-950/85 text-emerald-200 border border-emerald-700/50">
-                    {spot.categoryBn}
+                    {spot.category_label}
                   </span>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500 text-emerald-950">{spot.upazila}</span>
                 </div>

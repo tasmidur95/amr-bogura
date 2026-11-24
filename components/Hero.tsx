@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import Link from '@/lib/i18n/navigation';
+import { formatNumber } from '@/lib/i18n/format';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { SiteContent } from '@/lib/data/district-data';
 
@@ -12,7 +13,7 @@ interface HeroProps {
 }
 
 export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProps) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const coverImg = siteContent?.coverImageUrl || '/images/amar-bogura-cover.jpg';
 
   return (
@@ -23,7 +24,7 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
         <div className="absolute inset-0 z-0">
           <img
             src={coverImg}
-            alt="আমার বগুড়া কভার ফটো"
+            alt={t('home.hero.coverAlt')}
             className="w-full h-full object-cover object-center scale-105 filter blur-xs"
           />
           {/* Multi-layered dark gradient overlay for crystal-clear readability */}
@@ -48,10 +49,10 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
             <div className="flex flex-wrap items-center justify-center gap-2.5 mb-5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs sm:text-sm font-bold shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                <span>{siteContent?.heroBadge || t('heroBadge')}</span>
+                <span>{siteContent?.heroBadge || t('hero.badge')}</span>
               </div>
               <span className="text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/20 text-amber-200 border border-amber-300/30">
-                ঐতিহ্য · কৃষি · সংস্কৃতি
+                {t('hero.tagline')}
               </span>
             </div>
 
@@ -62,14 +63,14 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
                   <>
                     {siteContent.heroTitle}{' '}
                     <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 bg-clip-text text-transparent">
-                      এক ক্লিকে
+                      {t('hero.titleAccent')}
                     </span>
                   </>
                 ) : (
                   <>
-                    বগুড়ার ইতিহাস, ঐতিহ্য ও নাগরিক সেবা{' '}
+                    {t('hero.titleLead')}{' '}
                     <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 bg-clip-text text-transparent">
-                      এক ক্লিকে
+                      {t('hero.titleAccent')}
                     </span>
                   </>
                 )}
@@ -78,7 +79,7 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-emerald-100/90 leading-relaxed mb-6 max-w-2xl mx-auto text-center">
-              {siteContent?.heroSubtitle || 'পুণ্ড্রবর্ধন মহাস্থানগড়, সাতমাথা জিরো পয়েন্ট, জিআই স্বীকৃত বগুড়ার দই, ১২টি উপজেলা এবং ২,৬৯২টি গ্রামের সমন্বয়ে উত্তরবঙ্গের প্রবেশদ্বারের আধুনিক তথ্য ও কমিউনিটি প্ল্যাটফর্ম।'}
+              {siteContent?.heroSubtitle || t('hero.intro')}
             </p>
 
             {/* CRO Low-Friction Instant Search Bar */}
@@ -90,46 +91,46 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
                 <div className="flex items-center gap-2.5 pl-2 sm:pl-3 text-slate-200 min-w-0 flex-1 overflow-hidden">
                   <i className="fa-solid fa-magnifying-glass text-amber-400 group-hover:scale-110 transition shrink-0 text-xs sm:text-sm"></i>
                   <span className="text-xs sm:text-sm text-slate-300 group-hover:text-white truncate">
-                    হাসপাতাল, রক্তদাতা, বাস কাউন্টার বা উপজেলা খুঁজুন...
+                    {t('home.hero.searchHint')}
                   </span>
                 </div>
                 <span className="px-3 sm:px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs shrink-0 shadow-xs group-hover:bg-amber-400 transition">
-                  অনুসন্ধান
+                  {t('home.hero.searchBtn')}
                 </span>
               </div>
 
               {/* Quick Trending Intent Tags */}
               <div className="flex flex-wrap items-center justify-center gap-1.5 mt-2.5 text-[11px] text-emerald-200">
-                <span className="text-amber-400/90 font-semibold mr-1">জনপ্রিয়:</span>
+                <span className="text-amber-400/90 font-semibold mr-1">{t('home.hero.popular')}</span>
                 <button
                   onClick={() => onNavigate('home', 'community')}
                   className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
                 >
-                  জরুরি রক্তদাতা
+                  {t('home.hero.tagBlood')}
                 </button>
                 <button
                   onClick={() => onNavigate('home', 'healthcare')}
                   className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
                 >
-                  শজিমেক হাসপাতাল
+                  {t('home.hero.tagSzmch')}
                 </button>
                 <Link
                   href="/transport"
                   className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
                 >
-                  চারমাথা বাস টার্মিনাল
+                  {t('home.hero.tagBus')}
                 </Link>
                 <Link
                   href="/education"
                   className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
                 >
-                  আজিজুল হক কলেজ
+                  {t('home.hero.tagCollege')}
                 </Link>
                 <Link
                   href="/explore"
                   className="hover:text-white hover:underline cursor-pointer bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition"
                 >
-                  মহাস্থানগড়
+                  {t('home.hero.tagMahasthan')}
                 </Link>
               </div>
             </div>
@@ -141,7 +142,7 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
                 className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md flex items-center justify-center gap-2 transition transform hover:-translate-y-0.5 cursor-pointer ring-1 ring-amber-400/50"
               >
                 <i className="fa-solid fa-hospital-user text-slate-950 text-xs sm:text-sm"></i>
-                <span>হাসপাতাল ও চিকিৎসাকেন্দ্র</span>
+                <span>{t('home.hero.ctaHealth')}</span>
               </button>
 
               <button
@@ -149,7 +150,7 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
                 className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer"
               >
                 <i className="fa-solid fa-droplet text-rose-400 text-xs sm:text-sm"></i>
-                <span>রক্তদাতা নেটওয়ার্ক</span>
+                <span>{t('home.hero.ctaBlood')}</span>
               </button>
             </div>
           </div>
@@ -162,49 +163,49 @@ export default function Hero({ onNavigate, siteContent, onOpenSearch }: HeroProp
           <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs text-slate-600 font-semibold">
             <span className="flex items-center gap-1.5 text-emerald-800">
               <i className="fa-solid fa-circle-check text-emerald-600"></i>
-              <span>জাতীয় বাতায়ন নির্দেশিকা</span>
+              <span>{t('home.hero.trustPortal')}</span>
             </span>
             <span className="flex items-center gap-1.5">
               <i className="fa-solid fa-notes-medical text-emerald-600"></i>
-              <span><strong>৩৫২+</strong> স্বাস্থ্যকেন্দ্র</span>
+              <span><strong>{formatNumber('352+', locale)}</strong> {t('home.hero.statHealth')}</span>
             </span>
             <span className="flex items-center gap-1.5">
               <i className="fa-solid fa-shield-halved text-rose-500"></i>
-              <span><strong>৩৬+</strong> নিরাপদ রক্তদাতা</span>
+              <span><strong>{formatNumber('36+', locale)}</strong> {t('home.hero.statDonors')}</span>
             </span>
             <span className="flex items-center gap-1.5">
               <i className="fa-solid fa-graduation-cap text-indigo-600"></i>
-              <span><strong>১,৫৭০+</strong> শিক্ষাপ্রতিষ্ঠান</span>
+              <span><strong>{formatNumber('1,570+', locale)}</strong> {t('home.hero.statEdu')}</span>
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 shrink-0">
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden lg:inline">
-              জরুরি হেল্পলাইন:
+              {t('home.hero.helplines')}
             </span>
             <a
               href="tel:999"
               className="px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold flex items-center gap-1.5 transition"
-              title="জাতীয় জরুরি সেবা"
+              title={t('home.hero.h999')}
             >
               <i className="fa-solid fa-phone"></i>
-              <span>৯৯৯</span>
+              <span>{formatNumber('999', locale)}</span>
             </a>
             <a
               href="tel:109"
               className="px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold flex items-center gap-1.5 transition"
-              title="নারী ও শিশু হেল্পলাইন"
+              title={t('home.hero.h109')}
             >
               <i className="fa-solid fa-phone"></i>
-              <span>১০৯</span>
+              <span>{formatNumber('109', locale)}</span>
             </a>
             <a
               href="tel:333"
               className="px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold flex items-center gap-1.5 transition"
-              title="জাতীয় তথ্য ও সেবা"
+              title={t('home.hero.h333')}
             >
               <i className="fa-solid fa-phone"></i>
-              <span>৩৩৩</span>
+              <span>{formatNumber('333', locale)}</span>
             </a>
           </div>
         </div>

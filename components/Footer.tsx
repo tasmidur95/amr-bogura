@@ -1,9 +1,9 @@
 'use client';
 
+import Link, { useRouter } from '@/lib/i18n/navigation';
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import BrandLogo from '@/components/BrandLogo';
+import { DEFAULT_LOCALE } from '@/lib/i18n/config';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { SiteContent } from '@/lib/data/district-data';
 
@@ -15,8 +15,10 @@ interface FooterProps {
 
 export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }: FooterProps) {
   const router = useRouter();
-  const { language } = useLanguage();
+  const { locale, t } = useLanguage();
   const [activeContent, setActiveContent] = useState<SiteContent | undefined>(siteContent);
+  // CMS banner text (site_content) is authored in the default language only
+  const cms = locale === DEFAULT_LOCALE ? activeContent : undefined;
 
   const handleNav = (view: string, anchor?: string) => {
     if (onNavigate) {
@@ -61,19 +63,19 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
               <BrandLogo variant="horizontal" size="lg" theme="dark" />
             </div>
             <p className="text-sm text-emerald-300/90 max-w-md leading-relaxed">
-              {activeContent?.footerText || 'করতোয়া বিধৌত প্রাচীন পুণ্ড্রবর্ধনের ইতিহাস, ১২টি উপজেলার তথ্য, জরুরি স্বাস্থ্যসেবা, রক্তদাতা নেটওয়ার্ক ও স্থানীয় কমিউনিটিকে এক সুতোয় গাঁথার একটি নাগরিক উদ্যোগ।'}
+              {cms?.footerText || t('footer.about')}
             </p>
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-sm mb-3">দ্রুত লিংক</h4>
+            <h4 className="text-white font-bold text-sm mb-3">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2 text-sm text-emerald-300">
               <li>
                 <button
                   onClick={() => handleNav('home', 'services')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
-                  সব নাগরিক সেবা
+                  {t('footer.allServices')}
                 </button>
               </li>
               <li>
@@ -81,7 +83,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   onClick={() => handleNav('upazilas')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
-                  ১২টি উপজেলা ডিরেক্টরি
+                  {t('footer.upazilaDirectory')}
                 </button>
               </li>
               <li>
@@ -89,7 +91,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   href="/healthcare"
                   className="hover:text-amber-300 transition text-left cursor-pointer block"
                 >
-                  হাসপাতাল ও ডায়াগনস্টিক
+                  {t('footer.hospitals')}
                 </Link>
               </li>
               <li>
@@ -97,7 +99,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   href="/transport"
                   className="hover:text-amber-300 transition text-left cursor-pointer block"
                 >
-                  যোগাযোগ হাব ও পরিবহন
+                  {t('footer.transport')}
                 </Link>
               </li>
               <li>
@@ -105,7 +107,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   href="/hospitality"
                   className="hover:text-amber-300 transition text-left cursor-pointer block"
                 >
-                  হোটেল, রিসোর্ট ও রেস্তোরাঁ
+                  {t('footer.hospitality')}
                 </Link>
               </li>
               <li>
@@ -113,7 +115,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   href="/explore"
                   className="hover:text-amber-300 transition text-left cursor-pointer block"
                 >
-                  দর্শনীয় স্থান ও ঐতিহ্য
+                  {t('footer.explore')}
                 </Link>
               </li>
               <li>
@@ -122,7 +124,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   className="hover:text-amber-300 transition text-left cursor-pointer flex items-center gap-1.5 text-amber-300 font-semibold"
                 >
                   <i className="fa-solid fa-heart-circle-plus text-rose-400"></i>
-                  <span>নাগরিক অবদান রাখুন</span>
+                  <span>{t('footer.contribute')}</span>
                 </Link>
               </li>
               <li>
@@ -131,21 +133,21 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   className="hover:text-amber-300 transition text-left cursor-pointer flex items-center gap-1.5 opacity-80"
                 >
                   <i className="fa-solid fa-shield-halved text-emerald-400"></i>
-                  <span>অ্যাডমিন প্যানেল</span>
+                  <span>{t('footer.admin')}</span>
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-sm mb-3">কমিউনিটি প্ল্যাটফর্ম</h4>
+            <h4 className="text-white font-bold text-sm mb-3">{t('footer.communityTitle')}</h4>
             <ul className="space-y-2 text-sm text-emerald-300">
               <li>
                 <button
                   onClick={() => handleCommunity('blood')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
-                  রক্তদাতা নেটওয়ার্ক
+                  {t('footer.blood')}
                 </button>
               </li>
               <li>
@@ -153,7 +155,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   onClick={() => handleCommunity('tuition')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
-                  টিউশন ও শিক্ষা
+                  {t('footer.tuition')}
                 </button>
               </li>
               <li>
@@ -161,7 +163,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   onClick={() => handleCommunity('rent')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
-                  বাসা ও দোকান ভাড়া
+                  {t('footer.rent')}
                 </button>
               </li>
               <li>
@@ -169,7 +171,7 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
                   onClick={() => handleCommunity('business')}
                   className="hover:text-amber-300 transition text-left cursor-pointer"
                 >
-                  বগুড়ার দই ও স্থানীয় ব্যবসা
+                  {t('footer.business')}
                 </button>
               </li>
             </ul>
@@ -177,8 +179,8 @@ export default function Footer({ onNavigate, onSwitchCommunityTab, siteContent }
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-emerald-400">
-          <p>© ২০২৬ আমার বগুড়া (Amar Bogura) — বগুড়া জেলার নাগরিকদের জন্য নির্মিত।</p>
-          <p>তথ্যসূত্র: বাংলাদেশ জাতীয় তথ্য বাতায়ন (বগুড়া জেলা) ও স্থানীয় কমিউনিটি ডিরেক্টরি।</p>
+          <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
+          <p>{t('footer.sources')}</p>
         </div>
       </div>
     </footer>

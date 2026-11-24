@@ -12,9 +12,9 @@ import AdminSkeletonLoader from '@/components/admin/AdminSkeletonLoader';
 interface SpotItem {
   id: string;
   title: string;
-  enTitle?: string;
+  title_en?: string;
   category: string;
-  categoryBn: string;
+  category_label: string;
   location: string;
   upazila: string;
   tag: string;
@@ -74,7 +74,7 @@ interface ReviewItem {
 interface HospitalItem {
   id?: string;
   name: string;
-  enName?: string;
+  name_en?: string;
   type: 'govt' | 'private' | 'diagnostic';
   typeLabel: string;
   address: string;
@@ -662,17 +662,17 @@ export default function AdminPage() {
       const body = upazilaModal.mode === 'add'
         ? {
           upazila: {
-            serialBn: data.serialBn || '১৩',
-            serialEn: data.serialEn || '13',
+            serial: data.serial || '১৩',
+            serial_en: data.serial_en || '13',
             name: data.name,
-            enName: data.enName || data.name,
+            name_en: data.name_en || data.name,
             area: data.area,
-            areaEn: data.area,
+            area_en: data.area,
             unionCount: `${data.unionCount || 0}টি`,
-            unionCountEn: `${data.unionCount || 0} Unions`,
+            union_count_en: `${data.unionCount || 0} Unions`,
             unions: `${data.unionCount || 0}টি ইউনিয়ন`,
             pourashava: data.pourashava || 'নাই',
-            pourashavaEn: data.pourashava || 'None',
+            pourashava_en: data.pourashava || 'None',
             hasPourashava: data.hasPourashava || false,
             tags: ['upazila'],
             postalCode: data.postalCode || '৫৮০০',
@@ -680,7 +680,7 @@ export default function AdminPage() {
             healthPhone: data.healthPhone || '01700-000000',
             landmark: data.landmark || data.name,
             desc: data.desc || data.name,
-            enDesc: data.desc || data.name,
+            description_en: data.desc || data.name,
             historyNote: data.historyNote || data.name,
             unionList: []
           },
@@ -730,7 +730,7 @@ export default function AdminPage() {
       const unionObj: UnionData = {
         id: `un-${Date.now()}`,
         name: newUnionName.trim(),
-        enName: newUnionEnName.trim() || newUnionName.trim(),
+        name_en: newUnionEnName.trim() || newUnionName.trim(),
         upazilaId: inspectUpazilaUnions.id,
         upazilaName: inspectUpazilaUnions.name,
         postCode: newUnionPostcode.trim() || inspectUpazilaUnions.postalCode,
@@ -1041,7 +1041,7 @@ export default function AdminPage() {
     const matchSearch =
       !q ||
       s.title.toLowerCase().includes(q) ||
-      (s.enTitle && s.enTitle.toLowerCase().includes(q)) ||
+      (s.title_en && s.title_en.toLowerCase().includes(q)) ||
       s.location.toLowerCase().includes(q) ||
       s.upazila.toLowerCase().includes(q) ||
       s.shortDesc.toLowerCase().includes(q);
@@ -1057,7 +1057,7 @@ export default function AdminPage() {
     const matchSearch =
       !q ||
       h.name.toLowerCase().includes(q) ||
-      (h.enName && h.enName.toLowerCase().includes(q)) ||
+      (h.name_en && h.name_en.toLowerCase().includes(q)) ||
       h.address.toLowerCase().includes(q) ||
       h.phone.toLowerCase().includes(q) ||
       (h.emergency && h.emergency.toLowerCase().includes(q));
@@ -1099,7 +1099,7 @@ export default function AdminPage() {
   // 5. Upazilas Filter & Pagination
   const filteredUpazilas = detailedUpazilas.filter(u => {
     const q = upazilasSearch.trim().toLowerCase();
-    return !q || u.name.toLowerCase().includes(q) || u.enName.toLowerCase().includes(q) || u.postalCode.includes(q);
+    return !q || u.name.toLowerCase().includes(q) || u.name_en.toLowerCase().includes(q) || u.postalCode.includes(q);
   });
   const paginatedUpazilas = filteredUpazilas.slice((upazilasPage - 1) * upazilasPageSize, upazilasPage * upazilasPageSize);
 
@@ -1126,7 +1126,7 @@ export default function AdminPage() {
       itemType: 'spot' as const,
       id: s.id,
       title: s.title,
-      subtitle: `${s.upazila} · ${s.categoryBn}`,
+      subtitle: `${s.upazila} · ${s.category_label}`,
       details: s.shortDesc,
       upazila: s.upazila,
       image: s.coverImage,
@@ -1202,7 +1202,7 @@ export default function AdminPage() {
     const matchSearch =
       !q ||
       inst.name.toLowerCase().includes(q) ||
-      inst.enName.toLowerCase().includes(q) ||
+      inst.name_en.toLowerCase().includes(q) ||
       (inst.eiin && inst.eiin.includes(q)) ||
       inst.location.toLowerCase().includes(q) ||
       inst.upazila.toLowerCase().includes(q);
@@ -1872,7 +1872,7 @@ export default function AdminPage() {
                       mode: 'add',
                       data: {
                         category: 'archaeological',
-                        categoryBn: 'প্রত্নতাত্ত্বিক নিদর্শন',
+                        category_label: 'প্রত্নতাত্ত্বিক নিদর্শন',
                         upazila: 'শিবগঞ্জ',
                         timings: 'সকাল ৯টা – বিকেল ৫টা',
                         entryFee: 'বিনামূল্যে',
@@ -1999,7 +1999,7 @@ export default function AdminPage() {
                           <td className="py-3 px-3 font-semibold text-emerald-800">{s.upazila}</td>
                           <td className="py-3 px-3 text-slate-600">
                             <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px]">
-                              {s.categoryBn}
+                              {s.category_label}
                             </span>
                           </td>
                           <td className="py-3 px-3 text-slate-600">{s.timings} · {s.entryFee}</td>
@@ -2100,7 +2100,7 @@ export default function AdminPage() {
                       mode: 'add',
                       data: {
                         category: 'college',
-                        categoryBn: 'কলেজ',
+                        category_label: 'কলেজ',
                         upazila: 'বগুড়া সদর',
                         management: 'সরকারি',
                         educationLevel: 'উচ্চ মাধ্যমিক ও স্নাতক',
@@ -2236,7 +2236,7 @@ export default function AdminPage() {
                           </td>
                           <td className="py-3 px-3 text-slate-600">
                             <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-medium block w-fit">
-                              {inst.categoryBn}
+                              {inst.category_label}
                             </span>
                             <span className="text-[10px] text-slate-400 mt-0.5 block">{inst.management}</span>
                           </td>
@@ -2339,8 +2339,8 @@ export default function AdminPage() {
                     isOpen: true,
                     mode: 'add',
                     data: {
-                      serialBn: '১৩',
-                      serialEn: '13',
+                      serial: '১৩',
+                      serial_en: '13',
                       hasPourashava: false,
                       unions: []
                     }
@@ -2407,10 +2407,10 @@ export default function AdminPage() {
                     {paginatedUpazilas.length > 0 ? (
                       paginatedUpazilas.map(u => (
                         <tr key={u.id} className="hover:bg-slate-50 transition">
-                          <td className="py-3 px-3 font-bold text-emerald-800">{u.serialBn}</td>
+                          <td className="py-3 px-3 font-bold text-emerald-800">{u.serial}</td>
                           <td className="py-3 px-3">
                             <span className="font-bold text-slate-900 block text-sm">{u.name}</span>
-                            <span className="text-[11px] text-slate-400">{u.enName} · {u.postalCode}</span>
+                            <span className="text-[11px] text-slate-400">{u.name_en} · {u.postalCode}</span>
                           </td>
                           <td className="py-3 px-3 text-slate-600">{u.area} · {u.population}</td>
                           <td className="py-3 px-3">
@@ -2585,7 +2585,7 @@ export default function AdminPage() {
                         <tr key={i} className="hover:bg-slate-50 transition">
                           <td className="py-3 px-3">
                             <span className="font-bold text-slate-900 block">{h.name}</span>
-                            <span className="text-[11px] text-slate-400">{h.enName}</span>
+                            <span className="text-[11px] text-slate-400">{h.name_en}</span>
                           </td>
                           <td className="py-3 px-3">
                             <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${h.type === 'govt' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'
@@ -3411,8 +3411,8 @@ export default function AdminPage() {
                   <label className="block font-semibold text-slate-700 mb-1">স্থানের নাম (ইংরেজিতে)</label>
                   <input
                     type="text"
-                    value={spotModal.data.enTitle || ''}
-                    onChange={e => setSpotModal({ ...spotModal, data: { ...spotModal.data, enTitle: e.target.value } })}
+                    value={spotModal.data.title_en || ''}
+                    onChange={e => setSpotModal({ ...spotModal, data: { ...spotModal.data, title_en: e.target.value } })}
                     className="w-full px-3 py-2 rounded-xl border border-slate-300"
                   />
                 </div>
@@ -3443,7 +3443,7 @@ export default function AdminPage() {
                         religious: 'ধর্মীয় ও আধ্যাত্মিক স্থান',
                         heritage: 'ঐতিহাসিক স্থাপত্য ও সংস্কৃতি'
                       };
-                      setSpotModal({ ...spotModal, data: { ...spotModal.data, category: cat, categoryBn: bnMap[cat] } });
+                      setSpotModal({ ...spotModal, data: { ...spotModal.data, category: cat, category_label: bnMap[cat] } });
                     }}
                     className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white"
                   >
@@ -3801,8 +3801,8 @@ export default function AdminPage() {
                   <label className="block font-semibold text-slate-700 mb-1">উপজেলার নাম (ইংরেজিতে)</label>
                   <input
                     type="text"
-                    value={upazilaModal.data.enName || ''}
-                    onChange={e => setUpazilaModal({ ...upazilaModal, data: { ...upazilaModal.data, enName: e.target.value } })}
+                    value={upazilaModal.data.name_en || ''}
+                    onChange={e => setUpazilaModal({ ...upazilaModal, data: { ...upazilaModal.data, name_en: e.target.value } })}
                     className="w-full px-3 py-2 rounded-xl border border-slate-300"
                   />
                 </div>
@@ -4027,8 +4027,8 @@ export default function AdminPage() {
                 <label className="block font-semibold text-slate-700 mb-1">হাসপাতালের নাম (ইংরেজিতে)</label>
                 <input
                   type="text"
-                  value={hospitalModal.data.enName || ''}
-                  onChange={e => setHospitalModal({ ...hospitalModal, data: { ...hospitalModal.data, enName: e.target.value } })}
+                  value={hospitalModal.data.name_en || ''}
+                  onChange={e => setHospitalModal({ ...hospitalModal, data: { ...hospitalModal.data, name_en: e.target.value } })}
                   className="w-full px-3 py-2 rounded-xl border border-slate-300"
                 />
               </div>
@@ -4411,8 +4411,8 @@ export default function AdminPage() {
                   <label className="block text-xs font-bold text-slate-700 mb-1">ইংরেজি নাম (English)</label>
                   <input
                     type="text"
-                    value={educationModal.data.enName || ''}
-                    onChange={e => setEducationModal(prev => ({ ...prev, data: { ...prev.data, enName: e.target.value } }))}
+                    value={educationModal.data.name_en || ''}
+                    onChange={e => setEducationModal(prev => ({ ...prev, data: { ...prev.data, name_en: e.target.value } }))}
                     placeholder="e.g. Govt. Azizul Haque College"
                     className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:ring-1 focus:ring-teal-600 focus:outline-none"
                   />
@@ -4476,7 +4476,7 @@ export default function AdminPage() {
                       };
                       setEducationModal(prev => ({
                         ...prev,
-                        data: { ...prev.data, category: val, categoryBn: bnMap[val] || 'প্রতিষ্ঠান' }
+                        data: { ...prev.data, category: val, category_label: bnMap[val] || 'প্রতিষ্ঠান' }
                       }));
                     }}
                     className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white text-slate-800 focus:ring-1 focus:ring-teal-600 focus:outline-none"
@@ -4694,7 +4694,7 @@ export default function AdminPage() {
                 <img src={inspectInstitute.coverImage} alt={inspectInstitute.name} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <span className="px-2 py-0.5 rounded bg-emerald-600 text-[10px] font-bold">{inspectInstitute.categoryBn}</span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-600 text-[10px] font-bold">{inspectInstitute.category_label}</span>
                   <h3 className="text-xl font-bold mt-1">{inspectInstitute.name}</h3>
                   <span className="text-xs text-slate-300 font-mono">EIIN: {inspectInstitute.eiin} · {inspectInstitute.upazila}</span>
                 </div>

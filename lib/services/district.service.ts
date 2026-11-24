@@ -324,7 +324,7 @@ export class DistrictService {
       const q = query.toLowerCase();
       list = list.filter(u =>
         u.name.toLowerCase().includes(q) ||
-        u.enName.toLowerCase().includes(q) ||
+        u.name_en.toLowerCase().includes(q) ||
         u.rivers.toLowerCase().includes(q) ||
         u.landmark.toLowerCase().includes(q) ||
         u.unionList.some(un => un.toLowerCase().includes(q))
@@ -346,7 +346,7 @@ export class DistrictService {
     if (typeof idOrIndex === 'number') {
       return memoryDetailedUpazilas[idOrIndex] || null;
     }
-    const found = memoryDetailedUpazilas.find(u => u.id === idOrIndex || u.name === idOrIndex || u.enName.toLowerCase() === idOrIndex.toLowerCase());
+    const found = memoryDetailedUpazilas.find(u => u.id === idOrIndex || u.name === idOrIndex || u.name_en.toLowerCase() === idOrIndex.toLowerCase());
     return found || null;
   }
 
@@ -362,7 +362,7 @@ export class DistrictService {
       const q = query.toLowerCase();
       list = list.filter(h =>
         h.name.toLowerCase().includes(q) ||
-        h.enName.toLowerCase().includes(q) ||
+        h.name_en.toLowerCase().includes(q) ||
         h.address.toLowerCase().includes(q)
       );
     }
@@ -408,10 +408,11 @@ export class DistrictService {
         if (!error && data && data.length > 0) {
           const dbSpots: DetailedExploreSpot[] = data.map(item => ({
             id: item.id,
+            slug: item.slug,
             title: item.title,
-            enTitle: item.en_title,
+            title_en: item.title_en,
             category: item.category,
-            categoryBn: item.category_bn,
+            category_label: item.category_label,
             location: item.location,
             upazila: item.upazila,
             tag: item.tag,
@@ -477,7 +478,7 @@ export class DistrictService {
       const q = query.toLowerCase();
       list = list.filter(s =>
         s.title.toLowerCase().includes(q) ||
-        (s.enTitle && s.enTitle.toLowerCase().includes(q)) ||
+        (s.title_en && s.title_en.toLowerCase().includes(q)) ||
         s.location.toLowerCase().includes(q) ||
         s.upazila.toLowerCase().includes(q) ||
         s.shortDesc.toLowerCase().includes(q)
@@ -487,13 +488,16 @@ export class DistrictService {
     return list;
   }
 
-  static async getDetailedExploreSpotById(id: string): Promise<DetailedExploreSpot | null> {
+  /** Look a spot up by URL slug (preferred) or by id. */
+  static async getDetailedExploreSpotById(idOrSlug: string): Promise<DetailedExploreSpot | null> {
+    const id = idOrSlug;
     if (isSupabaseConfigured && supabase) {
       try {
+        const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
         const { data, error } = await supabase
           .from('tourist_spots')
           .select('*')
-          .eq('id', id)
+          .eq(isUuid ? 'id' : 'slug', id)
           .single();
 
         if (!error && data) {
@@ -501,15 +505,16 @@ export class DistrictService {
           const { data: revs } = await supabase
             .from('spot_reviews')
             .select('*')
-            .eq('spot_id', id)
+            .eq('spot_id', data.id)
             .order('created_at', { ascending: false });
 
           return {
             id: data.id,
+            slug: data.slug,
             title: data.title,
-            enTitle: data.en_title,
+            title_en: data.title_en,
             category: data.category,
-            categoryBn: data.category_bn,
+            category_label: data.category_label,
             location: data.location,
             upazila: data.upazila,
             tag: data.tag,
@@ -548,10 +553,10 @@ export class DistrictService {
       }
     }
 
-    let found = memoryExploreSpots.find(s => s.id === id);
+    let found = memoryExploreSpots.find(s => s.id === id || s.slug === id);
     if (!found) {
       const diskSpots = loadInitialSpots();
-      found = diskSpots.find(s => s.id === id);
+      found = diskSpots.find(s => s.id === id || s.slug === id);
       if (found) memoryExploreSpots = diskSpots;
     }
     return found || null;
@@ -568,8 +573,8 @@ export class DistrictService {
     }
   ): Promise<DetailedExploreSpot> {
     let rawSlug = (spot.id || '').trim();
-    if (!rawSlug && spot.enTitle) {
-      rawSlug = spot.enTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    if (!rawSlug && spot.title_en) {
+      rawSlug = spot.title_en.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     }
     if (!rawSlug) {
       const enPart = (spot.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -586,9 +591,9 @@ export class DistrictService {
     const newSpot: DetailedExploreSpot = {
       id: slug,
       title: spot.title,
-      enTitle: spot.enTitle || spot.title,
+      title_en: spot.title_en || spot.title,
       category: spot.category || 'heritage',
-      categoryBn: spot.categoryBn || 'ঐতিহাসিক স্থাপত্য ও সংস্কৃতি',
+      category_label: spot.category_label || 'ঐতিহাসিক স্থাপত্য ও সংস্কৃতি',
       location: spot.location,
       upazila: spot.upazila || 'বগুড়া সদর',
       tag: spot.tag || 'নাগরিক প্রস্তাবিত স্থান',
@@ -630,9 +635,9 @@ export class DistrictService {
             {
               id: slug,
               title: newSpot.title,
-              en_title: newSpot.enTitle,
+              title_en: newSpot.title_en,
               category: newSpot.category,
-              category_bn: newSpot.categoryBn,
+              category_label: newSpot.category_label,
               location: newSpot.location,
               upazila: newSpot.upazila,
               tag: newSpot.tag,
@@ -1501,7 +1506,7 @@ export class DistrictService {
         await supabaseWriter!.from('hospitals').insert([
           {
             name: item.name,
-            en_name: item.enName || item.name,
+            name_en: item.name_en || item.name,
             type: item.type,
             type_label: item.typeLabel,
             address: item.address,
@@ -1592,7 +1597,7 @@ export class DistrictService {
     if (detailed) {
       memoryDetailedUpazilas.push(detailed);
     }
-    this.addAuditLog('UPAZILA_ADD', upazila.name, `নতুন উপজেলা তালিকাভুক্ত হয়েছে: ${upazila.enName}`, 'success');
+    this.addAuditLog('UPAZILA_ADD', upazila.name, `নতুন উপজেলা তালিকাভুক্ত হয়েছে: ${upazila.name_en}`, 'success');
     return upazila;
   }
 
@@ -1600,10 +1605,10 @@ export class DistrictService {
    * Update upazila
    */
   static async updateUpazila(nameOrSerial: string, updates: Partial<Upazila & DetailedUpazilaData>): Promise<boolean> {
-    const target = memoryUpazilas.find(u => u.name === nameOrSerial || u.serialBn === nameOrSerial || u.enName.toLowerCase() === nameOrSerial.toLowerCase());
+    const target = memoryUpazilas.find(u => u.name === nameOrSerial || u.serial === nameOrSerial || u.name_en.toLowerCase() === nameOrSerial.toLowerCase());
     if (target) {
       Object.assign(target, updates);
-      const detailed = memoryDetailedUpazilas.find(u => u.name === nameOrSerial || u.serialBn === nameOrSerial || u.enName.toLowerCase() === nameOrSerial.toLowerCase());
+      const detailed = memoryDetailedUpazilas.find(u => u.name === nameOrSerial || u.serial === nameOrSerial || u.name_en.toLowerCase() === nameOrSerial.toLowerCase());
       if (detailed) {
         Object.assign(detailed, updates);
       }
@@ -1617,10 +1622,10 @@ export class DistrictService {
    * Delete upazila
    */
   static async deleteUpazila(nameOrSerial: string): Promise<boolean> {
-    const idx = memoryUpazilas.findIndex(u => u.name === nameOrSerial || u.serialBn === nameOrSerial);
+    const idx = memoryUpazilas.findIndex(u => u.name === nameOrSerial || u.serial === nameOrSerial);
     if (idx !== -1) {
       const removed = memoryUpazilas.splice(idx, 1)[0];
-      const dIdx = memoryDetailedUpazilas.findIndex(u => u.name === nameOrSerial || u.serialBn === nameOrSerial);
+      const dIdx = memoryDetailedUpazilas.findIndex(u => u.name === nameOrSerial || u.serial === nameOrSerial);
       if (dIdx !== -1) {
         memoryDetailedUpazilas.splice(dIdx, 1);
       }
@@ -1634,7 +1639,7 @@ export class DistrictService {
    * Add union to upazila
    */
   static async addUnion(upazilaName: string, union: UnionData): Promise<UnionData> {
-    const target = memoryDetailedUpazilas.find(u => u.name === upazilaName || u.enName.toLowerCase() === upazilaName.toLowerCase());
+    const target = memoryDetailedUpazilas.find(u => u.name === upazilaName || u.name_en.toLowerCase() === upazilaName.toLowerCase());
     if (target) {
       target.unions.push(union);
       target.unionCount = target.unions.length;
@@ -1710,11 +1715,11 @@ export class DistrictService {
         try {
           await supabaseWriter!.from('tourist_spots').update({
             title: spot.title,
-            en_title: spot.enTitle,
+            title_en: spot.title_en,
             location: spot.location,
             upazila: spot.upazila,
             category: spot.category,
-            category_bn: spot.categoryBn,
+            category_label: spot.category_label,
             tag: spot.tag,
             cover_image: spot.coverImage,
             gallery: Array.isArray(spot.gallery) ? spot.gallery : (spot.coverImage ? [spot.coverImage] : []),
@@ -1854,7 +1859,7 @@ export class DistrictService {
       const q = filter.search.toLowerCase().trim();
       list = list.filter(i =>
         i.name.toLowerCase().includes(q) ||
-        i.enName.toLowerCase().includes(q) ||
+        i.name_en.toLowerCase().includes(q) ||
         (i.eiin && i.eiin.includes(q)) ||
         i.location.toLowerCase().includes(q) ||
         i.upazila.toLowerCase().includes(q) ||
@@ -1911,8 +1916,8 @@ export class DistrictService {
    */
   static async createEducationalInstitute(data: Omit<EducationalInstitute, 'id'> & { id?: string }): Promise<EducationalInstitute> {
     let rawSlug = (data.id || '').trim();
-    if (!rawSlug && data.enName) {
-      rawSlug = data.enName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    if (!rawSlug && data.name_en) {
+      rawSlug = data.name_en.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     }
     if (!rawSlug) {
       rawSlug = `inst-${Date.now()}`;
@@ -1921,11 +1926,11 @@ export class DistrictService {
     const newInst: EducationalInstitute = {
       id: rawSlug,
       name: data.name,
-      enName: data.enName || data.name,
+      name_en: data.name_en || data.name,
       eiin: data.eiin || '',
       rank: data.rank,
       category: data.category || 'college',
-      categoryBn: data.categoryBn || 'কলেজ',
+      category_label: data.category_label || 'কলেজ',
       upazila: data.upazila || 'বগুড়া সদর',
       location: data.location || '',
       established: data.established || '১৯৮০',

@@ -1,17 +1,21 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
+import { upazilaPath, explorePath } from '@/lib/i18n/routes';
+import { upazilaSlugFor, upazilaSlugOf, spotSlug } from '@/lib/i18n/entities';
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import ExploreContributeModal from '@/components/ExploreContributeModal';
 import { useToast } from '@/lib/context/ToastContext';
 import { detailedExploreSpots, DetailedExploreSpot } from '@/lib/data/explore-data';
+import { useLocalized } from '@/lib/i18n/useLocalized';
 
 export default function ExploreIndexPage() {
   const { showToast } = useToast();
-  const [spots, setSpots] = useState<DetailedExploreSpot[]>(detailedExploreSpots);
+  const [spotsRaw, setSpots] = useState<DetailedExploreSpot[]>(detailedExploreSpots);
+  const spots = useLocalized(spotsRaw);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -68,7 +72,7 @@ export default function ExploreIndexPage() {
     const matchesQuery =
       !q ||
       spot.title.toLowerCase().includes(q) ||
-      spot.enTitle.toLowerCase().includes(q) ||
+      spot.title_en.toLowerCase().includes(q) ||
       spot.location.toLowerCase().includes(q) ||
       spot.upazila.toLowerCase().includes(q) ||
       spot.shortDesc.toLowerCase().includes(q);
@@ -360,7 +364,7 @@ export default function ExploreIndexPage() {
                       {/* Top Badges */}
                       <div className="absolute top-3.5 inset-x-3.5 flex items-center justify-between">
                         <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-950/85 backdrop-blur-md text-emerald-200 border border-emerald-700/50">
-                          {spot.categoryBn}
+                          {spot.category_label}
                         </span>
                         <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-500 text-emerald-950 shadow-xs">
                           {spot.upazila}
@@ -370,7 +374,7 @@ export default function ExploreIndexPage() {
                       {/* Title on bottom of image */}
                       <div className="absolute bottom-3.5 inset-x-4 text-white">
                         <span className="text-[10px] font-semibold text-amber-300 uppercase tracking-wider block">
-                          {spot.enTitle}
+                          {spot.title_en !== spot.title ? spot.title_en : ''}
                         </span>
                         <h2 className="text-xl font-bold leading-tight drop-shadow-xs">
                           {spot.title}
@@ -420,7 +424,7 @@ export default function ExploreIndexPage() {
                       )}
 
                       <Link
-                        href={`/explore/${spot.id}`}
+                        href={explorePath(spotSlug(spot))}
                         className="py-2 px-3.5 rounded-xl bg-[#0B4635] hover:bg-[#C85A28] text-white font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
                       >
                         <span>বিস্তারিত</span>

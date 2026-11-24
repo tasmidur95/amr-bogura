@@ -1,7 +1,10 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
+import { useLanguage } from '@/lib/context/LanguageContext';
+import { upazilaPath, explorePath, localizePath } from '@/lib/i18n/routes';
+import { spotSlug } from '@/lib/i18n/entities';
 import React, { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
 import { boguraUpazilasData, DetailedUpazilaData, UnionData } from '@/lib/data/unions-villages-data';
 import { detailedExploreSpots } from '@/lib/data/explore-data';
 
@@ -18,6 +21,7 @@ export default function RealMap({
   onSelectUpazila,
   showSpotMarkers = true,
 }: RealMapProps) {
+  const { locale } = useLanguage();
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const markersLayerRef = useRef<any>(null);
@@ -125,9 +129,9 @@ export default function RealMap({
         const popupContent = `
           <div style="font-family: inherit; font-size: 13px; line-height: 1.5; color: #1e293b; min-width: 210px; padding: 4px;">
             <div style="border-bottom: 2px solid #C85A28; padding-bottom: 6px; margin-bottom: 8px;">
-              <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #C85A28; background: #FEF3C7; padding: 2px 6px; border-radius: 4px;">ক্রমিক #${upz.serialBn}</span>
+              <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #C85A28; background: #FEF3C7; padding: 2px 6px; border-radius: 4px;">ক্রমিক #${upz.serial}</span>
               <h4 style="font-size: 16px; font-weight: 800; color: #0B4635; margin: 4px 0 0 0;">${upz.name} উপজেলা</h4>
-              <p style="font-size: 11px; color: #64748b; margin: 0;">${upz.enName} Upazila</p>
+              <p style="font-size: 11px; color: #64748b; margin: 0;">${upz.name_en} Upazila</p>
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; font-size: 11px;">
               <div><strong>আয়তন:</strong> ${upz.area}</div>
@@ -139,7 +143,7 @@ export default function RealMap({
               ${upz.desc}
             </p>
             <div style="display: flex; gap: 6px;">
-              <a href="/upazilas/${upz.id}" style="
+              <a href="${localizePath(upazilaPath(upz.id), locale)}" style="
                 background: #0B4635;
                 color: #ffffff;
                 text-decoration: none;
@@ -241,10 +245,10 @@ export default function RealMap({
         const spotPopup = `
           <div style="font-family: inherit; font-size: 12px; line-height: 1.4; color: #1e293b; min-width: 200px;">
             <img src="${spot.coverImage}" alt="${spot.title}" style="width: 100%; height: 90px; object-fit: cover; border-radius: 6px; margin-bottom: 6px;" />
-            <span style="font-size: 9px; font-weight: 700; color: #047857; background: #ecfdf5; padding: 2px 6px; border-radius: 4px;">${spot.categoryBn}</span>
+            <span style="font-size: 9px; font-weight: 700; color: #047857; background: #ecfdf5; padding: 2px 6px; border-radius: 4px;">${spot.category_label}</span>
             <h5 style="font-size: 14px; font-weight: 700; margin: 3px 0; color: #0f172a;">${spot.title}</h5>
             <p style="font-size: 11px; color: #64748b; margin: 0 0 6px 0;">📍 ${spot.location}</p>
-            <a href="/explore/${spot.id}" style="
+            <a href="${localizePath(explorePath(spotSlug(spot)), locale)}" style="
               background: #C85A28;
               color: #ffffff;
               text-decoration: none;
@@ -410,7 +414,7 @@ export default function RealMap({
             <option value="all">🗺️ সমগ্র বগুড়া জেলা (১২টি উপজেলা)</option>
             {boguraUpazilasData.map(u => (
               <option key={u.id} value={u.id}>
-                #{u.serialBn} {u.name} ({u.unionCount} ইউনিয়ন, {u.villageCount} গ্রাম)
+                #{u.serial} {u.name} ({u.unionCount} ইউনিয়ন, {u.villageCount} গ্রাম)
               </option>
             ))}
           </select>
@@ -508,7 +512,7 @@ export default function RealMap({
             <div className="flex items-center justify-between gap-2 mb-1">
               <h5 className="font-extrabold text-slate-900 text-sm">{activeInfo.name} উপজেলা</h5>
               <Link
-                href={`/upazilas/${activeInfo.id}`}
+                href={upazilaPath(activeInfo.id)}
                 className="text-emerald-800 font-bold hover:underline"
               >
                 বিস্তারিত →

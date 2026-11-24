@@ -1,7 +1,7 @@
 export interface UnionData {
   id: string;
   name: string;
-  enName: string;
+  name_en: string;
   upazilaId: string;
   upazilaName: string;
   postCode: string;
@@ -15,10 +15,10 @@ export interface UnionData {
 
 export interface DetailedUpazilaData {
   id: string;
-  serialBn: string;
-  serialEn: string;
+  serial: string;
+  serial_en: string;
   name: string;
-  enName: string;
+  name_en: string;
   lat: number;
   lng: number;
   area: string;
@@ -45,10 +45,10 @@ export interface DetailedUpazilaData {
 export const boguraUpazilasData: DetailedUpazilaData[] = [
   {
     id: 'bogura-sadar',
-    serialBn: '০১',
-    serialEn: '01',
+    serial: '০১',
+    serial_en: '01',
     name: 'বগুড়া সদর',
-    enName: 'Bogura Sadar',
+    name_en: 'Bogura Sadar',
     lat: 24.8465,
     lng: 89.3777,
     area: '১৭৬.৫৮ বর্গকিমি',
@@ -73,7 +73,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-fapor',
         name: 'ফাপোর',
-        enName: 'Fapor',
+        name_en: 'Fapor',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -87,7 +87,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-sabgram',
         name: 'সাবগ্রাম',
-        enName: 'Sabgram',
+        name_en: 'Sabgram',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -101,7 +101,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-nishindara',
         name: 'নিশিন্দারা',
-        enName: 'Nishindara',
+        name_en: 'Nishindara',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -115,7 +115,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-erulia',
         name: 'এরুলিয়া',
-        enName: 'Erulia',
+        name_en: 'Erulia',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -129,7 +129,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-rajapur',
         name: 'রাজাপুর',
-        enName: 'Rajapur',
+        name_en: 'Rajapur',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -143,7 +143,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-shakharia',
         name: 'শাখারিয়া',
-        enName: 'Shakharia',
+        name_en: 'Shakharia',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -157,7 +157,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-shekherkola',
         name: 'শেখেরকোলা',
-        enName: 'Shekherkola',
+        name_en: 'Shekherkola',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -171,7 +171,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-gokul',
         name: 'গোকুল',
-        enName: 'Gokul',
+        name_en: 'Gokul',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -185,7 +185,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-nungola',
         name: 'নুনগোলা',
-        enName: 'Nungola',
+        name_en: 'Nungola',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -199,7 +199,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-lahiripara',
         name: 'লাহিড়ীপাড়া',
-        enName: 'Lahiri Para',
+        name_en: 'Lahiri Para',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -213,7 +213,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sadar-namuja',
         name: 'নামুজা',
-        enName: 'Namuja',
+        name_en: 'Namuja',
         upazilaId: 'bogura-sadar',
         upazilaName: 'বগুড়া সদর',
         postCode: '৫৮০০',
@@ -228,10 +228,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'shibganj',
-    serialBn: '০২',
-    serialEn: '02',
+    serial: '০২',
+    serial_en: '02',
     name: 'শিবগঞ্জ',
-    enName: 'Shibganj',
+    name_en: 'Shibganj',
     lat: 24.9818,
     lng: 89.3175,
     area: '৩১৫.৩৩ বর্গকিমি',
@@ -256,7 +256,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-sadar',
         name: 'শিবগঞ্জ সদর',
-        enName: 'Shibganj Sadar',
+        name_en: 'Shibganj Sadar',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -270,7 +270,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-maidanhatta',
         name: 'ময়দানহাট্টা',
-        enName: 'Maidanhatta',
+        name_en: 'Maidanhatta',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -284,7 +284,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-kichak',
         name: 'কিচক',
-        enName: 'Kichak',
+        name_en: 'Kichak',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -298,7 +298,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-atmul',
         name: 'আটমূল',
-        enName: 'Atmul',
+        name_en: 'Atmul',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -312,7 +312,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-pirab',
         name: 'পিরব',
-        enName: 'Pirab',
+        name_en: 'Pirab',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -326,7 +326,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-majhihatta',
         name: 'মাঝিহট্ট',
-        enName: 'Majhihatta',
+        name_en: 'Majhihatta',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -340,7 +340,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-buriganj',
         name: 'বুড়িগঞ্জ',
-        enName: 'Buriganj',
+        name_en: 'Buriganj',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -354,7 +354,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-bihar',
         name: 'বিহার',
-        enName: 'Bihar',
+        name_en: 'Bihar',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -368,7 +368,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-deuli',
         name: 'দেউলী',
-        enName: 'Deuli',
+        name_en: 'Deuli',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -382,7 +382,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-sayedpur',
         name: 'সৈয়দপুর',
-        enName: 'Sayedpur',
+        name_en: 'Sayedpur',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -396,7 +396,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-mokamtala',
         name: 'মোকামতলা',
-        enName: 'Mokamtala',
+        name_en: 'Mokamtala',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -410,7 +410,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shib-raynagar',
         name: 'রায়নগর',
-        enName: 'Raynagar',
+        name_en: 'Raynagar',
         upazilaId: 'shibganj',
         upazilaName: 'শিবগঞ্জ',
         postCode: '৫৮১০',
@@ -425,10 +425,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'sherpur',
-    serialBn: '০৩',
-    serialEn: '03',
+    serial: '০৩',
+    serial_en: '03',
     name: 'শেরপুর',
-    enName: 'Sherpur',
+    name_en: 'Sherpur',
     lat: 24.6738,
     lng: 89.4182,
     area: '২৯৬.২৭ বর্গকিমি',
@@ -453,7 +453,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-kusumbi',
         name: 'কুসুম্বী',
-        enName: 'Kusumbi',
+        name_en: 'Kusumbi',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -467,7 +467,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-garidaha',
         name: 'গাড়ীদহ',
-        enName: 'Garidaha',
+        name_en: 'Garidaha',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -481,7 +481,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-khamarkandi',
         name: 'খামারকান্দি',
-        enName: 'Khamarkandi',
+        name_en: 'Khamarkandi',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -495,7 +495,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-khanpur',
         name: 'খানপুর',
-        enName: 'Khanpur',
+        name_en: 'Khanpur',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -509,7 +509,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-mirzapur',
         name: 'মির্জাপুর',
-        enName: 'Mirzapur',
+        name_en: 'Mirzapur',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -523,7 +523,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-bishalpur',
         name: 'বিশালপুর',
-        enName: 'Bishalpur',
+        name_en: 'Bishalpur',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -537,7 +537,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-bhabanipur',
         name: 'ভবানীপুর',
-        enName: 'Bhabanipur',
+        name_en: 'Bhabanipur',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -551,7 +551,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-sughat',
         name: 'সুঘাট',
-        enName: 'Sughat',
+        name_en: 'Sughat',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -565,7 +565,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-simabari',
         name: 'সীমাবাড়ী',
-        enName: 'Simabari',
+        name_en: 'Simabari',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -579,7 +579,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sher-shahbandegi',
         name: 'শাহবন্দেগী',
-        enName: 'Shahbandegi',
+        name_en: 'Shahbandegi',
         upazilaId: 'sherpur',
         upazilaName: 'শেরপুর',
         postCode: '৫৮৪০',
@@ -594,10 +594,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'sonatala',
-    serialBn: '০৪',
-    serialEn: '04',
+    serial: '০৪',
+    serial_en: '04',
     name: 'সোনাতলা',
-    enName: 'Sonatala',
+    name_en: 'Sonatala',
     lat: 25.0489,
     lng: 89.4975,
     area: '১৫৬.৭৫ বর্গকিমি',
@@ -622,7 +622,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sona-sadar',
         name: 'সোনাতলা সদর',
-        enName: 'Sonatala Sadar',
+        name_en: 'Sonatala Sadar',
         upazilaId: 'sonatala',
         upazilaName: 'সোনাতলা',
         postCode: '৫৮২৬',
@@ -636,7 +636,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sona-balua',
         name: 'বালুয়া',
-        enName: 'Balua',
+        name_en: 'Balua',
         upazilaId: 'sonatala',
         upazilaName: 'সোনাতলা',
         postCode: '৫৮২৬',
@@ -650,7 +650,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sona-digdair',
         name: 'দিগদাইড়',
-        enName: 'Digdair',
+        name_en: 'Digdair',
         upazilaId: 'sonatala',
         upazilaName: 'সোনাতলা',
         postCode: '৫৮২৬',
@@ -664,7 +664,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sona-jorgachha',
         name: 'জোড়গাছা',
-        enName: 'Jorgachha',
+        name_en: 'Jorgachha',
         upazilaId: 'sonatala',
         upazilaName: 'সোনাতলা',
         postCode: '৫৮২৬',
@@ -678,7 +678,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sona-madhupur',
         name: 'মধুপুর',
-        enName: 'Madhupur',
+        name_en: 'Madhupur',
         upazilaId: 'sonatala',
         upazilaName: 'সোনাতলা',
         postCode: '৫৮২৬',
@@ -692,7 +692,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sona-tekani',
         name: 'তেকানী চুকাইনগর',
-        enName: 'Tekani Chukainagar',
+        name_en: 'Tekani Chukainagar',
         upazilaId: 'sonatala',
         upazilaName: 'সোনাতলা',
         postCode: '৫৮২৬',
@@ -706,7 +706,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sona-pakulla',
         name: 'পাকুল্লা',
-        enName: 'Pakulla',
+        name_en: 'Pakulla',
         upazilaId: 'sonatala',
         upazilaName: 'সোনাতলা',
         postCode: '৫৮২৬',
@@ -721,10 +721,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'sariakandi',
-    serialBn: '০৫',
-    serialEn: '05',
+    serial: '০৫',
+    serial_en: '05',
     name: 'সারিয়াকান্দি',
-    enName: 'Sariakandi',
+    name_en: 'Sariakandi',
     lat: 24.8951,
     lng: 89.6053,
     area: '৪০৮.৫০ বর্গকিমি',
@@ -749,7 +749,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-sadar',
         name: 'সারিয়াকান্দি সদর',
-        enName: 'Sariakandi Sadar',
+        name_en: 'Sariakandi Sadar',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -763,7 +763,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-narchi',
         name: 'নারচী',
-        enName: 'Narchi',
+        name_en: 'Narchi',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -777,7 +777,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-bhelabari',
         name: 'ভেলাবাড়ী',
-        enName: 'Bhelabari',
+        name_en: 'Bhelabari',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -791,7 +791,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-chandanbaisha',
         name: 'চন্দনবাইশা',
-        enName: 'Chandanbaisha',
+        name_en: 'Chandanbaisha',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -805,7 +805,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-kutubpur',
         name: 'কুতুবপুর',
-        enName: 'Kutubpur',
+        name_en: 'Kutubpur',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -819,7 +819,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-karnibari',
         name: 'কর্ণিবাড়ী',
-        enName: 'Karnibari',
+        name_en: 'Karnibari',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -833,7 +833,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-bohail',
         name: 'বোহাইল',
-        enName: 'Bohail',
+        name_en: 'Bohail',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -847,7 +847,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-hatsherpur',
         name: 'হাটশেরপুর',
-        enName: 'Hatsherpur',
+        name_en: 'Hatsherpur',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -861,7 +861,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-kazla',
         name: 'কাজলা',
-        enName: 'Kazla',
+        name_en: 'Kazla',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -875,7 +875,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-chaluabari',
         name: 'চালুয়াবাড়ী',
-        enName: 'Chaluabari',
+        name_en: 'Chaluabari',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -889,7 +889,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-kamalpur',
         name: 'কামালপুর',
-        enName: 'Kamalpur',
+        name_en: 'Kamalpur',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -903,7 +903,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'sari-fulbari',
         name: 'ফুলবাড়ী',
-        enName: 'Fulbari',
+        name_en: 'Fulbari',
         upazilaId: 'sariakandi',
         upazilaName: 'সারিয়াকান্দি',
         postCode: '৫৮৩০',
@@ -918,10 +918,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'gabtali',
-    serialBn: '০৬',
-    serialEn: '06',
+    serial: '০৬',
+    serial_en: '06',
     name: 'গাবতলী',
-    enName: 'Gabtali',
+    name_en: 'Gabtali',
     lat: 24.8694,
     lng: 89.5167,
     area: '২৩৯.৬০ বর্গকিমি',
@@ -946,7 +946,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-sadar',
         name: 'গাবতলী সদর',
-        enName: 'Gabtali Sadar',
+        name_en: 'Gabtali Sadar',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -960,7 +960,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-nepaltali',
         name: 'নেপালতলী',
-        enName: 'Nepaltali',
+        name_en: 'Nepaltali',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -974,7 +974,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-sonabari',
         name: 'সোনাবাড়ী',
-        enName: 'Sonabari',
+        name_en: 'Sonabari',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -988,7 +988,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-kagail',
         name: 'কাগইল',
-        enName: 'Kagail',
+        name_en: 'Kagail',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -1002,7 +1002,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-rameshwarpur',
         name: 'রামেশ্বরপুর',
-        enName: 'Rameshwarpur',
+        name_en: 'Rameshwarpur',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -1016,7 +1016,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-mahishaban',
         name: 'মহিষাবান',
-        enName: 'Mahishaban',
+        name_en: 'Mahishaban',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -1030,7 +1030,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-dakshinpara',
         name: 'দক্ষিণপাড়া',
-        enName: 'Dakshinpara',
+        name_en: 'Dakshinpara',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -1044,7 +1044,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-durgahata',
         name: 'দুর্গাহাটা',
-        enName: 'Durgahata',
+        name_en: 'Durgahata',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -1058,7 +1058,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-baliadighi',
         name: 'বালিয়াদিঘী',
-        enName: 'Baliadighi',
+        name_en: 'Baliadighi',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -1072,7 +1072,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-naruamala',
         name: 'নাড়ুয়ামালা',
-        enName: 'Naruamala',
+        name_en: 'Naruamala',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -1086,7 +1086,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'gab-nasipur',
         name: 'নশিপুর',
-        enName: 'Nasipur',
+        name_en: 'Nasipur',
         upazilaId: 'gabtali',
         upazilaName: 'গাবতলী',
         postCode: '৫৮২০',
@@ -1101,10 +1101,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'dhunat',
-    serialBn: '০৭',
-    serialEn: '07',
+    serial: '০৭',
+    serial_en: '07',
     name: 'ধুনট',
-    enName: 'Dhunat',
+    name_en: 'Dhunat',
     lat: 24.6865,
     lng: 89.5447,
     area: '২৪৭.৭৩ বর্গকিমি',
@@ -1129,7 +1129,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-sadar',
         name: 'ধুনট সদর',
-        enName: 'Dhunat Sadar',
+        name_en: 'Dhunat Sadar',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1143,7 +1143,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-nimgachhi',
         name: 'নিমগাছী',
-        enName: 'Nimgachhi',
+        name_en: 'Nimgachhi',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1157,7 +1157,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-chikashi',
         name: 'চিকাশী',
-        enName: 'Chikashi',
+        name_en: 'Chikashi',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1171,7 +1171,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-gosaibari',
         name: 'গোসাইবাড়ী',
-        enName: 'Gosaibari',
+        name_en: 'Gosaibari',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1185,7 +1185,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-bhandarbari',
         name: 'ভান্ডারবাড়ী',
-        enName: 'Bhandarbari',
+        name_en: 'Bhandarbari',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1199,7 +1199,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-elangi',
         name: 'এলাঙ্গী',
-        enName: 'Elangi',
+        name_en: 'Elangi',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1213,7 +1213,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-kalerpara',
         name: 'কালেরপাড়া',
-        enName: 'Kalerpara',
+        name_en: 'Kalerpara',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1227,7 +1227,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-choukibari',
         name: 'চৌকিবাড়ী',
-        enName: 'Choukibari',
+        name_en: 'Choukibari',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1241,7 +1241,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-mathurapur',
         name: 'মথুরাপুর',
-        enName: 'Mathurapur',
+        name_en: 'Mathurapur',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1255,7 +1255,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dhu-gopalnagar',
         name: 'গোপালনগর',
-        enName: 'Gopalnagar',
+        name_en: 'Gopalnagar',
         upazilaId: 'dhunat',
         upazilaName: 'ধুনট',
         postCode: '৫৮৫০',
@@ -1270,10 +1270,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'nandigram',
-    serialBn: '০৮',
-    serialEn: '08',
+    serial: '০৮',
+    serial_en: '08',
     name: 'নন্দীগ্রাম',
-    enName: 'Nandigram',
+    name_en: 'Nandigram',
     lat: 24.6789,
     lng: 89.2435,
     area: '২৬৫.৪৭ বর্গকিমি',
@@ -1298,7 +1298,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'nan-burail',
         name: 'বুড়ইল',
-        enName: 'Burail',
+        name_en: 'Burail',
         upazilaId: 'nandigram',
         upazilaName: 'নন্দীগ্রাম',
         postCode: '৫৮৬০',
@@ -1312,7 +1312,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'nan-sadar',
         name: 'নন্দীগ্রাম সদর',
-        enName: 'Nandigram Sadar',
+        name_en: 'Nandigram Sadar',
         upazilaId: 'nandigram',
         upazilaName: 'নন্দীগ্রাম',
         postCode: '৫৮৬০',
@@ -1326,7 +1326,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'nan-bhatra',
         name: 'ভাটরা',
-        enName: 'Bhatra',
+        name_en: 'Bhatra',
         upazilaId: 'nandigram',
         upazilaName: 'নন্দীগ্রাম',
         postCode: '৫৮৬০',
@@ -1340,7 +1340,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'nan-thalta',
         name: 'থালতা মাঝগ্রাম',
-        enName: 'Thalta Majhgram',
+        name_en: 'Thalta Majhgram',
         upazilaId: 'nandigram',
         upazilaName: 'নন্দীগ্রাম',
         postCode: '৫৮৬০',
@@ -1354,7 +1354,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'nan-bhatgram',
         name: 'ভাটগ্রাম',
-        enName: 'Bhatgram',
+        name_en: 'Bhatgram',
         upazilaId: 'nandigram',
         upazilaName: 'নন্দীগ্রাম',
         postCode: '৫৮৬০',
@@ -1369,10 +1369,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'kahaloo',
-    serialBn: '০৯',
-    serialEn: '09',
+    serial: '০৯',
+    serial_en: '09',
     name: 'কাহালু',
-    enName: 'Kahaloo',
+    name_en: 'Kahaloo',
     lat: 24.8258,
     lng: 89.2612,
     area: '২৪০.৪২ বর্গকিমি',
@@ -1397,7 +1397,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'kah-birkedar',
         name: 'বীরকেদার',
-        enName: 'Birkedar',
+        name_en: 'Birkedar',
         upazilaId: 'kahaloo',
         upazilaName: 'কাহালু',
         postCode: '৫৮৭০',
@@ -1411,7 +1411,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'kah-kalai',
         name: 'কালাই',
-        enName: 'Kalai',
+        name_en: 'Kalai',
         upazilaId: 'kahaloo',
         upazilaName: 'কাহালু',
         postCode: '৫৮৭০',
@@ -1425,7 +1425,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'kah-paikar',
         name: 'পাইকড়',
-        enName: 'Paikar',
+        name_en: 'Paikar',
         upazilaId: 'kahaloo',
         upazilaName: 'কাহালু',
         postCode: '৫৮৭০',
@@ -1439,7 +1439,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'kah-narhatta',
         name: 'নারহট্ট',
-        enName: 'Narhatta',
+        name_en: 'Narhatta',
         upazilaId: 'kahaloo',
         upazilaName: 'কাহালু',
         postCode: '৫৮৭০',
@@ -1453,7 +1453,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'kah-sadar',
         name: 'কাহালু সদর',
-        enName: 'Kahaloo Sadar',
+        name_en: 'Kahaloo Sadar',
         upazilaId: 'kahaloo',
         upazilaName: 'কাহালু',
         postCode: '৫৮৭০',
@@ -1467,7 +1467,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'kah-murail',
         name: 'মুরইল',
-        enName: 'Murail',
+        name_en: 'Murail',
         upazilaId: 'kahaloo',
         upazilaName: 'কাহালু',
         postCode: '৫৮৭০',
@@ -1481,7 +1481,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'kah-durgapur',
         name: 'দুর্গাপুর',
-        enName: 'Durgapur',
+        name_en: 'Durgapur',
         upazilaId: 'kahaloo',
         upazilaName: 'কাহালু',
         postCode: '৫৮৭০',
@@ -1495,7 +1495,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'kah-jamgram',
         name: 'জামগ্রাম',
-        enName: 'Jamgram',
+        name_en: 'Jamgram',
         upazilaId: 'kahaloo',
         upazilaName: 'কাহালু',
         postCode: '৫৮৭০',
@@ -1509,7 +1509,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'kah-malancha',
         name: 'মালঞ্চা',
-        enName: 'Malancha',
+        name_en: 'Malancha',
         upazilaId: 'kahaloo',
         upazilaName: 'কাহালু',
         postCode: '৫৮৭০',
@@ -1524,10 +1524,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'dupchanchia',
-    serialBn: '১০',
-    serialEn: '10',
+    serial: '১০',
+    serial_en: '10',
     name: 'দুপচাঁচিয়া',
-    enName: 'Dupchanchia',
+    name_en: 'Dupchanchia',
     lat: 24.8697,
     lng: 89.1728,
     area: '১৬২.৪৫ বর্গকিমি',
@@ -1552,7 +1552,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dup-jianagar',
         name: 'জিয়ানগর',
-        enName: 'Jianagar',
+        name_en: 'Jianagar',
         upazilaId: 'dupchanchia',
         upazilaName: 'দুপচাঁচিয়া',
         postCode: '৫৮৮০',
@@ -1566,7 +1566,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dup-chamrul',
         name: 'চামরুল',
-        enName: 'Chamrul',
+        name_en: 'Chamrul',
         upazilaId: 'dupchanchia',
         upazilaName: 'দুপচাঁচিয়া',
         postCode: '৫৮৮০',
@@ -1580,7 +1580,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dup-sadar',
         name: 'দুপচাঁচিয়া সদর',
-        enName: 'Dupchanchia Sadar',
+        name_en: 'Dupchanchia Sadar',
         upazilaId: 'dupchanchia',
         upazilaName: 'দুপচাঁচিয়া',
         postCode: '৫৮৮০',
@@ -1594,7 +1594,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dup-gunahar',
         name: 'গুনাহার',
-        enName: 'Gunahar',
+        name_en: 'Gunahar',
         upazilaId: 'dupchanchia',
         upazilaName: 'দুপচাঁচিয়া',
         postCode: '৫৮৮০',
@@ -1608,7 +1608,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dup-gobindapur',
         name: 'গোবিন্দপুর',
-        enName: 'Gobindapur',
+        name_en: 'Gobindapur',
         upazilaId: 'dupchanchia',
         upazilaName: 'দুপচাঁচিয়া',
         postCode: '৫৮৮০',
@@ -1622,7 +1622,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'dup-talora',
         name: 'তালোড়া',
-        enName: 'Talora',
+        name_en: 'Talora',
         upazilaId: 'dupchanchia',
         upazilaName: 'দুপচাঁচিয়া',
         postCode: '৫৮৮০',
@@ -1637,10 +1637,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'adamdighi',
-    serialBn: '১১',
-    serialEn: '11',
+    serial: '১১',
+    serial_en: '11',
     name: 'আদমদীঘি',
-    enName: 'Adamdighi',
+    name_en: 'Adamdighi',
     lat: 24.8197,
     lng: 89.0435,
     area: '১৬৮.৮৩ বর্গকিমি',
@@ -1665,7 +1665,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'adam-chhatiangram',
         name: 'ছাতিয়ানগ্রাম',
-        enName: 'Chhatiangram',
+        name_en: 'Chhatiangram',
         upazilaId: 'adamdighi',
         upazilaName: 'আদমদীঘি',
         postCode: '৫৮৯০',
@@ -1679,7 +1679,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'adam-nasratpur',
         name: 'নশরতপুর',
-        enName: 'Nasratpur',
+        name_en: 'Nasratpur',
         upazilaId: 'adamdighi',
         upazilaName: 'আদমদীঘি',
         postCode: '৫৮৯০',
@@ -1693,7 +1693,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'adam-sadar',
         name: 'আদমদীঘি সদর',
-        enName: 'Adamdighi Sadar',
+        name_en: 'Adamdighi Sadar',
         upazilaId: 'adamdighi',
         upazilaName: 'আদমদীঘি',
         postCode: '৫৮৯০',
@@ -1707,7 +1707,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'adam-kundagram',
         name: 'কুন্দগ্রাম',
-        enName: 'Kundagram',
+        name_en: 'Kundagram',
         upazilaId: 'adamdighi',
         upazilaName: 'আদমদীঘি',
         postCode: '৫৮৯০',
@@ -1721,7 +1721,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'adam-chhapapur',
         name: 'চাঁপাপুর',
-        enName: 'Chhapapur',
+        name_en: 'Chhapapur',
         upazilaId: 'adamdighi',
         upazilaName: 'আদমদীঘি',
         postCode: '৫৮৯০',
@@ -1735,7 +1735,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'adam-santahar',
         name: 'সান্তাহার',
-        enName: 'Santahar',
+        name_en: 'Santahar',
         upazilaId: 'adamdighi',
         upazilaName: 'আদমদীঘি',
         postCode: '৫৮৯০',
@@ -1750,10 +1750,10 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
   },
   {
     id: 'shajahanpur',
-    serialBn: '১২',
-    serialEn: '12',
+    serial: '১২',
+    serial_en: '12',
     name: 'শাজাহানপুর',
-    enName: 'Shajahanpur',
+    name_en: 'Shajahanpur',
     lat: 24.7667,
     lng: 89.3900,
     area: '২২১.৬৯ বর্গকিমি',
@@ -1778,7 +1778,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shaj-ashekpur',
         name: 'আশেকপুর',
-        enName: 'Ashekpur',
+        name_en: 'Ashekpur',
         upazilaId: 'shajahanpur',
         upazilaName: 'শাজাহানপুর',
         postCode: '৫৮০১',
@@ -1792,7 +1792,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shaj-madla',
         name: 'মাদলা',
-        enName: 'Madla',
+        name_en: 'Madla',
         upazilaId: 'shajahanpur',
         upazilaName: 'শাজাহানপুর',
         postCode: '৫৮০১',
@@ -1806,7 +1806,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shaj-majhirah',
         name: 'মাঝিড়া',
-        enName: 'Majhira',
+        name_en: 'Majhira',
         upazilaId: 'shajahanpur',
         upazilaName: 'শাজাহানপুর',
         postCode: '৫৮০১',
@@ -1820,7 +1820,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shaj-aria',
         name: 'আড়িয়া',
-        enName: 'Aria',
+        name_en: 'Aria',
         upazilaId: 'shajahanpur',
         upazilaName: 'শাজাহানপুর',
         postCode: '৫৮০১',
@@ -1834,7 +1834,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shaj-khottapara',
         name: 'খোট্টাপাড়া',
-        enName: 'Khottapara',
+        name_en: 'Khottapara',
         upazilaId: 'shajahanpur',
         upazilaName: 'শাজাহানপুর',
         postCode: '৫৮০১',
@@ -1848,7 +1848,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shaj-chopinagar',
         name: 'চোপীনগর',
-        enName: 'Chopinagar',
+        name_en: 'Chopinagar',
         upazilaId: 'shajahanpur',
         upazilaName: 'শাজাহানপুর',
         postCode: '৫৮০১',
@@ -1862,7 +1862,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shaj-kharna',
         name: 'খড়না',
-        enName: 'Kharna',
+        name_en: 'Kharna',
         upazilaId: 'shajahanpur',
         upazilaName: 'শাজাহানপুর',
         postCode: '৫৮০১',
@@ -1876,7 +1876,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shaj-gohail',
         name: 'গোহাইল',
-        enName: 'Gohail',
+        name_en: 'Gohail',
         upazilaId: 'shajahanpur',
         upazilaName: 'শাজাহানপুর',
         postCode: '৫৮০১',
@@ -1890,7 +1890,7 @@ export const boguraUpazilasData: DetailedUpazilaData[] = [
       {
         id: 'shaj-amrul',
         name: 'আমরুল',
-        enName: 'Amrul',
+        name_en: 'Amrul',
         upazilaId: 'shajahanpur',
         upazilaName: 'শাজাহানপুর',
         postCode: '৫৮০১',

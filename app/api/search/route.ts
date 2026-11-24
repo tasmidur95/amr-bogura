@@ -28,13 +28,13 @@ export async function GET(req: NextRequest) {
     upazilasData.forEach((u, idx) => {
       if (
         u.name.toLowerCase().includes(q) ||
-        u.enName.toLowerCase().includes(q) ||
+        u.name_en.toLowerCase().includes(q) ||
         u.landmark.toLowerCase().includes(q) ||
         u.unionList.some(un => un.toLowerCase().includes(q))
       ) {
         results.push({
           type: 'উপজেলা',
-          title: `${u.serialBn}. ${u.name} (${u.enName})`,
+          title: `${u.serial}. ${u.name} (${u.name_en})`,
           sub: `${u.area} · ${u.unions}`,
           target: `/upazilas/${idx}`,
           actionType: 'upazila',
@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
     hospitalsData.forEach(h => {
       if (
         h.name.toLowerCase().includes(q) ||
-        h.enName.toLowerCase().includes(q) ||
+        h.name_en.toLowerCase().includes(q) ||
         h.address.toLowerCase().includes(q)
       ) {
         results.push({
@@ -64,7 +64,7 @@ export async function GET(req: NextRequest) {
     exploreData.forEach(e => {
       if (
         e.title.toLowerCase().includes(q) ||
-        e.enTitle.toLowerCase().includes(q) ||
+        e.title_en.toLowerCase().includes(q) ||
         e.location.toLowerCase().includes(q)
       ) {
         results.push({

@@ -1,7 +1,7 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { Upazila } from '@/lib/data/district-data';
 import RealMap from '@/components/RealMap';
@@ -47,7 +47,7 @@ export default function UpazilasPageView({
     const matchesQuery =
       !q ||
       u.name.toLowerCase().includes(q) ||
-      u.enName.toLowerCase().includes(q) ||
+      u.name_en.toLowerCase().includes(q) ||
       u.rivers.toLowerCase().includes(q) ||
       u.landmark.toLowerCase().includes(q) ||
       u.unionList.some(un => un.toLowerCase().includes(q));
@@ -76,35 +76,34 @@ export default function UpazilasPageView({
           {/* Breadcrumb Navigation */}
           <nav
             aria-label="Breadcrumb"
-            className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-500 mb-5"
+            className="flex items-center justify-center gap-2 text-xs sm:text-sm font-medium text-slate-500 mb-5"
           >
             <button
               onClick={() => onNavigate('home')}
               className="text-emerald-800 hover:text-amber-700 font-semibold flex items-center gap-1.5 transition cursor-pointer"
             >
               <i className="fa-solid fa-house text-xs"></i>
-              <span>{t('bcHome')}</span>
+              <span>{t('breadcrumb.home')}</span>
             </button>
             <i className="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
             <span className="text-slate-800 font-semibold">উপজেলা, ইউনিয়ন ও গ্রাম</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Header Copy & District Summary Metrics */}
-            <div className="lg:col-span-7">
+          <div className="flex flex-col items-center text-center">
+            <div className="w-full">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase text-[#C85A28] bg-amber-100/90 px-3 py-1 rounded-full border border-amber-200">
                 <i className="fa-solid fa-layer-group"></i>
                 <span>প্রশাসনিক ও ভৌগোলিক তথ্যভাণ্ডার</span>
               </span>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B4635] tracking-tight mt-3 leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B4635] tracking-tight mt-3 leading-tight text-center">
                 বগুড়া জেলার উপজেলা ও মানচিত্র
               </h1>
-              <p className="text-slate-600 text-base sm:text-lg mt-3 leading-relaxed max-w-2xl">
+              <p className="text-slate-600 text-base sm:text-lg mt-3 leading-relaxed max-w-2xl mx-auto">
                 বারোটি উপজেলা, তাদের ইউনিয়ন, আয়তন ও ইতিহাস। মানচিত্রে ক্লিক করে যেকোনো উপজেলার বিস্তারিত পাতায় যান।
               </p>
 
               {/* District Summary Stats Bar */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-7">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-7 max-w-3xl mx-auto">
                 <div className="bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-2xs">
                   <p className="text-[11px] font-semibold text-slate-500">মোট উপজেলা</p>
                   <p className="text-xl sm:text-2xl font-extrabold text-[#0B4635] mt-0.5">
@@ -131,24 +130,14 @@ export default function UpazilasPageView({
                 </div>
               </div>
             </div>
-
-            {/* Right Interactive Bogura GeoJSON Map Card */}
-            <div className="lg:col-span-5">
-              <BoguraGeoMap
-                onSelectUpazila={onOpenDetail}
-                hoveredIndex={hoveredIndex}
-                onHoverIndex={setHoveredIndex}
-                heightClass="h-[380px] sm:h-[420px]"
-              />
-            </div>
           </div>
         </div>
       </div>
 
       {/* 3 Primary View Mode Navigation Bar */}
       <div id="main-content-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="bg-white p-2 rounded-2xl border border-slate-200/90 shadow-xs flex flex-wrap items-center justify-between gap-3 mb-8">
-          <div className="flex items-center gap-2">
+        <div className="bg-white p-2 rounded-2xl border border-slate-200/90 shadow-xs flex flex-wrap items-center justify-center gap-3 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             <button
               onClick={() => setActiveTab('map')}
               className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition cursor-pointer ${activeTab === 'map'
@@ -183,36 +172,16 @@ export default function UpazilasPageView({
                 }`}
             >
               <i className="fa-solid fa-sitemap text-[#C85A28]"></i>
-              <span>ইউনিয়ন ও গ্রাম তালিকা ({districtSummaryStats.totalVillages} গ্রাম)</span>
+              <span>ইউনিয়ন ও গ্রাম তালিকা</span>
             </button>
           </div>
 
-          <div className="text-xs text-slate-500 font-medium px-2 hidden lg:block">
-            বগুড়া জেলা প্রশাসন ও স্থানীয় সরকার ডিরেক্টরি
-          </div>
         </div>
 
         {/* Tab 1: Map View (Both SVG District Vector Map like amargaibandha.bd and Leaflet Satellite Map) */}
         {activeTab === 'map' && (
           <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
-              <div>
-                <h3 className="text-xl font-extrabold text-slate-900">
-                  {mapSubView === 'geo'
-                    ? 'বগুড়া জেলার ইন্টারেক্টিভ প্রশাসনিক মানচিত্র'
-                    : mapSubView === 'vector'
-                      ? 'বগুড়া জেলার প্রশাসনিক সীমানা ভেক্টর মানচিত্র'
-                      : 'বগুড়া জেলার বাস্তব স্যাটেলাইট ও ওপেনস্ট্রিটম্যাপ টাইলস'}
-                </h3>
-                <p className="text-xs text-slate-600 mt-0.5">
-                  {mapSubView === 'geo'
-                    ? 'GeoJSON সীমানা মানচিত্র — উপজেলায় ক্লিক করে হাইলাইট করুন ও বিস্তারিত দেখুন'
-                    : mapSubView === 'vector'
-                      ? 'ভেক্টর মানচিত্র — জুম, প্যান এবং এসভিজি ডাউনলোড সুবিধা'
-                      : 'লাইভ স্যাটেলাইট ইমেজ, জিপিএস মার্কার ও ইউনিয়ন পরিষদ লোকেশন'}
-                </p>
-              </div>
-
+            <div className="flex justify-center">
               {/* Sub-toggle: GeoJSON Map vs Vector SVG vs Leaflet Satellite */}
               <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl overflow-x-auto">
                 <button
@@ -333,44 +302,6 @@ export default function UpazilasPageView({
               </div>
             </div>
 
-            {/* CRO Quick-Intent Upazila Chips */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs -mt-4">
-              <span className="text-[11px] font-bold text-slate-400 shrink-0 mr-1 flex items-center gap-1">
-                <i className="fa-solid fa-bolt text-amber-500"></i>দ্রুত বাছাই:
-              </span>
-              {[
-                { label: 'বগুড়া সদর', q: 'সদর' },
-                { label: 'শিবগঞ্জ', q: 'শিবগঞ্জ' },
-                { label: 'শেরপুর', q: 'শেরপুর' },
-                { label: 'সারিয়াকান্দি (যমুনা)', q: 'সারিয়াকান্দি' },
-                { label: 'দুপচাঁচিয়া', q: 'দুপচাঁচিয়া' },
-                { label: 'কাহালু', q: 'কাহালু' },
-                { label: 'গাবতলী', q: 'গাবতলী' },
-                { label: 'ধুনট', q: 'ধুনট' },
-              ].map(chip => (
-                <button
-                  key={chip.label}
-                  type="button"
-                  onClick={() => setSearchQuery(chip.q)}
-                  className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition shrink-0 cursor-pointer ${searchQuery === chip.q
-                    ? 'bg-[#0B4635] text-white font-bold'
-                    : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80'
-                    }`}
-                >
-                  {chip.label}
-                </button>
-              ))}
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="px-2 py-1 rounded-lg text-[11px] font-bold text-rose-600 hover:bg-rose-50 transition shrink-0 cursor-pointer"
-                >
-                  <i className="fa-solid fa-rotate-left mr-1"></i>রিসেট
-                </button>
-              )}
-            </div>
-
             {/* Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
               {filtered.length === 0 ? (
@@ -380,16 +311,16 @@ export default function UpazilasPageView({
               ) : (
                 filtered.map(u => {
                   const originalIdx = upazilas.indexOf(u);
-                  const serial = language === 'bn' ? u.serialBn : u.serialEn;
-                  const title = language === 'bn' ? u.name : u.enName;
-                  const subTitle = language === 'bn' ? u.enName : u.name;
-                  const summary = language === 'bn' ? u.desc : u.enDesc;
+                  const serial = language === 'bn' ? u.serial : u.serial_en;
+                  const title = language === 'bn' ? u.name : u.name_en;
+                  const subTitle = language === 'bn' ? u.name_en : u.name;
+                  const summary = language === 'bn' ? u.desc : u.description_en;
                   const detailed = boguraUpazilasData[originalIdx] || boguraUpazilasData[0];
                   const isHovered = hoveredIndex === originalIdx;
 
                   return (
                     <article
-                      key={u.serialBn}
+                      key={u.serial}
                       onMouseEnter={() => setHoveredIndex(originalIdx)}
                       onMouseLeave={() => setHoveredIndex(null)}
                       onClick={() => onOpenDetail(originalIdx)}

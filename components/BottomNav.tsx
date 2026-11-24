@@ -1,7 +1,8 @@
 'use client';
 
+import { useLanguage } from '@/lib/context/LanguageContext';
+import Link from '@/lib/i18n/navigation';
 import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
 
 interface BottomNavProps {
   currentView: string;
@@ -18,81 +19,82 @@ interface NavItem {
 }
 
 export default function BottomNav({ currentView, onNavigate }: BottomNavProps) {
+  const { t } = useLanguage();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const activeItemRef = useRef<HTMLAnchorElement | null>(null);
 
   const navItems: NavItem[] = [
     {
       id: 'home',
-      label: 'হোম',
+      label: t('bottomNav.home'),
       href: '/',
       icon: 'fa-solid fa-house',
     },
     {
       id: 'upazilas',
-      label: 'উপজেলা',
+      label: t('bottomNav.upazilas'),
       href: '/upazilas',
       icon: 'fa-solid fa-map-location-dot',
     },
     {
       id: 'healthcare',
-      label: 'স্বাস্থ্যসেবা',
+      label: t('bottomNav.health'),
       href: '/healthcare',
       icon: 'fa-solid fa-notes-medical',
       accentColor: 'text-emerald-600',
     },
     {
       id: 'education',
-      label: 'শিক্ষা',
+      label: t('bottomNav.edu'),
       href: '/education',
       icon: 'fa-solid fa-graduation-cap',
       accentColor: 'text-indigo-600',
     },
     {
       id: 'transport',
-      label: 'পরিবহন',
+      label: t('bottomNav.transport'),
       href: '/transport',
       icon: 'fa-solid fa-bus-simple',
       accentColor: 'text-blue-600',
     },
     {
       id: 'hospitality',
-      label: 'হোটেল-খাবার',
+      label: t('bottomNav.hotel'),
       href: '/hospitality',
       icon: 'fa-solid fa-hotel',
       accentColor: 'text-amber-600',
     },
     {
       id: 'banking',
-      label: 'ব্যাংক-এটিএম',
+      label: t('bottomNav.bank'),
       href: '/banking',
       icon: 'fa-solid fa-building-columns',
       accentColor: 'text-emerald-700',
     },
     {
       id: 'community',
-      label: 'কমিউনিটি',
+      label: t('bottomNav.community'),
       href: '/community',
       icon: 'fa-solid fa-users',
       accentColor: 'text-rose-600',
     },
     {
       id: 'explore',
-      label: 'দর্শনীয়',
+      label: t('bottomNav.explore'),
       href: '/explore',
       icon: 'fa-solid fa-landmark',
       accentColor: 'text-teal-600',
     },
     {
       id: 'contribute',
-      label: 'অবদান',
+      label: t('bottomNav.contribute'),
       href: '/contribute',
       icon: 'fa-solid fa-heart-circle-plus',
       accentColor: 'text-rose-500',
     },
     {
       id: 'admin',
-      label: 'অ্যাডমিন',
+      label: t('bottomNav.admin'),
       href: '/admin',
       icon: 'fa-solid fa-shield-halved',
       accentColor: 'text-slate-600',

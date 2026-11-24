@@ -1,18 +1,19 @@
 'use client';
 
+import Link from '@/lib/i18n/navigation';
 import React, { useState, useEffect, useMemo } from 'react';
-import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import { useToast } from '@/lib/context/ToastContext';
+import { useLocalized } from '@/lib/i18n/useLocalized';
 
 interface TransportHub {
   id: string;
+  name_en: string;
   name: string;
-  name_bn: string;
   category: string;
-  category_bn: string;
+  category_label: string;
   location: string;
   upazila: string;
   description: string;
@@ -26,10 +27,10 @@ interface TransportHub {
 
 interface TransportService {
   id: string;
+  operator_name_en: string;
   operator_name: string;
-  operator_name_bn: string;
+  service_type_en: string;
   service_type: string;
-  service_type_bn: string;
   headquarters_or_main_depot?: string;
   online_booking_url?: string;
   description: string;
@@ -49,8 +50,10 @@ export default function TransportPage() {
   const { showToast } = useToast();
   const [activeTab, setActiveTab] = useState<'all' | 'hub' | 'bus' | 'train' | 'rental'>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [hubs, setHubs] = useState<TransportHub[]>([]);
-  const [services, setServices] = useState<TransportService[]>([]);
+  const [hubsRaw, setHubs] = useState<TransportHub[]>([]);
+  const [servicesRaw, setServices] = useState<TransportService[]>([]);
+  const hubs = useLocalized(hubsRaw);
+  const services = useLocalized(servicesRaw);
   const [loading, setLoading] = useState(true);
   const [selectedPhones, setSelectedPhones] = useState<{ name: string; numbers: string[] } | null>(null);
 
@@ -88,8 +91,8 @@ export default function TransportPage() {
     if (!q) return hubs;
     return hubs.filter(
       h =>
-        h.name.toLowerCase().includes(q) ||
-        h.name_bn.includes(q) ||
+        h.name_en.toLowerCase().includes(q) ||
+        h.name.includes(q) ||
         h.location.toLowerCase().includes(q) ||
         h.upazila.includes(q) ||
         h.connected_routes.some(r => r.toLowerCase().includes(q))
@@ -100,11 +103,11 @@ export default function TransportPage() {
     if (activeTab === 'hub') return [];
     let list = services;
     if (activeTab === 'bus') {
-      list = list.filter(s => s.service_type === 'intercity_bus');
+      list = list.filter(s => s.service_type_en === 'intercity_bus');
     } else if (activeTab === 'train') {
-      list = list.filter(s => s.service_type === 'intercity_express_train');
+      list = list.filter(s => s.service_type_en === 'intercity_express_train');
     } else if (activeTab === 'rental') {
-      list = list.filter(s => s.service_type === 'rent_a_car');
+      list = list.filter(s => s.service_type_en === 'rent_a_car');
     }
 
     const q = searchQuery.toLowerCase().trim();
@@ -112,8 +115,8 @@ export default function TransportPage() {
 
     return list.filter(
       s =>
-        s.operator_name.toLowerCase().includes(q) ||
-        s.operator_name_bn.includes(q) ||
+        s.operator_name_en.toLowerCase().includes(q) ||
+        s.operator_name.includes(q) ||
         s.major_routes.some(r => r.toLowerCase().includes(q)) ||
         (s.counters_in_bogura &&
           s.counters_in_bogura.some(
@@ -122,9 +125,9 @@ export default function TransportPage() {
     );
   }, [services, activeTab, searchQuery]);
 
-  const busesCount = services.filter(s => s.service_type === 'intercity_bus').length;
-  const trainsCount = services.filter(s => s.service_type === 'intercity_express_train').length;
-  const rentalsCount = services.filter(s => s.service_type === 'rent_a_car').length;
+  const busesCount = services.filter(s => s.service_type_en === 'intercity_bus').length;
+  const trainsCount = services.filter(s => s.service_type_en === 'intercity_express_train').length;
+  const rentalsCount = services.filter(s => s.service_type_en === 'rent_a_car').length;
   const totalResults = filteredHubs.length + filteredServices.length;
 
   return (
@@ -384,7 +387,7 @@ export default function TransportPage() {
                           <div className="p-4 sm:p-5 border-b border-slate-100 bg-slate-50/70 min-w-0">
                             <div className="flex items-start justify-between gap-2 mb-2.5">
                               <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200/80 truncate max-w-[140px]">
-                                {hub.category_bn}
+                                {hub.category_label}
                               </span>
                               <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200/80 truncate max-w-[120px]">
                                 {hub.upazila}
@@ -397,9 +400,9 @@ export default function TransportPage() {
                               </div>
                               <div className="min-w-0 flex-1">
                                 <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug line-clamp-1 group-hover:text-blue-700 transition-colors">
-                                  {hub.name_bn}
+                                  {hub.name}
                                 </h3>
-                                <p className="text-[10px] text-slate-400 font-mono truncate">{hub.name}</p>
+                                <p className="text-[10px] text-slate-400 font-mono truncate">{hub.name_en !== hub.name ? hub.name_en : ''}</p>
                                 <p className="text-xs text-slate-600 mt-1 flex items-center gap-1 min-w-0">
                                   <i className="fa-solid fa-location-dot shrink-0 text-[11px] text-amber-600"></i>
                                   <span className="truncate min-w-0 flex-1">{hub.location}</span>
@@ -458,7 +461,7 @@ export default function TransportPage() {
 
                           {primaryPhone && (
                             <button
-                              onClick={() => handleCopy(primaryPhone, hub.name_bn)}
+                              onClick={() => handleCopy(primaryPhone, hub.name)}
                               className="shrink-0 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs transition cursor-pointer"
                               title="নম্বর কপি করুন"
                             >
@@ -470,7 +473,7 @@ export default function TransportPage() {
                             <button
                               onClick={() =>
                                 setSelectedPhones({
-                                  name: hub.name_bn,
+                                  name: hub.name,
                                   numbers: hub.phone_numbers || [],
                                 })
                               }
@@ -518,7 +521,7 @@ export default function TransportPage() {
                           <div className="p-4 sm:p-5 border-b border-slate-100 bg-slate-50/70 min-w-0">
                             <div className="flex items-start justify-between gap-2 mb-2.5">
                               <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200/80 truncate max-w-[140px]">
-                                {service.service_type_bn}
+                                {service.service_type}
                               </span>
 
                               {service.online_booking_url && (
@@ -540,10 +543,10 @@ export default function TransportPage() {
                               </div>
                               <div className="min-w-0 flex-1">
                                 <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug line-clamp-1 group-hover:text-emerald-800 transition-colors">
-                                  {service.operator_name_bn}
+                                  {service.operator_name}
                                 </h3>
                                 <p className="text-[10px] text-slate-400 font-mono truncate">
-                                  {service.operator_name}
+                                  {service.operator_name_en !== service.operator_name ? service.operator_name_en : ''}
                                 </p>
                                 {service.headquarters_or_main_depot && (
                                   <p className="text-xs text-slate-600 mt-1 flex items-center gap-1 min-w-0">
@@ -627,7 +630,7 @@ export default function TransportPage() {
 
                           {primaryPhone && (
                             <button
-                              onClick={() => handleCopy(primaryPhone, service.operator_name_bn)}
+                              onClick={() => handleCopy(primaryPhone, service.operator_name)}
                               className="shrink-0 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs transition cursor-pointer"
                               title="নম্বর কপি করুন"
                             >
@@ -639,7 +642,7 @@ export default function TransportPage() {
                             <button
                               onClick={() =>
                                 setSelectedPhones({
-                                  name: service.operator_name_bn,
+                                  name: service.operator_name,
                                   numbers: service.phone_numbers || [],
                                 })
                               }

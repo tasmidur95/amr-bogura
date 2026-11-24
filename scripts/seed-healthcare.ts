@@ -10,19 +10,19 @@ import * as path from 'path';
 export interface HealthcareFacilityRecord {
   id: string;
   dghs_facility_id: string;
+  name_en: string;
   name: string;
-  name_bn: string;
   slug: string;
   category: string;
   facility_type: string;
   original_facility_type: string;
   ownership: string;
+  district_en: string;
   district: string;
-  district_bn: string;
+  upazila_en: string;
   upazila: string;
-  upazila_bn: string;
-  union: string | null;
-  union_bn: string | null;
+  union_name_en: string | null;
+  union_name: string | null;
   village_or_area: string | null;
   address: string | null;
   phone: string[];
@@ -45,8 +45,8 @@ export interface HealthcareDataFile {
     step?: string;
     file_name: string;
     total_records: number;
+    district_en: string;
     district: string;
-    district_bn: string;
     covered_upazilas: string[];
     source_urls: string[];
     collected_at: string;
@@ -100,7 +100,7 @@ export function generateQualityReport(facilities: HealthcareFacilityRecord[]) {
   let missingImages = 0;
 
   for (const f of facilities) {
-    byUpazila[f.upazila] = (byUpazila[f.upazila] || 0) + 1;
+    byUpazila[f.upazila_en] = (byUpazila[f.upazila_en] || 0) + 1;
     byCategory[f.category] = (byCategory[f.category] || 0) + 1;
 
     if (f.verification_status === 'verified') verified++;
